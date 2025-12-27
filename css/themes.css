@@ -1,97 +1,54 @@
-/* Theme-specific styles */
+/* Theme System - Simplified and Clean */
 
-/* Color utilities for attachment styles */
-.color-secure {
-  color: var(--color-accent-secure);
+/* Import only light theme */
+@import url('./light.css');
+
+/* Map Material Design variables to project variables */
+:root,
+[data-theme="light"],
+[data-theme="dark"],
+[data-theme="dark-hc"],
+[data-theme="light-hc"],
+[data-theme=""],
+html,
+body {
+  /* Background Colors */
+  --color-bg-primary: var(--md-sys-color-background);
+  --color-bg-secondary: var(--md-sys-color-surface-container-low);
+  --color-bg-tertiary: var(--md-sys-color-surface-container);
+  
+  /* Background Accents for Decorations */
+  --color-bg-accent-1: rgba(75, 120, 100, 0.08); /* Subtle green */
+  --color-bg-accent-2: rgba(150, 135, 115, 0.06); /* Subtle beige */
+  --color-bg-accent-3: rgba(60, 90, 75, 0.05); /* Subtle secondary */
+  
+  /* Surface Colors */
+  --color-surface: var(--md-sys-color-surface);
+  --color-surface-elevated: var(--md-sys-color-surface-container-high);
+  --color-surface-soft: var(--md-sys-color-surface-container-low);
+  
+  /* Text Colors - Maximum Contrast - Pure Black */
+  --color-text-primary: rgb(0, 0, 0); /* Pure black - 21:1 contrast (maximum) */
+  --color-text-secondary: rgb(0, 0, 0); /* Pure black - maximum contrast */
+  --color-text-tertiary: rgb(10, 10, 10); /* Near black - 20:1 contrast */
+  
+  /* Primary Accent */
+  --color-accent-primary: var(--md-sys-color-primary);
+  --color-on-accent-primary: var(--md-sys-color-on-primary);
+  
+  /* Attachment Style Colors - Using base colors for consistent border visibility */
+  --color-accent-secure: var(--md-sys-color-primary);
+  --color-accent-anxious: var(--md-sys-color-error);
+  --color-accent-avoidant: var(--md-sys-color-secondary);
+  --color-accent-disorganized: var(--md-sys-color-tertiary);
+  
+  /* Status Colors */
+  --color-success: var(--md-sys-color-tertiary-container);
+  --color-warning: var(--md-sys-color-error-container);
+  --color-info: var(--md-sys-color-primary-container);
+  
+  /* Borders */
+  --color-border: var(--md-sys-color-outline-variant);
+  --color-border-soft: var(--md-sys-color-outline-variant);
+  --color-border-strong: var(--md-sys-color-outline);
 }
-
-.color-anxious {
-  color: var(--color-accent-anxious);
-}
-
-.color-avoidant {
-  color: var(--color-accent-avoidant);
-}
-
-.color-disorganized {
-  color: var(--color-accent-disorganized);
-}
-
-.bg-secure {
-  background-color: var(--color-accent-secure);
-  color: var(--color-bg-primary);
-}
-
-.bg-anxious {
-  background-color: var(--color-accent-anxious);
-  color: var(--color-bg-primary);
-}
-
-.bg-avoidant {
-  background-color: var(--color-accent-avoidant);
-  color: var(--color-bg-primary);
-}
-
-.bg-disorganized {
-  background-color: var(--color-accent-disorganized);
-  color: var(--color-bg-primary);
-}
-
-/* Profile cards with style colors */
-.profile-card.secure {
-  border-left: 4px solid var(--color-accent-secure);
-}
-
-.profile-card.anxious {
-  border-left: 4px solid var(--color-accent-anxious);
-}
-
-.profile-card.avoidant {
-  border-left: 4px solid var(--color-accent-avoidant);
-}
-
-.profile-card.disorganized {
-  border-left: 4px solid var(--color-accent-disorganized);
-}
-
-/* Archetype visual styles */
-.archetype-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.archetype-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-accent-avoidant), var(--color-accent-anxious));
-}
-
-/* Level indicators */
-.level-badge {
-  display: inline-block;
-  padding: var(--spacing-1) var(--spacing-3);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.level-badge.basso {
-  background-color: rgba(168, 213, 186, 0.2);
-  color: var(--color-accent-secure);
-}
-
-.level-badge.medio {
-  background-color: rgba(255, 211, 165, 0.2);
-  color: var(--color-accent-disorganized);
-}
-
-.level-badge.alto {
-  background-color: rgba(244, 165, 174, 0.2);
-  color: var(--color-accent-anxious);
-}
-

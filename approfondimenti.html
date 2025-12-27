@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Approfondimenti tematici sugli stili di attaccamento: Focusing, sessualità, famiglia, amicizie, lavoro, finanze, genitorialità, lutto, tradimento, separazione, crescita.">
-  <title>Approfondimenti Tematici - Stili di Attaccamento Wiki</title>
+  <title>Approfondimenti Tematici - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -50,28 +50,11 @@
     .toc a {
       color: var(--color-accent-secure);
       text-decoration: none;
+      font-size: var(--font-size-lg);
     }
     
     .toc a:hover {
       text-decoration: underline;
-    }
-    
-    .deep-dive {
-      margin-bottom: var(--spacing-8);
-    }
-    
-    .deep-dive h2 {
-      border-bottom: 2px solid var(--color-accent-secure);
-      padding-bottom: var(--spacing-2);
-      margin-bottom: var(--spacing-4);
-    }
-    
-    .focusing-section {
-      background: linear-gradient(135deg, rgba(168, 213, 186, 0.1) 0%, rgba(168, 213, 186, 0.05) 100%);
-      border-left: 4px solid var(--color-accent-secure);
-      padding: var(--spacing-6);
-      border-radius: var(--radius-lg);
-      margin-bottom: var(--spacing-8);
     }
   </style>
 </head>
@@ -79,7 +62,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -89,6 +77,8 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
@@ -99,7 +89,7 @@
           <span>›</span>
           <span>Approfondimenti</span>
         </nav>
-        <h1>Approfondimenti Tematici</h1>
+        <h1>Approfondimenti tematici</h1>
         <p class="text-center mb-8" style="font-size: var(--font-size-lg);">
           Esplorazioni verticali su come gli stili di attaccamento si manifestano in specifici ambiti della vita. 
           Ogni approfondimento analizza le dinamiche per ogni stile e livello.
@@ -108,491 +98,33 @@
         <!-- Indice -->
         <div class="toc">
           <h3>Indice degli Approfondimenti</h3>
+          <p>Ogni approfondimento è disponibile come pagina separata. Clicca sul link per leggere l'approfondimento completo.</p>
           <ul>
-            <li><a href="#focusing">🎯 Focusing - Pratica di Consapevolezza Corporea</a></li>
-            <li><a href="#sessualita">1. Attaccamento e Sessualità</a></li>
-            <li><a href="#famiglia">2. Attaccamento e Famiglia Adulta</a></li>
-            <li><a href="#amicizie">3. Attaccamento e Amicizie</a></li>
-            <li><a href="#lavoro">4. Attaccamento e Lavoro/Carriera</a></li>
-            <li><a href="#finanze">5. Attaccamento e Finanze</a></li>
-            <li><a href="#genitorialita">6. Attaccamento e Genitorialità</a></li>
-            <li><a href="#lutto">7. Attaccamento e Lutto</a></li>
-            <li><a href="#tradimento">8. Attaccamento e Tradimento/Infedeltà</a></li>
-            <li><a href="#separazione">9. Attaccamento e Separazione/Divorzio</a></li>
-            <li><a href="#crescita">10. Attaccamento e Consapevolezza/Crescita</a></li>
+            <li><a href="approfondimenti/focusing.html">🎯 Focusing - Pratica di Consapevolezza Corporea</a></li>
+            <li><a href="approfondimenti/sessualita.html">1. Attaccamento e Sessualità</a></li>
+            <li><a href="approfondimenti/famiglia.html">2. Attaccamento e Famiglia Adulta</a></li>
+            <li><a href="approfondimenti/amicizie.html">3. Attaccamento e Amicizie</a></li>
+            <li><a href="approfondimenti/lavoro.html">4. Attaccamento e Lavoro/Carriera</a></li>
+            <li><a href="approfondimenti/finanze.html">5. Attaccamento e Finanze</a></li>
+            <li><a href="approfondimenti/genitorialita.html">6. Attaccamento e Genitorialità</a></li>
+            <li><a href="approfondimenti/lutto.html">7. Attaccamento e Lutto</a></li>
+            <li><a href="approfondimenti/tradimento.html">8. Attaccamento e Tradimento/Infedeltà</a></li>
+            <li><a href="approfondimenti/separazione.html">9. Attaccamento e Separazione/Divorzio</a></li>
+            <li><a href="approfondimenti/crescita.html">10. Attaccamento e Consapevolezza/Crescita</a></li>
           </ul>
         </div>
 
-        <!-- FOCUSING - Approfondimento Verticale -->
-        <section id="focusing" class="focusing-section deep-dive">
-          <h2>🎯 Focusing - Pratica di Consapevolezza Corporea</h2>
-          
-          <div class="card mb-6">
-            <h3>Cos'è il Focusing?</h3>
-            <p>Il Focusing è una pratica meditativa sviluppata da Eugene Gendlin negli anni '70 che ti insegna a <strong>ascoltare il tuo corpo e i tuoi sentimenti nascosti</strong>. Non è terapia, non è meditazione tradizionale, è uno strumento per accedere alla saggezza corporea che già possiedi.</p>
-            <p>Quando dici "mi sento strano" senza sapere perché, o "qualcosa non mi quadra" ma non riesci a nomarlo: il Focusing ti insegna a entrare in comunicazione diretta con quella sensazione fisica.</p>
-          </div>
-
-          <div class="card mb-6">
-            <h3>Perché è Rilevante per l'Attaccamento?</h3>
-            <p>L'insicurezza di attaccamento vive <strong>nel corpo</strong> prima che nella mente:</p>
-            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><strong>Ansioso:</strong> sente il panico nel petto, il vuoto nello stomaco</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Evitante:</strong> sente la chiusura della gola, il ritiro</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Disorganizzato:</strong> sente la confusione come tremori, congelamento</li>
-            </ul>
-            <p style="margin-top: var(--spacing-4);"><strong>Il Focusing ti permette di:</strong></p>
-            <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);">Riconoscere queste sensazioni PRIMA della reazione automatica</li>
-              <li style="margin-bottom: var(--spacing-2);">Comunicare con loro (non contro loro)</li>
-              <li style="margin-bottom: var(--spacing-2);">Scoprire cosa il tuo corpo sa che la mente non sa ancora</li>
-              <li style="margin-bottom: var(--spacing-2);">Trasformare l'angoscia in informazione utile</li>
-            </ol>
-          </div>
-
-          <div class="card mb-6">
-            <h3>Il Processo di Base (6 Step)</h3>
-            <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-3);"><strong>CLEARING A SPACE</strong> - "Che cosa mi preoccupa?"</li>
-              <li style="margin-bottom: var(--spacing-3);"><strong>FELT SENSE</strong> - Trova la sensazione corporea della preoccupazione</li>
-              <li style="margin-bottom: var(--spacing-3);"><strong>HANDLE</strong> - Un'immagine, una parola, una frase che cattura la sensazione</li>
-              <li style="margin-bottom: var(--spacing-3);"><strong>RESONANCE</strong> - Verifica: è giusto? Come lo sai?</li>
-              <li style="margin-bottom: var(--spacing-3);"><strong>ASKING</strong> - Chiedi al felt sense: "Cosa c'è sotto?"</li>
-              <li style="margin-bottom: var(--spacing-3);"><strong>RECEIVING</strong> - Ascolta la risposta dal corpo</li>
-            </ol>
-          </div>
-
-          <!-- Focusing per Stile Ansioso -->
-          <div class="card mb-6 profile-card anxious">
-            <h3 class="color-anxious">Focusing per Stile Ansioso</h3>
-            <p><strong>Il Problema:</strong> La mente non vuole stare con il sentimento. Vuole "risolvere il problema" velocemente (chiamare il partner, cercare rassicurazione).</p>
-            <p><strong>La Soluzione:</strong> Il Focusing ti insegna a resistere al bisogno di agire immediatamente e invece sentire completamente quello che c'è.</p>
-            
-            <h4>Esercizio Base per Ansioso (10 minuti)</h4>
-            <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><strong>Preparazione:</strong> Luogo tranquillo, telefono in un'altra stanza, mano sul cuore</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Clearing:</strong> "Cosa mi sta infastidendo?" (es. "Lui non mi ha chiamato da 4 ore")</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Felt Sense:</strong> "Dove sento questo nel corpo?" (petto, stomaco, gola?)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Handle:</strong> Una parola/immagine (es. "sensazione di cadere", "buco nero")</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Resonance:</strong> "È giusto?" (il corpo riconosce?)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Asking:</strong> "Cosa c'è sotto questo?" (ascolta dal corpo)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Receiving:</strong> Cosa ha comunicato il corpo? (spesso una risposta inaspettata)</li>
-            </ol>
-            
-            <h4>Focusing Micromoment (2 minuti - quotidiano)</h4>
-            <p>Quando noti l'ansia salire:</p>
-            <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);">FERMA (3 secondi)</li>
-              <li style="margin-bottom: var(--spacing-2);">MANO SUL CUORE</li>
-              <li style="margin-bottom: var(--spacing-2);">"Dov'è questo nel corpo?" (nomina il luogo)</li>
-              <li style="margin-bottom: var(--spacing-2);">"Qual è il colore/sapore/consistenza?" (una parola)</li>
-              <li style="margin-bottom: var(--spacing-2);">"Rimani con quello per 6 respiri"</li>
-              <li style="margin-bottom: var(--spacing-2);">CONTINUA la giornata</li>
-            </ol>
-          </div>
-
-          <!-- Focusing per Stile Evitante -->
-          <div class="card mb-6 profile-card avoidant">
-            <h3 class="color-avoidant">Focusing per Stile Evitante</h3>
-            <p><strong>Il Problema:</strong> Non vuoi sentire perché connesso a vulnerabilità. Il Focusing "costringe" il corpo a parlare, cosa che sembra terribile inizialmente.</p>
-            <p><strong>La Soluzione:</strong> Quando scopri che il "sentimento" non ti uccide, cominci a stare vicino a chi ami senza paura.</p>
-            
-            <h4>Esercizio Base per Evitante (10 minuti)</h4>
-            <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><strong>Clearing:</strong> "Cosa mi dà fastidio quando penso all'intimità/relazione?"</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Felt Sense:</strong> "Dove sento questa chiusura?" (gola, petto vuoto, tensione spalle?)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Handle:</strong> Qualità della chiusura (es. "porta chiusa", "ghiaccio", "muro")</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Asking:</strong> "Caro muro... Mi proteggi da cosa? Quale paura mi stai aiutando a evitare?"</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Receiving:</strong> Spesso: "Ti proteggo dal sentimento di perdita di te stesso"</li>
-            </ol>
-          </div>
-
-          <!-- Focusing per Stile Disorganizzato -->
-          <div class="card mb-6 profile-card disorganized">
-            <h3 class="color-disorganized">Focusing per Stile Disorganizzato</h3>
-            <p><strong>Il Problema:</strong> Il corpo è confuso. Quando provi a "ascoltare", senti conflitti contraddittori ("Voglio stare vicino" + "Voglio scappare" nello stesso momento).</p>
-            <p><strong>La Soluzione:</strong> Il Focusing ti insegna a non risolvere il conflitto, ma a stare con l'incertezza – cosa che non facevi mai.</p>
-            
-            <h4>Esercizio per il Conflitto Disorganizzato (15 minuti)</h4>
-            <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><strong>Clearing:</strong> "Quale contraddizione mi sente confuso?"</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Felt Sense:</strong> "Dove sento questa oscillazione?" (calore nel petto + freddo alle gambe?)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Handle:</strong> Due immagini (es. "Fuoco" e "Ghiaccio") - mantieni ENTRAMBE</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Asking ai due poli:</strong> Chiedi separatamente a ogni polo cosa vuole/protegge</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Asking al conflitto:</strong> "Sono entrambi veri? Posso volere vicinanza E protezione?"</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Receiving:</strong> Quando ACCETTI entrambi i lati, il corpo smette di dover scegliere</li>
-            </ol>
-          </div>
-
-          <!-- Focusing Interpersonale -->
-          <div class="card mb-6">
-            <h3>Focusing Interpersonale - Connecting con il Partner</h3>
-            <p>Una volta che hai imparato il Focusing da solo, puoi usarlo <strong>con il partner</strong> per comunicazione più profonda.</p>
-            
-            <h4>Focusing Dialogue a Due (20 minuti)</h4>
-            <div class="grid grid-2" style="margin-top: var(--spacing-4);">
-              <div>
-                <h5>SPEAKER (chi espone):</h5>
-                <ul style="margin-left: var(--spacing-6);">
-                  <li>Condividi il tuo Focusing</li>
-                  <li>Parla dal corpo, non dalla mente</li>
-                  <li>Evita accuse: "Quando sento [sentimento], scopro che..."</li>
-                </ul>
-              </div>
-              <div>
-                <h5>LISTENER (chi ascolta):</h5>
-                <ul style="margin-left: var(--spacing-6);">
-                  <li>NON risolve, non spiega, non difende</li>
-                  <li>Solo: "Grazie per aver condiviso. Capisco"</li>
-                  <li>Dopo, invertite i ruoli</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div class="card" style="background-color: var(--color-surface-elevated); margin-top: var(--spacing-4);">
-              <h5>Esempio per Coppia Ansioso-Evitante:</h5>
-              <p><strong>ANSIOSO PARLA:</strong> "Ho fatto un Focusing. Quando non mi rispondi, il mio corpo sente questo cadere nel vuoto. Non penso sia logico. Ma il corpo crede che tu ti sia ritirato da me. La verità sotto è paura di non essere importante."</p>
-              <p><strong>EVITANTE ASCOLTA:</strong> "Grazie. Capisco che il tuo corpo sente così."</p>
-              <p><strong>EVITANTE PARLA:</strong> "Ho fatto un Focusing. Quando senti che ho bisogno di spazio, il mio corpo sente soffocamento. Non è su di te. È paura di perdermi. Ma il ritiro mi fa sentire al sicuro."</p>
-              <p><strong>ANSIOSO ASCOLTA:</strong> "Capisco. Grazie."</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Risorse per Andare Oltre</h3>
-            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><strong>Libri:</strong> "Focusing" di Eugene Gendlin, "The Power of Focusing"</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Siti:</strong> The Focusing Institute (focusing.org)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Audio:</strong> Guided Focusings su YouTube</li>
-            </ul>
-            <p style="margin-top: var(--spacing-4);"><strong>Quando Cercare Guida Professionale:</strong> Se il Focusing ti attiva traumi molto gravi (panico, dissociazione profonda, autolesionismo), cerca un terapeuta che conosce Focusing.</p>
-          </div>
-        </section>
-
-        <!-- 10 APPROFONDIMENTI TEMATICI -->
-        
-        <!-- 1. Sessualità -->
-        <section id="sessualita" class="deep-dive">
-          <h2>1. Attaccamento e Sessualità</h2>
-          <p>La sessualità è uno dei campi dove l'insicurezza di attaccamento si manifesta più chiaramente. Non è solo "fare sesso", è intimità corporea + vulnerabilità + fiducia simultaneamente.</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p><strong>Livello Medio/Alto:</strong> Sessualità consapevole e integrata, comunicazione chiara sui desideri, gioco erotico con connessione emotiva, assenza di culpa o vergogna, rifiuto occasionale non attiva il sistema di attaccamento.</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Sesso frequentemente usato come rassicurazione, bisogno di validazione durante/dopo il sesso, gelosia moderata, difficoltà a godere pienamente (mente occupata).</p>
-              <p><strong>Livello Alto:</strong> Sesso quasi esclusivamente come test/rassicurazione, ossessione con frequenza sessuale, gelosia intensa, impossibilità di godere senza validazione costante.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Sesso spesso rifiutato/evitato, sessualità percepita come "controllo" del partner, comunicazione sul sesso praticamente inesistente, significativa difficoltà con desiderio sessuale.</p>
-              <p><strong>Livello Alto:</strong> Sessualità praticamente inesistente/completamente evitata, percezione del sesso come "invasione", impossibilità di godimento sessuale.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio:</strong> Sessualità altamente instabile/drammatica, sesso usato come "prova" di amore + "arma" di rifiuto, oscillazione tra passione intensa e completo rifiuto.</p>
-              <p><strong>Livello Alto:</strong> Sessualità caotica/spesso traumatica, oscillazione violenta tra iper-sessualità e completo ritiro, sesso usato come aggressione/autolesionismo.</p>
-            </div>
-          </div>
-          
-          <div class="card" style="margin-top: var(--spacing-6);">
-            <h4>Esercizi Consigliati</h4>
-            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><strong>Ansioso Basso:</strong> Breathing pre-sesso (calmare il sistema)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Ansioso Medio:</strong> Focusing sulla vulnerabilità corporea + Sensate Focus con comunicazione</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Evitante Basso:</strong> Body Scan per "sentire il desiderio" + Sensate Focus dolce</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Evitante Medio:</strong> Focusing sulla paura della vulnerabilità corporea + Terapia sessuale specializzata</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>Disorganizzato:</strong> Focusing per oscillazione + Terapia sessuale specializzata</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- 2. Famiglia Adulta -->
-        <section id="famiglia" class="deep-dive">
-          <h2>2. Attaccamento e Famiglia Adulta</h2>
-          <p>La relazione con i genitori da adulti è dove vedi il pattern di attaccamento "originale" – il template per tutte le altre relazioni.</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Contatto regolare con genitori, ma non dipendenza. Capacità di dire "no" ai genitori senza colpa. Confini chiari. Vulnerabilità occasionale con genitori, senza paura di essere giudicato/a.</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Dipendenza moderata dai genitori (emotiva, talvolta economica), contatto quasi quotidiano, senso di responsabilità per il benessere del genitore, difficoltà nel creare confini.</p>
-              <p><strong>Livello Alto:</strong> Fusione iper-aderente con genitori, contatto quotidiano/ossessivo, dipendenza economica/emotiva totale, genitori sanno ogni dettaglio della tua vita, impossibilità di avere segreti.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Contatto raro/saltuario, comunicazione solo logistica, significativa distanza emotiva/freddo verso genitori, difficoltà a ricevere aiuto dai genitori.</p>
-              <p><strong>Livello Alto:</strong> Contatto nullo o minimalissimo (completo taglio), comunicazione totalmente assente, rabbia profonda/rifiuto verso genitori, spesso storia di abbandono/neglect/trauma.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio/Alto:</strong> Relazione caotica/potenzialmente abusiva, oscillazione drammatica di sentimenti verso genitori, difficoltà a mantenere confini, genitore spesso manipolativo/controllante, cicli di riconciliazione intensa/conflitto totale.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 3. Amicizie -->
-        <section id="amicizie" class="deep-dive">
-          <h2>3. Attaccamento e Amicizie</h2>
-          <p>Le amicizie sono il "test di bassa pressione" dell'attaccamento. Non c'è sesso, non c'è convivenza, solo... lealtà, contatto, reciprocità.</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Amicizie multiple, diverse, stabili e reciproche. Capacità di stare solo + stare con amici. Comunicazione diretta se conflitto. Supporto reciproco. Amici di lunga durata.</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Amicizie molto intensive, pochi "veri amici", necessità di contatto frequente, senso di esclusività, gelosia moderata verso altre amicizie.</p>
-              <p><strong>Livello Alto:</strong> Ossessione con "best friend" (fusione), contatto quasi quotidiano necessario, intensa gelosia verso partner/altre amicizie, amicizie spesso tossiche/codipendenti.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Amicizie molto superficiali (acquaintances, non amici veri), comunicazione raramente intima, preferenza per stare solo, isolamento moderato.</p>
-              <p><strong>Livello Alto:</strong> Amicizie praticamente inesistenti, isolamento significativo, difficoltà a creare legami, preferenza quasi totale per stare solo.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio:</strong> Amicizie come montagne russe, intensità estrema alternata a distanza totale, cicli di riconciliazione/conflitto, spesso "drammi" con amici.</p>
-              <p><strong>Livello Alto:</strong> Amicizie cronicamente caotiche/tossiche, oscillazione drammatica di sentimenti, gelosia intensa/possessività, amici spesso si allontanano.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 4. Lavoro/Carriera -->
-        <section id="lavoro" class="deep-dive">
-          <h2>4. Attaccamento e Lavoro/Carriera</h2>
-          <p>Come ti relazioni con capi, colleghi, team? L'attaccamento influenza come "ti attacchi" ai progetti, ai ruoli, alla carriera.</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Carriera equilibrata e resiliente. Ambizione + capacità di stare bene anche senza successo. Relazioni di lavoro sane. Feedback costruttivo accettato senza crollo. Capacità di negoziare. Cambio di lavoro senza catastrofismo.</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Carriera usata come rassicurazione ("Se ho successo, valgo"), bisogno di approvazione dal capo, lavoro duro eccessivo per "dimostrare il valore", feedback negativo causa ansia significativa.</p>
-              <p><strong>Livello Alto:</strong> Workaholism come forma di rassicurazione, carriera come UNICA fonte di validazione, bisogno ossessivo di approvazione dal capo, burnout frequente.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Carriera come scusa per isolamento, difficoltà nelle relazioni di lavoro, leadership difficile (non connetti con team), preferenza per lavori solitari.</p>
-              <p><strong>Livello Alto:</strong> Carriera completamente isolata, difficoltà a collaborare (impossibile il teamwork), reputazione di distaccato/freddo, spesso scegli lavori completamente solitari.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio:</strong> Carriera come montagna russa, oscillazione tra ambizione estrema e disinteresse totale, relazioni di lavoro caotiche, frequenti cambi di lavoro/cariche.</p>
-              <p><strong>Livello Alto:</strong> Carriera caotica/instabile, frequenti cambi di lavoro (sempre "sbagliato"), relazioni di lavoro spesso tossiche, burnout alternato a iperattività.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 5. Finanze -->
-        <section id="finanze" class="deep-dive">
-          <h2>5. Attaccamento e Finanze</h2>
-          <p>Come gestisci denaro con partner? Come chiedi aiuto economico? Dipendenza economica è spesso fusione di attaccamento.</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Finanze trasparenti e autonome. Trasparenza totale sul denaro con partner. Autonomia finanziaria (anche se in coppia). Discussioni di denaro senza conflitto. Capacità di chiedere aiuto finanziario senza vergogna.</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Significativa dipendenza economica dal partner, nascondi spese al partner (paura di giudizio), continua ansia economica (anche se stabile), usa denaro come "test" di amore.</p>
-              <p><strong>Livello Alto:</strong> Completa dipendenza economica dal partner, partner controlla totalmente il denaro, impossibilità di accedere al denaro senza permesso, abuso finanziario possibile.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Indipendenza estrema (non condividi niente, even se in coppia), rifiuto di ricevere aiuto finanziario, partner spesso si sente escluso dalle finanze, denaro usato come arma di indipendenza.</p>
-              <p><strong>Livello Alto:</strong> Totale rifiuto di integrazione finanziaria, partner sente la separazione finanziaria come rifiuto, impossibilità di veri compromessi economici.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio/Alto:</strong> Finanze caotiche/non gestite, oscillazione fra dipendenza totale e rifiuto di aiuto, spesso debiti/problemi economici, discussioni di denaro sempre conflittuali.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 6. Genitorialità -->
-        <section id="genitorialita" class="deep-dive">
-          <h2>6. Attaccamento e Genitorialità</h2>
-          <p>Un nuovo essere umano che dipende TOTALMENTE da te. Come reagisce il tuo attaccamento?</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Genitorialità consapevole. Capacità di stare vicino al bambino + mantenere tua identità. Comunicazione chiara con partner su divisione di ruoli. Gestione di stress genitoriale senza crollo. Bambino sente sicurezza.</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Significativa anxiety parenting (paura costante), difficoltà nel lasciare il bambino, over-involvement nei dettagli, paura che il bambino non ti ami abbastanza.</p>
-              <p><strong>Livello Alto:</strong> Ansia parenting severa/panico costante, impossibilità di lasciare il bambino, over-involvement totale, genitore "soffocante", depressione post-partum significativa.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Significativa difficoltà nel bonding con bambino, distanza emotiva, partner di solito il "genitore principale", difficoltà nel contatto fisico/affettuoso.</p>
-              <p><strong>Livello Alto:</strong> Assenza di bonding significativa, impossibilità di contatto affettuoso, partner di fatto il "solo" genitore, bambino sente il rifiuto/distacco, a volte comportamento negligente.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio:</strong> Genitorialità caotica/impredibile, oscillazione fra iperprotezione e negligenza, bambino confuso dall'incoerenza, a volte rabbia verso bambino (ingiusta).</p>
-              <p><strong>Livello Alto:</strong> Genitorialità cronicamente caotica/potenzialmente abusiva, oscillazione drammatica di comportamento, bambino traumatizzato dall'incoerenza, spesso comportamento abusivo, possibile perdita della custodia.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 7. Lutto -->
-        <section id="lutto" class="deep-dive">
-          <h2>7. Attaccamento e Lutto</h2>
-          <p>Come reagisci quando il partner muore? Un amico? Un genitore? La morte è il "test estremo" dell'attaccamento.</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Lutto consapevole e processato. Capacità di stare con il dolore (non negazione). Supporto cercato. Graduale integrazione della perdita. Capacità di ricordare con amore (non ossessione). Vita continua (con dolore, ma continua).</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Lutto come "abbandono finale" (paura costante di morte del partner), ossessione con salute del partner, se partner muore: depressione significativa/disperazione.</p>
-              <p><strong>Livello Alto:</strong> Ansia cronica di morte del partner (ossessione), controllo ossessivo di salute/paradero, se partner muore: crollo totale/suicidio ideazione, lutto non processato (rimane ossessione).</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Negazione del lutto (fingi che non importa), difficoltà a stare con emozioni di perdita, comportamento quasi "sollevato" dopo morte (nasconde il dolore).</p>
-              <p><strong>Livello Alto:</strong> Completa dissociazione dal lutto, fingi che la morte "non importa" (ma soffoca il dolore), lutto profondo sepolto (emerge in crisi di breakdown anni dopo).</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio/Alto:</strong> Lutto come "dramma"/"disastro totale", oscillazione fra desperazione e dissociazione, comportamento "drammatico" intorno a lutto, possibile suicidio ideazione/autolesionismo.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 8. Tradimento -->
-        <section id="tradimento" class="deep-dive">
-          <h2>8. Attaccamento e Tradimento/Infedeltà</h2>
-          <p>Il tradimento è la "prova finale" di attaccamento. Come reagisci quando senti il partner infedele? E come reagisci TU alla tentazione di tradire?</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Raramente tradisci (senso di valore interno). Se partner tradisce: dolore, ma non distruzione totale. Capacità di conversazione seria sul tradimento. Scelta consapevole: restare o andare. Guarigione possibile se entrambi motivati.</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Tradisci occasionalmente (cercare rassicurazione sessuale da altri), se partner tradisce: crollo/devastazione, impossibilità di processare il tradimento, ossessione con i dettagli, spesso rimani in relazione (paura di abbandono > paura di tradimento).</p>
-              <p><strong>Livello Alto:</strong> Tradisci frequentemente (ricerca compulsiva di rassicurazione), se partner tradisce: crollo totale/disperazione, impossibilità di stare nella relazione/impossibilità di andare, comportamento suicida ideazione.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Tradisci moderatamente (scappare dall'intimità relazionale), se partner tradisce: usa come "prova" che sei nel diritto di ritirarsi, facilmente razionalizzi tradimento ("È solo sesso").</p>
-              <p><strong>Livello Alto:</strong> Tradisci frequentemente (compulsivamente scappare), relazioni spesso finiscono per tuo tradimento, se partner tradisce: usa come finale "prova" di abbandono, scappa, impossibilità di lealtà relazionale.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio/Alto:</strong> Tradisci frequentemente/compulsivamente, se partner tradisce: scenario di guerra/disastro, oscillazione fra vendetta/riconciliazione drammatica, spesso violenza verbale/minacce, relazione difficile da lasciare (addicted alla montagna russa).</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 9. Separazione -->
-        <section id="separazione" class="deep-dive">
-          <h2>9. Attaccamento e Separazione/Divorzio</h2>
-          <p>La fine di una relazione è dove il tuo stile di attaccamento "fallisce" o "guarisce". Come gesti la perdita di una relazione importante?</p>
-          
-          <div class="grid grid-2" style="margin-top: var(--spacing-6);">
-            <div class="card profile-card secure">
-              <h3 class="color-secure">Secure</h3>
-              <p>Separazione come lutto + nuovo inizio. Dolore sincero, ma processabile. Capacità di mettere confini sani (no contatto prolungato). Supporto cercato. Graduale integrazione della perdita. Vita ricomincia (con dolore, ma ricomincia).</p>
-            </div>
-            <div class="card profile-card anxious">
-              <h3 class="color-anxious">Ansioso</h3>
-              <p><strong>Livello Medio:</strong> Impossibilità di processare la fine, contatto costante con ex (come tentativo di riconciliazione), depressione significativa, ricerca ossessiva di spiegazioni, spesso rimbalzo immediato in nuova relazione (per non sentire il vuoto).</p>
-              <p><strong>Livello Alto:</strong> Crollo totale/suicidio ideazione, impossibilità di stare solo/a (anche un giorno), stalking di ex, depressione severa/insonnia/ansia cronica, autolesionismo/comportamento autodistruttivo.</p>
-            </div>
-            <div class="card profile-card avoidant">
-              <h3 class="color-avoidant">Evitante</h3>
-              <p><strong>Livello Medio:</strong> Apparente "indifferenza" alla fine, facile distacco (partner spesso sorpreso da "non curanza"), rapidissimo rimbalzo a nuova relazione, difficoltà a riconoscere la perdita (negata).</p>
-              <p><strong>Livello Alto:</strong> Totale dissociazione dalla perdita, fingi che "non importa" (ma reprime dolore profondo), rapidissimo rimbalzo (per non sentire), dolore non processato emerge anni dopo.</p>
-            </div>
-            <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
-              <p><strong>Livello Medio/Alto:</strong> Separazione come "dramma totale", oscillazione fra disperazione e indifferenza, comportamento autodistruttivo/autolesionismo, comportamento violento (verso ex, verso se stesso), impossibilità di stare solo/a, ossessione con ex (anche anni dopo), a volte riconciliazioni ripetute (vortice).</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 10. Crescita -->
-        <section id="crescita" class="deep-dive">
-          <h2>10. Attaccamento e Consapevolezza/Crescita</h2>
-          <p>Perché sei qui? Per acquisire consapevolezza. Come aumenti la consapevolezza dell'insicurezza di attaccamento? Qual è il percorso realistico?</p>
-          
-          <div class="card mb-6">
-            <h3>Il Viaggio della Consapevolezza</h3>
-            <p>La consapevolezza dall'insicurezza di attaccamento passa per <strong>3 fasi</strong>:</p>
-            
-            <div class="grid grid-3" style="margin-top: var(--spacing-6);">
-              <div class="card">
-                <h4>FASE 1: CONSAPEVOLEZZA</h4>
-                <p><strong>Settimane 1-4</strong></p>
-                <p>Riconosci il tuo stile. Noti i tuoi pattern (quando si attivano? come?). Inizi a "vederti" dall'esterno.</p>
-                <p><strong>Pratica:</strong> Lettura/Test di auto-valutazione, Journaling dei trigger, Focusing Base.</p>
-              </div>
-              <div class="card">
-                <h4>FASE 2: DISLOCAZIONE</h4>
-                <p><strong>Settimane 5-12</strong></p>
-                <p>Provi il comportamento NUOVO (anche se non lo senti ancora). Conflitto interno fra "vecchio io" e "nuovo io". Il corpo resiste (abituato al vecchio).</p>
-                <p><strong>Pratica:</strong> Esercizi quotidiani (Breathing, Focusing, Base Sicura), Focusing Dialogue col partner, Journaling.</p>
-              </div>
-              <div class="card">
-                <h4>FASE 3: INTEGRAZIONE</h4>
-                <p><strong>Mese 3+</strong></p>
-                <p>Nuovo comportamento diventa "default". Il corpo preferisce il nuovo (meno sforzo richiesto). Risultati visibili (partner lo nota, tu lo senti).</p>
-                <p><strong>Pratica:</strong> Esercizi continuano, ma diventano automatici, Focusing per "approfondimento" (non "emergenza").</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-6">
-            <h3>Linea Temporale Realistica (per Livello)</h3>
-            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><strong>SECURE Livello Basso → Medio:</strong> 3-4 mesi</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>ANSIOSO Livello Medio → Basso:</strong> 4-6 mesi (+ Terapia consigliata)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>ANSIOSO Livello Alto → Medio:</strong> 6-12 mesi (+ Terapia Individuale 2x settimana)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>EVITANTE Livello Medio → Basso:</strong> 5-10 mesi (+ Terapia consigliata)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>EVITANTE Livello Alto → Medio:</strong> 12-18 mesi (+ Terapia Individuale + Somatic Work)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>DISORGANIZZATO Livello Medio → Basso:</strong> 6-12 mesi (+ Terapia Individuale EMDR/Somatic)</li>
-              <li style="margin-bottom: var(--spacing-2);"><strong>DISORGANIZZATO Livello Alto → Medio:</strong> 12-24+ mesi (+ Terapia Intensiva)</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Cosa NON è Consapevolezza</h3>
-            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);">❌ Non è "scomparsa" del pattern</li>
-              <li style="margin-bottom: var(--spacing-2);">❌ Non è "felicità costante"</li>
-              <li style="margin-bottom: var(--spacing-2);">❌ Non è "relazione perfetta"</li>
-              <li style="margin-bottom: var(--spacing-2);">❌ Non è "non sentirai più ansia/paura"</li>
-            </ul>
-            
-            <h3 style="margin-top: var(--spacing-6);">Cosa È Consapevolezza</h3>
-            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);">✅ Il pattern è ancora presente, ma non ti controlla</li>
-              <li style="margin-bottom: var(--spacing-2);">✅ Riconosci il pattern mentre accade</li>
-              <li style="margin-bottom: var(--spacing-2);">✅ Puoi scegliere il comportamento nuovo (anche se il vecchio ti chiama)</li>
-              <li style="margin-bottom: var(--spacing-2);">✅ Il corpo si sente più stabile / meno cronicamente attivato</li>
-              <li style="margin-bottom: var(--spacing-2);">✅ Relazioni significativamente migliori</li>
-              <li style="margin-bottom: var(--spacing-2);">✅ Meno sofferenza (anche se difficoltà rimangono)</li>
-            </ul>
-          </div>
-        </section>
+        <div class="card mb-8">
+          <h2>Come navigare gli approfondimenti</h2>
+          <p>Ogni approfondimento è organizzato per <strong>stile di attaccamento</strong> (Secure, Ansioso, Evitante, Oscillante) e <strong>livello</strong> (Basso, Medio, Alto).</p>
+          <p>Ogni approfondimento include:</p>
+          <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+            <li style="margin-bottom: var(--spacing-2);">Caratteristiche specifiche per ogni stile e livello</li>
+            <li style="margin-bottom: var(--spacing-2);">Sensazioni corporee e pattern relazionali</li>
+            <li style="margin-bottom: var(--spacing-2);">Esercizi pratici consigliati</li>
+            <li style="margin-bottom: var(--spacing-2);">Linee guida per la pratica</li>
+          </ul>
+        </div>
 
         <!-- Link a Risorse -->
         <div class="card mt-8">
@@ -601,7 +133,7 @@
             <li style="margin-bottom: var(--spacing-2);"><a href="esercizi.html">Vedi Esercizi Pratici</a> per ogni stile e livello</li>
             <li style="margin-bottom: var(--spacing-2);"><a href="risorse.html">Vedi Risorse</a> per glossario, letture e storie reali</li>
             <li style="margin-bottom: var(--spacing-2);"><a href="test.html">Fai il Test</a> per identificare il tuo profilo</li>
-            <li style="margin-bottom: var(--spacing-2);"><a href="mappa-personale.html">Crea la Tua Mappa Personale</a> per visualizzare il tuo profilo</li>
+            <li style="margin-bottom: var(--spacing-2);"><a href="mappa-personale.html">Crea la Tua Mappa personale</a> per visualizzare il tuo profilo</li>
           </ul>
         </div>
       </div>
@@ -615,7 +147,7 @@
   </footer>
 
   <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
-

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ansioso Alto - Il Matto (0): Profilo completo con archetipo junghiano, caratteristiche del livello, esercizi specifici e timeline di consapevolezza.">
-  <title>Ansioso Alto - Il Matto | Stili di Attaccamento Wiki</title>
+  <title>Ansioso Alto - Il Matto | Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -27,7 +27,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="../index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="../fondamenti.html">Fondamenti</a></li>
         <li><a href="../modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="../archetipi.html">Archetipi</a></li>
@@ -36,6 +41,8 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
@@ -61,10 +68,89 @@
           </p>
         </div>
 
+        <!-- Strategie Pratiche Immediate -->
+        <article class="card mb-8" style="border-left: 4px solid var(--color-accent); background: linear-gradient(135deg, rgba(168, 213, 186, 0.1) 0%, rgba(168, 213, 186, 0.05) 100%);">
+          <h2>Strategie pratiche immediate</h2>
+          <p>Ecco cosa puoi fare <strong>subito</strong> per iniziare a lavorare con questo profilo:</p>
+          
+          <h3 style="margin-top: var(--spacing-6);">Cosa Fare Quando...</h3>
+          <div class="grid grid-2" style="margin-top: var(--spacing-4);">
+            <div class="card">
+              <h4>Quando Vai in Panico</h4>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+                <li style="margin-bottom: var(--spacing-2);">Ferma tutto e <strong>respira</strong> (4-6-8 per 2 minuti)</li>
+                <li style="margin-bottom: var(--spacing-2);">Riconosci: <strong>"Il panico è qui, non è la realtà"</strong></li>
+                <li style="margin-bottom: var(--spacing-2);">Aspetta <strong>2 ore</strong> prima di contattare il partner</li>
+                <li style="margin-bottom: var(--spacing-2);">Scrivi i tuoi pensieri invece di inviarli</li>
+              </ol>
+            </div>
+            
+            <div class="card">
+              <h4>Quando il Partner Non Risponde</h4>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+                <li style="margin-bottom: var(--spacing-2);">Ricorda: <strong>"Non rispondere ≠ abbandono"</strong></li>
+                <li style="margin-bottom: var(--spacing-2);">Fai un <strong>body scan</strong> (5 minuti)</li>
+                <li style="margin-bottom: var(--spacing-2);">Distraiti con un'attività che ti piace</li>
+                <li style="margin-bottom: var(--spacing-2);">Comunica dopo: "Ero preoccupato, ma so che non è razionale"</li>
+              </ol>
+            </div>
+            
+            <div class="card">
+              <h4>Quando Senti il Soffocamento</h4>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+                <li style="margin-bottom: var(--spacing-2);">Riconosci: <strong>"Il corpo si è attivato"</strong></li>
+                <li style="margin-bottom: var(--spacing-2);">Chiedi spazio: <strong>"Mi serve 20 minuti da solo"</strong></li>
+                <li style="margin-bottom: var(--spacing-2);">Fai <strong>focusing</strong> sulla sensazione (10 min)</li>
+                <li style="margin-bottom: var(--spacing-2);">Comunica al partner: "Non è per te, è il mio corpo"</li>
+              </ol>
+            </div>
+            
+            <div class="card">
+              <h4>Quando Vuoi Rassicurazione</h4>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+                <li style="margin-bottom: var(--spacing-2);">Prima, chiediti: <strong>"Cosa mi serve davvero?"</strong></li>
+                <li style="margin-bottom: var(--spacing-2);">Prova a <strong>rassicurarti da solo</strong> (base sicura interna)</li>
+                <li style="margin-bottom: var(--spacing-2);">Se necessario, chiedi: <strong>"Posso avere un abbraccio?"</strong></li>
+                <li style="margin-bottom: var(--spacing-2);">Evita di chiedere rassicurazione <strong>ripetutamente</strong></li>
+              </ol>
+            </div>
+          </div>
+          
+          <h3 style="margin-top: var(--spacing-6);">Checklist Quotidiana</h3>
+          <div class="card" style="background-color: var(--color-surface-elevated); margin-top: var(--spacing-4);">
+            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+              <li style="margin-bottom: var(--spacing-2);">☐ Breathing 4-6-8 (mattina, pomeriggio, sera)</li>
+              <li style="margin-bottom: var(--spacing-2);">☐ Body Scan (1x al giorno, 10 min)</li>
+              <li style="margin-bottom: var(--spacing-2);">☐ Journaling serale (5 min) - cosa ho notato oggi?</li>
+              <li style="margin-bottom: var(--spacing-2);">☐ Ho aspettato 2 ore prima di contattare il partner quando in panico?</li>
+              <li style="margin-bottom: var(--spacing-2);">☐ Ho praticato base sicura interna invece di cercare solo fuori?</li>
+            </ul>
+          </div>
+          
+          <div class="card" style="margin-top: var(--spacing-6); background-color: rgba(244, 165, 174, 0.1); border-left: 4px solid var(--color-accent);">
+            <h4>⚠️ Supporto Professionale Consigliato</h4>
+            <p>Con un livello <strong>Alto</strong>, è fortemente consigliato il supporto di un professionista. Non c'è vergogna nel cercare aiuto - è un atto di coraggio.</p>
+            <p style="margin-top: var(--spacing-4);"><a href="../quando-cercare-aiuto.html" class="btn btn-primary">Scopri Quando Cercare Aiuto</a></p>
+          </div>
+        </article>
+
         <!-- L'Archetipo Junghiano -->
         <article class="card mb-8">
-          <h2>L'Archetipo Junghiano</h2>
-          
+          <h2>L'archetipo junghiano</h2>
+          <figure class="wiki-image">
+            <img src="../images/profili-ansioso-alto-tarocchi.webp" 
+                 alt="Carta dei Tarocchi: Il Matto (0)" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">0 - Il Matto: L'ingenuità traumatizzata</figcaption>
+          </figure>
+          <figure class="wiki-image">
+            <img src="../images/profili-ansioso-alto-archetipo.webp" 
+                 alt="Rappresentazione astratta dell'Arcano del Matto" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Il Matto: l'inizio del viaggio</figcaption>
+          </figure>
           <h3>L'Immagine Archetipale</h3>
           <p>Il Matto nei Tarocchi classici è un giovane che cammina felicemente verso il precipizio, uno zaino in spalla, gli occhi puntati al cielo. Non vede il pericolo. La sua innocenza è radiantemente disarmata.</p>
           <p>Ma nel tuo caso, nel profilo Ansioso Alto, sei <strong>il Matto che conosce il precipizio ma non riesce a smettere di correre verso di esso</strong>. Conosci il pericolo. Lo senti nel tuo corpo. Ma il corpo ha imparato che:</p>
@@ -97,7 +183,7 @@
 
         <!-- Il Profilo nel Modello a Gradienti -->
         <article class="card mb-8">
-          <h2>Il Profilo nel Modello a Gradienti</h2>
+          <h2>Il profilo nel modello a gradienti</h2>
           <p>Nel modello a gradienti, <strong>Ansioso Alto</strong> significa:</p>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);"><strong>Ansia di Attaccamento:</strong> ALTA (7-10/10)</li>
@@ -125,6 +211,13 @@
           </ul>
 
           <h3>Pattern Relazionale</h3>
+          <figure class="wiki-image">
+            <img src="../images/profili-ansioso-alto-pattern.webp" 
+                 alt="Pattern astratto che mostra il movimento ciclico" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Pattern relazionale: riconoscere il ciclo</figcaption>
+          </figure>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);">Relazioni spesso tossiche (cicli di rassicurazione-abbandono)</li>
             <li style="margin-bottom: var(--spacing-2);">Dipendenza dal partner per autostima</li>
@@ -145,7 +238,7 @@
 
         <!-- La Consapevolezza Archetipale -->
         <article class="card mb-8">
-          <h2>La Consapevolezza Archetipale</h2>
+          <h2>La consapevolezza archetipale</h2>
           
           <h3>Il Primo Passo della Consapevolezza</h3>
           <p>Il Matto, nel percorso iniziatico junghiano, rappresenta il punto di partenza. Non è "sbagliato" essere il Matto. È il primo passo.</p>
@@ -174,7 +267,7 @@
 
         <!-- Esercizi Specifici -->
         <article class="card mb-8">
-          <h2>Esercizi Specifici per Ansioso Alto</h2>
+          <h2>Esercizi specifici per Ansioso Alto</h2>
           <p><strong>Frequenza:</strong> QUOTIDIANI, intensivi</p>
           <p><strong>Terapia:</strong> Fortemente consigliata (EFT, DBT, EMDR) — 2x settimana minimo</p>
           
@@ -258,10 +351,10 @@
             <div>
               <p><strong>Altri link:</strong></p>
               <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-                <li style="margin-bottom: var(--spacing-2);"><a href="../stili-base.html">Torna ai 4 Stili Base</a></li>
+                <li style="margin-bottom: var(--spacing-2);"><a href="../stili-base.html">Torna aI 4 stili base</a></li>
                 <li style="margin-bottom: var(--spacing-2);"><a href="../archetipi.html">Vedi tutti gli Archetipi</a></li>
                 <li style="margin-bottom: var(--spacing-2);"><a href="../esercizi.html">Vedi tutti gli Esercizi</a></li>
-                <li style="margin-bottom: var(--spacing-2);"><a href="../mappa-personale.html">Crea la Tua Mappa Personale</a></li>
+                <li style="margin-bottom: var(--spacing-2);"><a href="../mappa-personale.html">Crea la Tua Mappa personale</a></li>
                 <li style="margin-bottom: var(--spacing-2);"><a href="../test.html">Fai il Test</a></li>
               </ul>
             </div>

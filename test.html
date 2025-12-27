@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Test di auto-valutazione completo: 12 domande per identificare il tuo stile di attaccamento prevalente e il tuo livello (Basso, Medio, Alto).">
-  <title>Test di Auto-Valutazione - Stili di Attaccamento Wiki</title>
+  <title>Test di Auto-Valutazione - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -19,12 +19,24 @@
   
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/themes.css">
+  
+  <!-- SurveyJS CSS -->
+  <link href="https://unpkg.com/survey-core@latest/defaultV2.min.css" type="text/css" rel="stylesheet">
+  
+  <!-- SurveyJS JavaScript -->
+  <script src="https://unpkg.com/survey-core@latest/survey.core.min.js"></script>
+  <script src="https://unpkg.com/surveyjs-widgets@latest/surveyjs-widgets.min.js"></script>
 </head>
 <body>
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -36,6 +48,8 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
@@ -47,6 +61,15 @@
           <span>Test</span>
         </nav>
         <h1>Test di Auto-Valutazione</h1>
+        
+        <!-- Messaggio Empatico Introduttivo -->
+        <div class="card mb-8" style="background: linear-gradient(135deg, rgba(168, 213, 186, 0.1) 0%, rgba(168, 213, 186, 0.05) 100%); border-left: 4px solid var(--color-accent-secure);">
+          <h2 style="color: var(--color-accent-secure);">Prima di Iniziare</h2>
+          <p style="font-size: var(--font-size-lg);">Questo test non è un giudizio. Non ci sono risposte "giuste" o "sbagliate". Non stiamo cercando di etichettarti o di dirti che c'è qualcosa che non va in te.</p>
+          <p>Stiamo semplicemente aiutandoti a <strong>capire meglio te stesso</strong> e i tuoi pattern nelle relazioni. Ogni persona ha uno stile di attaccamento - non è qualcosa di cui vergognarsi o da nascondere.</p>
+          <p><strong>Se ti senti confuso, solo, o come se qualcosa non funzionasse nelle tue relazioni, sappi che non sei rotto.</strong> Questo test è il primo passo per acquisire consapevolezza, non per giudicarti.</p>
+        </div>
+        
         <p class="text-center mb-8" style="font-size: var(--font-size-lg);">12 domande per identificare il tuo stile di attaccamento prevalente e il tuo livello (Basso, Medio, Alto).</p>
         
         <div class="card mb-8">
@@ -61,110 +84,8 @@
           <p><strong>Tempo stimato:</strong> 5-10 minuti</p>
         </div>
 
-        <form id="test-form" class="card">
-          <!-- Domanda 1 -->
-          <div class="mb-8" style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--spacing-6);">
-            <h3>Domanda 1</h3>
-            <p style="margin-bottom: var(--spacing-4);"><strong>Quando il partner non risponde ai messaggi per alcune ore, tu...</strong></p>
-            <div style="margin-left: var(--spacing-4);">
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q1" value="A" required style="margin-right: var(--spacing-2);">
-                <strong>A)</strong> Mi sento subito ansioso/a e voglio contattarlo/a di nuovo
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(ANSIOSO - 3 punti)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q1" value="B" required style="margin-right: var(--spacing-2);">
-                <strong>B)</strong> Aspetto che risponda, occasionalmente mi chiedo perché è lento/a
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(SECURE - 1 punto)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q1" value="C" required style="margin-right: var(--spacing-2);">
-                <strong>C)</strong> Non mi importa molto, ho altre cose da fare
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(EVITANTE - 2 punti)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q1" value="D" required style="margin-right: var(--spacing-2);">
-                <strong>D)</strong> Dipende dal mio umore - a volte mi infastidisce, a volte non mi importa
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(DISORGANIZZATO - 3 punti)</small>
-              </label>
-            </div>
-          </div>
-
-          <!-- Domanda 2 -->
-          <div class="mb-8" style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--spacing-6);">
-            <h3>Domanda 2</h3>
-            <p style="margin-bottom: var(--spacing-4);"><strong>Nella relazione, il tuo bisogno primario è...</strong></p>
-            <div style="margin-left: var(--spacing-4);">
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q2" value="A" required style="margin-right: var(--spacing-2);">
-                <strong>A)</strong> Sentire che il partner mi ama e mi sceglie costantemente
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(ANSIOSO - 3 punti)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q2" value="B" required style="margin-right: var(--spacing-2);">
-                <strong>B)</strong> Stare insieme, ma con spazio e indipendenza reciproca
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(SECURE - 1 punto)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q2" value="C" required style="margin-right: var(--spacing-2);">
-                <strong>C)</strong> Mantenere la mia libertà e indipendenza, con legami leggeri
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(EVITANTE - 2 punti)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q2" value="D" required style="margin-right: var(--spacing-2);">
-                <strong>D)</strong> Dipende dal momento - a volte voglio intimità, a volte voglio scappare
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(DISORGANIZZATO - 3 punti)</small>
-              </label>
-            </div>
-          </div>
-
-          <!-- Domanda 3 -->
-          <div class="mb-8" style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--spacing-6);">
-            <h3>Domanda 3</h3>
-            <p style="margin-bottom: var(--spacing-4);"><strong>Quando il partner suggerisce di trascorrere tempo separati, tu...</strong></p>
-            <div style="margin-left: var(--spacing-4);">
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q3" value="A" required style="margin-right: var(--spacing-2);">
-                <strong>A)</strong> Mi sento rifiutato/a e ho paura che sia l'inizio della fine
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(ANSIOSO - 3 punti)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q3" value="B" required style="margin-right: var(--spacing-2);">
-                <strong>B)</strong> Sono d'accordo e apprezzo il tempo per me stesso/a
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(SECURE - 1 punto)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q3" value="C" required style="margin-right: var(--spacing-2);">
-                <strong>C)</strong> Sono sollevato/a e preferisco passare tempo da solo/a
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(EVITANTE - 2 punti)</small>
-              </label>
-              <label style="display: block; margin-bottom: var(--spacing-3); padding: var(--spacing-3); background-color: var(--color-surface-elevated); border-radius: var(--radius-md); cursor: pointer;">
-                <input type="radio" name="q3" value="D" required style="margin-right: var(--spacing-2);">
-                <strong>D)</strong> Dipende da chi lo suggerisce e quando - a volte d'accordo, a volte irritato/a
-                <small style="display: block; margin-top: var(--spacing-1); color: var(--color-text-secondary);">(DISORGANIZZATO - 3 punti)</small>
-              </label>
-            </div>
-          </div>
-
-          <!-- Note: Per brevità, includo solo 3 domande come esempio. Il file completo avrà tutte le 12 domande -->
-          <div class="card" style="background-color: var(--color-surface-elevated); margin-top: var(--spacing-6);">
-            <p><strong>Nota:</strong> Questo è un esempio con 3 domande. Il test completo include 12 domande che coprono tutte le dimensioni dell'attaccamento.</p>
-            <p>Le domande rimanenti seguono lo stesso formato e coprono:</p>
-            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);">Reazioni alla vulnerabilità del partner</li>
-              <li style="margin-bottom: var(--spacing-2);">Gestione dei conflitti</li>
-              <li style="margin-bottom: var(--spacing-2);">Bisogno di intimità</li>
-              <li style="margin-bottom: var(--spacing-2);">Comunicazione emotiva</li>
-              <li style="margin-bottom: var(--spacing-2);">E altre dimensioni chiave</li>
-            </ul>
-          </div>
-
-          <div style="text-align: center; margin-top: var(--spacing-8);">
-            <button type="submit" class="btn btn-primary" style="font-size: var(--font-size-lg); padding: var(--spacing-4) var(--spacing-8);">
-              Calcola il Mio Profilo
-            </button>
-          </div>
-        </form>
+        <!-- SurveyJS Container -->
+        <div id="surveyContainer" class="card"></div>
 
         <!-- Interpretazione Risultati (mostrato dopo submit) -->
         <div id="results" class="card mt-8" style="display: none;">
@@ -172,10 +93,10 @@
           <div id="results-content"></div>
         </div>
 
-        <!-- Link a Mappa Personale -->
+        <!-- Link a Mappa personale -->
         <div class="card mt-8">
-          <h3>Mappa Personale</h3>
-          <p>Dopo aver completato il test, puoi creare la tua <strong>Mappa Personale</strong> che visualizza il tuo profilo su 5 dimensioni:</p>
+          <h3>Mappa personale</h3>
+          <p>Dopo aver completato il test, puoi creare la tua <strong>Mappa personale</strong> che visualizza il tuo profilo su 5 dimensioni:</p>
           <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);"><strong>Ansia ↔ Evitamento</strong> - Lo spettro principale</li>
             <li style="margin-bottom: var(--spacing-2);"><strong>Finestra di Tolleranza</strong> - Capacità emotiva</li>
@@ -183,7 +104,7 @@
             <li style="margin-bottom: var(--spacing-2);"><strong>Capacità di Integrazione</strong> - Elaborazione trauma</li>
             <li style="margin-bottom: var(--spacing-2);"><strong>Resilienza Relazionale</strong> - Robustezza della coppia</li>
           </ol>
-          <p style="margin-top: var(--spacing-4);">La mappa personale ti aiuta a vedere dove sei su più dimensioni e a tracciare il tuo progresso nel tempo.</p>
+          <p style="margin-top: var(--spacing-4);">La Mappa personale ti aiuta a vedere dove sei su più dimensioni e a tracciare il tuo progresso nel tempo.</p>
         </div>
       </div>
     </section>
@@ -195,8 +116,13 @@
     </div>
   </footer>
 
+  <script src="js/constants.js"></script>
+  <script src="js/logger.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/config-surveyjs.js"></script>
   <script src="js/theme.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/mobile-menu.js"></script>
+  <script src="js/test-surveyjs.js"></script>
 </body>
 </html>
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Risorse sugli stili di attaccamento: glossario pratico, letture consigliate, storie reali di consapevolezza, link a professionisti e comunità.">
-  <title>Risorse - Stili di Attaccamento Wiki</title>
+  <title>Risorse - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -76,7 +76,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -86,6 +91,8 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
@@ -116,6 +123,13 @@
         <!-- GLOSSARIO PRATICO -->
         <section id="glossario" class="glossary-category">
           <h2>📚 Glossario Pratico</h2>
+          <figure class="wiki-image">
+            <img src="images/risorse-glossario.webp" 
+                 alt="Spazio astratto di conoscenza che rappresenta il glossario" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Esplora il glossario pratico</figcaption>
+          </figure>
           <p>Termini, acronimi, dinamiche relazionali, emozioni, strategie e segnali di progresso per comprendere meglio il linguaggio degli stili di attaccamento.</p>
           
           <input type="text" id="glossary-search" class="search-box" placeholder="Cerca un termine nel glossario..." onkeyup="filterGlossary()">
@@ -310,7 +324,7 @@
           
           <div class="glossary-term" data-term="behavioral shifts">
             <h4>Behavioral Shifts</h4>
-            <p>✅ Mandi meno messaggi ansiosi se ansioso. ✅ Rimani più a lungo in conversazioni se evitante. ✅ Oscillazioni meno drammatiche se disorganizzato.</p>
+            <p>✅ Mandi meno messaggi ansiosi se ansioso. ✅ Rimani più a lungo in conversazioni se evitante. ✅ Oscillazioni meno drammatiche se oscillante.</p>
           </div>
 
           <div class="glossary-term" data-term="cognitive shifts">
@@ -396,11 +410,18 @@
         <!-- STORIE REALI -->
         <section id="storie" class="glossary-category">
           <h2>📝 Storie Reali di Consapevolezza</h2>
+          <figure class="wiki-image">
+            <img src="images/risorse-storie-reali.webp" 
+                 alt="Percorso narrativo astratto che rappresenta le storie reali" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Storie reali di consapevolezza e trasformazione</figcaption>
+          </figure>
           <p>Case studies anonimizzati che illustrano il viaggio reale di consapevolezza senza promettere "guarigione". Ogni storia mostra come la consapevolezza può emergere e cosa può cambiare.</p>
           
           <div class="story-card">
-            <h3>Storia 1: Marco - Disorganizzato Medio</h3>
-            <p><strong>Profilo:</strong> Ansioso/Evitante Instabile (Disorganizzato Medio)</p>
+            <h3>Storia 1: Marco - Oscillante Medio</h3>
+            <p><strong>Profilo:</strong> Ansioso/Evitante Instabile (Oscillante Medio)</p>
             <p><strong>La Metafora:</strong> Il Pellegrino nel Labirinto</p>
             
             <h4>La Situazione Iniziale</h4>
@@ -418,7 +439,7 @@
             </ul>
             
             <h4>Cosa Cambiò</h4>
-            <p>Marco non "guarì" dal disorganizzato. Ma imparò a riconoscere l'oscillazione mentre accade, comunicarla al partner, e onorare entrambi i bisogni senza dramma. La relazione divenne più stabile, anche se il pattern rimane presente.</p>
+            <p>Marco non "guarì" dal oscillante. Ma imparò a riconoscere l'oscillazione mentre accade, comunicarla al partner, e onorare entrambi i bisogni senza dramma. La relazione divenne più stabile, anche se il pattern rimane presente.</p>
           </div>
 
           <div class="story-card">
@@ -453,7 +474,7 @@
             <p>Nina aveva ansia cronica di abbandono. Petto stretto costante, ricerca ossessiva di rassicurazione, relazioni tossiche. Il partner si sentiva soffocato.</p>
             
             <h4>La Prima Consapevolezza</h4>
-            <p>Attraverso il test e la mappa personale, Nina riconobbe il suo pattern. Iniziò a notare: "Sto correndo verso il precipizio. Perché?"</p>
+            <p>Attraverso il test e la Mappa personale, Nina riconobbe il suo pattern. Iniziò a notare: "Sto correndo verso il precipizio. Perché?"</p>
             
             <h4>Il Viaggio di Consapevolezza</h4>
             <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
@@ -552,7 +573,7 @@
             <li style="margin-bottom: var(--spacing-2);"><a href="approfondimenti.html">Vedi Approfondimenti Tematici</a> per esplorazioni verticali</li>
             <li style="margin-bottom: var(--spacing-2);"><a href="esercizi.html">Vedi Esercizi Pratici</a> per ogni stile e livello</li>
             <li style="margin-bottom: var(--spacing-2);"><a href="test.html">Fai il Test</a> per identificare il tuo profilo</li>
-            <li style="margin-bottom: var(--spacing-2);"><a href="mappa-personale.html">Crea la Tua Mappa Personale</a> per visualizzare il tuo profilo</li>
+            <li style="margin-bottom: var(--spacing-2);"><a href="mappa-personale.html">Crea la Tua Mappa personale</a> per visualizzare il tuo profilo</li>
           </ul>
         </div>
       </div>
@@ -566,6 +587,7 @@
   </footer>
 
   <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
   <script src="js/main.js"></script>
   <script>
     // Funzione per filtrare il glossario

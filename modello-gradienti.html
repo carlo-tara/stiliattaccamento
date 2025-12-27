@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Il modello a gradienti: gli stili di attaccamento non sono categorie fisse ma gradienti su due assi indipendenti (Ansia e Evitamento) con 3 livelli di intensità.">
-  <title>Modello a Gradienti - Stili di Attaccamento Wiki</title>
+  <title>Modello a Gradienti - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -27,7 +27,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -39,12 +44,14 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
     <section class="section">
       <div class="container">
-        <h1>Il Modello a Gradienti ⭐</h1>
+        <h1>Il modello a gradienti ⭐</h1>
         <p class="text-center mb-8" style="font-size: var(--font-size-lg);">Il modello distintivo che parte dal presupposto che gli stili di attaccamento sono gradienti, non categorie fisse.</p>
 
         <!-- Introduzione: Perché Gradienti -->
@@ -63,6 +70,13 @@
         <!-- I Due Assi Indipendenti -->
         <article class="card mb-8">
           <h2>I Due Assi Indipendenti</h2>
+          <figure class="wiki-image">
+            <img src="images/modello-gradienti-due-assi.webp" 
+                 alt="Composizione a gradiente che mostra due assi intersecanti" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">I due assi: Ansia e Evitamento</figcaption>
+          </figure>
           <p>Il modello bidimensionale si basa su due variabili indipendenti misurate su una scala da 0 a 10:</p>
           
           <div class="grid grid-2" style="margin-top: var(--spacing-6);">
@@ -93,7 +107,7 @@
         <!-- Le Combinazioni Base -->
         <article class="card mb-8">
           <h2>Le Combinazioni Base</h2>
-          <p>Le combinazioni degli assi creano i 4 stili base:</p>
+          <p>Le combinazioni degli assi creano I 4 stili base:</p>
           
           <div class="grid grid-2" style="margin-top: var(--spacing-6);">
             <div class="card profile-card secure">
@@ -115,18 +129,25 @@
             </div>
             
             <div class="card profile-card disorganized">
-              <h3 class="color-disorganized">DISORGANIZZATO</h3>
+              <h3 class="color-disorganized">OSCILLANTE</h3>
               <p><strong>Alta Ansia + Alto Evitamento</strong></p>
               <p>Conflitto interno intenso tra desiderio di intimità e paura della vulnerabilità. Oscillazione instabile tra ricerca e ritiro.</p>
             </div>
           </div>
           
-          <p style="margin-top: var(--spacing-6);"><strong>Ma:</strong> Le zone intermedie creano profili ibridi significativi. Ad esempio, Ansia Media + Evitamento Medio può creare un profilo "Ansioso-Evitante" che non è completamente Disorganizzato, ma ha caratteristiche di entrambi.</p>
+          <p style="margin-top: var(--spacing-6);"><strong>Ma:</strong> Le zone intermedie creano profili ibridi significativi. Ad esempio, Ansia Media + Evitamento Medio può creare un profilo "Ansioso-Evitante" che non è completamente Oscillante, ma ha caratteristiche di entrambi.</p>
         </article>
 
         <!-- I 3 Livelli per Ogni Stile -->
         <article class="card mb-8">
           <h2>I 3 Livelli per Ogni Stile</h2>
+          <figure class="wiki-image">
+            <img src="images/modello-gradienti-tre-livelli.webp" 
+                 alt="Tre strati astratti che rappresentano i tre livelli" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">I tre livelli: Basso, Medio, Alto</figcaption>
+          </figure>
           <p>Ogni stile ha 3 livelli di intensità che descrivono meglio la tua esperienza specifica:</p>
           
           <div class="grid grid-3" style="margin-top: var(--spacing-6);">
@@ -195,13 +216,13 @@
                   <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); font-weight: 600;">Evitamento MEDIO</td>
                   <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;" class="color-avoidant">EVITANTE</td>
                   <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;">IBRIDO</td>
-                  <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;" class="color-disorganized">DISORGANIZZATO</td>
+                  <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;" class="color-disorganized">OSCILLANTE</td>
                 </tr>
                 <tr>
                   <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); font-weight: 600;">Evitamento ALTO</td>
                   <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;" class="color-avoidant">EVITANTE</td>
                   <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;" class="color-avoidant">EVITANTE</td>
-                  <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;" class="color-disorganized">DISORGANIZZATO</td>
+                  <td style="padding: var(--spacing-3); border: 1px solid var(--color-border); text-align: center;" class="color-disorganized">OSCILLANTE</td>
                 </tr>
               </tbody>
             </table>
@@ -220,11 +241,11 @@
         <!-- Navigazione -->
         <div class="card">
           <h3>Prossimi Passi</h3>
-          <p>Ora che conosci il modello a gradienti:</p>
+          <p>Ora che conosci Il modello a gradienti:</p>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-3);"><a href="test.html">Fai il Test Completo</a> per identificare il tuo profilo specifico</li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="stili-base.html">Esplora i 4 Stili Base</a> per comprendere le caratteristiche fondamentali</li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="archetipi.html">Scopri gli Archetipi Junghiani</a> per il linguaggio simbolico del tuo profilo</li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="stili-base.html">Esplora I 4 stili base</a> per comprendere le caratteristiche fondamentali</li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="archetipi.html">Scopri Gli archetipi junghiani</a> per il linguaggio simbolico del tuo profilo</li>
             <li style="margin-bottom: var(--spacing-3);">Vai direttamente ai <a href="profili/">12 Profili</a> per vedere l'integrazione completa</li>
           </ul>
         </div>
@@ -239,6 +260,7 @@
   </footer>
 
   <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

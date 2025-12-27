@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Fondamenti della teoria dell'attaccamento: cos'è l'attaccamento, i 4 bisogni fondamentali di Bowlby, e i Modelli Operativi Interni.">
-  <title>Fondamenti - Stili di Attaccamento Wiki</title>
+  <title>Fondamenti - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -27,7 +27,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -39,6 +44,8 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
@@ -49,6 +56,13 @@
         <!-- Cos'è l'Attaccamento -->
         <article class="card mb-8">
           <h2>Cos'è l'Attaccamento?</h2>
+          <figure class="wiki-image">
+            <img src="images/fondamenti-attaccamento.webp" 
+                 alt="Rappresentazione astratta di un legame sicuro e accogliente" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Il legame emotivo dell'attaccamento</figcaption>
+          </figure>
           <p>L'<strong>attaccamento</strong> è il legame emotivo che sviluppiamo con le persone significative, a partire dall'infanzia. Questo legame non è semplice bisogno di cibo o protezione fisica, ma è legato al <strong>comfort emotivo</strong> e al senso di <strong>sicurezza psicologica</strong>.</p>
           <p>La teoria dell'attaccamento è stata sviluppata originariamente da <strong>John Bowlby</strong> e successivamente elaborata da <strong>Mary Ainsworth</strong>. Questi primi rapporti creano quello che Bowlby definisce <strong>"modelli operativi interni"</strong> (internal working models) — schemi mentali che contengono le nostre credenze e aspettative circa il valore di noi stessi e l'affidabilità degli altri.</p>
         </article>
@@ -93,6 +107,13 @@
         <!-- Modelli Operativi Interni -->
         <article class="card mb-8">
           <h2>Modelli Operativi Interni (IWM) - Mappe Interne</h2>
+          <figure class="wiki-image">
+            <img src="images/fondamenti-iwm.webp" 
+                 alt="Pattern astratto che rappresenta i modelli operativi interni" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Le mappe interne che guidano le nostre relazioni</figcaption>
+          </figure>
           <p>Quando siamo bambini, sviluppiamo due mappe mentali cruciali:</p>
           <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-3);">
@@ -129,9 +150,9 @@
           <h3>Prossimi Passi</h3>
           <p>Ora che conosci i fondamenti, esplora:</p>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-            <li style="margin-bottom: var(--spacing-3);"><a href="modello-gradienti.html">Il Modello a Gradienti</a> - Come gli stili sono gradienti, non categorie</li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="stili-base.html">I 4 Stili Base</a> - Secure, Ansioso, Evitante, Disorganizzato</li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="archetipi.html">Gli Archetipi Junghiani</a> - Il linguaggio universale per comprendere l'attaccamento</li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="modello-gradienti.html">Il modello a gradienti</a> - Come gli stili sono gradienti, non categorie</li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="stili-base.html">I 4 stili base</a> - Secure, Ansioso, Evitante, Oscillante</li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="archetipi.html">Gli archetipi junghiani</a> - Il linguaggio universale per comprendere l'attaccamento</li>
           </ul>
         </div>
       </div>
@@ -145,6 +166,7 @@
   </footer>
 
   <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

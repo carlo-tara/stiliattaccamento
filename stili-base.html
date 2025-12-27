@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="I 4 stili di attaccamento base: Secure, Ansioso-Preoccupato, Evitante-Dismissivo, e Disorganizzato (Pauroso-Evitante).">
-  <title>I 4 Stili Base - Stili di Attaccamento Wiki</title>
+  <meta name="description" content="I 4 stili di attaccamento base: Secure, Ansioso-Preoccupato, Evitante-Dismissivo, e Oscillante (Pauroso-Evitante).">
+  <title>I 4 stili base - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -12,7 +12,7 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "I 4 Stili di Attaccamento Base",
-    "description": "Descrizione completa dei quattro stili di attaccamento: Secure, Ansioso, Evitante, Disorganizzato",
+    "description": "Descrizione completa dei quattro stili di attaccamento: Secure, Ansioso, Evitante, Oscillante",
     "author": {
       "@type": "Organization",
       "name": "Stili di Attaccamento Wiki"
@@ -27,7 +27,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -39,6 +44,8 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
@@ -50,7 +57,13 @@
         <!-- 1. ATTACCAMENTO SICURO -->
         <article class="card mb-8 profile-card secure">
           <h2 class="color-secure">1️⃣ ATTACCAMENTO SICURO</h2>
-          
+          <figure class="wiki-image">
+            <img src="images/stili-base-secure.webp" 
+                 alt="Composizione armoniosa astratta che rappresenta l'attaccamento sicuro" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Attaccamento Sicuro: equilibrio e armonia</figcaption>
+          </figure>
           <h3>Profilo Infantile</h3>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);">Esplora liberamente quando il caregiver è presente</li>
@@ -97,7 +110,13 @@
         <!-- 2. ATTACCAMENTO ANSIOSO -->
         <article class="card mb-8 profile-card anxious">
           <h2 class="color-anxious">2️⃣ ATTACCAMENTO ANSIOSO-PREOCCUPATO</h2>
-          
+          <figure class="wiki-image">
+            <img src="images/stili-base-ansioso.webp" 
+                 alt="Forme astratte in movimento che rappresentano l'attaccamento ansioso" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Attaccamento Ansioso: ricerca e movimento</figcaption>
+          </figure>
           <h3>Profilo Infantile</h3>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);">Dipendenza elevata dal genitore</li>
@@ -176,7 +195,13 @@
         <!-- 3. ATTACCAMENTO EVITANTE -->
         <article class="card mb-8 profile-card avoidant">
           <h2 class="color-avoidant">3️⃣ ATTACCAMENTO EVITANTE-DISMISSIVO</h2>
-          
+          <figure class="wiki-image">
+            <img src="images/stili-base-evitante.webp" 
+                 alt="Forme astratte con distanza che rappresentano l'attaccamento evitante" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Attaccamento Evitante: spazio e confini</figcaption>
+          </figure>
           <h3>Profilo Infantile</h3>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);">Evita la vicinanza emotiva con il caregiver</li>
@@ -263,10 +288,16 @@
           </div>
         </article>
 
-        <!-- 4. ATTACCAMENTO DISORGANIZZATO -->
+        <!-- 4. ATTACCAMENTO OSCILLANTE -->
         <article class="card mb-8 profile-card disorganized">
-          <h2 class="color-disorganized">4️⃣ ATTACCAMENTO PAUROSO-EVITANTE (DISORGANIZZATO)</h2>
-          
+          <h2 class="color-disorganized">4️⃣ ATTACCAMENTO PAUROSO-EVITANTE (OSCILLANTE)</h2>
+          <figure class="wiki-image">
+            <img src="images/stili-base-oscillante.webp" 
+                 alt="Composizione complessa astratta che rappresenta l'attaccamento oscillante" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Attaccamento Oscillante: complessità e integrazione</figcaption>
+          </figure>
           <h3>Profilo Infantile</h3>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);">Comportamenti confusi e incoerenti verso il caregiver</li>
@@ -311,7 +342,7 @@
             <li style="margin-bottom: var(--spacing-2);">Difficoltà nel mantenere relazioni stabili</li>
           </ul>
 
-          <h4>Il Ciclo Disorganizzato</h4>
+          <h4>Il Ciclo Oscillante</h4>
           <div class="card" style="margin-top: var(--spacing-4); background-color: var(--color-surface-elevated); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
             <p>Momento di intimità</p>
             <p style="margin-left: var(--spacing-4);">↓</p>
@@ -340,11 +371,11 @@
           </ol>
 
           <div class="card" style="margin-top: var(--spacing-6); background-color: var(--color-surface-elevated);">
-            <h4>Vedi i 3 Livelli di Disorganizzato</h4>
+            <h4>Vedi i 3 Livelli di Oscillante</h4>
             <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-              <li style="margin-bottom: var(--spacing-2);"><a href="profili/disorganizzato-basso.html">Disorganizzato Basso</a> - Disorganizzato Mite</li>
-              <li style="margin-bottom: var(--spacing-2);"><a href="profili/disorganizzato-medio.html">Disorganizzato Medio</a> - Disorganizzato Pronunciato</li>
-              <li style="margin-bottom: var(--spacing-2);"><a href="profili/disorganizzato-alto.html">Disorganizzato Alto</a> - Disorganizzato Severo</li>
+              <li style="margin-bottom: var(--spacing-2);"><a href="profili/disorganizzato-basso.html">Oscillante Basso</a> - Oscillante Mite</li>
+              <li style="margin-bottom: var(--spacing-2);"><a href="profili/disorganizzato-medio.html">Oscillante Medio</a> - Oscillante Pronunciato</li>
+              <li style="margin-bottom: var(--spacing-2);"><a href="profili/disorganizzato-alto.html">Oscillante Alto</a> - Oscillante Severo</li>
             </ul>
           </div>
         </article>
@@ -352,10 +383,10 @@
         <!-- Navigazione -->
         <div class="card">
           <h3>Prossimi Passi</h3>
-          <p>Ora che conosci i 4 stili base:</p>
+          <p>Ora che conosci I 4 stili base:</p>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-            <li style="margin-bottom: var(--spacing-3);"><a href="modello-gradienti.html">Esplora il Modello a Gradienti</a> per vedere come ogni stile ha 3 livelli</li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="archetipi.html">Scopri gli Archetipi Junghiani</a> per il linguaggio simbolico di ogni stile</li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="modello-gradienti.html">Esplora Il modello a gradienti</a> per vedere come ogni stile ha 3 livelli</li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="archetipi.html">Scopri Gli archetipi junghiani</a> per il linguaggio simbolico di ogni stile</li>
             <li style="margin-bottom: var(--spacing-3);"><a href="test.html">Fai il Test</a> per identificare il tuo stile e livello</li>
             <li style="margin-bottom: var(--spacing-3);">Vai direttamente ai <a href="profili/">12 Profili</a> per l'integrazione completa</li>
           </ul>
@@ -371,6 +402,7 @@
   </footer>
 
   <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

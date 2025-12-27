@@ -112,33 +112,144 @@ function showTestResults(scores, primaryStyle, level) {
   const maxScore = Math.max(scores.anxious, scores.secure, scores.avoidant, scores.disorganized);
   const totalQuestions = 12; // Assumendo 12 domande
   
-  resultsContent.innerHTML = `
-    <h3>Il Tuo Profilo: ${styleNames[primaryStyle]} ${levelNames[level]}</h3>
-    <p><strong>Stile prevalente:</strong> ${styleNames[primaryStyle]}</p>
-    <p><strong>Livello:</strong> ${levelNames[level]}</p>
+  // Usa DOM API sicure invece di innerHTML (se utils.js è disponibile)
+  // Fallback a innerHTML con sanitizzazione se utils.js non è caricato
+  if (typeof createSafeElement === 'function' && typeof sanitizeHTML === 'function') {
+    resultsContent.innerHTML = '';
     
-    <h4 style="margin-top: var(--spacing-6);">I Tuoi Punteggi:</h4>
-    <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-      <li>Ansioso: ${scores.anxious}/${totalQuestions * 3}</li>
-      <li>Secure: ${scores.secure}/${totalQuestions * 1}</li>
-      <li>Evitante: ${scores.avoidant}/${totalQuestions * 2}</li>
-      <li>Disorganizzato: ${scores.disorganized}/${totalQuestions * 3}</li>
-    </ul>
+    const title = createSafeElement('h3', {}, `Il Tuo Profilo: ${sanitizeHTML(styleNames[primaryStyle])} ${sanitizeHTML(levelNames[level])}`);
+    resultsContent.appendChild(title);
     
-    <div style="margin-top: var(--spacing-6); display: flex; gap: var(--spacing-4); flex-wrap: wrap;">
-      <a href="profili/${primaryStyle}-${level}.html" class="btn btn-primary">Vedi Profilo Completo</a>
-      <a href="mappa-personale.html" class="btn btn-secondary">Crea Mappa Personale</a>
-    </div>
+    const styleP = createSafeElement('p', {});
+    styleP.appendChild(createSafeElement('strong', {}, 'Stile prevalente: '));
+    styleP.appendChild(document.createTextNode(sanitizeHTML(styleNames[primaryStyle])));
+    resultsContent.appendChild(styleP);
     
-    <div style="margin-top: var(--spacing-6); padding: var(--spacing-4); background-color: var(--color-surface-elevated); border-radius: var(--radius-md);">
-      <p><strong>Prossimi Passi:</strong></p>
-      <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
-        <li>Esplora il tuo profilo completo per capire meglio le tue caratteristiche</li>
-        <li>Crea la tua Mappa Personale per visualizzare il tuo profilo su 5 dimensioni</li>
-        <li>Consulta gli esercizi specifici per il tuo stile e livello</li>
+    const levelP = createSafeElement('p', {});
+    levelP.appendChild(createSafeElement('strong', {}, 'Livello: '));
+    levelP.appendChild(document.createTextNode(sanitizeHTML(levelNames[level])));
+    resultsContent.appendChild(levelP);
+    
+    const scoresTitle = createSafeElement('h4', {
+      style: { marginTop: 'var(--spacing-6)' }
+    }, 'I Tuoi Punteggi:');
+    resultsContent.appendChild(scoresTitle);
+    
+    const scoresList = createSafeElement('ul', {
+      style: { marginLeft: 'var(--spacing-6)', marginTop: 'var(--spacing-4)' }
+    });
+    
+    const scoreItems = [
+      `Ansioso: ${scores.anxious}/${totalQuestions * 3}`,
+      `Secure: ${scores.secure}/${totalQuestions * 1}`,
+      `Evitante: ${scores.avoidant}/${totalQuestions * 2}`,
+      `Disorganizzato: ${scores.disorganized}/${totalQuestions * 3}`
+    ];
+    
+    scoreItems.forEach(text => {
+      const li = createSafeElement('li', {}, text);
+      scoresList.appendChild(li);
+    });
+    resultsContent.appendChild(scoresList);
+    
+    const actionsDiv = createSafeElement('div', {
+      style: {
+        marginTop: 'var(--spacing-6)',
+        display: 'flex',
+        gap: 'var(--spacing-4)',
+        flexWrap: 'wrap'
+      }
+    });
+    
+    // Valida URL prima di creare link
+    const profileUrl = (typeof isValidAttachmentStyle === 'function' && isValidAttachmentStyle(primaryStyle) &&
+                       typeof isValidLevel === 'function' && isValidLevel(level))
+      ? `profili/${primaryStyle}-${level}.html`
+      : 'stili-base.html';
+    
+    const profileLink = createSafeElement('a', {
+      href: profileUrl,
+      class: 'btn btn-primary'
+    }, 'Vedi Profilo Completo');
+    actionsDiv.appendChild(profileLink);
+    
+    const mapLink = createSafeElement('a', {
+      href: 'mappa-personale.html',
+      class: 'btn btn-secondary'
+    }, 'Crea Mappa Personale');
+    actionsDiv.appendChild(mapLink);
+    
+    resultsContent.appendChild(actionsDiv);
+    
+    const nextStepsDiv = createSafeElement('div', {
+      style: {
+        marginTop: 'var(--spacing-6)',
+        padding: 'var(--spacing-4)',
+        backgroundColor: 'var(--color-surface-elevated)',
+        borderRadius: 'var(--radius-md)'
+      }
+    });
+    
+    const nextStepsTitle = createSafeElement('p', {});
+    nextStepsTitle.appendChild(createSafeElement('strong', {}, 'Prossimi Passi:'));
+    nextStepsDiv.appendChild(nextStepsTitle);
+    
+    const nextStepsList = createSafeElement('ul', {
+      style: { marginLeft: 'var(--spacing-6)', marginTop: 'var(--spacing-2)' }
+    });
+    
+    const nextSteps = [
+      'Esplora il tuo profilo completo per capire meglio le tue caratteristiche',
+      'Crea la tua Mappa Personale per visualizzare il tuo profilo su 5 dimensioni',
+      'Consulta gli esercizi specifici per il tuo stile e livello'
+    ];
+    
+    nextSteps.forEach(text => {
+      const li = createSafeElement('li', {}, text);
+      nextStepsList.appendChild(li);
+    });
+    nextStepsDiv.appendChild(nextStepsList);
+    resultsContent.appendChild(nextStepsDiv);
+  } else {
+    // Fallback: usa innerHTML con escape manuale (meno sicuro ma funziona)
+    const escapeHTML = (str) => {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    };
+    
+    const validStyle = ['secure', 'ansioso', 'evitante', 'disorganizzato'].includes(primaryStyle) ? primaryStyle : 'secure';
+    const validLevel = ['basso', 'medio', 'alto'].includes(level) ? level : 'basso';
+    const profileUrl = `profili/${validStyle}-${validLevel}.html`;
+    
+    resultsContent.innerHTML = `
+      <h3>Il Tuo Profilo: ${escapeHTML(styleNames[primaryStyle])} ${escapeHTML(levelNames[level])}</h3>
+      <p><strong>Stile prevalente:</strong> ${escapeHTML(styleNames[primaryStyle])}</p>
+      <p><strong>Livello:</strong> ${escapeHTML(levelNames[level])}</p>
+      
+      <h4 style="margin-top: var(--spacing-6);">I Tuoi Punteggi:</h4>
+      <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+        <li>Ansioso: ${scores.anxious}/${totalQuestions * 3}</li>
+        <li>Secure: ${scores.secure}/${totalQuestions * 1}</li>
+        <li>Evitante: ${scores.avoidant}/${totalQuestions * 2}</li>
+        <li>Disorganizzato: ${scores.disorganized}/${totalQuestions * 3}</li>
       </ul>
-    </div>
-  `;
+      
+      <div style="margin-top: var(--spacing-6); display: flex; gap: var(--spacing-4); flex-wrap: wrap;">
+        <a href="${profileUrl}" class="btn btn-primary">Vedi Profilo Completo</a>
+        <a href="mappa-personale.html" class="btn btn-secondary">Crea Mappa Personale</a>
+      </div>
+      
+      <div style="margin-top: var(--spacing-6); padding: var(--spacing-4); background-color: var(--color-surface-elevated); border-radius: var(--radius-md);">
+        <p><strong>Prossimi Passi:</strong></p>
+        <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+          <li>Esplora il tuo profilo completo per capire meglio le tue caratteristiche</li>
+          <li>Crea la tua Mappa Personale per visualizzare il tuo profilo su 5 dimensioni</li>
+          <li>Consulta gli esercizi specifici per il tuo stile e livello</li>
+        </ul>
+      </div>
+    `;
+  }
   
   resultsDiv.style.display = 'block';
   resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });

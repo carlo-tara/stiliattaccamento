@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ansioso Basso - L'Amante Consapevole (VI): Profilo completo con archetipo junghiano, caratteristiche del livello, esercizi specifici e timeline di consapevolezza.">
-  <title>Ansioso Basso - L'Amante Consapevole | Stili di Attaccamento Wiki</title>
+  <title>Ansioso Basso - L'Amante Consapevole | Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -27,7 +27,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="../index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="../fondamenti.html">Fondamenti</a></li>
         <li><a href="../modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="../archetipi.html">Archetipi</a></li>
@@ -39,6 +44,8 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
@@ -67,7 +74,15 @@
 
         <!-- L'Archetipo Junghiano -->
         <article class="card mb-8">
-          <h2>L'Archetipo Junghiano</h2>
+          <h2>L'archetipo junghiano</h2>
+
+          <figure class="wiki-image">
+            <img src="../images/profili-ansioso-basso-tarocchi.webp" 
+                 alt="Carta dei Tarocchi: VI - L'Amante Consapevole" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">VI - L'Amante Consapevole: Connessione integrata</figcaption>
+          </figure>
           
           <h3>L'Immagine Archetipale</h3>
           <p>L'Amante, quando è integrato, non rappresenta più il conflitto fra desiderio e protezione. Rappresenta l'<strong>unione interiore</strong> dove entrambi gli aspetti convivono.</p>
@@ -96,7 +111,7 @@
 
         <!-- Il Profilo nel Modello a Gradienti -->
         <article class="card mb-8">
-          <h2>Il Profilo nel Modello a Gradienti</h2>
+          <h2>Il profilo nel modello a gradienti</h2>
           <p>Nel modello a gradienti, <strong>Ansioso Basso</strong> significa:</p>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-2);"><strong>Ansia di Attaccamento:</strong> BASSA-MEDIA (3-5/10)</li>
@@ -139,7 +154,7 @@
 
         <!-- La Consapevolezza Archetipale -->
         <article class="card mb-8">
-          <h2>La Consapevolezza Archetipale</h2>
+          <h2>La consapevolezza archetipale</h2>
           
           <h3>Timeline Archetipale della Consapevolezza</h3>
           <div class="card" style="background-color: var(--color-surface-elevated); margin-top: var(--spacing-4);">
@@ -155,7 +170,7 @@
 
         <!-- Esercizi Specifici -->
         <article class="card mb-8">
-          <h2>Esercizi Specifici per Ansioso Basso</h2>
+          <h2>Esercizi specifici per Ansioso Basso</h2>
           <p><strong>Frequenza:</strong> Settimanali, pratica leggera</p>
           <p><strong>Terapia:</strong> Opzionale (mensile per accelerare) o pratica da solo</p>
           
@@ -210,10 +225,10 @@
             <div>
               <p><strong>Altri link:</strong></p>
               <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-                <li style="margin-bottom: var(--spacing-2);"><a href="../stili-base.html">Torna ai 4 Stili Base</a></li>
+                <li style="margin-bottom: var(--spacing-2);"><a href="../stili-base.html">Torna aI 4 stili base</a></li>
                 <li style="margin-bottom: var(--spacing-2);"><a href="../archetipi.html">Vedi tutti gli Archetipi</a></li>
                 <li style="margin-bottom: var(--spacing-2);"><a href="../esercizi.html">Vedi tutti gli Esercizi</a></li>
-                <li style="margin-bottom: var(--spacing-2);"><a href="../mappa-personale.html">Crea la Tua Mappa Personale</a></li>
+                <li style="margin-bottom: var(--spacing-2);"><a href="../mappa-personale.html">Crea la Tua Mappa personale</a></li>
                 <li style="margin-bottom: var(--spacing-2);"><a href="../test.html">Fai il Test</a></li>
               </ul>
             </div>

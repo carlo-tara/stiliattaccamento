@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Gli Archetipi Junghiani e gli Arcani Maggiori dei Tarocchi: il linguaggio universale per comprendere gli stili di attaccamento attraverso il mito e il simbolismo.">
-  <title>Archetipi Junghiani - Stili di Attaccamento Wiki</title>
+  <meta name="description" content="Gli archetipi junghiani e gli Arcani Maggiori dei Tarocchi: il linguaggio universale per comprendere gli stili di attaccamento attraverso il mito e il simbolismo.">
+  <title>Archetipi Junghiani - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Gli Archetipi Junghiani e gli Stili di Attaccamento",
+    "headline": "Gli archetipi junghiani e gli Stili di Attaccamento",
     "description": "Ogni profilo di attaccamento corrisponde a un Arcano Maggiore dei Tarocchi e a un Archetipo Junghiano",
     "author": {
       "@type": "Organization",
@@ -27,7 +27,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -39,17 +44,29 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
     <section class="section">
       <div class="container">
-        <h1>Gli Archetipi Junghiani ⭐</h1>
+        <h1>Gli archetipi junghiani ⭐</h1>
         <p class="text-center mb-8" style="font-size: var(--font-size-lg);">Lo strumento cardine per la comunicazione: ogni profilo corrisponde a un Arcano Maggiore dei Tarocchi e a un Archetipo Junghiano.</p>
+        <div class="text-center mb-8">
+          <a href="mazzo-tarocchi.html" class="btn btn-primary">Vedi il Mazzo Completo delle 12 Carte →</a>
+        </div>
 
         <!-- Introduzione: Jung e i Tarocchi -->
         <article class="card mb-8">
           <h2>Jung, i Tarocchi, e l'Attaccamento</h2>
+          <figure class="wiki-image">
+            <img src="images/archetipi-jung-tarocchi.webp" 
+                 alt="Composizione mistica astratta che rappresenta Gli archetipi junghiani" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Jung, i Tarocchi e l'inconscio collettivo</figcaption>
+          </figure>
           <p>Carl Jung studiò i Tarocchi come <strong>mappa dell'inconscio collettivo</strong>. Gli Arcani Maggiori rappresentano i 22 archetipi universali che vivono in ogni psiche umana.</p>
           <p>Gli stili di attaccamento, visti attraverso questa lente, non sono disfunzioni psicologiche — sono <strong>fasi differenti del viaggio dell'eroe archetipale</strong> verso l'integrazione del Sé.</p>
           <p>Questo approccio ci permette di:</p>
@@ -64,10 +81,17 @@
         <!-- Il Viaggio dell'Eroe Archetipale -->
         <article class="card mb-8">
           <h2>Il Viaggio dell'Eroe Archetipale</h2>
+          <figure class="wiki-image">
+            <img src="images/archetipi-viaggio-eroe.webp" 
+                 alt="Percorso astratto che rappresenta il viaggio dell'eroe" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Il viaggio archetipale verso l'integrazione</figcaption>
+          </figure>
           <p>I 12 profili rappresentano un <strong>percorso iniziatico</strong> dal Matto (inizio inconsapevole) all'Illuminato (integrazione completa):</p>
           
           <div class="card" style="margin-top: var(--spacing-6); background-color: var(--color-surface-elevated);">
-            <h3>Il Percorso dei 12 Profili</h3>
+            <h3>Il Percorso deI 12 profili</h3>
             <div style="font-family: var(--font-family-mono); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
               <p><strong class="color-anxious">ANSIOSO ALTO</strong> → Il Matto (0) - L'Ingenuità Traumatizzata</p>
               <p style="margin-left: var(--spacing-4);">↓</p>
@@ -84,11 +108,11 @@
               <p><strong class="color-secure">SECURE MEDIO</strong> → Il Saggio Maturo (I maturato)</p>
               <p style="margin-left: var(--spacing-4);">↓</p>
               <p><strong class="color-secure">SECURE ALTO</strong> → L'Illuminato (XI integrato)</p>
-              <p style="margin-top: var(--spacing-4);"><strong class="color-disorganized">DISORGANIZZATO ALTO</strong> → La Torre (XVI) - Il Caos Rivelatore</p>
+              <p style="margin-top: var(--spacing-4);"><strong class="color-disorganized">OSCILLANTE ALTO</strong> → La Torre (XVI) - Il Caos Rivelatore</p>
               <p style="margin-left: var(--spacing-4);">↓</p>
-              <p><strong class="color-disorganized">DISORGANIZZATO MEDIO</strong> → Il Pellegrino (XIII+XIX) - Il Viaggio nel Labirinto</p>
+              <p><strong class="color-disorganized">OSCILLANTE MEDIO</strong> → Il Pellegrino (XIII+XIX) - Il Viaggio nel Labirinto</p>
               <p style="margin-left: var(--spacing-4);">↓</p>
-              <p><strong class="color-disorganized">DISORGANIZZATO BASSO</strong> → La Forza Integrata (XI) - La Consapevolezza Muscolare</p>
+              <p><strong class="color-disorganized">OSCILLANTE BASSO</strong> → La Forza Integrata (XI) - La Consapevolezza Muscolare</p>
             </div>
           </div>
           
@@ -126,6 +150,13 @@
         <!-- Integrazione dell'Ombra -->
         <article class="card mb-8">
           <h2>Integrazione dell'Ombra</h2>
+          <figure class="wiki-image">
+            <img src="images/archetipi-integrazione-ombra.webp" 
+                 alt="Forme astratte con luce e ombra in armonia" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Integrazione dell'ombra: accettazione e completezza</figcaption>
+          </figure>
           <p>Jung diceva: <em>"Finché non farai l'inconscio consapevole, lo guiderà e lo chiamerai destino"</em>.</p>
           <p>Ogni archetipo ha un'<strong>ombra</strong> — la parte di noi che rifiutiamo, che rimane inconscia:</p>
           
@@ -149,7 +180,7 @@
             </div>
             
             <div class="card">
-              <h4 class="color-disorganized">La Torre (Disorganizzato Alto)</h4>
+              <h4 class="color-disorganized">La Torre (Oscillante Alto)</h4>
               <p><strong>Ombra:</strong> La disintegrazione</p>
               <p>Riconoscere che il caos ha una logica, e che nei frammenti c'è saggezza da raccogliere.</p>
             </div>
@@ -174,7 +205,7 @@
                 <strong>Se sei Evitante:</strong> Il partner che chiede intimità proprio quando vuoi spazio — non è invasione, è invito a vedere la tua paura della vicinanza
               </li>
               <li style="margin-bottom: var(--spacing-3);">
-                <strong>Se sei Disorganizzato:</strong> La situazione che attiva entrambi i bisogni (vicinanza E distanza) simultaneamente — non è caos casuale, è opportunità per mappare il conflitto interno
+                <strong>Se sei Oscillante:</strong> La situazione che attiva entrambi i bisogni (vicinanza E distanza) simultaneamente — non è caos casuale, è opportunità per mappare il conflitto interno
               </li>
             </ul>
           </div>
@@ -195,8 +226,8 @@
 
         <!-- Navigazione -->
         <div class="card">
-          <h3>Esplora i 12 Profili con i Loro Archetipi</h3>
-          <p>Ogni profilo integra l'archetipo junghiano con il modello a gradienti:</p>
+          <h3>Esplora I 12 profili con i Loro Archetipi</h3>
+          <p>Ogni profilo integra l'archetipo junghiano con Il modello a gradienti:</p>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
             <li style="margin-bottom: var(--spacing-3);"><a href="profili/ansioso-alto.html">Ansioso Alto - Il Matto</a></li>
             <li style="margin-bottom: var(--spacing-3);"><a href="profili/ansioso-medio.html">Ansioso Medio - L'Innamorato</a></li>
@@ -207,9 +238,9 @@
             <li style="margin-bottom: var(--spacing-3);"><a href="profili/secure-basso.html">Secure Basso - Il Mago Consapevole</a></li>
             <li style="margin-bottom: var(--spacing-3);"><a href="profili/secure-medio.html">Secure Medio - Il Saggio Maturo</a></li>
             <li style="margin-bottom: var(--spacing-3);"><a href="profili/secure-alto.html">Secure Alto - L'Illuminato</a></li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="profili/disorganizzato-alto.html">Disorganizzato Alto - La Torre</a></li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="profili/disorganizzato-medio.html">Disorganizzato Medio - Il Pellegrino</a></li>
-            <li style="margin-bottom: var(--spacing-3);"><a href="profili/disorganizzato-basso.html">Disorganizzato Basso - La Forza Integrata</a></li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="profili/disorganizzato-alto.html">Oscillante Alto - La Torre</a></li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="profili/disorganizzato-medio.html">Oscillante Medio - Il Pellegrino</a></li>
+            <li style="margin-bottom: var(--spacing-3);"><a href="profili/disorganizzato-basso.html">Oscillante Basso - La Forza Integrata</a></li>
           </ul>
         </div>
       </div>
@@ -223,6 +254,7 @@
   </footer>
 
   <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Esercizi pratici per gli stili di attaccamento: organizzati per livello (Basso/Medio/Alto), per stile, e esercizi quotidiani.">
-  <title>Esercizi - Stili di Attaccamento Wiki</title>
+  <title>Esercizi - Stili di Attaccamento</title>
   
   <!-- Schema.org Markup -->
   <script type="application/ld+json">
@@ -27,7 +27,12 @@
   <header>
     <nav class="container">
       <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-      <ul class="nav-links">
+      <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="fondamenti.html">Fondamenti</a></li>
         <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
         <li><a href="archetipi.html">Archetipi</a></li>
@@ -39,27 +44,37 @@
       </ul>
       <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
     </nav>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
   </header>
 
   <main>
     <section class="section">
       <div class="container">
-        <h1>Esercizi Pratici</h1>
+        <h1>Esercizi pratici</h1>
         <p class="text-center mb-8" style="font-size: var(--font-size-lg);">Esercizi organizzati per livello, stile e pratiche quotidiane. Ogni esercizio è specifico per il tuo profilo.</p>
 
         <!-- Filtri -->
         <div class="card mb-8">
-          <h2>Naviga gli Esercizi</h2>
-          <div class="grid grid-3">
+          <h2>Naviga gli esercizi</h2>
+          <div class="grid grid-4">
             <a href="#per-livello" class="btn btn-secondary" style="text-align: center;">Per Livello</a>
             <a href="#per-stile" class="btn btn-secondary" style="text-align: center;">Per Stile</a>
+            <a href="#archetipali" class="btn btn-secondary" style="text-align: center;">Archetipali</a>
             <a href="#quotidiani" class="btn btn-secondary" style="text-align: center;">Quotidiani</a>
           </div>
         </div>
 
         <!-- Esercizi per Livello -->
         <section id="per-livello" class="mb-8">
-          <h2>Esercizi per Livello</h2>
+          <h2>Esercizi per livello</h2>
+          <figure class="wiki-image">
+            <img src="images/esercizi-per-livello.webp" 
+                 alt="Spazio astratto di pratica che rappresenta gli esercizi per livello" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Esercizi personalizzati per ogni livello</figcaption>
+          </figure>
           <p>Ogni livello (Basso, Medio, Alto) richiede intensità e frequenza diverse di pratica.</p>
 
           <div class="grid grid-3" style="margin-top: var(--spacing-6);">
@@ -115,7 +130,7 @@
 
         <!-- Esercizi per Stile -->
         <section id="per-stile" class="mb-8">
-          <h2>Esercizi per Stile</h2>
+          <h2>Esercizi per stile</h2>
           <p>Ogni stile ha esercizi specifici che rispondono alle sue caratteristiche uniche.</p>
 
           <div class="grid grid-2" style="margin-top: var(--spacing-6);">
@@ -160,9 +175,9 @@
               </ul>
             </article>
 
-            <!-- Disorganizzato -->
+            <!-- Oscillante -->
             <article class="card profile-card disorganized">
-              <h3 class="color-disorganized">Disorganizzato</h3>
+              <h3 class="color-disorganized">Oscillante</h3>
               <h4>Esercizi per Stabilizzare l'Oscillazione</h4>
               <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
                 <li style="margin-bottom: var(--spacing-2);"><strong>Grounding</strong> (5-15 min, quando oscillazione accade)</li>
@@ -179,7 +194,14 @@
 
         <!-- Esercizi Quotidiani -->
         <section id="quotidiani" class="mb-8">
-          <h2>Esercizi Quotidiani</h2>
+          <h2>Esercizi quotidiani</h2>
+          <figure class="wiki-image">
+            <img src="images/esercizi-quotidiani.webp" 
+                 alt="Rappresentazione astratta di rituali quotidiani" 
+                 loading="lazy"
+                 class="wiki-image__img">
+            <figcaption class="wiki-image__caption">Pratiche quotidiane per la consapevolezza</figcaption>
+          </figure>
           <p>Pratiche che puoi fare ogni giorno, indipendentemente dal tuo stile o livello.</p>
 
           <div class="grid grid-2" style="margin-top: var(--spacing-6);">
@@ -241,7 +263,7 @@
                 <li style="margin-bottom: var(--spacing-2);">Siediti accanto al partner per 10 min (senza guardare il telefono)</li>
                 <li style="margin-bottom: var(--spacing-2);">Mano sulla mano durante il pasto</li>
               </ul>
-              <h4>Per Disorganizzato:</h4>
+              <h4>Per Oscillante:</h4>
               <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
                 <li style="margin-bottom: var(--spacing-2);">Un semplice "Ti voglio bene" senza aspettare risposta</li>
                 <li style="margin-bottom: var(--spacing-2);">Semplice contatto oculare di 3 secondi</li>
@@ -251,12 +273,412 @@
           </div>
         </section>
 
+        <!-- Esercizi Archetipali -->
+        <section id="archetipali" class="mb-8">
+          <h2>60 Esercizi Archetipali di Consapevolezza</h2>
+          <p>Una <strong>biblioteca vivente di pratiche</strong> che trasforma la consapevolezza archetipale in incarnazione quotidiana. Ogni esercizio è un escalation progressivo di profondità e integrazione.</p>
+          
+          <div class="card mb-6" style="background-color: var(--color-surface-elevated);">
+            <h3>Come Navigare gli Esercizi Archetipali</h3>
+            <div class="grid grid-2" style="gap: var(--spacing-4);">
+              <div>
+                <h4>Progressione Consigliata</h4>
+                <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                  <li><strong>Settimana 1-2:</strong> Esercizio 1 (Fondamentale)</li>
+                  <li><strong>Settimana 3-4:</strong> Esercizio 2 (Approfondimento)</li>
+                  <li><strong>Settimana 5-6:</strong> Esercizio 3 (Integrazione del Corpo)</li>
+                  <li><strong>Settimana 7-8:</strong> Esercizio 4 (Pratica in Relazione)</li>
+                  <li><strong>Settimana 9+:</strong> Esercizio 5 (Trasmutazione)</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Tempo Richiesto</h4>
+                <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                  <li><strong>Minimo:</strong> 5 minuti</li>
+                  <li><strong>Ideale:</strong> 10-15 minuti</li>
+                  <li><strong>Profondo:</strong> 20-30 minuti</li>
+                </ul>
+                <p style="margin-top: var(--spacing-4);"><em>La sincronicità junghiana sa quale esercizio serve a te nel momento giusto.</em></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ansioso Alto -->
+          <article class="card mb-6 profile-card anxious">
+            <h3 class="color-anxious">🔴 ANSIOSO ALTO - Il Matto (0)</h3>
+            <p class="mb-4"><strong>L'Ingenuità Traumatizzata che Corre verso il Precipizio</strong></p>
+            
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 1.1: "Il Primo Passo del Matto - Notare il Corpo Disperato"</h4>
+              <p><strong>Durata:</strong> 5 minuti | <strong>Momento Migliore:</strong> Quando senti l'ansia montare</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>FERMATI</strong> (30 secondi) - Interrompi tutto. Stai completamente fermo. Il Matto in te vuole CORRERE. Ma il primo atto di consapevolezza è FERMARSI.</li>
+                <li><strong>OSSERVA IL CORPO</strong> (2 minuti) - Dove senti il Matto nel tuo corpo? Petto stretto? Gola chiusa? Gambe tremanti? Stomaco vuoto? Nomina 3 sensazioni specifiche: "Sento ____ in ____"</li>
+                <li><strong>RESPIRA COL MATTO</strong> (2 minuti) - Non cercare di calmare il Matto. Respira INSIEME a lui. Se il respiro è frenetico, respira freneticamente CON consapevolezza. (Non è sedazione, è compagnia)</li>
+                <li><strong>DOMANDA DOLCE</strong> (30 secondi) - Parla interiormente: "Matto, dove stai correndo? Cosa credi accadrà se smetti?" Ascolta cosa dice il corpo. Scrivi: "Il Matto in me crede: ____"</li>
+              </ol>
+              <p style="margin-top: var(--spacing-2); font-style: italic;">Cosa Aspettarsi: Continuerai a correre. Ma per 5 minuti, hai notato. Quello È la consapevolezza.</p>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 1.2: "Il Precipizio Consapevole - Mappa il Territorio del Panico"</h4>
+              <p><strong>Durata:</strong> 10 minuti | <strong>Momento Migliore:</strong> Sera, in riflessione</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>TRACCIA LA CORSA</strong> (3 minuti) - Disegna il tuo "precipizio personale": INIZIO (cosa attiva il Matto?), MEZZO (come accelera?), FINE (dove ti precipiti?). Il disegno deve mostrare il tuo PERCORSO verso il precipizio.</li>
+                <li><strong>NOMI I SEGNALI</strong> (3 minuti) - Per ogni fase, qual è il primo segnale del corpo? INIZIO: Sento ____ | MEZZO: Sento ____ | FINE: Sento ____. I segnali precoci sono dove PUOI intervenire.</li>
+                <li><strong>RICONOSCI LA LEZIONE</strong> (2 minuti) - Il Matto corre perché ha imparato: "Se non corro, sarò abbandonato. Se corro abbastanza veloce, sarò amato." Scrivi: "La lezione che il mio corpo crede è: ____"</li>
+                <li><strong>L'ATTO FINALE</strong> (2 minuti) - Leggi: "Il precipizio non è il partner che abbandona. È la perdita di me stesso nella rincorsa. Oggi ho notato il precipizio. Domani, posterò notarlo più presto."</li>
+              </ol>
+              <p style="margin-top: var(--spacing-2); font-style: italic;">Progressione: Ogni giorno noti il segnale 10 secondi prima. Settimana 3, noti il segnale INIZIO prima di accelerare.</p>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 1.3: "L'Alternativa al Matto - Volare Consapevolmente"</h4>
+              <p><strong>Durata:</strong> 10 minuti | <strong>Momento Migliore:</strong> Quando non sei in panico pieno</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>CORPO CONSAPEVOLE</strong> (3 minuti) - Immagina di essere un uccello che SCEGLIE il suo volo. Senti: petto aperto (non morsa), respiro consapevole (non frenetico), radicamento (piedi sulla terra, anche se voli).</li>
+                <li><strong>LA SCELTA</strong> (4 minuti) - Davanti a te ci sono 3 porte: PORTA 1 (Corsa): Invia messaggi disperati | PORTA 2 (Pausa): Respira 10 volte e aspetta 1 ora | PORTA 3 (Connessione con te): Scrivi un giornale su cosa stai veramente cercando. Pratica: "Sento il panico. Noto le 3 porte. Scelgo la Porta ____"</li>
+                <li><strong>RIPETI</strong> (3 minuti) - Domani, quando il Matto si attiva, ricorda: "Non devo controllare il mio corpo. Devo notare che STO SCEGLIENDO quale porta aprire."</li>
+              </ol>
+              <p style="margin-top: var(--spacing-2); font-style: italic;">Effetto: Il Matto non scompare. Ma inizi a avere scelta. La scelta È la libertà.</p>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 1.4: "Il Matto in Relazione - Comunicazione Consapevole"</h4>
+              <p><strong>Durata:</strong> 15 minuti | <strong>Momento Migliore:</strong> Dopo un episodio di panico</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>SCRIVI AL TUO PARTNER</strong> (8 minuti) - Non mandare il messaggio. Scrivi prima la versione "Matto Disperato", poi riscrivi il VERO bisogno sotto il panico: "Caro ____, quando non rispondi, il mio corpo attiva una paura antica: che sono poco amabile, che sarai via per sempre. Non è colpa tua. È la mia storia. Quello che mi aiuterebbe è: _____"</li>
+                <li><strong>PRATICA DEL "NON-MATTO"</strong> (4 minuti) - Domandagli: "Come posso comunicare a te il mio panico senza rincorriti? Come posso rimanere consapevole che sei scegliendo di amare, non di abbandonarmi?"</li>
+                <li><strong>COSTRUISCI UN ACCORDO</strong> (3 minuti) - "Se mi sento in panico, invece di inviare 5 messaggi: 1) Comunico una volta: 'Ho paura, ho bisogno di rassicurazione quando puoi' 2) Aspetto una risposta 3) Faccio un'altra attività mentre aspetto"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item">
+              <h4>Esercizio 1.5: "La Trasmutazione del Matto - Dal Precipizio alla Ricerca Consapevole"</h4>
+              <p><strong>Durata:</strong> 20 minuti | <strong>Momento Migliore:</strong> Fine settimana, in profonda riflessione</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>IL DONO NASCOSTO</strong> (5 minuti) - Il Matto ha una capacità: RICERCA PROFONDA. Invece di rincorrere il partner, cosa se RINCORRI: la consapevolezza di te stesso? La comprensione del tuo corpo? La connessione consapevole con l'amore? Scrivi: "Se trasmussi la ricerca del Matto in ricerca consapevole: ____"</li>
+                <li><strong>IL VIAGGIO INVERSO</strong> (8 minuti) - Il Matto corre verso il precipizio. Tu inizia a camminare DALLA PARTE DEL PRECIPIZIO. Verso cosa camminare consapevolmente? L'accettazione di me stesso? L'amore che non dipende da altri? La capacità di dire 'io sono degno' senza bisognare di conferma? Scegli una direzione e pratica 1 passo al giorno.</li>
+                <li><strong>IL MATTO ILLUMINATO</strong> (4 minuti) - Leggi: "Il Matto in me non scompare. Impara a volare verso la luce consapevolmente. Non rincorre il partner. Cammina consapevolmente verso l'autostima. Questo è il Matto trasmutato."</li>
+                <li><strong>PREGA/AFFERMA</strong> (3 minuti) - Ripeti: "Sono il Matto che impara a volare. Non verso il precipizio. Verso la consapevolezza. Verso l'amore consapevole di me stesso."</li>
+              </ol>
+              <p style="margin-top: var(--spacing-2); font-style: italic;">Effetto a Lungo Termine: Il panico rimane. Ma la direzione della tua ricerca cambia. Inizi a rincorrere consapevolezza, non desperazione.</p>
+            </div>
+          </article>
+
+          <!-- Ansioso Medio -->
+          <article class="card mb-6 profile-card anxious">
+            <h3 class="color-anxious">🟡 ANSIOSO MEDIO - L'Innamorato Ferito (VI)</h3>
+            <p class="mb-4"><strong>La Scelta Consapevole fra Amore e Protezione</strong></p>
+            
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 2.1: "Le Due Sponde - Riconoscere la Danza"</h4>
+              <p><strong>Durata:</strong> 5 minuti | <strong>Momento Migliore:</strong> Quando senti l'oscillazione</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>STAI NEL MEZZO</strong> (2 minuti) - Immagina di stare su un ponte sopra un fiume. SPONDA SINISTRA (Protezione): Muri, distanza, controllo | SPONDA DESTRA (Amore): Apertura, vulnerabilità, fiducia. Tu sei nel MEZZO, diviso. Legittimo? Sì. Doloroso? Sì.</li>
+                <li><strong>NOTA LA DANZA</strong> (3 minuti) - Oggi, quale sponda senti attiva? PROTEZIONE (Sento freddo, chiusura, paura) o AMORE (Sento calore, apertura, speranza)? La danza non è sbagliata. È il tuo modo di stare fra due verità.</li>
+                <li><strong>RICONOSCI</strong> (2 minuti) - Scrivi: "Oggi oscillò fra protezione e amore __ volte". Non giudicare. Solo conta. La consapevolezza è nel notare il ritmo.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 2.2: "Il Dolore della Scelta - Abbracciare l'Ambiguità"</h4>
+              <p><strong>Durata:</strong> 10 minuti | <strong>Momento Migliore:</strong> Sera, in riflessione</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>SENTI ENTRAMBI</strong> (3 minuti) - Chiudi gli occhi. Senti nel corpo la PROTEZIONE (come un guscio intorno a te). Ora, nella stessa sessione, senti l'AMORE (come un'apertura). Entrambi sono reali. Entrambi vivono in te. Che sia scomodo È il punto.</li>
+                <li><strong>SCRIVI I COSTI</strong> (4 minuti) - SE SCELGO PROTEZIONE: Guadagno: ____ Perdo: ____ | SE SCELGO AMORE: Guadagno: ____ Perdo: ____. Non c'è scelta "giusta". Ci sono solo COSTI diversi. La consapevolezza è nel riconoscere il costo, non nel fuggirne.</li>
+                <li><strong>ONORA LA DANZA</strong> (3 minuti) - Leggi: "La mia oscillazione non è fallimento. È l'Innamorato che sceglie continuamente fra due forme di amore. Oggi riconosco entrambi i costi. Domani, sceglierò consapevolmente quale sponda sento."</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 2.3: "La Finestra di Tolleranza - Trovare il Mezzo"</h4>
+              <p><strong>Durata:</strong> 10 minuti | <strong>Momento Migliore:</strong> Quando sei relativamente calmo</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>DISEGNA IL MEZZO</strong> (3 minuti) - TROPPO AMORE: Mi perdo | SPONDA DESTRA (Amore consapevole) ← TU SEI QUI → SPONDA SINISTRA (Protezione consapevole) | TROPPO DISTANTE: Soffoco. Dove è il tuo "mezzo"? Descrivi: "Il mio mezzo sembra: corpo ____, cuore ____, comunicazione ____"</li>
+                <li><strong>PRATICA DEL MEZZO</strong> (4 minuti) - Visualizza: Petto leggermente permeable, Comunicazione: "Ti amo e ho anche bisogno di spazio", Fiducia: "Ti fido e osservo se è sicuro fidarmi". Questa è la maestria dell'Innamorato Ferito: Non scegliere un lato. Stare consapevolmente nel mezzo.</li>
+                <li><strong>PRATICA QUOTIDIANA</strong> (3 minuti) - Una volta al giorno, chiedi: "Dove sto oggi? Sponda sinistra, mezzo, o sponda destra? Dove voglio stare?"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 2.4: "Comunicazione dal Mezzo - Dire La Verità Divisa"</h4>
+              <p><strong>Durata:</strong> 15 minuti | <strong>Momento Migliore:</strong> Quando sei con il partner</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>RICONOSCI ENTRAMBI I SENTIMENTI</strong> (3 minuti) - "Ti amo E ho paura. Voglio avvicinarmi E sento il bisogno di protezione. Ti confido E ho dubbi." Non è incoerenza. È verità divisa.</li>
+                <li><strong>COMUNICA DAL MEZZO</strong> (6 minuti) - "Amore, voglio di avvicinarmi a te. E nel mio corpo c'è una paura: che se mi apro completamente, sarai via. Non è colpa tua. È la mia storia. Possiamo camminare verso di me insieme? Io mi apro un poco, tu rimani un poco?" Pratica dire questa frase 3 volte.</li>
+                <li><strong>ASCOLTA LA SUA RISPOSTA</strong> (3 minuti) - Se lui risponde con compassione: il mezzo funziona. Se lui respinge: la tua paura era saggia. Se lui fraintende: continua a comunicare dal mezzo.</li>
+                <li><strong>RIFLETTI</strong> (3 minuti) - Scrivi: "Quando ho comunicato dal mezzo, mi sono sentito: ____"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item">
+              <h4>Esercizio 2.5: "L'Innamorato Consapevole - Trasmutare l'Oscillazione"</h4>
+              <p><strong>Durata:</strong> 20 minuti | <strong>Momento Migliore:</strong> Fine settimana</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>LA STORIA DELLA TUA OSCILLAZIONE</strong> (5 minuti) - Perché oscilli? Probabilmente: un genitore era amorevole ma imprevedibile, l'altro era distaccato o controllante. Hai imparato: "L'amore è insicuro, la protezione è solitaria". Scrivi: "Ho imparato a oscillare perché: ____"</li>
+                <li><strong>IL DONO DELL'OSCILLAZIONE</strong> (5 minuti) - Una persona che oscilla ha: capacità di amare profondamente, capacità di proteggere i confini, saggezza di vedere entrambi i lati. Quale di questi doni puoi sviluppare consapevolmente?</li>
+                <li><strong>LA TRASMUTAZIONE</strong> (5 minuti) - L'Innamorato Ferito diventa l'Innamorato Consapevole quando NON cessa di oscillare (la capacità rimane) MA inizia a scegliere consciamente quale sponda. Pratica: "Sento l'impulso a chiudermi. Questa è protezione consapevole. Sento l'impulso ad aprirmi. Questa è amore consapevole. Scelgo quale abbracciare, consapevolmente."</li>
+                <li><strong>AFFERMA</strong> (5 minuti) - Ripeti: "Sono l'Innamorato che impara a scegliere consciamente. Non elimino la paura o l'amore. Li abbraccia consapevolmente. Oggi scelgo amore consapevole. Domani forse protezione consapevole. Entrambi sono veri. Entrambi sono miei."</li>
+              </ol>
+            </div>
+          </article>
+
+          <!-- Ansioso Basso -->
+          <article class="card mb-6 profile-card anxious">
+            <h3 class="color-anxious">🟢 ANSIOSO BASSO - L'Amante Consapevole (VI Integrato)</h3>
+            <p class="mb-4"><strong>Amore Profondo dalle Radici</strong></p>
+            
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 3.1: "Le Radici - Radicamento Consapevole"</h4>
+              <p><strong>Durata:</strong> 5 minuti | <strong>Momento Migliore:</strong> Ogni mattina</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>RADICI NEL TERRENO</strong> (2 minuti) - Stai in piedi o seduto. Immagina radici che escono dai tuoi piedi nel terreno. Scava più profonde col respiro. Queste radici sono: te stesso, il tuo corpo, la tua storia, i tuoi confini.</li>
+                <li><strong>RADICI MENTRE AMI</strong> (3 minuti) - Mantieni le radici. Immagina il tuo partner davanti a te. Senti il tuo amore che scorre dalle radici verso il partner. Il punto cruciale: le radici rimangono SALDE. Non sei tirato verso il partner. Non stai sradicato. Ami da un luogo di stabilità. Scrivi: "Le mie radici rimangono salde quando: ____"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 3.2: "Amare senza Perdizione - Il Confine Consapevole"</h4>
+              <p><strong>Durata:</strong> 10 minuti | <strong>Momento Migliore:</strong> Quando sei con il partner</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>SENTI IL CONFINE</strong> (3 minuti) - Come un'aureola intorno al tuo corpo. Dentro il confine: te stesso. Fuori: il tuo partner. Nel mezzo: spazio sacro dove vi incontrate. Se ami il partner E rimani dentro il tuo confine: Puoi dire "no" senza perdere l'amore. Puoi avere spazio senza rifiutare.</li>
+                <li><strong>PRATICA DI "NO CONSAPEVOLE"</strong> (4 minuti) - Il partner chiede qualcosa. La tua inclinazione è dire sì (per amore). Ma il tuo corpo dice "no" (il confine). Pratica: "Ti amo e la risposta è no. Non perché non ti amo. Perché per mantenermi sano, ho bisogno di ____"</li>
+                <li><strong>PRATICA DI "SÌ CONSAPEVOLE"</strong> (3 minuti) - "Sì, farò questo. E farò anche ____ per me stesso." Amore senza perdizione = dare E ricevere.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 3.3: "L'Amore come Atto Consapevole - Non Come Necessità"</h4>
+              <p><strong>Durata:</strong> 10 minuti | <strong>Momento Migliore:</strong> Quando non sei insieme al partner</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>CONOSCI IL CONFINE FRA AMORE E BISOGNO</strong> (4 minuti) - BISOGNO (Ansioso Alta): "Ho bisogno di lui per sentirmi sicuro" | AMORE CONSAPEVOLE: "Scelgo di amarlo perché lo amo". Scrivi 3 azioni che fai per BISOGNO vs per AMORE. La differenza? Una è per calmare TE, l'altra è per connettere con LUI.</li>
+                <li><strong>PRATICA DELLA CONSAPEVOLEZZA</strong> (4 minuti) - Domani, prima di qualsiasi azione verso il partner, chiedi: "Sto facendo questo per amore consapevole o per calmare l'ansia?" Se è per calmare l'ansia: respira prima di agire. Se è per amore: agisci da questo luogo.</li>
+                <li><strong>RICONOSCI IL DONO</strong> (2 minuti) - Scrivi: "Quando amo consapevolmente, il mio partner sente: ____" Probabilmente: sicurezza, genuinità, libertà.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 3.4: "Amare con Consapevolezza del Corpo - Intimità Radicata"</h4>
+              <p><strong>Durata:</strong> 15 minuti | <strong>Momento Migliore:</strong> Durante l'intimità o quando senti forte connessione</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>PRIMO CONTATTO</strong> (3 minuti) - Quando il partner ti tocca, dove senti il tocco? Pelle, calore, pressione, sicurezza? O senti subito il bisogno di avere di più? Questa differenza è fra contatto consapevole e fame di contatto.</li>
+                <li><strong>TOCCA CONSAPEVOLMENTE</strong> (5 minuti) - Quando tocchi il partner, fa lentamente. Senti la pelle, il calore, il respiro. Non afferrare. Accarezzare. Questa è intimità radicata: presente, consapevole, non disperata.</li>
+                <li><strong>COMUNICA DAL CORPO</strong> (4 minuti) - Se senti fame emotiva durante l'intimità: "Amore, sto sentendo una fame di rassicurazione. Non è sulla tua pelle. È nel mio corpo. Possiamo semplicemente stare insieme?"</li>
+                <li><strong>POST-INTIMITÀ</strong> (3 minuti) - Dopo l'intimità, rimani radicato. Non cercare di controllare il partner. Non cercare di rimanere fuso. Stai con il tuo corpo nel suo contatto.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item">
+              <h4>Esercizio 3.5: "L'Amante Consapevole Matura - Insegnare L'Amore"</h4>
+              <p><strong>Durata:</strong> 20 minuti | <strong>Momento Migliore:</strong> Quando senti stabile</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>RICONOSCI COME SEI DIVERSO</strong> (5 minuti) - 6 mesi fa, come amavi? Come ami ora? Scrivi 3 differenze: "Ora amo ____ diversamente perché: ____"</li>
+                <li><strong>IL DONO DI INSEGNARE</strong> (5 minuti) - Qualcuno nella tua vita ama in modo ansioso. Che lezione potresti condividere? Non come "guru". Come "compagno che ha fatto il viaggio". "Quello che ho imparato è: ____"</li>
+                <li><strong>LA TUA PRATICA CONSAPEVOLE</strong> (5 minuti) - Quale pratica mantiene le tue radici? Meditazione mattutina? Journaling? Movimento consapevole? Tempo da solo? Commit a una pratica al giorno per mantenere le radici salde.</li>
+                <li><strong>AFFERMAZIONE</strong> (5 minuti) - Ripeti: "Sono l'Amante Consapevole. Amo profondamente E rimango radicato. Non perdo me stesso in amore. Condivido l'amore da uno spazio di pienezza. Questo è il mio modo di amare."</li>
+              </ol>
+            </div>
+          </article>
+
+          <!-- Evitante Alto -->
+          <article class="card mb-6 profile-card avoidant">
+            <h3 class="color-avoidant">🔴 EVITANTE ALTO - L'Eremita Ferito (IX)</h3>
+            <p class="mb-4"><strong>L'Isolamento Come Protezione</strong></p>
+            
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 4.1: "Il Bunker - Esplorare le Mura"</h4>
+              <p><strong>Durata:</strong> 5 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>VISUALIZZA IL BUNKER</strong> (3 minuti) - Chiudi gli occhi. Sei in un bunker sotterraneo. Come sono le mura? (Fredde, spesse) Quanta luce? (Minima) Quanto spazio? (Ristretto) Ti senti al sicuro? Soffocato? Non giudicare. Solo osserva.</li>
+                <li><strong>NOTA IL COSTO</strong> (2 minuti) - Scrivi: "Nel bunker, mi sento: ____ (positivo)" | "Nel bunker, perdo: ____ (negativo)"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 4.2: "Lo Spiraglio - Notare che la Porta Esiste"</h4>
+              <p><strong>Durata:</strong> 10 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>TROVA LA PORTA</strong> (3 minuti) - Nel bunker, c'è una piccola finestra o porta. Avvicinati lentamente. Non devi aprirla. Solo notare che esiste.</li>
+                <li><strong>GUARDA ATTRAVERSO</strong> (4 minuti) - Cosa vedi? Senti? Odori? Luce naturale? Suoni di vita? Colori? Altre persone? Descritto: "Attraverso lo spiraglio vedo: ____"</li>
+                <li><strong>SENTI LA PAURA</strong> (3 minuti) - Cosa ti spaventa di aprire la porta? "Se apro, paura che: ____" Scrivi la paura più profonda. Il nome della paura è il primo passo.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 4.3: "Il Guardiano della Soglia - Consapevolezza del Confine"</h4>
+              <p><strong>Durata:</strong> 10 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>CONOSCI IL TUO GUARDIANO</strong> (4 minuti) - Una parte di te (il Guardiano) sorvegia la porta. Il suo lavoro: proteggere dallo stare male. Parla al Guardiano: "Guardiano, come mi proteggi? Quale dolore cerchi di evitare?" Scrivi la risposta del corpo.</li>
+                <li><strong>RICONOSCI LA SAGGEZZA</strong> (3 minuti) - Il Guardiano non è nemico. Ha una saggezza: proteggere dallo stare male. La domanda non è "come elimino il Guardiano" È "come posso governare consciamente il Guardiano?"</li>
+                <li><strong>LA PORTA CONSAPEVOLE</strong> (3 minuti) - Visualizza: La porta si apre solo quando TU scegli. Il Guardiano rimane, ma riconosce le scelte consapevoli. Questo non è guarigione. È governo della protezione.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 4.4: "Connettersi Consapevolmente - Il Primo Passo Verso il Partner"</h4>
+              <p><strong>Durata:</strong> 15 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>PRATICA DELLA VULNERABILITÀ MINIMA</strong> (5 minuti) - Non devi aprirti completamente. Pratica una vulnerabilità MINIMA: Condividi UNA cosa vera con il partner. Anche piccola. "Oggi ho paura di: ____" | "Oggi non mi sento bene perché: ____" Una cosa. Piccola. Vera.</li>
+                <li><strong>OS SERVA LA REAZIONE</strong> (5 minuti) - Se lui risponde con sicurezza: nota questo. Se lui usa contro di te: nota questo. Se lui ignora: nota questo. Le reazioni ti dicono se è safe aprire di più.</li>
+                <li><strong>RITIRA SE NECESSARIO</strong> (3 minuti) - Se non è sicuro, nessun problema. Ritrai. Rimani al bunker. Ma hai notato. La prossima volta saprai.</li>
+                <li><strong>DOCUMENTA</strong> (2 minuti) - Scrivi: "Quando ho condiviso ____, lui ha: ____" | "Mi è sentito: ____ sicuro / insicuro"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item">
+              <h4>Esercizio 4.5: "L'Eremita Consapevole - La Solitudine come Scelta Saggia"</h4>
+              <p><strong>Durata:</strong> 20 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>ONORA LA TUA SOLITUDINE</strong> (5 minuti) - La solitudine dell'Eremita Ferito non è scelta consapevole (non ancora). Ma il primo passo è riconoscere che c'è una RAGIONE. Leggi: "Sono solo perché il mio corpo ha imparato che la vicinanza = pericolo. Questa lezione non è vera, ma il corpo la crede. La mia solitudine è saggezza, non difetto."</li>
+                <li><strong>CONOSCI TI STESSO</strong> (5 minuti) - L'Eremita conosce se stesso profondamente. Questo è il DONO della solitudine. Cosa conosci di te stesso? "Conosco che io: ____" | "Mi piace: ____" | "Ho bisogno di: ____"</li>
+                <li><strong>SOLITUDINE CONSAPEVOLE vs ISOLAMENTO</strong> (5 minuti) - L'Eremita Illuminato sceglie la solitudine per la ricerca interiore. L'Eremita Ferito rimane isolato per paura. Quale sei? Probabilmente un misto. Pratica: un giorno la solitudine è scelta consapevole (meditazione, ricerca), un altro è paura (ritiro dal partner). Noti la differenza.</li>
+                <li><strong>LA PRATICA DELLA PORTA APERTA</strong> (5 minuti) - Non vivere sempre con la porta chiusa. Non vivere con la porta spalancata. Pratica: una volta a settimana, apri lo spiraglio. Comunica minima vulnerabilità. Noti la reazione. Se safe, aprire un po' di più la prossima volta. Se non safe, rimani al bunker, ma consapevolmente.</li>
+              </ol>
+            </div>
+          </article>
+
+          <!-- Evitante Medio -->
+          <article class="card mb-6 profile-card avoidant">
+            <h3 class="color-avoidant">🟡 EVITANTE MEDIO - L'Imperatore Difensivo (IV)</h3>
+            <p class="mb-4"><strong>Il Potere Come Protezione</strong></p>
+            
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 5.1: "Il Trono - Conoscere il Tuo Spazio Sacro"</h4>
+              <p><strong>Durata:</strong> 5 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>VISUALIZZA IL TRONO</strong> (3 minuti) - Seduto su un trono circondato da muri alti. Potere. Controllo. Isolamento. Come è il trono? Come sono i muri? Qual è la vista dal trono?</li>
+                <li><strong>SENTI IL POTERE</strong> (2 minuti) - Il trono rappresenta il tuo potere su te stesso. Non è malvagio. È potenza. Scrivi: "Dal mio trono, ho il potere su: ____"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 5.2: "I Muri - Mappe dei Confini Rigidi"</h4>
+              <p><strong>Durata:</strong> 10 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>TRACCIA I MURI</strong> (4 minuti) - Per ogni muro, che cosa protegge? MURO INTORNO AL CUORE: Protegge da abbandonare? MURO INTORNO ALLE EMOZIONI: Protegge da giudizio? MURO INTORNO AL CORPO: Protegge da invasione? Scrivi: "Questo muro protegge da: ____"</li>
+                <li><strong>SENTI L'ATTIVAZIONE</strong> (3 minuti) - Il partner si avvicina. Quale muro si attiva? Come lo senti nel corpo? Respiro che si riduce? Petto che si chiude? Impulso di allontanarti?</li>
+                <li><strong>RICONOSCI LA PROTEZIONE</strong> (3 minuti) - Scrivi: "I miei muri mi proteggono quando temo: ____" | "I miei muri mi isolano quando temo: ____"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 5.3: "La Porta Governata - Consapevolezza della Scelta"</h4>
+              <p><strong>Durata:</strong> 10 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>VISUALIZZA LA PORTA</strong> (3 minuti) - La porta del trono non è sempre aperta. Non è sempre chiusa. È governata da te. Come sentirti quando NON è chiusa automaticamente Ma governi consapevolmente chi entra?</li>
+                <li><strong>PRATICA DEL GOVERNO CONSAPEVOLE</strong> (4 minuti) - Quando il partner si avvicina: "Voglio questa vicinanza? Consapevolmente?" Se sì: apri la porta leggermente, sapendo che puoi chiuderla. Se no: tieni la porta chiusa, ma senza senso di colpa. La consapevolezza è nella SCELTA, non nel risultato.</li>
+                <li><strong>COMUNICA LA SCELTA</strong> (3 minuti) - "Amore, oggi ho bisogno di spazio" (consapevole) | "Amore, oggi voglio stare vicino" (consapevole). Non è ritiro punitivo. È governo consapevole.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 5.4: "La Vulnerabilità Calcolata - Aprire il Portone"</h4>
+              <p><strong>Durata:</strong> 15 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>CALCOLA IL RISCHIO</strong> (5 minuti) - L'Imperatore Difensivo conosce il rischio. Sei consapevole di cosa rischi quando ti apri? "Se mi apro: rischio che: ____" È una valutazione realistica, non catastrofica.</li>
+                <li><strong>PRATICA DELLA PICCOLA APERTURA</strong> (5 minuti) - Non spalancare completamente il portone. Apri un po'. Condividi UNA cosa che normalmente nasconderesti: Una paura, un dolore, un bisogno. Comunica dal trono (potente) non dalla debolezza: "Voglio che tu sappia: quando sono vicino, ho paura di: ____"</li>
+                <li><strong>OSSERVA LA REAZIONE</strong> (3 minuti) - Se lui risponde con sicurezza: il rischio era calcolato e saggio. Se lui usa contro: il calcolo del rischio era corretto, rimani sul trono. Se ignora: il calcolo del rischio era corretto, rimani sul trono. Nessun risultato significa fallimento. Tutti i risultati ti insegnano sulla sicurezza.</li>
+                <li><strong>DECIDI</strong> (2 minuti) - Vuoi aprire di più la prossima volta? O mantenerla al livello di oggi? Entrambi sono consapevoli.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item">
+              <h4>Esercizio 5.5: "L'Imperatore Consapevole - Governo Saggio dei Confini"</h4>
+              <p><strong>Durata:</strong> 20 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>L'IMPERATORE NON È FREDDO</strong> (5 minuti) - Un imperatore può essere saggio, forte, consapevole E compassionevole. Il tuo nuovo modello: "Sono forte nei miei confini. Sono compassionevole nella mia comunicazione. Sono consapevole nel mio governo. Sono aperto, ma autonomo."</li>
+                <li><strong>IL CONTROLLO CONSAPEVOLE</strong> (5 minuti) - Cosa controlli? Il tuo spazio? Le tue emozioni? Le tue priorità? La tua adesione ai tuoi valori? Scrivi: "Controllo consapevolmente: ____" Il controllo non è male se è consapevole e non punitivo.</li>
+                <li><strong>LA COMPASSIONE VERSO IL PARTNER</strong> (5 minuti) - Quando il partner spinge verso i tuoi confini: "Lui spinge perché ha bisogno di ____" Potete avere confini chiari E compassione. Non sono opposte. Pratici: "Ho confini forti. E comprendo il tuo bisogno. Insieme troviamo il mezzo."</li>
+                <li><strong>LA PRATICA DELL'APERTURA GRADUALE</strong> (5 minuti) - Non guarigione in fretta. Apertura graduali: Settimana 1: Condividi pensiero | Settimana 2: Condividi emozione | Settimana 3: Condividi paura | Settimana 4: Condividi desiderio. Se ogni livello è sicuro, procedi. Se no, rimani al livello precedente, consapevolmente.</li>
+              </ol>
+            </div>
+          </article>
+
+          <!-- Evitante Basso -->
+          <article class="card mb-6 profile-card avoidant">
+            <h3 class="color-avoidant">🟢 EVITANTE BASSO - L'Imperatore Consapevole (IV Integrato)</h3>
+            <p class="mb-4"><strong>Il Confine Saggio</strong></p>
+            
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 6.1: "Il Governo Consapevole - Il Trono della Libertà"</h4>
+              <p><strong>Durata:</strong> 5 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>SENTI IL POTERE SAGGIO</strong> (3 minuti) - Seduto sul trono, non hai paura del tuo potere. Lo governi con saggezza. Come sentirti quando il potere è consapevole? Rilassato (non teso nella protezione)? Chiaro (non nevroticamente preoccupato)? Aperto (non rigidamente chiuso)?</li>
+                <li><strong>I CONFINI SCELTI</strong> (2 minuti) - I tuoi confini non sono punizioni. Sono auto-protezione saggio. Scrivi: "Scelgo il confine di: ____" | "Perché mi protegge/mi permette di: ____"</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 6.2: "La Scelta Consapevole di Vicinanza - Quando Aprire Il Portone"</h4>
+              <p><strong>Durata:</strong> 10 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>RICONOSCI LA SCELTA</strong> (4 minuti) - Ogni volta che il partner si avvicina: "Voglio questa vicinanza? Sì o no?" Se sì: Perché? (Amore genuino, desiderio, connessione?) Se no: Perché? (Ho bisogno di spazio, sono stanco, sento insicurezza?) Scrivi 3 situazioni: "Ho scelto vicinanza quando: ____" | "Ho scelto spazio quando: ____"</li>
+                <li><strong>COMUNICA LA SCELTA</strong> (3 minuti) - Non è freddo dire no all'Imperatore Consapevole. È consapevole. "Amore, oggi ho scelto avere spazio. Non è su di te. È per me." | "Amore, oggi scelgo di stare vicino. Voglio connettermi."</li>
+                <li><strong>OSSERVA LA REAZIONE</strong> (3 minuti) - Se lui rispetta la scelta: partnership sana. Se lui resiste: opportunità di comunicazione. Se lui ignora: informazione sulla partnership. La tua scelta consapevole insegna al partner come trattarti.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 6.3: "La Compassione dalla Forza - Confini con Amore"</h4>
+              <p><strong>Durata:</strong> 10 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>IL CONFINE CHE AMA</strong> (5 minuti) - Puoi avere un confine forte E essere compassionevole. "Ho questo confine. E capisco che per te è difficile. Capisco il tuo bisogno. E ho il mio bisogno. Come possiamo rispettarci entrambi?" Pratica questa frase 3 volte.</li>
+                <li><strong>ESEMPI DI CONFINI AMOREVOLI</strong> (5 minuti) - "Ho bisogno di spazio da solo. So che desideri connessione. Possiamo avere una serata insieme e una serata separata?" | "Non posso fare quello che chiedi. Ma posso fare questo." | "Amo te. E amo me stesso. Perciò mantengo questo confine." Scrivi un confine che hai e riformulalo con compassione.</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item mb-4">
+              <h4>Esercizio 6.4: "Integrità Relazionale - Valore in Partnership"</h4>
+              <p><strong>Durata:</strong> 15 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>COSA PORTI NELLA RELAZIONE</strong> (5 minuti) - Non stai "permettendo" al partner di amarti. Stai portando valore genuino. "Porto nella relazione: ____" Esempi: affidabilità, autonomia che permette al partner di respirare, confini chiari che creano sicurezza, amore stabile.</li>
+                <li><strong>COSA CHIEDI IN CAMBIO</strong> (5 minuti) - Non è negoziazione. È reciprocità consapevole. "Chiedo: ____" Esempi: rispetto dei miei confini, comunicazione onesta, impegno nel viaggio insieme.</li>
+                <li><strong>È UNA PARTNERSHIP CONSAPEVOLE</strong> (5 minuti) - L'Imperatore Consapevole non ha bisogno di possedere il partner. Ma ha bisogno di rispetto mutuo. "In questa partnership: Lui conosce il mio valore. Io conosco il suo. Ci scegliamo consapevolmente, ogni giorno."</li>
+              </ol>
+            </div>
+
+            <div class="exercise-item">
+              <h4>Esercizio 6.5: "Insegnare il Governo Consapevole - Trasmettere La Saggezza"</h4>
+              <p><strong>Durata:</strong> 20 minuti</p>
+              <ol style="margin-left: var(--spacing-6); margin-top: var(--spacing-2);">
+                <li><strong>RICONOSCI LA TUA MAESTRIA</strong> (5 minuti) - Come avevi i confini 1 anno fa? Come li hai ora? Scrivi: "Ho imparato a governare consapevolmente: ____"</li>
+                <li><strong>A CHI PUOI INSEGNARE</strong> (5 minuti) - Un amico con confini rigidi? Un partner che non comprende i confini? Un genitore con cui stai rinegoziando i confini? Non come esperto. Come compagno. "Quello che ho imparato è: ____"</li>
+                <li><strong>LA TRASMISSIONE</strong> (5 minuti) - Condividi una storia: "Una volta ero rigido nei miei confini perché avevo paura di ____ Ora governo consciamente perché: ____ Tu puoi fare lo stesso."</li>
+                <li><strong>LA PRATICA QUOTIDIANA</strong> (5 minuti) - L'Imperatore Consapevole non "riposa". Continua a praticare: Ogni giorno: noto se i miei confini sono consapevoli o reattivi | Ogni settimana: comunico i miei confini chiaramente | Ogni mese: rifletto su come i confini servono la partnership.</li>
+              </ol>
+            </div>
+          </article>
+
+          <!-- Note sugli altri stili -->
+          <div class="card mb-6">
+            <h3>Altri Esercizi Archetipali</h3>
+            <p>Gli esercizi per <strong>Secure</strong> (Basso, Medio, Alto) e <strong>Oscillante</strong> (Alto, Medio, Basso) seguono la stessa struttura progressiva:</p>
+            <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
+              <li><strong>Secure Basso - Il Mago:</strong> Il Doppio Sguardo, Gli Strumenti del Mago, La Scelta Magica, Vivere con Magia, Insegnare la Magia</li>
+              <li><strong>Secure Medio - Il Saggio:</strong> Riconoscere La Maestria, La Saggezza Acquisita, Vivere Consapevolmente, Insegnare con Umiltà, La Pratica Consapevole</li>
+              <li><strong>Secure Alto - L'Illuminato:</strong> Riconoscere L'Oro, Vivi Come Specchio, Compassione Per Il Viaggio, Trasmettere La Consapevolezza, Il Cerchio Completo</li>
+              <li><strong>Oscillante Alto - La Torre:</strong> Notare Il Pattern, Le Rune Dell'Oscillazione, La Logica Della Confusione, Compassione Per La Torre, Dalla Torre Al Fondamento</li>
+              <li><strong>Oscillante Medio - Il Pellegrino:</strong> Mappa Il Labirinto, Cammina Consapevolmente, Scopri I Pattern, La Sincronicità Del Pellegrino, Verso L'Uscita</li>
+              <li><strong>Oscillante Basso - La Forza:</strong> Tocca La Bestia, Rimani Nel Fuoco, Integra L'Oscillazione, La Forza Compassionevole, Insegnare La Forza</li>
+            </ul>
+            <p style="margin-top: var(--spacing-4);">Per gli esercizi completi di tutti gli stili, consulta la <a href="../docs/60-esercizi-consapevolezza.md">documentazione completa</a>.</p>
+          </div>
+
+          <!-- Note sugli esercizi ibridi -->
+          <div class="card mb-6">
+            <h3>Esercizi per Stili Ibridi</h3>
+            <p>Esistono esercizi specifici per gli <strong>stili ibridi</strong> (combinazioni di ansia e evitamento in livelli diversi).</p>
+            <p>Per maggiori dettagli, consulta la documentazione sugli <a href="approfondimenti.html#ibridi">stili ibridi</a> e il documento <em>Esercizi Ibridi Attaccamento</em> nella cartella <code>docs/</code>.</p>
+          </div>
+        </section>
+
         <!-- Link ai Profili -->
         <div class="card">
           <h3>Esercizi Specifici per il Tuo Profilo</h3>
           <p>Ogni profilo (es. "Ansioso Medio", "Evitante Basso") ha esercizi specifici dettagliati nella sua pagina:</p>
           <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-            <li style="margin-bottom: var(--spacing-2);"><a href="profili/">Vedi tutti i 12 Profili</a> per esercizi personalizzati</li>
+            <li style="margin-bottom: var(--spacing-2);"><a href="profili/">Vedi tutti I 12 profili</a> per esercizi personalizzati</li>
             <li style="margin-bottom: var(--spacing-2);"><a href="test.html">Fai il Test</a> per identificare il tuo profilo specifico</li>
           </ul>
         </div>
@@ -271,6 +693,7 @@
   </footer>
 
   <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

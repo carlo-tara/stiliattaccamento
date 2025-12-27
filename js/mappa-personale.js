@@ -26,10 +26,29 @@ function initMappaPersonale() {
   
   if (testResults) {
     try {
-      const results = JSON.parse(testResults);
-      calcolaDaTest(results);
+      const parsed = JSON.parse(testResults);
+      // Valida i dati prima di usarli
+      const validated = typeof validateTestResults === 'function' 
+        ? validateTestResults(parsed)
+        : parsed;
+      
+      if (validated) {
+        calcolaDaTest(validated);
+      } else {
+        // Dati non validi, usa valori di default
+        if (typeof Logger !== 'undefined' && Logger.warn) {
+          Logger.warn('Dati test non validi, uso valori di default');
+        } else if (window.DEBUG_MODE) {
+          console.warn('Dati test non validi, uso valori di default');
+        }
+      }
     } catch (e) {
-      console.log('Nessun risultato test disponibile, usa valori di default');
+      // Errore nel parsing, usa valori di default
+      if (typeof Logger !== 'undefined' && Logger.warn) {
+        Logger.warn('Errore nel parsing risultati test:', e);
+      } else if (window.DEBUG_MODE) {
+        console.warn('Errore nel parsing risultati test:', e);
+      }
     }
   }
   
@@ -173,7 +192,25 @@ function aggiornaMappa() {
   const level = identificaLivello(media);
   const levelBadges = document.getElementById('level-badges');
   if (levelBadges) {
-    levelBadges.innerHTML = `<span class="level-badge ${level.toLowerCase()}">LIVELLO ${level.toUpperCase()}</span>`;
+    const levelLower = level.toLowerCase();
+    // Valida livello prima di usare
+    const validLevel = typeof isValidLevel === 'function' && isValidLevel(levelLower) ? levelLower : 'basso';
+    
+    // Pulisci contenuto esistente
+    levelBadges.innerHTML = '';
+    
+    if (typeof createSafeElement === 'function') {
+      const badge = createSafeElement('span', {
+        class: `level-badge ${validLevel}`
+      }, `LIVELLO ${level.toUpperCase()}`);
+      levelBadges.appendChild(badge);
+    } else {
+      // Fallback se utils.js non è caricato
+      const badge = document.createElement('span');
+      badge.className = `level-badge ${validLevel}`;
+      badge.textContent = `LIVELLO ${level.toUpperCase()}`;
+      levelBadges.appendChild(badge);
+    }
   }
   
   // Aggiorna grafico radar
@@ -237,125 +274,273 @@ function identificaProfilo(punteggi, media) {
     };
     
     const livelloNome = livello.toLowerCase();
-    const profiloUrl = `profili/${stile}-${livelloNome}.html`;
     
-    profileContent.innerHTML = `
-      <h3>${stileNome[stile]} ${livello}</h3>
-      <p><strong>Media complessiva:</strong> ${media.toFixed(1)}/10</p>
-      <p><strong>I tuoi punteggi:</strong></p>
-      <ul style="margin-left: var(--spacing-6); margin-top: var(--spacing-4);">
-        <li>Ansia ↔ Evitamento: ${dim1.toFixed(1)}/10</li>
-        <li>Finestra di Tolleranza: ${dim2.toFixed(1)}/10</li>
-        <li>Coscienza dell'Attaccamento: ${dim3.toFixed(1)}/10</li>
-        <li>Capacità di Integrazione: ${dim4.toFixed(1)}/10</li>
-        <li>Resilienza Relazionale: ${dim5.toFixed(1)}/10</li>
-      </ul>
-      <p style="margin-top: var(--spacing-4);">
-        <a href="${profiloUrl}" class="btn btn-primary">Vedi il Profilo Completo: ${stileNome[stile]} ${livello}</a>
-      </p>
-      <p style="margin-top: var(--spacing-4);">
-        <a href="esercizi.html" class="btn btn-secondary">Vedi Esercizi Specifici</a>
-      </p>
-    `;
+    // Valida stile e livello prima di creare URL
+    const validStile = typeof isValidAttachmentStyle === 'function' && isValidAttachmentStyle(stile) ? stile : 'secure';
+    const validLivello = typeof isValidLevel === 'function' && isValidLevel(livelloNome) ? livelloNome : 'basso';
+    const profiloUrl = `profili/${validStile}-${validLivello}.html`;
+    
+    // Usa DOM API sicure invece di innerHTML
+    profileContent.innerHTML = '';
+    
+    const title = typeof createSafeElement === 'function'
+      ? createSafeElement('h3', {}, `${sanitizeHTML(stileNome[stile])} ${livello}`)
+      : (() => {
+          const h3 = document.createElement('h3');
+          h3.textContent = `${stileNome[stile]} ${livello}`;
+          return h3;
+        })();
+    profileContent.appendChild(title);
+    
+    const mediaP = typeof createSafeElement === 'function'
+      ? createSafeElement('p', {})
+      : document.createElement('p');
+    mediaP.appendChild(typeof createSafeElement === 'function' ? createSafeElement('strong', {}, 'Media complessiva: ') : (() => {
+      const strong = document.createElement('strong');
+      strong.textContent = 'Media complessiva: ';
+      return strong;
+    })());
+    mediaP.appendChild(document.createTextNode(`${media.toFixed(1)}/10`));
+    profileContent.appendChild(mediaP);
+    
+    const punteggiP = typeof createSafeElement === 'function'
+      ? createSafeElement('p', {})
+      : document.createElement('p');
+    punteggiP.appendChild(typeof createSafeElement === 'function' ? createSafeElement('strong', {}, 'I tuoi punteggi: ') : (() => {
+      const strong = document.createElement('strong');
+      strong.textContent = 'I tuoi punteggi: ';
+      return strong;
+    })());
+    profileContent.appendChild(punteggiP);
+    
+    const punteggiList = typeof createSafeElement === 'function'
+      ? createSafeElement('ul', {
+          style: { marginLeft: 'var(--spacing-6)', marginTop: 'var(--spacing-4)' }
+        })
+      : (() => {
+          const ul = document.createElement('ul');
+          ul.style.marginLeft = 'var(--spacing-6)';
+          ul.style.marginTop = 'var(--spacing-4)';
+          return ul;
+        })();
+    
+    const dimensioni = [
+      'Ansia ↔ Evitamento',
+      'Finestra di Tolleranza',
+      'Coscienza dell\'Attaccamento',
+      'Capacità di Integrazione',
+      'Resilienza Relazionale'
+    ];
+    
+    dimensioni.forEach((dim, index) => {
+      const li = typeof createSafeElement === 'function'
+        ? createSafeElement('li', {}, `${dim}: ${punteggi[index].toFixed(1)}/10`)
+        : (() => {
+            const li = document.createElement('li');
+            li.textContent = `${dim}: ${punteggi[index].toFixed(1)}/10`;
+            return li;
+          })();
+      punteggiList.appendChild(li);
+    });
+    profileContent.appendChild(punteggiList);
+    
+    const profileLinkP = typeof createSafeElement === 'function'
+      ? createSafeElement('p', { style: { marginTop: 'var(--spacing-4)' } })
+      : (() => {
+          const p = document.createElement('p');
+          p.style.marginTop = 'var(--spacing-4)';
+          return p;
+        })();
+    
+    const profileLink = typeof createSafeElement === 'function'
+      ? createSafeElement('a', {
+          href: profiloUrl,
+          class: 'btn btn-primary'
+        }, `Vedi il Profilo Completo: ${sanitizeHTML(stileNome[stile])} ${livello}`)
+      : (() => {
+          const a = document.createElement('a');
+          a.href = profiloUrl;
+          a.className = 'btn btn-primary';
+          a.textContent = `Vedi il Profilo Completo: ${stileNome[stile]} ${livello}`;
+          return a;
+        })();
+    profileLinkP.appendChild(profileLink);
+    profileContent.appendChild(profileLinkP);
+    
+    const eserciziLinkP = typeof createSafeElement === 'function'
+      ? createSafeElement('p', { style: { marginTop: 'var(--spacing-4)' } })
+      : (() => {
+          const p = document.createElement('p');
+          p.style.marginTop = 'var(--spacing-4)';
+          return p;
+        })();
+    
+    const eserciziLink = typeof createSafeElement === 'function'
+      ? createSafeElement('a', {
+          href: 'esercizi.html',
+          class: 'btn btn-secondary'
+        }, 'Vedi Esercizi Specifici')
+      : (() => {
+          const a = document.createElement('a');
+          a.href = 'esercizi.html';
+          a.className = 'btn btn-secondary';
+          a.textContent = 'Vedi Esercizi Specifici';
+          return a;
+        })();
+    eserciziLinkP.appendChild(eserciziLink);
+    profileContent.appendChild(eserciziLinkP);
     
     profileResult.style.display = 'block';
   }
 }
 
+// Variabile globale per il chart
+let radarChart = null;
+
 /**
- * Disegna il grafico radar usando Canvas
+ * Disegna il grafico radar usando Chart.js
  * @param {Array<number>} punteggi - Array di 5 punteggi (0-10)
  */
 function disegnaGraficoRadar(punteggi) {
   const canvas = document.getElementById('radar-chart');
   if (!canvas) return;
   
-  const ctx = canvas.getContext('2d');
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-  const radius = Math.min(centerX, centerY) - 40;
-  
-  // Pulisci canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // Nomi delle dimensioni
-  const dimensioni = [
-    'Ansia↔Evitamento',
-    'Finestra Tolleranza',
-    'Coscienza',
-    'Integrazione',
-    'Resilienza'
-  ];
-  
-  // Colore pastello basato sul tema
-  const color = getComputedStyle(document.documentElement).getPropertyValue('--color-accent-secure') || '#a8d5ba';
-  
-  // Disegna griglia (cerchi concentrici)
-  ctx.strokeStyle = 'rgba(128, 128, 128, 0.2)';
-  ctx.lineWidth = 1;
-  for (let i = 1; i <= 5; i++) {
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, (radius * i) / 5, 0, Math.PI * 2);
-    ctx.stroke();
+  // Verifica che Chart.js sia caricato
+  if (typeof isChartJSLoaded === 'function' && !isChartJSLoaded()) {
+    showChartJSError();
+    return;
+  } else if (typeof Chart === 'undefined') {
+    showChartJSError();
+    return;
   }
   
-  // Disegna assi (linee radiali)
-  ctx.strokeStyle = 'rgba(128, 128, 128, 0.3)';
-  ctx.lineWidth = 1;
-  for (let i = 0; i < 5; i++) {
-    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-    const x = centerX + Math.cos(angle) * radius;
-    const y = centerY + Math.sin(angle) * radius;
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    
-    // Etichette
-    ctx.fillStyle = 'var(--color-text-primary)';
-    ctx.font = '12px sans-serif';
-    ctx.textAlign = 'center';
-    const labelX = centerX + Math.cos(angle) * (radius + 20);
-    const labelY = centerY + Math.sin(angle) * (radius + 20);
-    ctx.fillText(dimensioni[i], labelX, labelY);
-  }
+  // Valida punteggi usando costanti
+  const expectedDimensions = typeof MAP_CONSTANTS !== 'undefined' 
+    ? MAP_CONSTANTS.DIMENSIONS_COUNT 
+    : 5;
+  const minScore = typeof MAP_CONSTANTS !== 'undefined' ? MAP_CONSTANTS.MIN_SCORE : 0;
+  const maxScore = typeof MAP_CONSTANTS !== 'undefined' ? MAP_CONSTANTS.MAX_SCORE : 10;
   
-  // Disegna area dati
-  ctx.fillStyle = color + '80'; // 50% opacity
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  
-  for (let i = 0; i < 5; i++) {
-    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-    const value = punteggi[i] / 10; // Normalizza a 0-1
-    const r = radius * value;
-    const x = centerX + Math.cos(angle) * r;
-    const y = centerY + Math.sin(angle) * r;
-    
-    if (i === 0) {
-      ctx.moveTo(x, y);
-    } else {
-      ctx.lineTo(x, y);
+  if (!Array.isArray(punteggi) || punteggi.length !== expectedDimensions) {
+    if (typeof Logger !== 'undefined' && Logger.error) {
+      Logger.error('Punteggi non validi per radar chart:', punteggi);
+    } else if (window.DEBUG_MODE) {
+      console.error('Punteggi non validi per radar chart:', punteggi);
     }
+    return;
   }
   
-  ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
-  
-  // Disegna punti
-  ctx.fillStyle = color;
-  for (let i = 0; i < 5; i++) {
-    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-    const value = punteggi[i] / 10;
-    const r = radius * value;
-    const x = centerX + Math.cos(angle) * r;
-    const y = centerY + Math.sin(angle) * r;
-    ctx.beginPath();
-    ctx.arc(x, y, 4, 0, Math.PI * 2);
-    ctx.fill();
+  // Valida che tutti i punteggi siano numeri nel range valido
+  for (let i = 0; i < punteggi.length; i++) {
+    const score = parseFloat(punteggi[i]);
+    if (isNaN(score) || score < minScore || score > maxScore) {
+      if (typeof Logger !== 'undefined' && Logger.error) {
+        Logger.error(`Punteggio non valido alla posizione ${i}:`, punteggi[i]);
+      } else if (window.DEBUG_MODE) {
+        console.error(`Punteggio non valido alla posizione ${i}:`, punteggi[i]);
+      }
+      return;
+    }
+    punteggi[i] = score; // Normalizza a numero
   }
+  
+  // Ottieni colori dal tema
+  const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent-secure') || '#a8d5ba';
+  const borderColor = getComputedStyle(document.documentElement).getPropertyValue('--color-border') || 'rgba(184, 169, 212, 0.2)';
+  const textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text-primary') || '#e8e8e8';
+  const textSecondary = getComputedStyle(document.documentElement).getPropertyValue('--color-text-secondary') || '#b8b8b8';
+  
+  // Distruggi il chart esistente se presente
+  if (radarChart) {
+    radarChart.destroy();
+  }
+  
+  // Crea nuovo chart con error handling
+  try {
+    const ctx = canvas.getContext('2d');
+    radarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: [
+        'Ansia ↔ Evitamento',
+        'Finestra di Tolleranza',
+        'Coscienza dell\'Attaccamento',
+        'Capacità di Integrazione',
+        'Resilienza Relazionale'
+      ],
+      datasets: [{
+        label: 'Il Tuo Profilo',
+        data: punteggi,
+        backgroundColor: accentColor + '40', // 40 = 25% opacity in hex
+        borderColor: accentColor,
+        borderWidth: 2,
+        pointBackgroundColor: accentColor,
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: accentColor,
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 10,
+          min: 0,
+          ticks: {
+            stepSize: 2,
+            color: textSecondary,
+            font: {
+              size: 12
+            },
+            backdropColor: 'transparent'
+          },
+          grid: {
+            color: borderColor
+          },
+          pointLabels: {
+            color: textColor,
+            font: {
+              size: 13,
+              weight: '500'
+            }
+          },
+          angleLines: {
+            color: borderColor
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: {
+            color: textColor,
+            font: {
+              size: 14
+            },
+            padding: 15
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          titleColor: '#fff',
+          bodyColor: '#fff',
+          borderColor: accentColor,
+          borderWidth: 1,
+          padding: 12,
+          callbacks: {
+            label: function(context) {
+              return context.dataset.label + ': ' + context.parsed.r.toFixed(1) + '/10';
+            }
+          }
+        }
+      }
+    }
+  });
 }
 
 /**
