@@ -1,6 +1,6 @@
 {
   "name": "stili-attaccamento-wiki",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Wiki sugli stili di attaccamento con integrazione immagini generate via Qwen API",
   "scripts": {
     "generate-images": "node scripts/generate-images.js",

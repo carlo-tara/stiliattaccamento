@@ -14,12 +14,22 @@ function toggleMobileMenu() {
   const isActive = navLinks.classList.contains('active');
 
   if (isActive) {
-    // Close menu
+    // Close menu and all submenus
     navLinks.classList.remove('active');
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
     overlay.classList.remove('active');
     body.style.overflow = ''; // Restore scroll
+    
+    // Close all open submenus
+    const openSubmenus = navLinks.querySelectorAll('.nav-item--has-submenu.open');
+    openSubmenus.forEach(item => {
+      item.classList.remove('open');
+      const toggle = item.querySelector('.nav-submenu-toggle');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   } else {
     // Open menu
     navLinks.classList.add('active');
@@ -30,64 +40,95 @@ function toggleMobileMenu() {
   }
 }
 
-// Close menu when clicking on a link (mobile)
-document.addEventListener('DOMContentLoaded', () => {
-  // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile-menu.js:34',message:'mobile-menu DOMContentLoaded',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'F'})}).catch(()=>{});
-  // #endregion
-  const navLinks = document.getElementById('navLinks');
+// Toggle submenu
+function toggleSubmenu(button) {
+  const navItem = button.closest('.nav-item--has-submenu');
+  if (!navItem) return;
   
-  // #region agent log
-  const hamburger = document.querySelector('.hamburger');
-  const hamburgerLines = document.querySelectorAll('.hamburger-line');
-  const computedStyle = hamburger ? window.getComputedStyle(hamburger) : null;
-  fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile-menu.js:37',message:'navLinks and hamburger check',data:{navLinksExists:!!navLinks,hamburgerExists:!!hamburger,hamburgerLinesCount:hamburgerLines.length,hamburgerDisplay:computedStyle?.display,hamburgerVisibility:computedStyle?.visibility},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'G'})}).catch(()=>{});
-  // #endregion
+  const isOpen = navItem.classList.contains('open');
   
-  if (navLinks) {
-    const links = navLinks.querySelectorAll('a');
-    links.forEach(link => {
-      link.addEventListener('click', () => {
-        // Close menu after navigation on mobile
-        if (window.innerWidth < 960) {
-          toggleMobileMenu();
-        }
-      });
-    });
+  if (isOpen) {
+    navItem.classList.remove('open');
+    button.setAttribute('aria-expanded', 'false');
+  } else {
+    navItem.classList.add('open');
+    button.setAttribute('aria-expanded', 'true');
   }
+}
 
-  // Close menu on window resize if switching to desktop
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (window.innerWidth >= 960) {
-        const navLinks = document.getElementById('navLinks');
-        const hamburger = document.querySelector('.hamburger');
-        const overlay = document.getElementById('mobileMenuOverlay');
-        
-        if (navLinks) navLinks.classList.remove('active');
-        if (hamburger) {
-          hamburger.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', 'false');
-        }
-        if (overlay) overlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }, 250);
-  });
+// Event delegation flag to prevent multiple listeners
+let submenuInitialized = false;
 
-  // Close menu on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const navLinks = document.getElementById('navLinks');
-      if (navLinks && navLinks.classList.contains('active')) {
-        toggleMobileMenu();
-      }
+// Initialize submenu functionality using event delegation
+function initializeSubmenus() {
+  // Only initialize once
+  if (submenuInitialized) return;
+  submenuInitialized = true;
+  
+  // Use event delegation on document (works even if menu is loaded dynamically)
+  document.addEventListener('click', (e) => {
+    const navLinks = document.getElementById('navLinks');
+    if (!navLinks) return;
+    
+    // Only handle clicks inside navLinks
+    if (!navLinks.contains(e.target)) return;
+    
+    // Check if clicked element is a submenu toggle button
+    const toggle = e.target.closest('.nav-submenu-toggle');
+    if (toggle) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleSubmenu(toggle);
+      return;
+    }
+    
+    // Check if clicked element is a link (but not the toggle button)
+    const link = e.target.closest('a');
+    if (link && !link.closest('.nav-submenu-toggle')) {
+      // Close menu after navigation
+      toggleMobileMenu();
     }
   });
+}
+
+// Initialize on DOMContentLoaded (for pages where template is already in DOM)
+document.addEventListener('DOMContentLoaded', () => {
+  initializeSubmenus();
+
 });
 
-// Make function globally accessible
+// Close menu on window resize if switching to desktop (moved outside DOMContentLoaded)
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth >= 960) {
+      const navLinks = document.getElementById('navLinks');
+      const hamburger = document.querySelector('.hamburger');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      
+      if (navLinks) navLinks.classList.remove('active');
+      if (hamburger) {
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+      if (overlay) overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }, 250);
+});
+
+// Close menu on Escape key (moved outside DOMContentLoaded)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks && navLinks.classList.contains('active')) {
+      toggleMobileMenu();
+    }
+  }
+});
+
+// Make functions globally accessible
 window.toggleMobileMenu = toggleMobileMenu;
+window.initializeSubmenus = initializeSubmenus;
 

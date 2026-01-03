@@ -1,8 +1,8 @@
 ARCHITETTURA DEL PROGETTO - STILI DI ATTACCAMENTO WIKI
 ========================================================
 
-Versione: 1.0.0
-Data: 2024
+Versione: 1.1.0
+Data: 2025-01-03
 
 Questo documento descrive l'architettura tecnica e concettuale del progetto.
 
@@ -78,12 +78,18 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   │   │   └── components.css   # Componenti riutilizzabili
   │   ├── js/
   │   │   ├── main.js          # Entry point
-  │   │   ├── pwa.js           # Service Worker registration
   │   │   ├── theme.js         # Theme toggle
-  │   │   └── modules/          # Moduli JS
-  │   │       ├── quiz.js
-  │   │       ├── navigation.js
-  │   │       └── utils.js
+  │   │   ├── mobile-menu.js   # Menu hamburger mobile
+  │   │   ├── template-loader.js # Caricamento template HTML
+  │   │   ├── breadcrumb-generator.js # Generazione breadcrumb
+  │   │   ├── cookie-banner.js # Gestione cookie banner
+  │   │   ├── test-surveyjs.js # Integrazione SurveyJS quiz
+  │   │   ├── mappa-personale.js # Visualizzazione radar chart
+  │   │   ├── constants.js     # Costanti centralizzate
+  │   │   ├── logger.js        # Utility logging
+  │   │   ├── utils.js         # Utility functions
+  │   │   ├── config-surveyjs.js # Config SurveyJS
+  │   │   └── config-chartjs.js # Config Chart.js
   │   ├── images/              # Immagini statiche
   │   ├── icons/               # PWA icons (192x192, 512x512)
   │   ├── manifest.json        # PWA manifest
@@ -139,10 +145,13 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
 
 4.3 Organizzazione JavaScript
   - main.js: Inizializzazione, event listeners globali
-  - pwa.js: Service Worker registration e update
   - theme.js: Dark/light mode toggle logic
   - test-surveyjs.js: Integrazione SurveyJS per quiz
   - mappa-personale.js: Logica visualizzazione radar chart (Chart.js)
+  - mobile-menu.js: Gestione menu hamburger mobile (sempre visibile su tutte le risoluzioni)
+  - template-loader.js: Caricamento dinamico template HTML (header, footer, topbar)
+  - breadcrumb-generator.js: Generazione breadcrumb navigation con Schema.org markup
+  - cookie-banner.js: Gestione cookie banner e consenso
   - constants.js: Costanti centralizzate
   - logger.js: Utility logging centralizzata
   - utils.js: Utility functions (sanitizzazione, validazione)
@@ -152,7 +161,9 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
 4.4 Moduli JavaScript
   - test-surveyjs.js: Gestione quiz con SurveyJS
   - mappa-personale.js: Visualizzazione profilo con Chart.js radar chart
-  - navigation.js: Navigazione wiki, breadcrumbs
+  - mobile-menu.js: Menu hamburger con submenu, event delegation, gestione Escape key
+  - template-loader.js: Caricamento asincrono template HTML con correzione percorsi relativi
+  - breadcrumb-generator.js: Generazione breadcrumb dinamici con Schema.org BreadcrumbList
   - utils.js: Utility functions (sanitizzazione XSS, validazione)
 
 ================================================================================
@@ -277,9 +288,13 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - Navigazione gerarchica visibile
 
 8.4 Navigation Menu
-  - Mobile: hamburger menu
-  - Desktop: menu orizzontale
+  - Menu hamburger sempre visibile su tutte le risoluzioni (mobile-first design)
+  - Menu drawer-style che scorre da destra su tutte le risoluzioni
+  - Submenu espandibili con event delegation
+  - Chiusura menu con tasto Escape
+  - Overlay per bloccare scroll quando menu aperto
   - Highlight pagina corrente
+  - Accessibilità: ARIA labels, keyboard navigation completa
 
 ================================================================================
 9. GESTIONE STATO
@@ -477,9 +492,10 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   ┌──────────────┐    ┌──────────────┐
   │   CSS Files  │    │   JS Files   │
   │  main.css    │    │  main.js     │
-  │  themes.css  │    │  pwa.js      │
-  │  components  │    │  theme.js    │
-  └──────────────┘    │  modules/    │
+  │  themes.css  │    │  theme.js    │
+  │  components  │    │  mobile-menu.js │
+  └──────────────┘    │  template-loader.js │
+                      │  ... (altri moduli) │
                       └──────────────┘
                               │
                               ▼

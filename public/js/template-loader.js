@@ -74,38 +74,18 @@ function adjustTemplatePaths(element, currentDepth) {
  * Carica e inserisce un template
  */
 async function loadTemplate(elementId, templateName) {
-  // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:65',message:'loadTemplate called',data:{elementId,templateName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
   const basePath = getBasePath();
   const templatePath = `${basePath}${TEMPLATE_BASE}${templateName}`;
   
-  // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:67',message:'Before fetch',data:{basePath,templatePath,elementId,pathname:window.location.pathname},timestamp:Date.now(),sessionId:'debug-session',runId:'post-fix',hypothesisId:'C'})}).catch(()=>{});
-  // #endregion
-  
   try {
     const response = await fetch(templatePath);
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:72',message:'After fetch',data:{templateName,ok:response.ok,status:response.status},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     
     if (!response.ok) {
       throw new Error(`Failed to load ${templateName}: ${response.status}`);
     }
     
     const html = await response.text();
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:79',message:'HTML received',data:{templateName,htmlLength:html.length,hasContent:html.length>0},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
-    
     const element = document.getElementById(elementId);
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:82',message:'Element check',data:{elementId,elementExists:!!element},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
     
     if (!element) {
       console.warn(`Element #${elementId} not found`);
@@ -117,10 +97,6 @@ async function loadTemplate(elementId, templateName) {
     tempDiv.innerHTML = html;
     const templateContent = tempDiv.firstElementChild;
     
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:91',message:'Before replaceChild',data:{templateName,hasContent:!!templateContent},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
-    
     // Aggiusta i percorsi relativi PRIMA di inserire nel DOM
     const currentDepth = calculateDepth();
     adjustTemplatePaths(templateContent, currentDepth);
@@ -128,17 +104,10 @@ async function loadTemplate(elementId, templateName) {
     // Sostituisci l'elemento placeholder con il contenuto del template
     element.parentNode.replaceChild(templateContent, element);
     
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:97',message:'After replaceChild',data:{templateName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
-    
     // Inizializza contenuti dinamici dopo il caricamento
     initializeDynamicContent(templateName, templateContent);
     
   } catch (error) {
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:102',message:'Error in loadTemplate',data:{templateName,error:error.message,errorType:error.constructor.name},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
     console.error(`Error loading template ${templateName}:`, error);
     // Fallback: mostra un messaggio di errore se necessario
     const element = document.getElementById(elementId);
@@ -161,12 +130,13 @@ function initializeDynamicContent(templateName, templateElement) {
   }
   
   // Re-inizializza menu mobile se necessario (dopo che header è caricato)
-  if (templateName === 'header.html' && typeof toggleMobileMenu !== 'undefined') {
-    // #region agent log
-    const hamburger = templateElement.querySelector('.hamburger');
-    const hamburgerLines = templateElement.querySelectorAll('.hamburger-line');
-    fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:154',message:'Header loaded - hamburger check',data:{hamburgerExists:!!hamburger,hamburgerLinesCount:hamburgerLines.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'G'})}).catch(()=>{});
-    // #endregion
+  if (templateName === 'header.html') {
+    // Inizializza i sottomenu dopo che il template è stato inserito
+    if (typeof initializeSubmenus === 'function') {
+      setTimeout(() => {
+        initializeSubmenus();
+      }, 0);
+    }
   }
 }
 
@@ -174,19 +144,11 @@ function initializeDynamicContent(templateName, templateElement) {
  * Carica tutti i template comuni
  */
 async function loadAllTemplates() {
-  // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:131',message:'loadAllTemplates called',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
   const templates = [
     { id: 'header-placeholder', file: 'header.html' },
     { id: 'topbar-placeholder', file: 'topbar.html' },
     { id: 'footer-placeholder', file: 'footer.html' }
   ];
-  
-  // #region agent log
-  const foundTemplates = templates.filter(t => document.getElementById(t.id));
-  fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:141',message:'Templates found',data:{total:templates.length,found:foundTemplates.length,foundIds:foundTemplates.map(t=>t.id)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-  // #endregion
   
   // Carica tutti i template in parallelo
   await Promise.all(
@@ -195,10 +157,6 @@ async function loadAllTemplates() {
       .map(t => loadTemplate(t.id, t.file))
   );
 }
-
-// #region agent log
-fetch('http://127.0.0.1:7243/ingest/c25677db-b7a5-4809-98b8-c33aebc2a0b0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'template-loader.js:146',message:'Script started',data:{readyState:document.readyState},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-// #endregion
 
 // Carica i template
 if (document.readyState === 'loading') {
