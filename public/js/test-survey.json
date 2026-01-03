@@ -1,0 +1,365 @@
+{
+  "title": "Test di Auto-Valutazione - Stili di Attaccamento",
+  "description": "12 domande per identificare il tuo stile di attaccamento prevalente e il tuo livello (Basso, Medio, Alto).",
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "q1",
+          "title": "Quando il partner non risponde ai messaggi per alcune ore, tu...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Mi sento subito ansioso/a e voglio contattarlo/a di nuovo",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Aspetto che risponda, occasionalmente mi chiedo perché è lento/a",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Non mi importa molto, ho altre cose da fare",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Dipende dal mio umore - a volte mi infastidisce, a volte non mi importa",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q2",
+          "title": "Nella relazione, il tuo bisogno primario è...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Sentire che il partner mi ama e mi sceglie costantemente",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Stare insieme, ma con spazio e indipendenza reciproca",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Mantenere la mia libertà e indipendenza, con legami leggeri",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Dipende dal momento - a volte voglio intimità, a volte voglio scappare",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q3",
+          "title": "Quando il partner suggerisce di trascorrere tempo separati, tu...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Mi sento rifiutato/a e ho paura che sia l'inizio della fine",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Sono d'accordo e apprezzo il tempo per me stesso/a",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Sono sollevato/a e preferisco passare tempo da solo/a",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Dipende da chi lo suggerisce e quando - a volte d'accordo, a volte irritato/a",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q4",
+          "title": "Quando il partner esprime vulnerabilità (paura, insicurezza, tristezza), tu...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Mi sento subito il/la bisognoso/a e voglio aiutare/rassicurare",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Ascolto con empatia e rimango presente",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Mi sento soffocato/a e voglio cambiare argomento o scappare",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Dipende dal tipo di vulnerabilità - a volte sono presente, a volte no",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "q5",
+          "title": "Il tuo rapporto con l'intimità sessuale è...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Frequente ed è importante per sentirmi amato/a e validato/a",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Consapevole e soddisfacente, con comunicazione chiara sui desideri",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Infrequente, talvolta sento il partner \"troppo\" o invadente",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Altalenante - a volte passionale, a volte completamente disinteressato/a",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q6",
+          "title": "Quando commetti un errore nella relazione, tu...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Ho paura che il partner sia arrabbiato/a e subito cerco di riparare la relazione",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Riconosco l'errore, mi scuso e cerco di capire come migliorare",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Razionalizzo l'errore o minimizzo l'importanza",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Dipende - a volte mi scuso eccessivamente, a volte divento difensivo/a",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q7",
+          "title": "Quando il partner ha bisogno di supporto emotivo, tu...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Mi sento responsabile di risolvere il problema e di farlo sentire meglio",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Offro supporto senza prendere il controllo della situazione",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Mi sento a disagio e preferisco che risolva da solo/a",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Oscillo fra voler aiutare e voler scappare",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q8",
+          "title": "La tua reazione quando il partner esprime gelosia o possessività è...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Mi sento amato/a e rassicurato/a",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Riconosco che potrebbe indicare insicurezza e ne parlo con il partner",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Mi sento controllato/a e voglio più spazio",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Dipende - a volte mi piace, a volte mi sento intrappolato/a",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "q9",
+          "title": "Quando c'è un conflitto nella relazione, tu...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Mi attivo subito per risolvere, ho paura che il conflitto distrugga la relazione",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Rimango calmo/a e cerco di capire il punto di vista del partner",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Preferisco evitare il conflitto o ritirarmi",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Oscillo fra voler risolvere immediatamente e voler scappare",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q10",
+          "title": "Il tuo bisogno di contatto fisico e affettivo è...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Molto alto - ho bisogno di contatto frequente per sentirmi amato/a",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Equilibrato - apprezzo il contatto ma non ne dipendo",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Basso - preferisco il contatto occasionale",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Altalenante - a volte voglio molto contatto, a volte lo evito",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q11",
+          "title": "Quando il partner ha successo o raggiunge un obiettivo, tu...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Sono felice ma anche un po' insicuro/a che mi lasci indietro",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Celebro con genuina gioia e supporto",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Riconosco il successo ma senza eccessiva emozione",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Dipende - a volte sono orgoglioso/a, a volte invidioso/a",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "q12",
+          "title": "La tua reazione quando il partner esprime bisogno di spazio o tempo da solo/a è...",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "A",
+              "text": "Mi sento rifiutato/a e cerco di convincerlo/a a restare",
+              "description": "ANSIOSO - 3 punti"
+            },
+            {
+              "value": "B",
+              "text": "Rispetto il bisogno e uso il tempo per me stesso/a",
+              "description": "SECURE - 1 punto"
+            },
+            {
+              "value": "C",
+              "text": "Sono sollevato/a e apprezzo il tempo da solo/a",
+              "description": "EVITANTE - 2 punti"
+            },
+            {
+              "value": "D",
+              "text": "Oscillo fra sentirsi rifiutato/a e sentirsi sollevato/a",
+              "description": "OSCILLANTE - 3 punti"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "showProgressBar": "top",
+  "progressBarType": "buttons",
+  "pageNextText": "Avanti →",
+  "pagePrevText": "← Indietro",
+  "completeText": "Calcola il Mio Profilo",
+  "firstPageIsStarted": false,
+  "startSurveyText": "Inizia il Test"
+}
+

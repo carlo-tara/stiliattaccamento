@@ -1,0 +1,479 @@
+STANDARD DI CODICE - STILI DI ATTACCAMENTO WIKI
+==================================================
+
+Versione: 1.0.0
+Data: 2024
+
+Questo documento definisce gli standard di codice per il progetto "Stili di Attaccamento Wiki",
+una webapp PWA statica mobile-first.
+
+================================================================================
+1. STACK TECNOLOGICO
+================================================================================
+
+1.1 Frontend
+  - HTML5 (semantico, validato W3C)
+  - CSS3 (vanilla, no framework)
+  - JavaScript ES6+ (vanilla, no framework)
+  - Service Worker per PWA
+
+1.2 Hosting
+  - Cloudflare Pages
+  - Deploy automatico da GitHub (branch main)
+  - Output directory: public/
+
+1.3 Design System
+  - Material Design M3 (Material You)
+  - Dark mode: default
+  - Light mode: alternativa
+  - Colori: pastello per entrambe le modalità
+
+================================================================================
+2. STRUTTURA PROGETTO
+================================================================================
+
+2.1 Directory Root
+  stiliattaccamento/
+  ├── docs/              # Documenti di specifica (.md, .pdf)
+  ├── jtbd/              # Personas e job stories (.md)
+  ├── public/            # File statici del sito (pubblicati)
+  │   ├── index.html
+  │   ├── css/
+  │   ├── js/
+  │   ├── images/
+  │   ├── icons/
+  │   ├── manifest.json
+  │   └── sw.js
+  ├── .env.example       # Template variabili ambiente
+  └── [file di documentazione]
+
+2.2 File Statici (public/)
+  - Tutti i file HTML, CSS, JS devono essere in public/
+  - Nessun file di build o configurazione in public/
+  - public/ è l'unica directory pubblicata su Cloudflare Pages
+
+================================================================================
+3. STANDARD HTML5
+================================================================================
+
+3.1 Struttura Base
+  <!DOCTYPE html>
+  <html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titolo Pagina</title>
+    <!-- Schema.org markup -->
+    <!-- Meta tags SEO -->
+  </head>
+  <body>
+    <!-- Contenuto semantico -->
+  </body>
+  </html>
+
+3.2 Elementi Semantici Obbligatori
+  - <header>: Intestazione pagina/sito
+  - <nav>: Navigazione principale
+  - <main>: Contenuto principale (unico per pagina)
+  - <article>: Articoli wiki
+  - <section>: Sezioni logiche
+  - <aside>: Contenuti laterali
+  - <footer>: Footer pagina/sito
+
+3.3 Schema.org Markup
+  Ogni pagina wiki DEVE includere structured data:
+  - @type: Article (per pagine wiki)
+  - headline: Titolo articolo
+  - description: Descrizione SEO
+  - author: Autore (se applicabile)
+  - datePublished: Data pubblicazione
+  - dateModified: Data ultima modifica
+
+3.4 Accessibilità
+  - Attributi ARIA quando necessario
+  - Alt text per tutte le immagini
+  - Contrast ratio minimo 4.5:1
+  - Keyboard navigation funzionante
+  - Screen reader friendly
+
+3.5 Validazione
+  - Tutti i file HTML devono passare W3C HTML Validator
+  - Nessun warning o error
+
+================================================================================
+4. STANDARD CSS3
+================================================================================
+
+4.1 Approccio Mobile-First
+  /* Default: mobile (< 600px) */
+  .component { ... }
+
+  /* Tablet */
+  @media (min-width: 600px) { ... }
+
+  /* Desktop */
+  @media (min-width: 960px) { ... }
+
+  /* Large desktop */
+  @media (min-width: 1280px) { ... }
+
+4.2 CSS Custom Properties (Variabili)
+  :root {
+    /* Colori dark mode (default) */
+    --color-primary: [colore pastello];
+    --color-background: [colore scuro];
+    --color-text: [colore chiaro];
+    --spacing-unit: 1rem;
+  }
+
+  [data-theme="light"] {
+    /* Colori light mode */
+    --color-primary: [colore pastello];
+    --color-background: [colore chiaro];
+    --color-text: [colore scuro];
+  }
+
+4.3 Material Design M3
+  - Segui Material You guidelines
+  - Usa Material Design type scale
+  - Usa Material Design spacing scale (4dp grid)
+  - Colori pastello per entrambe le modalità
+
+4.4 Metodologia BEM
+  .block { }
+  .block__element { }
+  .block--modifier { }
+
+  Esempio:
+  .wiki-article { }
+  .wiki-article__title { }
+  .wiki-article__title--highlighted { }
+
+4.5 Unità di Misura
+  - Usa `rem` per font-size e spacing
+  - Usa `em` per dimensioni relative al parent
+  - Evita `px` quando possibile (eccetto per border, shadow)
+
+4.6 Organizzazione File CSS
+  public/css/
+  ├── main.css          # Stili principali
+  ├── themes.css        # Dark/light mode
+  ├── components.css    # Componenti riutilizzabili
+  └── utilities.css     # Utility classes (opzionale)
+
+4.7 Nessun Framework CSS
+  - Solo vanilla CSS3
+  - Nessuna dipendenza esterna
+  - No Bootstrap, Tailwind, etc.
+
+================================================================================
+5. STANDARD JAVASCRIPT
+================================================================================
+
+5.1 Versione
+  - ES6+ (ECMAScript 2015+)
+  - Supporto browser moderni (ultime 2 versioni)
+  - Nessun polyfill per IE11
+
+5.2 Variabili
+  - Usa `const` per valori immutabili
+  - Usa `let` per valori mutabili
+  - MAI usare `var`
+
+5.3 Funzioni
+  - Preferisci arrow functions quando appropriato
+  - Usa function declarations per funzioni principali
+  - Evita funzioni anonime senza nome
+
+5.4 Moduli
+  - Organizza codice in moduli riutilizzabili
+  - Usa ES6 modules (import/export)
+  - Un file = un modulo/concetto
+
+5.5 Service Worker
+  - File: public/sw.js
+  - Registrazione in public/js/pwa.js
+  - Cache strategy: Cache First per assets, Network First per HTML
+
+5.6 Gestione Errori
+  - Usa try/catch per operazioni async
+  - Log errori in console (sviluppo) o servizio esterno (produzione)
+  - Fallback graceful per funzionalità non critiche
+
+5.7 Commenti
+  - JSDoc per funzioni pubbliche
+  - Commenti inline per logica complessa
+  - Commenta il "perché", non il "cosa"
+
+5.8 Organizzazione File JS
+  public/js/
+  ├── main.js           # Entry point
+  ├── pwa.js            # Service Worker registration
+  ├── theme.js          # Dark/light mode toggle
+  └── modules/
+      ├── quiz.js       # Logica quiz
+      ├── navigation.js  # Navigazione
+      └── utils.js      # Utility functions
+
+================================================================================
+6. PWA REQUIREMENTS
+================================================================================
+
+6.1 Manifest (manifest.json)
+  {
+    "name": "Stili di Attaccamento Wiki",
+    "short_name": "Attaccamento",
+    "description": "Wiki sugli stili di attaccamento",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "[colore pastello dark]",
+    "theme_color": "[colore pastello]",
+    "icons": [
+      {
+        "src": "/icons/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+
+6.2 Service Worker
+  - File: public/sw.js
+  - Cache strategy appropriata
+  - Offline fallback page
+  - Update mechanism
+
+6.3 Icons
+  - Formati: PNG
+  - Dimensioni: 192x192, 512x512
+  - Posizione: public/icons/
+
+================================================================================
+7. SEO E AI OPTIMIZATION
+================================================================================
+
+7.1 Meta Tags
+  <meta name="description" content="Descrizione SEO (150-160 caratteri)">
+  <meta property="og:title" content="Titolo">
+  <meta property="og:description" content="Descrizione">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-image.jpg">
+
+7.2 Schema.org Structured Data
+  - Article per pagine wiki
+  - FAQPage per sezioni FAQ
+  - BreadcrumbList per navigazione
+  - Person per autori (se applicabile)
+  - WebSite per metadata sito
+
+7.3 Contenuti AI-Friendly
+  - Linguaggio chiaro e strutturato
+  - Heading hierarchy corretta (h1 → h2 → h3)
+  - Lista per informazioni strutturate
+  - Paragrafi brevi e focalizzati
+
+================================================================================
+8. CONVENZIONI NAMING
+================================================================================
+
+8.1 File
+  - Formato: kebab-case
+  - Esempi:
+    * test-autovalutazione.html
+    * stili-attaccamento-wiki.html
+    * mappa-personale.html
+
+8.2 Classi CSS
+  - Formato: BEM (Block__Element--Modifier)
+  - Esempi:
+    * .wiki-article
+    * .wiki-article__title
+    * .wiki-article__title--highlighted
+
+8.3 Variabili JavaScript
+  - Formato: camelCase
+  - Esempi:
+    * userAttachmentStyle
+    * quizResults
+    * darkModeEnabled
+
+8.4 Costanti JavaScript
+  - Formato: UPPER_SNAKE_CASE
+  - Esempi:
+    * API_BASE_URL
+    * MAX_QUESTIONS
+    * DEFAULT_THEME
+
+8.5 ID HTML
+  - Formato: kebab-case
+  - Esempi:
+    * quiz-container
+    * navigation-menu
+    * theme-toggle
+
+================================================================================
+9. FORMATTAZIONE
+================================================================================
+
+9.1 Indentazione
+  - 2 spazi (no tab)
+  - Consistente in tutto il progetto
+
+9.2 Fine Riga
+  - LF (Unix style)
+  - No CRLF (Windows)
+
+9.3 Encoding
+  - UTF-8 per tutti i file
+
+9.4 Lunghezza Riga
+  - Max 100 caratteri
+  - Wrap quando necessario
+
+9.5 Trailing Whitespace
+  - Rimuovi sempre
+  - Configura editor per rimuovere automaticamente
+
+================================================================================
+10. PERFORMANCE
+================================================================================
+
+10.1 Ottimizzazioni
+  - Minifica CSS/JS per produzione
+  - Ottimizza immagini (WebP quando possibile)
+  - Lazy loading per immagini
+  - Preload per risorse critiche
+
+10.2 Lighthouse Score
+  - Performance: > 90
+  - Accessibility: > 90
+  - Best Practices: > 90
+  - SEO: > 90
+
+10.3 Bundle Size
+  - CSS: < 50KB (gzipped)
+  - JS: < 100KB (gzipped)
+  - Immagini: < 200KB ciascuna (quando possibile)
+
+================================================================================
+11. SICUREZZA
+================================================================================
+
+11.1 Variabili Ambiente
+  - Non committare file .env
+  - Usa .env.example come template
+  - API keys solo in variabili ambiente
+
+11.2 Input Utente
+  - Sanitizza tutti gli input
+  - Validazione lato client E server (se applicabile)
+  - Escape HTML quando necessario
+
+11.3 HTTPS
+  - Cloudflare Pages fornisce HTTPS automatico
+  - Nessun contenuto mixed (HTTP/HTTPS)
+
+11.4 Content Security Policy
+  - Configura CSP headers (se possibile via Cloudflare)
+
+================================================================================
+12. TESTING
+================================================================================
+
+12.1 Browser Support
+  - Chrome/Edge: ultime 2 versioni
+  - Firefox: ultime 2 versioni
+  - Safari: ultime 2 versioni
+  - Mobile: iOS Safari, Chrome Android
+
+12.2 Test Manuali Pre-Commit
+  - [ ] Responsive design (mobile, tablet, desktop)
+  - [ ] Dark/light mode funzionante
+  - [ ] PWA installabile
+  - [ ] Offline functionality
+  - [ ] Accessibilità (keyboard nav, screen reader)
+  - [ ] Performance (Lighthouse)
+
+12.3 Validazione
+  - HTML: W3C HTML Validator (nessun error)
+  - CSS: W3C CSS Validator (opzionale)
+  - JavaScript: ESLint (se configurato)
+
+================================================================================
+13. DOCUMENTAZIONE
+================================================================================
+
+13.1 Commenti Codice
+  - Commenta il "perché", non il "cosa"
+  - JSDoc per funzioni JavaScript
+  - Mantieni commenti aggiornati
+
+13.2 Documentazione Utente
+  - Tutto in italiano
+  - Linguaggio chiaro e accessibile
+  - Evita jargon senza spiegazione
+  - Include esempi pratici
+
+13.3 README
+  - Aggiorna README.md quando aggiungi funzionalità
+  - Documenta setup locale
+  - Documenta deploy process
+
+================================================================================
+14. WORKFLOW GIT
+================================================================================
+
+14.1 Branch Strategy
+  - main: sempre deployabile
+  - feature/nome-feature: nuove funzionalità
+  - hotfix/nome-fix: fix urgenti
+  - release/v1.0.0: preparazione release
+
+14.2 Commit Messages
+  - Formato: Conventional Commits
+  - Tipo: feat, fix, docs, style, refactor, test, chore
+  - Esempio: "feat(quiz): aggiungi test auto-valutazione"
+
+14.3 Pull Requests
+  - Descrizione chiara delle modifiche
+  - Checklist completata
+  - Screenshots se applicabile
+  - Test eseguiti
+
+================================================================================
+15. NOTE SPECIALI
+================================================================================
+
+15.1 Immagini LLM
+  - Generate via Qwen Text2Image API (qwen-image-plus)
+  - Credenziali in .env: QWEN_API_KEY, QWEN_URL_IMAGE, QWEN_MODEL_IMAGE
+  - Immagini raw salvate in docs/image-generated/ (PNG, 1328x1328px)
+  - Immagini processate salvate in public/images/ (WebP, 800x600px)
+  - Processo automatico: conversione WebP, ridimensionamento, ritaglio con ImageMagick
+  - **OBBLIGATORIO**: Ogni nuova pagina HTML deve includere almeno 2 immagini generate
+  - Vedi CONTRIBUTING.md per processo completo
+  - Prompt in scripts/prompts.json (SOLO pittoriche/visuali, no testo)
+
+15.2 Cloudflare Pages
+  - Build command: nessuno (file statici)
+  - Output directory: public/
+  - Deploy automatico da branch main
+
+15.3 Linguaggio e Tone
+  - Focus su consapevolezza, non "guarigione"
+  - Compassionevole, non giudicante
+  - Evidence-based
+  - Accessibile a tutti
+
+================================================================================
+FINE STANDARD
+================================================================================
+
+Questi standard devono essere rispettati da tutti i contributori.
+Per domande o chiarimenti, consulta CONTRIBUTING.md o apri una issue.
+

@@ -1,0 +1,360 @@
+# Cursor Rules - Stili di Attaccamento Wiki
+
+## Contesto del Progetto
+
+Questo è un progetto per una webapp PWA statica mobile-first sugli stili di attaccamento.
+
+### Stack Tecnologico
+- **Frontend**: HTML5, CSS3, JavaScript (vanilla, ES6+)
+- **Hosting**: Cloudflare Pages
+- **Design System**: Material Design M3 (Material You)
+- **Tema**: Light mode (default e unico), colori pastello naturali verde-beige
+- **Organizzazione**: Wiki-style con homepage
+- **Argomento**: Stili di attaccamento (teoria di Bowlby e Ainsworth)
+- **SEO/AI**: Schema.org markup per ottimizzazione
+- **Immagini**: Generate via LLM (API credentials in .env)
+
+### Struttura Repository
+- `docs/`: Documenti di specifica (.md e .pdf)
+- `jtbd/`: Personas e job stories (.md)
+- `public/`: File statici del sito (HTML, CSS, JS) - pubblicati su Cloudflare Pages
+
+## Regole di Codice
+
+### HTML5
+- Usa sempre HTML5 semantico (`<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<footer>`)
+- Aggiungi attributo `lang="it"` all'elemento `<html>`
+- Implementa Schema.org markup per ogni pagina (Article, FAQPage, BreadcrumbList, etc.)
+- Usa attributi ARIA per accessibilità (`aria-label`, `aria-describedby`, etc.)
+- Validazione HTML5: tutti i file devono essere validi secondo W3C
+- **⚠️ OBBLIGATORIO per Nuove Pagine HTML**: Ogni nuova pagina DEVE includere almeno 2 immagini generate via Qwen API (vedi sezione "Immagini Obbligatorie" sotto)
+
+### CSS3
+- **Mobile-first**: Scrivi CSS per mobile, poi usa media queries per desktop
+- Usa CSS custom properties (variabili) per:
+  - Colori (dark/light mode)
+  - Spacing (rem/em)
+  - Typography scale
+- **Material Design M3**: Segui le linee guida Material You
+  - Usa colori pastello naturali verde-beige
+  - Light mode è l'unica modalità disponibile (forzata)
+  - Contrasti ottimizzati per WCAG AA compliance (4.5:1 minimo)
+- Metodologia: BEM per naming classi
+- Nessun framework CSS esterno (solo vanilla CSS3)
+- Usa `rem` e `em` invece di `px` quando possibile
+
+### JavaScript
+- Vanilla JavaScript ES6+ (nessun framework o libreria esterna)
+- Usa `const` e `let`, mai `var`
+- Funzioni arrow quando appropriato
+- Codice modulare: separa in moduli riutilizzabili
+- Service Worker per funzionalità PWA
+- Gestione errori: usa try/catch appropriatamente
+- Commenti JSDoc per funzioni complesse
+
+### PWA Requirements
+- `manifest.json` con metadata appropriati
+- Service Worker per offline functionality
+- Icons in vari formati (192x192, 512x512)
+- Install prompt per mobile e desktop
+
+### SEO e AI Optimization
+- Schema.org markup strutturato su ogni pagina
+- Meta tags appropriati (`description`, `og:title`, `og:description`, etc.)
+- Structured data per:
+  - Articles (wiki pages)
+  - FAQ sections
+  - Breadcrumbs
+  - Person (autori)
+- Contenuti ottimizzati per AI: linguaggio chiaro, ben strutturato
+
+## Convenzioni di Naming
+
+- **File**: kebab-case (`test-autovalutazione.html`)
+- **Classi CSS**: BEM (`wiki-article__title--highlighted`)
+- **Variabili JS**: camelCase (`userAttachmentStyle`)
+- **Costanti JS**: UPPER_SNAKE_CASE (`API_BASE_URL`)
+- **ID HTML**: kebab-case (`quiz-container`)
+
+## Formattazione
+
+- Indentazione: 2 spazi (no tab)
+- Fine riga: LF (Unix)
+- Encoding: UTF-8
+- Max lunghezza riga: 100 caratteri
+- Rimuovi trailing whitespace
+
+## Organizzazione File
+
+### Struttura `public/`
+```
+public/
+├── index.html          # Homepage wiki
+├── css/
+│   ├── main.css        # Stili principali
+│   ├── themes.css      # Dark/light mode
+│   └── components.css   # Componenti riutilizzabili
+├── js/
+│   ├── main.js         # Entry point
+│   ├── pwa.js          # Service Worker registration
+│   ├── theme.js         # Dark/light mode toggle
+│   └── modules/        # Moduli JS
+├── images/             # Immagini statiche
+├── icons/              # PWA icons
+├── manifest.json       # PWA manifest
+└── sw.js              # Service Worker
+```
+
+## Design System
+
+### Material Design M3
+- Usa Material You color system
+- Colori pastello per entrambe le modalità
+- Dark mode: background scuro, colori pastello per accent
+- Light mode: background chiaro, colori pastello per accent
+- Typography: Material Design type scale
+- Spacing: Material Design spacing scale (4dp grid)
+
+### Responsive Breakpoints
+```css
+/* Mobile first */
+/* Default: mobile (< 600px) */
+@media (min-width: 600px) { /* Tablet */ }
+@media (min-width: 960px) { /* Desktop */ }
+@media (min-width: 1280px) { /* Large desktop */ }
+```
+
+## Contenuti
+
+### Tono di Voce e Stile Umano
+
+**REGOLA FONDAMENTALE**: Tutti i testi devono sembrare scritti da una persona, non da un'intelligenza artificiale.
+
+#### Come scrivere testi umani e naturali:
+
+1. **Variazione sintattica**: Alterna frasi brevi e lunghe. Evita strutture ripetitive.
+   - ❌ "L'attaccamento sicuro è importante. L'attaccamento sicuro permette di esplorare. L'attaccamento sicuro crea fiducia."
+   - ✅ "L'attaccamento sicuro è importante perché permette di esplorare il mondo con fiducia. Quando senti di avere una base solida, tutto cambia."
+
+2. **Usa il linguaggio quotidiano**: Scrivi come parleresti a un amico che chiede consiglio, non come in un manuale tecnico.
+   - ❌ "Si suggerisce di implementare le seguenti strategie comportamentali..."
+   - ✅ "Puoi provare questo. Funziona per molte persone."
+
+3. **Imperfetta ma autentica**: Le persone usano frasi incomplete, parentesi, pause. Questo è OK quando appropriato.
+   - ✅ "Quando succede questo... beh, è normale sentirsi così. Davvero."
+
+4. **Evita pattern riconoscibili da IA**:
+   - ❌ "È importante notare che..." / "Vale la pena ricordare che..."
+   - ❌ Elenchi infiniti tutti con la stessa struttura
+   - ❌ Conclusione sempre con "ricorda che..."
+   - ✅ Scrivi in modo diretto, senza prefazioni eccessive
+
+5. **Empatia concreta, non generica**:
+   - ❌ "Comprendiamo le tue difficoltà"
+   - ✅ "Probabilmente ti senti sopraffatto in questo momento. È normale."
+
+6. **Esempi personali e specifici**:
+   - ❌ "Alcune persone potrebbero provare..."
+   - ✅ "Magari ti è capitato di pensare 'ok, questa volta funzionerà' e poi..."
+
+### Formattazione Testi e Maiuscole
+
+**Maiuscole negli Header e Titoli**:
+
+- Usa Title Case naturale, NON Title Case forzato:
+  - ❌ "Dall'Indipendenza Solitaria alla Connessione Sicura"
+  - ✅ "Dall'indipendenza solitaria alla connessione sicura" 
+  - ✅ "Dall'Indipendenza solitaria alla connessione sicura" (se il contesto richiede maggiore enfasi, al massimo)
+
+- Regola generale: Prima lettera maiuscola, resto minuscole (tranne nomi propri)
+  - ✅ "Quando cercare aiuto"
+  - ✅ "Come supportare il partner"
+  - ✅ "I 4 stili base" (non "I 4 Stili Base")
+  - ✅ "Esercizi pratici" (non "Esercizi Pratici")
+
+- Eccezioni (usa maiuscole SOLO quando necessario):
+  - Nomi propri: "Bowlby", "Ainsworth", "Italia"
+  - Termini tecnici standard: "Schema.org", "Material Design M3"
+  - Acronimi: "AI", "PWA", "HTML5"
+
+- Negli header di profili (h1/h2 per stili):
+  - ✅ "Ansioso alto" o "ANSIOSO ALTO" (solo se è uno stile distintivo del sito)
+  - ❌ "ANSIOSO ALTO" in ogni header se non serve enfasi visiva
+
+**Frasi e Paragrafi**:
+
+- Scrivi frasi che un essere umano scriverebbe naturalmente:
+  - Variano in lunghezza (alcune corte, altre più lunghe)
+  - Hanno flusso naturale, non rigide
+  - Usano connettivi vari ("però", "anche se", "mentre", "quando")
+  - Evitano ripetizioni meccaniche della stessa struttura
+
+- I paragrafi non devono sembrare "template riempiti":
+  - ❌ Ogni paragrafo inizia con "L'attaccamento [stile] è caratterizzato da..."
+  - ✅ Variano l'inizio: "Se hai questo stile...", "Quando senti...", "Capita spesso che..."
+
+### Linguaggio
+- Tutto in italiano
+- **Linguaggio inclusivo**: Usa sempre termini neutri (persona, partner, chi) invece di riferimenti di genere quando non necessari
+- **Terminologia**: Usa sempre "Oscillante" invece di "Disorganizzato" in tutti i contenuti
+- Linguaggio chiaro e accessibile
+- Evita jargon senza spiegazione
+- Tone: compassionevole, non giudicante
+- Focus su consapevolezza, non "guarigione"
+- **Scrivi come una persona, non come un manuale o un assistente AI**
+
+### Schema.org per Wiki
+Ogni pagina wiki deve includere:
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Titolo articolo",
+  "description": "Descrizione",
+  "author": {
+    "@type": "Person",
+    "name": "Nome autore"
+  },
+  "datePublished": "YYYY-MM-DD",
+  "dateModified": "YYYY-MM-DD"
+}
+```
+
+## Best Practices
+
+### Performance
+- Minifica CSS e JS per produzione
+- Ottimizza immagini (WebP quando possibile)
+- Lazy loading per immagini
+- Preload per risorse critiche
+
+### Accessibilità
+- WCAG 2.1 AA compliance
+- Contrast ratio minimo 4.5:1 per testo
+- Keyboard navigation funzionante
+- Screen reader friendly (ARIA labels)
+
+### Sicurezza
+- Non committare file `.env` (solo `.env.example`)
+- Sanitizza input utente
+- HTTPS only (Cloudflare Pages)
+- Content Security Policy headers
+
+## Workflow
+
+### Quando Creare Nuovi File
+1. Nuova pagina wiki → nuovo file HTML in `public/`
+   - **OBBLIGATORIO**: Aggiungi almeno 2 prompt in `scripts/prompts.json`
+   - **OBBLIGATORIO**: Genera immagini con `node scripts/generate-images.js --page=nome-pagina.html`
+   - **OBBLIGATORIO**: Inserisci immagini nell'HTML con tag `<figure>` completo (img + figcaption)
+2. Nuovo componente → aggiungi CSS in `components.css` e JS in `modules/`
+3. Nuova immagine → usa sempre il processo di generazione Qwen (vedi sezione "Immagini Obbligatorie")
+
+### Quando Modificare File Esistenti
+- Aggiorna documentazione se cambi funzionalità
+- Mantieni retrocompatibilità quando possibile
+- Testa su più browser prima di commit
+
+## Note Speciali
+
+### Immagini Obbligatorie per Nuove Pagine HTML ⚠️
+
+**REGOLA FONDAMENTALE**: Ogni nuova pagina HTML DEVE includere almeno 2 immagini generate via Qwen Text2Image API.
+
+#### Processo Obbligatorio:
+
+1. **Pianifica le Immagini**:
+   - Identifica almeno 2 sezioni chiave (dopo h1/h2 principali, in card importanti)
+   - Immagini devono essere: astratte, surrealiste, NON fotorealistiche, colori pastello, accoglienti
+
+2. **Aggiungi Prompt in `scripts/prompts.json`**:
+   ```json
+   {
+     "nuova-pagina.html": {
+       "posizione-1": {
+         "prompt": "Abstract surrealist composition, soft pastel colors, welcoming atmosphere, non-photorealistic, dreamlike quality, representing [concetto]",
+         "position": "after-h2-sezione-principale",
+         "alt": "Descrizione accessibile in italiano",
+         "figcaption": "Didascalia opzionale"
+       }
+     }
+   }
+   ```
+
+3. **Genera le Immagini**:
+   ```bash
+   node scripts/generate-images.js --page=nuova-pagina.html
+   ```
+
+4. **Inserisci nell'HTML**:
+   ```html
+   <figure class="wiki-image">
+     <img src="images/nuova-pagina-posizione-1.webp" 
+          alt="[alt text]" 
+          loading="lazy"
+          class="wiki-image__img">
+     <figcaption class="wiki-image__caption">[figcaption]</figcaption>
+   </figure>
+   ```
+
+#### Requisiti Immagini:
+- **Stile**: Astratte, surrealiste, NON fotorealistiche
+- **Palette**: Colori pastello, accoglienti
+- **Dimensioni**: 800x600px, formato WebP
+- **Alt text**: Obbligatorio, descrittivo, in italiano
+- **Figcaption**: Opzionale ma consigliato per contesto
+
+#### Prompt Template:
+Inizia sempre con: "Abstract surrealist" o "Abstract"
+Include sempre: "soft pastel colors", "non-photorealistic", "welcoming" o "embracing"
+Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality")
+
+### Immagini LLM
+- Le immagini vengono generate via Qwen Text2Image API (NON altri LLM)
+- Credenziali API in `.env` (non committare)
+- Usa variabili d'ambiente per API keys (`QWEN_API_KEY`, `QWEN_API_URL`)
+- Script di generazione: `scripts/generate-images.js`
+- File prompt: `scripts/prompts.json`
+- Output: `public/images/{page}-{position}.webp`
+- Vedi `scripts/README.md` per documentazione completa
+
+### Cloudflare Pages
+- Build command: nessuno (file statici)
+- Output directory: `public/`
+- Deploy automatico da branch `main`
+
+## Checklist Pre-Commit
+
+- [ ] Codice formattato correttamente
+- [ ] HTML valido (W3C validator)
+- [ ] **Se nuova/modificata pagina HTML: almeno 2 immagini generate e incluse**
+- [ ] **Immagini con alt text descrittivo e figcaption quando appropriato**
+- [ ] CSS mobile-first
+- [ ] JavaScript senza errori console
+- [ ] Schema.org markup presente
+- [ ] Dark/light mode funzionante
+- [ ] PWA manifest aggiornato
+- [ ] Nessun file `.env` committato
+- [ ] Test su mobile e desktop
+
+## Domande Frequenti
+
+**Q: Posso usare un framework CSS?**
+A: No, solo vanilla CSS3 per mantenere il bundle size minimo.
+
+**Q: Devo supportare IE11?**
+A: No, solo browser moderni (ultime 2 versioni).
+
+**Q: Come gestisco le immagini generate da LLM?**
+A: Usa lo script `scripts/generate-images.js` che legge le credenziali da `.env`. Aggiungi i prompt in `scripts/prompts.json`, poi esegui lo script per generare. Vedi `scripts/README.md` per dettagli.
+
+**Q: Sono obbligato a includere immagini in nuove pagine HTML?**
+A: Sì, OBBLIGATORIO. Ogni nuova pagina HTML deve avere almeno 2 immagini generate via Qwen API. Vedi sezione "Immagini Obbligatorie" in questo file e `CONTRIBUTING.md` per il processo completo.
+
+---
+
+**Ricorda**: 
+- Questo progetto promuove consapevolezza, non "guarigione". Il linguaggio deve essere compassionevole e non giudicante.
+- **Usa sempre linguaggio inclusivo** con termini neutri (persona, partner, chi).
+- **Sostituisci sempre "Disorganizzato" con "Oscillante"** in tutti i contenuti.
+

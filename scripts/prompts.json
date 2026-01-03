@@ -1,0 +1,392 @@
+{
+  "index.html": {
+    "hero": {
+      "prompt": "Abstract surrealist landscape with soft pastel gradients, flowing shapes like gentle waves, warm welcoming atmosphere, dreamlike quality, soft pinks and blues, non-photorealistic, cozy and embracing, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1-hero",
+      "alt": "Paesaggio surreale astratto che rappresenta il viaggio verso la consapevolezza dell'attaccamento",
+      "figcaption": "Il viaggio verso la consapevolezza"
+    },
+    "pilastri": {
+      "prompt": "Three interconnected abstract forms in pastel colors, flowing into each other, representing connection and integration, soft geometric shapes, welcoming and harmonious, surreal but calming, no text, no words, no letters, purely visual and painterly",
+      "position": "before-grid-pilastri",
+      "alt": "Tre forme astratte interconnesse che rappresentano i tre pilastri del sito",
+      "figcaption": "I tre pilastri: Stili Base, Gradienti, Archetipi"
+    }
+  },
+  "fondamenti.html": {
+    "attaccamento": {
+      "prompt": "Abstract representation of a secure bond, two flowing shapes connecting gently, soft pastel colors, warmth and safety, non-photorealistic, surreal but comforting, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-cosa-e-attaccamento",
+      "alt": "Rappresentazione astratta di un legame sicuro e accogliente",
+      "figcaption": "Il legame emotivo dell'attaccamento"
+    },
+    "iwm": {
+      "prompt": "Abstract map-like pattern with interconnected pathways, soft pastels, representing internal working models, flowing and organic, dreamlike quality, welcoming, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-iwm",
+      "alt": "Pattern astratto che rappresenta i modelli operativi interni",
+      "figcaption": "Le mappe interne che guidano le nostre relazioni"
+    }
+  },
+  "stili-base.html": {
+    "secure": {
+      "prompt": "Abstract harmonious composition, balanced flowing forms in soft green and pastel tones, stability and peace, surreal but grounded, welcoming and secure, no text, no words, no letters, purely visual and painterly",
+      "position": "in-card-secure",
+      "alt": "Composizione armoniosa astratta che rappresenta l'attaccamento sicuro",
+      "figcaption": "Attaccamento Sicuro: equilibrio e armonia"
+    },
+    "ansioso": {
+      "prompt": "Abstract flowing shapes in soft coral and pink, movement and energy, representing attachment seeking, gentle turbulence, surreal dreamlike quality, still welcoming despite intensity, no text, no words, no letters, purely visual and painterly",
+      "position": "in-card-ansioso",
+      "alt": "Forme astratte in movimento che rappresentano l'attaccamento ansioso",
+      "figcaption": "Attaccamento Ansioso: ricerca e movimento"
+    },
+    "evitante": {
+      "prompt": "Abstract forms with distance between them, soft blue and purple tones, elegant isolation, peaceful but separate, surreal composition, respectful boundaries, no text, no words, no letters, purely visual and painterly",
+      "position": "in-card-evitante",
+      "alt": "Forme astratte con distanza che rappresentano l'attaccamento evitante",
+      "figcaption": "Attaccamento Evitante: spazio e confini"
+    },
+    "disorganizzato": {
+      "prompt": "Abstract chaotic but contained composition, mixed pastel colors, conflicting energies, surreal fragmented forms, still has underlying harmony, complex but not threatening, no text, no words, no letters, purely visual and painterly",
+      "position": "in-card-disorganizzato",
+      "alt": "Composizione complessa astratta che rappresenta l'attaccamento oscillante",
+      "figcaption": "Attaccamento Oscillante: complessità e integrazione"
+    }
+  },
+  "modello-gradienti.html": {
+    "due-assi": {
+      "prompt": "Abstract gradient composition showing two intersecting axes, soft color transitions from pastel blue to pastel pink, flowing gradients, mathematical beauty in organic forms, surreal and welcoming, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-due-assi",
+      "alt": "Composizione a gradiente che mostra due assi intersecanti",
+      "figcaption": "I due assi: Ansia e Evitamento"
+    },
+    "tre-livelli": {
+      "prompt": "Three abstract layers flowing into each other, soft gradient from light to deep pastel, representing progression, harmonious transition, surreal dreamlike quality, encouraging, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-tre-livelli",
+      "alt": "Tre strati astratti che rappresentano i tre livelli",
+      "figcaption": "I tre livelli: Basso, Medio, Alto"
+    }
+  },
+  "archetipi.html": {
+    "jung-tarocchi": {
+      "prompt": "Abstract mystical composition, symbolic flowing forms, soft ethereal pastels with hints of gold, dreamlike archetypal imagery, surreal but profound, welcoming the unconscious, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-jung-tarocchi",
+      "alt": "Composizione mistica astratta che rappresenta gli archetipi junghiani",
+      "figcaption": "Jung, i Tarocchi e l'inconscio collettivo"
+    },
+    "viaggio-eroe": {
+      "prompt": "Abstract path or journey, flowing from one state to another, soft gradient progression, pastel colors, transformation represented as gentle flow, surreal narrative quality, hopeful, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-viaggio-eroe",
+      "alt": "Percorso astratto che rappresenta il viaggio dell'eroe",
+      "figcaption": "Il viaggio archetipale verso l'integrazione"
+    },
+    "integrazione-ombra": {
+      "prompt": "Abstract forms with light and shadow in harmony, soft pastels with gentle contrast, integration represented as flowing balance, surreal composition, accepting and whole, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-integrazione-ombra",
+      "alt": "Forme astratte con luce e ombra in armonia",
+      "figcaption": "Integrazione dell'ombra: accettazione e completezza"
+    }
+  },
+  "esercizi.html": {
+    "per-livello": {
+      "prompt": "Abstract peaceful practice space, soft flowing forms suggesting meditation and mindfulness, pastel calming colors, surreal but grounding, welcoming for self-care, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-per-livello",
+      "alt": "Spazio astratto di pratica che rappresenta gli esercizi per livello",
+      "figcaption": "Esercizi personalizzati per ogni livello"
+    },
+    "quotidiani": {
+      "prompt": "Abstract daily ritual representation, soft repetitive patterns, gentle pastel rhythm, continuity and care, surreal comforting imagery, nurturing, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-quotidiani",
+      "alt": "Rappresentazione astratta di rituali quotidiani",
+      "figcaption": "Pratiche quotidiane per la consapevolezza"
+    }
+  },
+  "mappa-personale.html": {
+    "cinque-dimensioni": {
+      "prompt": "Abstract multidimensional space, five interconnected dimensions represented as flowing paths, soft pastel network, personal journey visualization, surreal but clear, self-reflective, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-cinque-dimensioni",
+      "alt": "Spazio multidimensionale astratto che rappresenta le cinque dimensioni",
+      "figcaption": "Le cinque dimensioni del tuo attaccamento"
+    },
+    "grafico-radar": {
+      "prompt": "Abstract radar-like composition, soft pastel geometric patterns, measurement and self-awareness, flowing boundaries, surreal but organized, encouraging self-exploration, no text, no words, no letters, purely visual and painterly",
+      "position": "before-radar-chart",
+      "alt": "Composizione astratta tipo radar per la mappa personale",
+      "figcaption": "Visualizzazione della tua mappa personale"
+    }
+  },
+  "approfondimenti.html": {
+    "focusing": {
+      "prompt": "Abstract body awareness visualization, soft flowing forms connecting mind and body, pastel warm tones, somatic wisdom, surreal but embodied, welcoming inner exploration, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-focusing",
+      "alt": "Visualizzazione astratta della consapevolezza corporea",
+      "figcaption": "Focusing: ascoltare la saggezza del corpo"
+    },
+    "sessualita": {
+      "prompt": "Abstract intimate connection representation, two forms in gentle harmony, soft sensual pastels, warmth and trust, surreal but respectful, welcoming, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-sessualita",
+      "alt": "Rappresentazione astratta dell'intimità e connessione",
+      "figcaption": "Attaccamento e sessualità: intimità consapevole"
+    },
+    "famiglia": {
+      "prompt": "Abstract multigenerational family bonds, flowing forms connecting across generations, soft pastel tones, roots and branches, intergenerational patterns, surreal but familiar, welcoming family understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-famiglia",
+      "alt": "Legami familiari multigenerazionali astratti",
+      "figcaption": "Attaccamento e famiglia adulta: i pattern originali"
+    },
+    "amicizie": {
+      "prompt": "Abstract friendship circles, multiple forms in gentle connection, soft pastel network, loyalty and reciprocity, casual bonds, surreal but warm, welcoming friendship understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-amicizie",
+      "alt": "Cerchie di amicizia astratte",
+      "figcaption": "Attaccamento e amicizie: lealtà e reciprocità"
+    },
+    "lavoro": {
+      "prompt": "Abstract professional environment, structured forms with flowing connections, soft pastel organizational tones, career and workplace dynamics, surreal but structured, welcoming work understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-lavoro",
+      "alt": "Ambiente professionale astratto",
+      "figcaption": "Attaccamento e lavoro: dinamiche professionali"
+    },
+    "finanze": {
+      "prompt": "Abstract financial security representation, flowing forms with stability, soft pastel economic tones, money and security patterns, surreal but grounded, welcoming financial understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-finanze",
+      "alt": "Rappresentazione astratta della sicurezza finanziaria",
+      "figcaption": "Attaccamento e finanze: il rapporto con il denaro"
+    },
+    "genitorialita": {
+      "prompt": "Abstract parenting bond, nurturing forms connecting parent and child, soft pastel protective tones, generational transmission, surreal but caring, welcoming parenting understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-genitorialita",
+      "alt": "Legame genitoriale astratto",
+      "figcaption": "Attaccamento e genitorialità: trasmissione generazionale"
+    },
+    "lutto": {
+      "prompt": "Abstract grief and loss representation, flowing forms with gentle transformation, soft pastel melancholic tones, processing and acceptance, surreal but respectful, welcoming grief understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-lutto",
+      "alt": "Rappresentazione astratta del lutto e della perdita",
+      "figcaption": "Attaccamento e lutto: elaborare la perdita"
+    },
+    "tradimento": {
+      "prompt": "Abstract betrayal and trust representation, fractured forms with potential healing, soft pastel conflicted tones, broken trust and repair, surreal but hopeful, welcoming betrayal understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-tradimento",
+      "alt": "Rappresentazione astratta del tradimento e della fiducia",
+      "figcaption": "Attaccamento e tradimento: ricostruire la fiducia"
+    },
+    "separazione": {
+      "prompt": "Abstract separation and divorce representation, forms moving apart with gentle transition, soft pastel transitional tones, ending and new beginning, surreal but accepting, welcoming separation understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-separazione",
+      "alt": "Rappresentazione astratta della separazione",
+      "figcaption": "Attaccamento e separazione: ricostruire dopo la fine"
+    },
+    "crescita": {
+      "prompt": "Abstract growth and awareness path, flowing forms ascending gently, soft pastel transformative tones, personal development journey, surreal but encouraging, welcoming growth understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-crescita",
+      "alt": "Percorso astratto di crescita e consapevolezza",
+      "figcaption": "Attaccamento e crescita: il percorso di consapevolezza"
+    }
+  },
+  "risorse.html": {
+    "glossario": {
+      "prompt": "Abstract library or knowledge space, soft flowing organic patterns resembling pages or scrolls without actual text, pastel academic tones, learning and understanding, surreal but clear, welcoming curiosity, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-glossario",
+      "alt": "Spazio astratto di conoscenza che rappresenta il glossario",
+      "figcaption": "Esplora il glossario pratico"
+    },
+    "storie-reali": {
+      "prompt": "Abstract narrative path, soft pastel story-like flow, personal journeys, transformation represented, surreal but relatable, encouraging and hopeful, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-storie-reali",
+      "alt": "Percorso narrativo astratto che rappresenta le storie reali",
+      "figcaption": "Storie reali di consapevolezza e trasformazione"
+    }
+  },
+  "profili/ansioso-alto.html": {
+    "archetipo": {
+      "prompt": "Abstract representation of The Fool tarot card, flowing forms moving toward edge, soft coral and pink, movement and seeking, surreal but contained, representing anxious seeking, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h2-archetipo",
+      "alt": "Rappresentazione astratta dell'Arcano del Matto",
+      "figcaption": "Il Matto: l'inizio del viaggio"
+    },
+    "pattern": {
+      "prompt": "Abstract flowing pattern showing cyclical movement, soft anxious pastels, recurring patterns, gentle turbulence, surreal but recognizable, self-aware, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h3-pattern",
+      "alt": "Pattern astratto che mostra il movimento ciclico",
+      "figcaption": "Pattern relazionale: riconoscere il ciclo"
+    },
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Fool , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure on edge of precipice, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: Il Matto (0)",
+      "figcaption": "0 - Il Matto: L'ingenuità traumatizzata",
+      "vertical": true
+    }
+  },
+  "profili/ansioso-medio.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Lovers , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, two figures in relationship, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: L'Innamorato (VI)",
+      "figcaption": "VI - L'Innamorato: L'amante ferito",
+      "vertical": true
+    }
+  },
+  "profili/ansioso-basso.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Lovers integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, two figures in harmonious connection, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: L'Amante Consapevole (VI integrato)",
+      "figcaption": "VI - L'Amante Consapevole: Connessione integrata",
+      "vertical": true
+    }
+  },
+  "profili/evitante-alto.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Hermit , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, solitary figure with lantern, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: L'Eremita (IX)",
+      "figcaption": "IX - L'Eremita: L'isolamento come protezione",
+      "vertical": true
+    }
+  },
+  "profili/evitante-medio.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Emperor , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with boundaries and structure, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: L'Imperatore (IV)",
+      "figcaption": "IV - L'Imperatore: Il confine rigido",
+      "vertical": true
+    }
+  },
+  "profili/evitante-basso.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Emperor integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with wise boundaries, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: L'Imperatore Consapevole (IV integrato)",
+      "figcaption": "IV - L'Imperatore Consapevole: Confini saggi",
+      "vertical": true
+    }
+  },
+  "profili/secure-basso.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Magician integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with integrated magic, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: Il Mago Consapevole",
+      "figcaption": "Il Mago Consapevole: La magia della psiche",
+      "vertical": true
+    }
+  },
+  "profili/secure-medio.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Magician mature , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, wise figure with mastery, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: Il Saggio Maturo (I)",
+      "figcaption": "I - Il Saggio Maturo: Maestria e saggezza",
+      "vertical": true
+    }
+  },
+  "profili/secure-alto.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, Strength integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, illuminated figure in harmony, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: L'Illuminato (XI integrato)",
+      "figcaption": "XI - L'Illuminato: Integrazione completa",
+      "vertical": true
+    }
+  },
+  "profili/disorganizzato-alto.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Tower , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, tower with lightning, chaos and revelation, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: La Torre (XVI)",
+      "figcaption": "XVI - La Torre: Il caos rivelatore",
+      "vertical": true
+    }
+  },
+  "profili/disorganizzato-medio.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, The Pilgrim (Death XIII + Sun XIX combined), abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure on labyrinthine journey, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: Il Pellegrino (XIII+XIX)",
+      "figcaption": "Il Pellegrino: Il viaggio nel labirinto",
+      "vertical": true
+    }
+  },
+  "profili/disorganizzato-basso.html": {
+    "tarocchi": {
+      "prompt": "Tarot card in Marseille style, vertical format, Strength integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with gentle strength and awareness, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "position": "after-h2-archetipo",
+      "alt": "Carta dei Tarocchi: La Forza Integrata (XI)",
+      "figcaption": "XI - La Forza Integrata: Consapevolezza muscolare",
+      "vertical": true
+    }
+  },
+  "approfondimenti/famiglia.html": {
+    "famiglia": {
+      "prompt": "Abstract multigenerational family bonds, flowing forms connecting across generations, soft pastel tones, roots and branches, intergenerational patterns, surreal but familiar, welcoming family understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Legami familiari multigenerazionali astratti",
+      "figcaption": "Attaccamento e famiglia adulta: i pattern originali"
+    }
+  },
+  "approfondimenti/amicizie.html": {
+    "amicizie": {
+      "prompt": "Abstract friendship circles, multiple forms in gentle connection, soft pastel network, loyalty and reciprocity, casual bonds, surreal but warm, welcoming friendship understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Cerchie di amicizia astratte",
+      "figcaption": "Attaccamento e amicizie: lealtà e reciprocità"
+    }
+  },
+  "approfondimenti/lavoro.html": {
+    "lavoro": {
+      "prompt": "Abstract professional environment, structured forms with flowing connections, soft pastel organizational tones, career and workplace dynamics, surreal but structured, welcoming work understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Ambiente professionale astratto",
+      "figcaption": "Attaccamento e lavoro: dinamiche professionali"
+    }
+  },
+  "approfondimenti/finanze.html": {
+    "finanze": {
+      "prompt": "Abstract financial security representation, flowing forms with stability, soft pastel economic tones, money and security patterns, surreal but grounded, welcoming financial understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Rappresentazione astratta della sicurezza finanziaria",
+      "figcaption": "Attaccamento e finanze: il rapporto con il denaro"
+    }
+  },
+  "approfondimenti/genitorialita.html": {
+    "genitorialita": {
+      "prompt": "Abstract parenting bond, nurturing forms connecting parent and child, soft pastel protective tones, generational transmission, surreal but caring, welcoming parenting understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Legame genitoriale astratto",
+      "figcaption": "Attaccamento e genitorialità: trasmissione generazionale"
+    }
+  },
+  "approfondimenti/lutto.html": {
+    "lutto": {
+      "prompt": "Abstract grief and loss representation, flowing forms with gentle transformation, soft pastel melancholic tones, processing and acceptance, surreal but respectful, welcoming grief understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Rappresentazione astratta del lutto e della perdita",
+      "figcaption": "Attaccamento e lutto: elaborare la perdita"
+    }
+  },
+  "approfondimenti/tradimento.html": {
+    "tradimento": {
+      "prompt": "Abstract betrayal and trust representation, fractured forms with potential healing, soft pastel conflicted tones, broken trust and repair, surreal but hopeful, welcoming betrayal understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Rappresentazione astratta del tradimento e della fiducia",
+      "figcaption": "Attaccamento e tradimento: ricostruire la fiducia"
+    }
+  },
+  "approfondimenti/separazione.html": {
+    "separazione": {
+      "prompt": "Abstract separation and divorce representation, forms moving apart with gentle transition, soft pastel transitional tones, ending and new beginning, surreal but accepting, welcoming separation understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Rappresentazione astratta della separazione",
+      "figcaption": "Attaccamento e separazione: ricostruire dopo la fine"
+    }
+  },
+  "approfondimenti/crescita.html": {
+    "crescita": {
+      "prompt": "Abstract growth and awareness path, flowing forms ascending gently, soft pastel transformative tones, personal development journey, surreal but encouraging, welcoming growth understanding, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Percorso astratto di crescita e consapevolezza",
+      "figcaption": "Attaccamento e crescita: il percorso di consapevolezza"
+    }
+  }
+}

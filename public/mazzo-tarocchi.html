@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mazzo completo dei Tarocchi degli Stili di Attaccamento: 12 carte degli Arcani Maggiori usate come metafore per comprendere i profili di attaccamento.">
+  <title>Mazzo dei Tarocchi - Stili di Attaccamento</title>
+  
+  <!-- Schema.org Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Mazzo dei Tarocchi degli Stili di Attaccamento",
+    "description": "Raccolta completa delle 12 carte dei Tarocchi usate come metafore per comprendere i profili di attaccamento",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 12
+    }
+  }
+  </script>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <style>
+    .tarot-deck {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-6);
+      margin-top: var(--spacing-8);
+    }
+    
+    .tarot-card {
+      background-color: var(--color-surface-elevated);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .tarot-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .tarot-card__image {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+    
+    .tarot-card__content {
+      padding: var(--spacing-4);
+    }
+    
+    .tarot-card__number {
+      font-family: var(--font-family-mono);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-2);
+    }
+    
+    .tarot-card__title {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      margin-bottom: var(--spacing-2);
+      color: var(--color-text-primary);
+    }
+    
+    .tarot-card__profile {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-3);
+    }
+    
+    .tarot-card__link {
+      display: inline-block;
+      color: var(--color-accent-secure);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+    }
+    
+    .tarot-card__link:hover {
+      text-decoration: underline;
+    }
+    
+    .tarot-intro {
+      max-width: 800px;
+      margin: 0 auto var(--spacing-8);
+      text-align: center;
+    }
+    
+    .tarot-intro h2 {
+      margin-bottom: var(--spacing-4);
+    }
+    
+    .tarot-section {
+      margin-bottom: var(--spacing-8);
+    }
+    
+    .tarot-section h3 {
+      margin-bottom: var(--spacing-4);
+      padding-bottom: var(--spacing-2);
+      border-bottom: 2px solid var(--color-surface-elevated);
+    }
+    
+    @media (max-width: 600px) {
+      .tarot-deck {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Placeholder per header -->
+  <div id="header-placeholder"></div>
+  
+  <!-- Placeholder per topbar (breadcrumb) -->
+  <div id="topbar-placeholder"></div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <h1>Mazzo dei Tarocchi degli Stili di Attaccamento</h1>
+        
+        <div class="tarot-intro">
+          <p class="text-center" style="font-size: var(--font-size-lg);">
+            Gli Arcani Maggiori dei Tarocchi Marsigliesi possono essere usati come metafore per comprendere le sfumature dei profili di attaccamento. 
+            Esplora le 12 carte che metaforicamente rappresentano il viaggio archetipale dalla consapevolezza iniziale all'integrazione completa.
+          </p>
+          <p class="text-center" style="margin-top: var(--spacing-4);">
+            Clicca su una carta per leggere il profilo completo corrispondente.
+          </p>
+        </div>
+
+        <!-- Ansioso -->
+        <div class="tarot-section">
+          <h3 class="color-anxious">Attaccamento Ansioso</h3>
+          <div class="tarot-deck">
+            <div class="tarot-card" onclick="window.location.href='profili/ansioso-alto.html'">
+              <img src="images/profili-ansioso-alto-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: Il Matto (0)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">0</div>
+                <div class="tarot-card__title">Il Matto</div>
+                <div class="tarot-card__profile">Ansioso Alto</div>
+                <a href="profili/ansioso-alto.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/ansioso-medio.html'">
+              <img src="images/profili-ansioso-medio-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: L'Innamorato (VI)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">VI</div>
+                <div class="tarot-card__title">L'Innamorato</div>
+                <div class="tarot-card__profile">Ansioso Medio</div>
+                <a href="profili/ansioso-medio.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/ansioso-basso.html'">
+              <img src="images/profili-ansioso-basso-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: L'Amante Consapevole (VI integrato)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">VI</div>
+                <div class="tarot-card__title">L'Amante Consapevole</div>
+                <div class="tarot-card__profile">Ansioso Basso</div>
+                <a href="profili/ansioso-basso.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evitante -->
+        <div class="tarot-section">
+          <h3 class="color-avoidant">Attaccamento Evitante</h3>
+          <div class="tarot-deck">
+            <div class="tarot-card" onclick="window.location.href='profili/evitante-alto.html'">
+              <img src="images/profili-evitante-alto-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: L'Eremita (IX)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">IX</div>
+                <div class="tarot-card__title">L'Eremita</div>
+                <div class="tarot-card__profile">Evitante Alto</div>
+                <a href="profili/evitante-alto.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/evitante-medio.html'">
+              <img src="images/profili-evitante-medio-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: L'Imperatore (IV)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">IV</div>
+                <div class="tarot-card__title">L'Imperatore</div>
+                <div class="tarot-card__profile">Evitante Medio</div>
+                <a href="profili/evitante-medio.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/evitante-basso.html'">
+              <img src="images/profili-evitante-basso-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: L'Imperatore Consapevole (IV integrato)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">IV</div>
+                <div class="tarot-card__title">L'Imperatore Consapevole</div>
+                <div class="tarot-card__profile">Evitante Basso</div>
+                <a href="profili/evitante-basso.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secure -->
+        <div class="tarot-section">
+          <h3 class="color-secure">Attaccamento Sicuro</h3>
+          <div class="tarot-deck">
+            <div class="tarot-card" onclick="window.location.href='profili/secure-basso.html'">
+              <img src="images/profili-secure-basso-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: Il Mago Consapevole" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">VI+I</div>
+                <div class="tarot-card__title">Il Mago Consapevole</div>
+                <div class="tarot-card__profile">Secure Basso</div>
+                <a href="profili/secure-basso.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/secure-medio.html'">
+              <img src="images/profili-secure-medio-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: Il Saggio Maturo (I)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">I</div>
+                <div class="tarot-card__title">Il Saggio Maturo</div>
+                <div class="tarot-card__profile">Secure Medio</div>
+                <a href="profili/secure-medio.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/secure-alto.html'">
+              <img src="images/profili-secure-alto-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: L'Illuminato (XI integrato)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">XI</div>
+                <div class="tarot-card__title">L'Illuminato</div>
+                <div class="tarot-card__profile">Secure Alto</div>
+                <a href="profili/secure-alto.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oscillante -->
+        <div class="tarot-section">
+          <h3 class="color-disorganized">Attaccamento Oscillante</h3>
+          <div class="tarot-deck">
+            <div class="tarot-card" onclick="window.location.href='profili/disorganizzato-alto.html'">
+              <img src="images/profili-disorganizzato-alto-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: La Torre (XVI)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">XVI</div>
+                <div class="tarot-card__title">La Torre</div>
+                <div class="tarot-card__profile">Oscillante Alto</div>
+                <a href="profili/disorganizzato-alto.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/disorganizzato-medio.html'">
+              <img src="images/profili-disorganizzato-medio-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: Il Pellegrino (XIII+XIX)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">XIII+XIX</div>
+                <div class="tarot-card__title">Il Pellegrino</div>
+                <div class="tarot-card__profile">Oscillante Medio</div>
+                <a href="profili/disorganizzato-medio.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+            
+            <div class="tarot-card" onclick="window.location.href='profili/disorganizzato-basso.html'">
+              <img src="images/profili-disorganizzato-basso-tarocchi.webp" 
+                   alt="Carta dei Tarocchi: La Forza Integrata (XI)" 
+                   class="tarot-card__image"
+                   loading="lazy">
+              <div class="tarot-card__content">
+                <div class="tarot-card__number">XI</div>
+                <div class="tarot-card__title">La Forza Integrata</div>
+                <div class="tarot-card__profile">Oscillante Basso</div>
+                <a href="profili/disorganizzato-basso.html" class="tarot-card__link">Vedi Profilo →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informazioni -->
+        <article class="card mt-8">
+          <h2>Gli archetipi e la consapevolezza</h2>
+          <p>Ogni carta può essere usata come metafora per comprendere un archetipo che vive in te. I profili possono variare nel tempo e nelle situazioni, ma l'obiettivo non è cambiarli — è conoscerli, accettarli e conviverci con consapevolezza.</p>
+          <p style="margin-top: var(--spacing-4);">Il mazzo completo mostra come ogni stile di attaccamento possa essere compreso attraverso la metafora del suo archetipo. Non esiste un "stile giusto" o "sbagliato" — ogni profilo merita di essere conosciuto e accettato per quello che è.</p>
+          <p style="margin-top: var(--spacing-4);">
+            <a href="archetipi.html" class="btn btn-secondary">Scopri di più sugli Archetipi →</a>
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+    <!-- Placeholder per footer -->
+  <div id="footer-placeholder"></div>
+    <!-- Scripts (ordine importante: prima template-loader, poi breadcrumb-generator) -->
+  <script src="js/template-loader.js"></script>
+  <script src="js/breadcrumb-generator.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+

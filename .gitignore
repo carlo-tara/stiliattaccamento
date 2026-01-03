@@ -1,0 +1,65 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Dependency directories (if added in futuro)
+node_modules/
+jspm_packages/
+
+# Build outputs (if added in futuro)
+dist/
+build/
+*.min.js
+*.min.css
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Cloudflare Pages
+.cf/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Misc
+*.orig
+
+# Generated files
+scripts/image-map.json
+

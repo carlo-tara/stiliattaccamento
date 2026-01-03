@@ -1,0 +1,38 @@
+{
+  "name": "stili-attaccamento-wiki",
+  "version": "1.0.0",
+  "description": "Wiki sugli stili di attaccamento con integrazione immagini generate via Qwen API",
+  "scripts": {
+    "generate-images": "node scripts/generate-images.js",
+    "generate-images:page": "node scripts/generate-images.js --page",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:validation": "node tests/validation/run-all.cjs",
+    "test:html": "node tests/validation/html-validator.js",
+    "test:css": "node tests/validation/css-validator.js",
+    "test:links": "node tests/validation/link-checker.js",
+    "test:schema": "node tests/validation/schema-org-checker.js",
+    "test:accessibility": "playwright test tests/accessibility",
+    "test:all": "npm run test:unit && npm run test:e2e && npm run test:validation"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.57.0",
+    "@vitest/ui": "^4.0.16",
+    "axe-core": "^4.11.0",
+    "html-validator": "^6.0.1",
+    "jsdom": "^27.4.0",
+    "playwright": "^1.57.0",
+    "vitest": "^4.0.16",
+    "w3c-html-validator": "^2.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "secure-high": {
+    "scores": {
+      "anxious": 2,
+      "secure": 11,
+      "avoidant": 1,
+      "disorganized": 0
+    },
+    "primaryStyle": "secure",
+    "level": "alto",
+    "timestamp": "2024-01-01T00:00:00.000Z"
+  },
+  "anxious-high": {
+    "scores": {
+      "anxious": 15,
+      "secure": 3,
+      "avoidant": 2,
+      "disorganized": 1
+    },
+    "primaryStyle": "ansioso",
+    "level": "alto",
+    "timestamp": "2024-01-01T00:00:00.000Z"
+  },
+  "anxious-medium": {
+    "scores": {
+      "anxious": 8,
+      "secure": 4,
+      "avoidant": 2,
+      "disorganized": 1
+    },
+    "primaryStyle": "ansioso",
+    "level": "medio",
+    "timestamp": "2024-01-01T00:00:00.000Z"
+  },
+  "avoidant-high": {
+    "scores": {
+      "anxious": 1,
+      "secure": 2,
+      "avoidant": 14,
+      "disorganized": 0
+    },
+    "primaryStyle": "evitante",
+    "level": "alto",
+    "timestamp": "2024-01-01T00:00:00.000Z"
+  },
+  "disorganized-high": {
+    "scores": {
+      "anxious": 5,
+      "secure": 2,
+      "avoidant": 3,
+      "disorganized": 16
+    },
+    "primaryStyle": "disorganizzato",
+    "level": "alto",
+    "timestamp": "2024-01-01T00:00:00.000Z"
+  },
+  "mixed-scores": {
+    "scores": {
+      "anxious": 6,
+      "secure": 5,
+      "avoidant": 7,
+      "disorganized": 4
+    },
+    "primaryStyle": "evitante",
+    "level": "medio",
+    "timestamp": "2024-01-01T00:00:00.000Z"
+  },
+  "invalid-missing-scores": {
+    "primaryStyle": "ansioso",
+    "level": "alto",
+    "timestamp": "2024-01-01T00:00:00.000Z"
+  },
+  "invalid-wrong-type": {
+    "scores": {
+      "anxious": "not-a-number",
+      "secure": 5,
+      "avoidant": 3,
+      "disorganized": 2
+    },
+    "primaryStyle": "ansioso",
+    "level": "alto"
+  },
+  "invalid-out-of-range": {
+    "scores": {
+      "anxious": 100,
+      "secure": 5,
+      "avoidant": 3,
+      "disorganized": 2
+    },
+    "primaryStyle": "ansioso",
+    "level": "alto"
+  }
+}
+

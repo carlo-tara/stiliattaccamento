@@ -1,0 +1,54 @@
+/* Theme System - Simplified and Clean */
+
+/* Import only light theme */
+@import url('./light.css');
+
+/* Map Material Design variables to project variables */
+:root,
+[data-theme="light"],
+[data-theme="dark"],
+[data-theme="dark-hc"],
+[data-theme="light-hc"],
+[data-theme=""],
+html,
+body {
+  /* Background Colors */
+  --color-bg-primary: var(--md-sys-color-background);
+  --color-bg-secondary: var(--md-sys-color-surface-container-low);
+  --color-bg-tertiary: var(--md-sys-color-surface-container);
+  
+  /* Background Accents for Decorations */
+  --color-bg-accent-1: rgba(75, 120, 100, 0.08); /* Subtle green */
+  --color-bg-accent-2: rgba(150, 135, 115, 0.06); /* Subtle beige */
+  --color-bg-accent-3: rgba(60, 90, 75, 0.05); /* Subtle secondary */
+  
+  /* Surface Colors */
+  --color-surface: var(--md-sys-color-surface);
+  --color-surface-elevated: var(--md-sys-color-surface-container-high);
+  --color-surface-soft: var(--md-sys-color-surface-container-low);
+  
+  /* Text Colors - Maximum Contrast - Pure Black */
+  --color-text-primary: rgb(0, 0, 0); /* Pure black - 21:1 contrast (maximum) */
+  --color-text-secondary: rgb(0, 0, 0); /* Pure black - maximum contrast */
+  --color-text-tertiary: rgb(10, 10, 10); /* Near black - 20:1 contrast */
+  
+  /* Primary Accent */
+  --color-accent-primary: var(--md-sys-color-primary);
+  --color-on-accent-primary: var(--md-sys-color-on-primary);
+  
+  /* Attachment Style Colors - Using base colors for consistent border visibility */
+  --color-accent-secure: var(--md-sys-color-primary);
+  --color-accent-anxious: var(--md-sys-color-error);
+  --color-accent-avoidant: var(--md-sys-color-secondary);
+  --color-accent-disorganized: var(--md-sys-color-tertiary);
+  
+  /* Status Colors */
+  --color-success: var(--md-sys-color-tertiary-container);
+  --color-warning: var(--md-sys-color-error-container);
+  --color-info: var(--md-sys-color-primary-container);
+  
+  /* Borders */
+  --color-border: var(--md-sys-color-outline-variant);
+  --color-border-soft: var(--md-sys-color-outline-variant);
+  --color-border-strong: var(--md-sys-color-outline);
+}

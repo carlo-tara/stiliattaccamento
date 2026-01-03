@@ -1,0 +1,26 @@
+generare CONTRIBUTING.md , .cursorrules , STANDARD.TXT , SECURITY.TXT , ARCHITECTURE.txt con le seguenti specifiche:
+- genera una webapp PWA statica mobile-first
+- lo stack è: HTML5, CSS3, Javascript
+- la web-app sarà ospitata su cloudflare pages
+- il design system è Material Design M3
+- prevedi la doppia modalità: dark mode (default) e light mode, entrambe con colori pastello
+- il modello di organizzazione delle informazioni è quello della wiki con una homepage
+- l'argomento sono gli stili di attaccamento
+- usa schema.org per l'architettura delle iinformazioni
+- i contenuti dovranno essere ottimizzati per SEO e AI 
+- le immagini verranno create tramite LLM (di cui ti specificherò le credenziali API in .env)
+
+il repository è strutturato in cartelle
+- docs = cartella contenente tutti i documenti di specifica (.md e .pdf)
+- jtbd = cartella contenente i file .md descrittivi delle personas e delle job stories
+- public = cartella contenente esclusivamente i file statici del sito, che andranno pubblicati su cloudflare pages tramite github
+
+crea il seguente piano
+- studia tutti i documenti in ./docs partendo da index.md che narra la sequenza con cui sono stati generati
+- identifica le personas, crea un .md per personas nella cartella jtbd
+- per ogni personas, crea uno o più .md per ogni job story
+- partendo dall'analisi dei destinatari (personas), crea uno stile grafico (CSS), uno stile iconografico (per generare i prompt per le immagini), un tono di voce per i testi, uno stile chiaro e riconoscibile per l'impaginazione dei contenuti
+- genera anche il prompt per un logo
+
+crea il seguente piano
+- partendo da personas e job stories genera html, css e javascript nella cartella ./public
