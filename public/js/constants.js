@@ -2,6 +2,17 @@
 // Costanti e configurazioni centralizzate
 
 /**
+ * Configurazione SEO del sito
+ */
+const SITE_CONFIG = {
+  URL: 'https://stiliattaccamento.it',
+  NAME: 'Stili di Attaccamento Wiki',
+  LOCALE: 'it_IT',
+  DEFAULT_OG_IMAGE: 'https://stiliattaccamento.it/images/index-hero.webp',
+  LLMS_TXT: 'https://stiliattaccamento.it/llms.txt',
+};
+
+/**
  * Costanti per il sistema di punteggi del test
  */
 const TEST_SCORES = {

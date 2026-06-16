@@ -2,6 +2,8 @@
 // Utility functions per i test
 
 import { beforeEach, afterEach, vi } from 'vitest';
+import { readFileSync } from 'fs';
+import { runInContext, createContext } from 'vm';
 import { JSDOM } from 'jsdom';
 
 // Setup DOM environment
@@ -65,6 +67,24 @@ export function createFixtureHTML(html) {
 export function cleanupDOM() {
   document.body.innerHTML = '';
   document.head.innerHTML = '';
+}
+
+const loadedScripts = new Set();
+
+/**
+ * Esegue uno script vanilla da public/js e espone le funzioni su globalThis.
+ * eval() in moduli ESM non rende disponibili le function declaration ai test.
+ * @param {string} absolutePath - Percorso assoluto del file JS
+ */
+export function loadPublicScript(absolutePath) {
+  if (loadedScripts.has(absolutePath)) {
+    return;
+  }
+
+  const code = readFileSync(absolutePath, 'utf-8');
+  const context = createContext(globalThis);
+  runInContext(code, context);
+  loadedScripts.add(absolutePath);
 }
 
 // Helper per caricare script in test

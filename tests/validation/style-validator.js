@@ -42,8 +42,25 @@ const AI_PATTERNS = [
     message: "Pattern troppo formale: 'Si consiglia di' - usa linguaggio più diretto",
   },
   {
-    pattern: /\bComprendiamo le tue difficoltà\b/gi,
-    message: "Empatia generica: 'Comprendiamo le tue difficoltà' - usa empatia più concreta",
+    pattern: /\bAttraverso il linguaggio universale\b/gi,
+    message: "Pattern da IA/manuale: 'Attraverso il linguaggio universale' - usa un tono più diretto",
+  },
+  {
+    pattern: /\bStrumenti concreti per\b/gi,
+    message: "Ripetizione tipica da template: 'Strumenti concreti per' - varia il linguaggio",
+  },
+  {
+    pattern: /\bpermettono una comprensione più profonda\b/gi,
+    message: "Pattern da IA: 'permettono una comprensione più profonda' - sii più specifico e diretto",
+  },
+  {
+    pattern: /\bDurante la prima sessione, è importante\b/gi,
+    message: "Pattern formale: 'è importante' come apertura - usa 'conviene', 'puoi chiedere', ecc.",
+  },
+  {
+    pattern: /\bOgni stile ha\b/gi,
+    message: "Ripetizione strutturale: 'Ogni stile ha' - varia l'inizio dei paragrafi",
+    exclude: /FAQPage|application\/ld\+json/, // Permetti in JSON-LD se necessario
   },
 ];
 
@@ -80,9 +97,8 @@ const NON_INCLUSIVE_PATTERNS = [
  */
 const TERMINOLOGY_PATTERNS = [
   {
-    pattern: /\b(?:disorganizzato|Disorganizzato|DISORGANIZZATO)\b/gi,
-    message: "Terminologia: usa 'oscillante' invece di 'disorganizzato' (tranne nei nomi file)",
-    exclude: /\.html|href.*disorganizzato|\.md/, // Permetti nei nomi file e link
+    pattern: /\b(?:disorganizzato|Disorganizzato|DISORGANIZZATO|disorganizzati|disorganizzate|disorganizzata)\b/gi,
+    message: "Terminologia: usa 'oscillante' invece di 'disorganizzato' nel testo visibile",
   },
 ];
 
@@ -134,18 +150,19 @@ function getAllHTMLFiles(dir, fileList = []) {
 /**
  * Estrae il testo da un elemento HTML (escludendo script, style, etc.)
  */
-function extractTextContent(htmlContent) {
+function extractTextContent(htmlContent, bodyOnly = false) {
   const dom = new JSDOM(htmlContent);
   const document = dom.window.document;
 
-  // Rimuovi script, style, e altri elementi non testuali
   const scripts = document.querySelectorAll('script, style, noscript');
   scripts.forEach(el => el.remove());
 
-  // Estrai testo dai tag visibili
   const bodyText = document.body ? document.body.textContent || '' : '';
-  const headText = document.head ? document.head.textContent || '' : '';
+  if (bodyOnly) {
+    return bodyText;
+  }
 
+  const headText = document.head ? document.head.textContent || '' : '';
   return bodyText + ' ' + headText;
 }
 
@@ -199,6 +216,7 @@ function validateFile(filePath) {
     const content = readFileSync(filePath, 'utf-8');
     const relativePath = filePath.replace(PUBLIC_DIR + '/', '');
     const textContent = extractTextContent(content);
+    const bodyText = extractTextContent(content, true);
     const headers = extractHeaders(content);
     const issues = [];
 
@@ -221,16 +239,21 @@ function validateFile(filePath) {
     });
 
     // Verifica terminologia (oscillante vs disorganizzato)
-    // Escludiamo i nomi file e i link
-    const terminologyIssues = checkPatterns(content, TERMINOLOGY_PATTERNS, content);
+    // Controlla solo il testo visibile, non href/url/nomi file
+    const terminologyIssues = checkPatterns(bodyText, TERMINOLOGY_PATTERNS, content);
     terminologyIssues.forEach(issue => {
-      // Controlla se è in un nome file o link
-      if (!/href.*disorganizzato|\.html|\.md/.test(content)) {
-        issues.push({
-          type: 'terminology',
-          ...issue,
-        });
+      const idx = bodyText.toLowerCase().indexOf((issue.match || '').toLowerCase());
+      const snippet = idx >= 0
+        ? bodyText.slice(Math.max(0, idx - 100), idx + (issue.match || '').length + 100)
+        : '';
+      // Consente "disorganizzato" solo in spiegazioni esplicite del termine (FAQ)
+      if (/letteratura|perché.*oscillante|non.*disorganizzato/i.test(snippet)) {
+        return;
       }
+      issues.push({
+        type: 'terminology',
+        ...issue,
+      });
     });
 
     // Verifica title case eccessivo negli header

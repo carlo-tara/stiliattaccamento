@@ -60,6 +60,16 @@ coverage/
 # Misc
 *.orig
 
+# Playwright / test artefacts
+test-results/
+playwright-report/
+
 # Generated files
 scripts/image-map.json
 
+
+# Podcast AI Generator
+podcast-ai-generator/.env
+public/podcasts/episodes/*.mp3
+public/podcasts/scripts/*.json
+public/podcasts/metadata/*.json

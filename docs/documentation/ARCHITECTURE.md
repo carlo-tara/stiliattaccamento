@@ -1,8 +1,8 @@
 ARCHITETTURA DEL PROGETTO - STILI DI ATTACCAMENTO WIKI
 ========================================================
 
-Versione: 1.1.0
-Data: 2025-01-03
+Versione: 1.2.0
+Data: 2026-06-17
 
 Questo documento descrive l'architettura tecnica e concettuale del progetto.
 
@@ -74,31 +74,50 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   │   ├── index.html           # Homepage wiki
   │   ├── css/
   │   │   ├── main.css         # Stili principali
-  │   │   ├── themes.css       # Dark/light mode
+  │   │   ├── themes.css       # Light mode (unica modalità)
   │   │   └── components.css   # Componenti riutilizzabili
   │   ├── js/
-  │   │   ├── main.js          # Entry point
-  │   │   ├── theme.js         # Theme toggle
-  │   │   ├── mobile-menu.js   # Menu hamburger mobile
-  │   │   ├── template-loader.js # Caricamento template HTML
-  │   │   ├── breadcrumb-generator.js # Generazione breadcrumb
-  │   │   ├── cookie-banner.js # Gestione cookie banner
-  │   │   ├── test-surveyjs.js # Integrazione SurveyJS quiz
-  │   │   ├── mappa-personale.js # Visualizzazione radar chart
-  │   │   ├── constants.js     # Costanti centralizzate
-  │   │   ├── logger.js        # Utility logging
-  │   │   ├── utils.js         # Utility functions
-  │   │   ├── config-surveyjs.js # Config SurveyJS
-  │   │   └── config-chartjs.js # Config Chart.js
-  │   ├── images/              # Immagini statiche
-  │   ├── icons/               # PWA icons (192x192, 512x512)
-  │   ├── manifest.json        # PWA manifest
-  │   └── sw.js                # Service Worker
+  │   │   ├── template-loader.js   # Caricamento template HTML
+  │   │   ├── breadcrumb-generator.js
+  │   │   ├── theme.js             # Light mode forzato
+  │   │   ├── mobile-menu.js
+  │   │   ├── nav-highlight.js     # Nav attiva, aria-current
+  │   │   ├── cookie-banner.js
+  │   │   ├── gtm.js               # GTM post-consenso
+  │   │   ├── pwa.js               # Registrazione SW
+  │   │   ├── test-surveyjs.js
+  │   │   ├── mappa-personale.js
+  │   │   ├── constants.js
+  │   │   ├── logger.js
+  │   │   ├── utils.js
+  │   │   ├── config-surveyjs.js
+  │   │   ├── config-chartjs.js
+  │   │   ├── modules/
+  │   │   │   ├── mappa-dimensions.js
+  │   │   │   └── mappa-profile-render.js
+  │   │   └── archive/
+  │   │       └── main.legacy.js   # Legacy (non caricato)
+  │   ├── templates/           # Header, footer, topbar parziali
+  │   ├── images/
+  │   ├── icons/               # PWA icons (192, 512)
+  │   ├── manifest.json
+  │   ├── sw.js
+  │   ├── robots.txt
+  │   ├── sitemap.xml
+  │   └── llms.txt
   │
-  ├── scripts/                 # Script di generazione
-  │   ├── generate-images.js   # Generazione immagini Qwen
-  │   ├── prompts.json         # Prompt per immagini
-  │   └── README.md            # Documentazione script
+  ├── scripts/                 # Pipeline build/SEO/immagini
+  │   ├── generate-images.js
+  │   ├── inject-seo.js
+  │   ├── generate-sitemap.js
+  │   ├── validate-seo.js
+  │   ├── enrich-schema-geo.js
+  │   ├── inject-performance.js
+  │   ├── inject-a11y.js
+  │   ├── prompts.json
+  │   ├── seo-config.js
+  │   ├── lib/                 # fs-utils, seo-utils, wiki-html-utils
+  │   └── README.md
   ├── docs/
   │   └── image-generated/     # Immagini raw generate (PNG)
   ├── .env.example             # Template variabili ambiente
@@ -139,32 +158,33 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   </html>
 
 4.2 Organizzazione CSS
-  - main.css: Layout, typography, base styles
-  - themes.css: Dark/light mode variables e overrides
-  - components.css: Componenti riutilizzabili (cards, buttons, etc.)
+  - main.css: Layout, typography, base styles, componenti BEM
+  - themes.css: Variabili light mode (unica modalità)
+  - light.css: Token colori light (inlined in themes.css)
 
 4.3 Organizzazione JavaScript
-  - main.js: Inizializzazione, event listeners globali
-  - theme.js: Dark/light mode toggle logic
-  - test-surveyjs.js: Integrazione SurveyJS per quiz
-  - mappa-personale.js: Logica visualizzazione radar chart (Chart.js)
-  - mobile-menu.js: Gestione menu hamburger mobile (sempre visibile su tutte le risoluzioni)
-  - template-loader.js: Caricamento dinamico template HTML (header, footer, topbar)
-  - breadcrumb-generator.js: Generazione breadcrumb navigation con Schema.org markup
-  - cookie-banner.js: Gestione cookie banner e consenso
-  - constants.js: Costanti centralizzate
-  - logger.js: Utility logging centralizzata
-  - utils.js: Utility functions (sanitizzazione, validazione)
-  - config-surveyjs.js: Configurazione tema SurveyJS
-  - config-chartjs.js: Configurazione Chart.js
+  Nessun entry point globale (`main.js` rimosso in v1.3.0). Ogni pagina carica
+  solo gli script necessari; `inject-performance.js` inietta gli script comuni
+  (mobile-menu, nav-highlight, cookie-banner) su tutte le pagine HTML.
+
+  Script globali (maggior parte delle pagine):
+  - template-loader.js: Header/footer/topbar asincroni
+  - breadcrumb-generator.js: Breadcrumb con BreadcrumbList Schema.org
+  - theme.js: Light mode forzato
+  - mobile-menu.js: Menu drawer, submenu, Escape key
+  - nav-highlight.js: Pagina corrente, aria-current, submenu auto-open
+  - cookie-banner.js: Consenso cookie (localStorage)
+  - gtm.js: Google Tag Manager solo post-consenso
+  - pwa.js: Registrazione Service Worker (defer)
+
+  Script per pagina:
+  - test-surveyjs.js + config-surveyjs.js: Quiz (test.html)
+  - mappa-personale.js + modules/* + config-chartjs.js: Mappa (mappa-personale.html)
 
 4.4 Moduli JavaScript
-  - test-surveyjs.js: Gestione quiz con SurveyJS
-  - mappa-personale.js: Visualizzazione profilo con Chart.js radar chart
-  - mobile-menu.js: Menu hamburger con submenu, event delegation, gestione Escape key
-  - template-loader.js: Caricamento asincrono template HTML con correzione percorsi relativi
-  - breadcrumb-generator.js: Generazione breadcrumb dinamici con Schema.org BreadcrumbList
-  - utils.js: Utility functions (sanitizzazione XSS, validazione)
+  - modules/mappa-dimensions.js: Definizione 5 dimensioni
+  - modules/mappa-profile-render.js: Rendering profilo estratto da mappa-personale.js
+  - utils.js: Sanitizzazione XSS, escape HTML
 
 ================================================================================
 5. DESIGN SYSTEM
@@ -204,11 +224,12 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - Start URL: /
 
 6.2 Service Worker (sw.js)
+  - Cache name: stili-attaccamento-v5
   - Cache strategy:
-    * Assets (CSS/JS/images): Cache First
+    * Assets (CSS/JS/images/fonts/templates): Cache First
     * HTML: Network First, fallback cache
-  - Offline fallback: pagina offline.html
-  - Update mechanism: check for updates on load
+  - Precache: CSS, manifest, script globali, template parziali, hero image
+  - Update mechanism: skipWaiting + clients.claim on activate
 
 6.3 Icons
   - Formati: PNG
@@ -224,25 +245,33 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
 7. SEO E AI OPTIMIZATION
 ================================================================================
 
-7.1 Schema.org Structured Data
+7.1 Pipeline SEO (scripts/)
+  - inject-seo.js: canonical, Open Graph, Twitter Card, hreflang
+  - generate-sitemap.js: public/sitemap.xml da tutte le pagine HTML
+  - validate-seo.js: verifica meta obbligatori
+  - enrich-schema-geo.js: schema GEO, public/llms.txt
+  - Configurazione: scripts/seo-config.js, scripts/lib/seo-utils.js
+  - Comando: npm run seo
+
+7.2 Schema.org Structured Data
   Ogni pagina wiki include:
   - @type: Article
   - headline, description, author
   - datePublished, dateModified
   - articleBody, mainEntityOfPage
 
-7.2 Meta Tags
+7.3 Meta Tags
   - description: 150-160 caratteri
   - og:title, og:description, og:image
   - twitter:card (se applicabile)
 
-7.3 Semantic HTML
+7.4 Semantic HTML
   - Uso corretto di heading hierarchy (h1 → h2 → h3)
   - Elementi semantici (article, section, nav)
   - Alt text per immagini
   - ARIA labels quando necessario
 
-7.4 AI-Friendly Content
+7.5 AI-Friendly Content
   - Linguaggio chiaro e strutturato
   - Paragrafi brevi e focalizzati
   - Liste per informazioni strutturate
@@ -283,9 +312,9 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
     * /checklist-rapide.html (se creata)
 
 8.3 Breadcrumbs
-  - Implementati via JavaScript (navigation.js)
-  - Schema.org BreadcrumbList markup
-  - Navigazione gerarchica visibile
+  - Implementati via breadcrumb-generator.js
+  - Markup semantico: <ol> con Schema.org BreadcrumbList
+  - Escape HTML per sicurezza XSS
 
 8.4 Navigation Menu
   - Menu hamburger sempre visibile su tutte le risoluzioni (mobile-first design)
@@ -301,9 +330,9 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
 ================================================================================
 
 9.1 Local Storage
-  - Theme preference (light mode)
-  - Quiz results: punteggi test, stile primario, livello (chiave: 'testResults')
-  - Mappa personale: punteggi 5 dimensioni (chiave: 'mappaPersonale')
+  - cookie_consent: consenso cookie (cookie-banner.js, gtm.js)
+  - testResults: punteggi test, stile primario, livello
+  - mappaPersonale: punteggi 5 dimensioni
   - Nessun dato sensibile
 
 9.2 Session Storage
@@ -445,10 +474,13 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   Questo garantisce che tutti i contenuti rispettino le linee guida di tono di voce
   e stile linguistico definite in `.cursorrules` e `CONTRIBUTING.md`.
 
-14.2.3 Unit Tests
-  - Unit test in `tests/unit/` usando Vitest
-  - Test di utilità, moduli JS, componenti interattivi
-  
+14.2.3 Unit and E2E Tests
+  - Unit: tests/unit/ (Vitest) — npm test
+  - E2E: tests/e2e/ (Playwright) — npm run test:e2e
+  - Accessibility: tests/accessibility/ (axe-core) — npm run test:accessibility
+  - Server locale: porta 8090 (playwright.config.js)
+  - Suite completa: npm run test:all
+
 14.2.4 Other Tools
   - (Opzionale) Lighthouse CI
   - (Opzionale) Accessibility testing tools
@@ -491,11 +523,9 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   ▼                           ▼
   ┌──────────────┐    ┌──────────────┐
   │   CSS Files  │    │   JS Files   │
-  │  main.css    │    │  main.js     │
-  │  themes.css  │    │  theme.js    │
-  │  components  │    │  mobile-menu.js │
-  └──────────────┘    │  template-loader.js │
-                      │  ... (altri moduli) │
+  │  main.css    │    │  template-loader.js │
+  │  themes.css  │    │  mobile-menu.js     │
+  └──────────────┘    │  ... (per-page)     │
                       └──────────────┘
                               │
                               ▼
@@ -517,8 +547,8 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   Browser
       │
       ├──► Service Worker (Cache)
-      ├──► Local Storage (Theme)
-      └──► LLM API (Images, if needed)
+      ├──► Local Storage (quiz, mappa, consenso)
+      └──► GTM (solo post-consenso cookie)
 
 ================================================================================
 17. DECISIONI ARCHITETTURALI
@@ -550,7 +580,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
 17.4 Perché Material Design M3?
   - Design system completo
   - Accessibilità built-in
-  - Dark/light mode support
+  - Light mode coerente con tono accogliente del sito
   - Familiarità utenti
 
 ================================================================================
@@ -561,7 +591,11 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - CONTRIBUTING.md: Come contribuire
   - STANDARDS.md: Standard di codice
   - SECURITY.md: Policy sicurezza
+  - API.md: API esterne e integrazioni
+  - DEPLOYMENT.md: Guida deploy
+  - STANDARD_PROJECT_FILES.md: Riferimento file standard
   - .cursorrules: Regole AI assistant
+  - scripts/README.md: Pipeline SEO/performance/immagini
 
 18.2 Documenti Contenuto
   - docs/: Documenti di specifica (contenuti wiki, approfondimenti)

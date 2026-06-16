@@ -18,6 +18,9 @@ function getAllHTMLFiles(dir, fileList = []) {
     const stat = statSync(filePath);
 
     if (stat.isDirectory()) {
+      if (file === 'templates') {
+        return;
+      }
       getAllHTMLFiles(filePath, fileList);
     } else if (extname(file) === '.html') {
       fileList.push(filePath);

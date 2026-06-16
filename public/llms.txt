@@ -1,0 +1,54 @@
+# Stili di Attaccamento Wiki
+
+> Wiki italiana sugli stili di attaccamento (Bowlby, Ainsworth). Test gratuito, 12 profili per intensità, archetipi come metafore, esercizi pratici. Tono: chiaro, compassionevole, senza promesse di guarigione. Nei contenuti si usa "oscillante", non "disorganizzato".
+
+Terminologia chiave: Secure, Ansioso-Preoccupato, Evitante-Dismissivo, Oscillante (Pauroso-Evitante). Livelli di intensità: Basso, Medio, Alto. Modello a due assi: Ansia (paura dell'abbandono) ed Evitamento (paura dell'intimità).
+
+## Pagine principali
+
+- [Home](https://stiliattaccamento.it/): Introduzione, test rapido, panoramica dei contenuti
+- [Test di auto-valutazione](https://stiliattaccamento.it/test.html): 12 domande per identificare stile prevalente e livello
+- [I 4 stili base](https://stiliattaccamento.it/stili-base.html): Secure, Ansioso, Evitante, Oscillante — pattern e comportamenti
+- [Modello a gradienti](https://stiliattaccamento.it/modello-gradienti.html): Stili come gradienti su due assi, 3 livelli di intensità
+- [Archetipi junghiani](https://stiliattaccamento.it/archetipi.html): Metafore tarocchistiche per i 12 profili
+- [Fondamenti](https://stiliattaccamento.it/fondamenti.html): Teoria Bowlby, 4 bisogni, Modelli Operativi Interni
+- [Mappa personale](https://stiliattaccamento.it/mappa-personale.html): Visualizzazione interattiva su 5 dimensioni
+- [Esercizi](https://stiliattaccamento.it/esercizi.html): Pratiche per stile e livello di intensità
+
+## I 12 profili
+
+- [Ansioso Basso](https://stiliattaccamento.it/profili/ansioso-basso.html): L'Amante Consapevole
+- [Ansioso Medio](https://stiliattaccamento.it/profili/ansioso-medio.html): L'Innamorato
+- [Ansioso Alto](https://stiliattaccamento.it/profili/ansioso-alto.html): Il Matto
+- [Evitante Basso](https://stiliattaccamento.it/profili/evitante-basso.html): L'Imperatore Consapevole
+- [Evitante Medio](https://stiliattaccamento.it/profili/evitante-medio.html): L'Imperatore
+- [Evitante Alto](https://stiliattaccamento.it/profili/evitante-alto.html): L'Eremita
+- [Secure Basso](https://stiliattaccamento.it/profili/secure-basso.html): Il Mago Consapevole
+- [Secure Medio](https://stiliattaccamento.it/profili/secure-medio.html): Il Saggio Maturo
+- [Secure Alto](https://stiliattaccamento.it/profili/secure-alto.html): L'Illuminato
+- [Oscillante Basso](https://stiliattaccamento.it/profili/disorganizzato-basso.html): La Forza Integrata
+- [Oscillante Medio](https://stiliattaccamento.it/profili/disorganizzato-medio.html): Il Pellegrino
+- [Oscillante Alto](https://stiliattaccamento.it/profili/disorganizzato-alto.html): La Torre
+
+## Relazioni e supporto
+
+- [Dinamiche di coppia](https://stiliattaccamento.it/dinamiche-coppia.html): Combinazioni di stili in coppia
+- [Come supportare il partner](https://stiliattaccamento.it/come-supportare-partner.html): Guida pratica per chi accompagna
+- [Quando cercare aiuto](https://stiliattaccamento.it/quando-cercare-aiuto.html): Indicazioni su terapia e supporto professionale
+- [Storie reali](https://stiliattaccamento.it/storie-reali.html): Narrazioni anonime di consapevolezza
+
+## Risorse
+
+- [Approfondimenti](https://stiliattaccamento.it/approfondimenti.html): Temi verticali (focusing, sessualità, famiglia, lavoro, lutto, ecc.)
+- [Libri](https://stiliattaccamento.it/libri.html): Approfondimenti su testi chiave sull'attaccamento
+- [Risorse e glossario](https://stiliattaccamento.it/risorse.html): Termini, letture, riferimenti
+
+## Dati strutturati
+
+Il sito usa Schema.org (WebSite, Article, Quiz, FAQPage, BreadcrumbList) su ogni pagina. Sitemap: https://stiliattaccamento.it/sitemap.xml
+
+## Optional
+
+- [Privacy policy](https://stiliattaccamento.it/privacy-policy.html): Trattamento dati e localStorage
+- [Cookie policy](https://stiliattaccamento.it/cookie-policy.html): Uso dei cookie
+- [Termini e condizioni](https://stiliattaccamento.it/termini-condizioni.html): Condizioni d'uso

@@ -1,6 +1,16 @@
 // breadcrumb-generator.js
 // Genera dinamicamente i breadcrumb basati sull'URL della pagina
 
+const SITE_URL = 'https://stiliattaccamento.it';
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 /**
  * Mappatura delle pagine per i breadcrumb
  * Definisce titoli e percorsi per le pagine principali
@@ -9,73 +19,73 @@ const BREADCRUMB_MAP = {
   // Root pages
   'index.html': { title: 'Home', path: 'index.html' },
   'fondamenti.html': { title: 'Fondamenti', path: 'fondamenti.html' },
-  'modello-gradienti.html': { title: 'Modello a Gradienti', path: 'modello-gradienti.html' },
+  'modello-gradienti.html': { title: 'Modello a gradienti', path: 'modello-gradienti.html' },
   'archetipi.html': { title: 'Archetipi', path: 'archetipi.html' },
   'stili-base.html': { title: '4 Stili Base', path: 'stili-base.html' },
   'test.html': { title: 'Test', path: 'test.html' },
   'mappa-personale.html': { title: 'Mappa personale', path: 'mappa-personale.html' },
   'approfondimenti.html': { title: 'Approfondimenti', path: 'approfondimenti.html' },
   'libri.html': { title: 'Libri', path: 'libri.html' },
-  'storie-reali.html': { title: 'Storie Reali', path: 'storie-reali.html' },
-  'dinamiche-coppia.html': { title: 'Dinamiche di Coppia', path: 'dinamiche-coppia.html' },
-  'come-supportare-partner.html': { title: 'Come Supportare il Partner', path: 'come-supportare-partner.html' },
-  'quando-cercare-aiuto.html': { title: 'Quando Cercare Aiuto', path: 'quando-cercare-aiuto.html' },
+  'storie-reali.html': { title: 'Storie reali', path: 'storie-reali.html' },
+  'dinamiche-coppia.html': { title: 'Dinamiche di coppia', path: 'dinamiche-coppia.html' },
+  'come-supportare-partner.html': { title: 'Come supportare il partner', path: 'come-supportare-partner.html' },
+  'quando-cercare-aiuto.html': { title: 'Quando cercare aiuto', path: 'quando-cercare-aiuto.html' },
   'risorse.html': { title: 'Risorse', path: 'risorse.html' },
-  'mazzo-tarocchi.html': { title: 'Mazzo dei Tarocchi', path: 'mazzo-tarocchi.html', parent: { title: 'Archetipi', path: 'archetipi.html' } },
+  'mazzo-tarocchi.html': { title: 'Mazzo dei tarocchi', path: 'mazzo-tarocchi.html', parent: { title: 'Archetipi', path: 'archetipi.html' } },
   
   // Sottocategorie Approfondimenti
   'approfondimenti/sessualita.html': { 
-    title: 'SESSUALITÀ', 
+    title: 'Sessualità', 
     path: 'approfondimenti/sessualita.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/finanze.html': { 
-    title: 'DENARO/ECONOMIA PERSONALE', 
+    title: 'Denaro ed economia personale', 
     path: 'approfondimenti/finanze.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/lavoro.html': { 
-    title: 'LAVORO', 
+    title: 'Lavoro', 
     path: 'approfondimenti/lavoro.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/genitorialita.html': { 
-    title: 'GENITORIALITÀ', 
+    title: 'Genitorialità', 
     path: 'approfondimenti/genitorialita.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/famiglia.html': { 
-    title: 'FAMIGLIA', 
+    title: 'Famiglia', 
     path: 'approfondimenti/famiglia.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/amicizie.html': { 
-    title: 'AMICIZIE', 
+    title: 'Amicizie', 
     path: 'approfondimenti/amicizie.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/crescita.html': { 
-    title: 'CRESCITA PERSONALE', 
+    title: 'Crescita personale', 
     path: 'approfondimenti/crescita.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/lutto.html': { 
-    title: 'LUTTO', 
+    title: 'Lutto', 
     path: 'approfondimenti/lutto.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/separazione.html': { 
-    title: 'SEPARAZIONE', 
+    title: 'Separazione', 
     path: 'approfondimenti/separazione.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/tradimento.html': { 
-    title: 'TRADIMENTO', 
+    title: 'Tradimento', 
     path: 'approfondimenti/tradimento.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
   'approfondimenti/focusing.html': { 
-    title: 'FOCUSING', 
+    title: 'Focusing', 
     path: 'approfondimenti/focusing.html',
     parent: { title: 'Approfondimenti', path: 'approfondimenti.html' }
   },
@@ -156,27 +166,27 @@ const BREADCRUMB_MAP = {
   
   // Storie Reali
   'storie-reali/andrea.html': { 
-    title: 'ANDREA', 
+    title: 'Andrea', 
     path: 'storie-reali/andrea.html',
     parent: { title: 'Storie Reali', path: 'storie-reali.html' }
   },
   'storie-reali/giulia.html': { 
-    title: 'GIULIA', 
+    title: 'Giulia', 
     path: 'storie-reali/giulia.html',
     parent: { title: 'Storie Reali', path: 'storie-reali.html' }
   },
   'storie-reali/lorenzo.html': { 
-    title: 'LORENZO', 
+    title: 'Lorenzo', 
     path: 'storie-reali/lorenzo.html',
     parent: { title: 'Storie Reali', path: 'storie-reali.html' }
   },
   'storie-reali/marco.html': { 
-    title: 'MARCO', 
+    title: 'Marco', 
     path: 'storie-reali/marco.html',
     parent: { title: 'Storie Reali', path: 'storie-reali.html' }
   },
   'storie-reali/nina.html': { 
-    title: 'NINA', 
+    title: 'Nina', 
     path: 'storie-reali/nina.html',
     parent: { title: 'Storie Reali', path: 'storie-reali.html' }
   },
@@ -264,6 +274,77 @@ function getCurrentDepth() {
 }
 
 /**
+ * Inietta Schema.org BreadcrumbList per SEO
+ */
+function injectBreadcrumbSchema(pageInfo) {
+  const schemaItems = [{ name: 'Home', path: 'index.html' }];
+
+  if (pageInfo.grandParent) {
+    schemaItems.push({ name: pageInfo.grandParent.title, path: pageInfo.grandParent.path });
+  }
+  if (pageInfo.parent) {
+    schemaItems.push({ name: pageInfo.parent.title, path: pageInfo.parent.path });
+  }
+  schemaItems.push({ name: pageInfo.title, path: pageInfo.path });
+
+  const itemListElement = schemaItems.map((item, index) => {
+    const isLast = index === schemaItems.length - 1;
+    const entry = {
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+    };
+    if (!isLast) {
+      const cleanPath = item.path.split('#')[0];
+      entry.item = cleanPath === 'index.html'
+        ? `${SITE_URL}/`
+        : `${SITE_URL}/${cleanPath}`;
+    }
+    return entry;
+  });
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement,
+  };
+
+  let script = document.getElementById('breadcrumb-schema');
+  if (!script) {
+    script = document.createElement('script');
+    script.id = 'breadcrumb-schema';
+    script.type = 'application/ld+json';
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(schema);
+}
+
+/**
+ * Percorso pagina normalizzato (es. index.html, test.html, approfondimenti/finanze.html)
+ * @returns {string}
+ */
+function getNormalizedPagePath() {
+  const pathname = window.location.pathname;
+  const segments = pathname.split('/').filter(Boolean).filter((s) => s !== 'public');
+  const filename = segments[segments.length - 1] || '';
+
+  if (pathname === '/' || pathname.endsWith('/') || filename === '') {
+    return 'index.html';
+  }
+
+  return segments.length > 1 ? segments.slice(-2).join('/') : filename;
+}
+
+/**
+ * Verifica se la pagina corrente è la homepage
+ * @returns {boolean}
+ */
+function isHomePage() {
+  const normalized = getNormalizedPagePath();
+  return normalized === 'index.html';
+}
+
+/**
  * Genera i breadcrumb per la pagina corrente
  */
 function generateBreadcrumb() {
@@ -271,60 +352,81 @@ function generateBreadcrumb() {
   if (!breadcrumbNav) {
     return;
   }
-  
-  // Ottieni il percorso relativo della pagina corrente
-  const pathname = window.location.pathname;
-  const segments = pathname.split('/').filter(s => s);
-  const filename = segments[segments.length - 1] || 'index.html';
-  const relativePath = segments.length > 1 
-    ? segments.slice(-2).join('/')  // Per sottodirectory: "directory/file.html"
-    : filename;                      // Per root: "file.html"
-  
-  // Cerca nella mappatura
+
+  const topbar = breadcrumbNav.closest('.topbar');
+
+  if (isHomePage()) {
+    breadcrumbNav.replaceChildren();
+    if (topbar) {
+      topbar.classList.add('topbar--hidden');
+    }
+    return;
+  }
+
+  if (topbar) {
+    topbar.classList.remove('topbar--hidden');
+  }
+
+  const relativePath = getNormalizedPagePath();
+  const filename = relativePath.includes('/')
+    ? relativePath.split('/').pop()
+    : relativePath;
+
   const pageInfo = BREADCRUMB_MAP[relativePath] || BREADCRUMB_MAP[filename];
-  
-  if (!pageInfo) {
-    // Se non trovato, usa il titolo della pagina o il nome del file
-    const pageTitle = document.querySelector('h1')?.textContent?.trim() || filename.replace('.html', '').replace(/-/g, ' ');
-    const currentDepth = getCurrentDepth();
-    breadcrumbNav.innerHTML = `
-      <a href="${getRelativePath('index.html', currentDepth)}">Home</a>
-      <span>›</span>
-      <span>${pageTitle}</span>
-    `;
+
+  if (pageInfo?.path === 'index.html') {
+    breadcrumbNav.replaceChildren();
+    if (topbar) {
+      topbar.classList.add('topbar--hidden');
+    }
     return;
   }
   
-  // Costruisci i breadcrumb
+  if (!pageInfo) {
+    const pageTitle = document.querySelector('h1')?.textContent?.trim() || filename.replace('.html', '').replace(/-/g, ' ');
+    const currentDepth = getCurrentDepth();
+    breadcrumbNav.innerHTML = `
+      <ol class="breadcrumb__list">
+        <li class="breadcrumb__item"><a href="${getRelativePath('index.html', currentDepth)}">Home</a></li>
+        <li class="breadcrumb__item" aria-current="page">${escapeHtml(pageTitle)}</li>
+      </ol>
+    `;
+    injectBreadcrumbSchema({
+      title: pageTitle,
+      path: relativePath,
+    });
+    return;
+  }
+  
   const currentDepth = getCurrentDepth();
   const breadcrumbItems = [];
-  
-  // Home sempre presente
-  breadcrumbItems.push(`<a href="${getRelativePath('index.html', currentDepth)}">Home</a>`);
-  
-  // Grandparent (se presente, es. per profili)
+
+  breadcrumbItems.push(
+    `<li class="breadcrumb__item"><a href="${getRelativePath('index.html', currentDepth)}">Home</a></li>`
+  );
+
   if (pageInfo.grandParent) {
-    breadcrumbItems.push(`<span>›</span>`);
-    breadcrumbItems.push(`<a href="${getRelativePath(pageInfo.grandParent.path, currentDepth)}">${pageInfo.grandParent.title}</a>`);
+    breadcrumbItems.push(
+      `<li class="breadcrumb__item"><a href="${getRelativePath(pageInfo.grandParent.path, currentDepth)}">${escapeHtml(pageInfo.grandParent.title)}</a></li>`
+    );
   }
-  
-  // Parent (se presente)
+
   if (pageInfo.parent) {
-    breadcrumbItems.push(`<span>›</span>`);
-    breadcrumbItems.push(`<a href="${getRelativePath(pageInfo.parent.path, currentDepth)}">${pageInfo.parent.title}</a>`);
+    breadcrumbItems.push(
+      `<li class="breadcrumb__item"><a href="${getRelativePath(pageInfo.parent.path, currentDepth)}">${escapeHtml(pageInfo.parent.title)}</a></li>`
+    );
   }
-  
-  // Pagina corrente (non cliccabile)
-  breadcrumbItems.push(`<span>›</span>`);
-  breadcrumbItems.push(`<span>${pageInfo.title}</span>`);
-  
-  breadcrumbNav.innerHTML = breadcrumbItems.join('');
+
+  breadcrumbItems.push(
+    `<li class="breadcrumb__item" aria-current="page">${escapeHtml(pageInfo.title)}</li>`
+  );
+
+  breadcrumbNav.innerHTML = `<ol class="breadcrumb__list">${breadcrumbItems.join('')}</ol>`;
+  injectBreadcrumbSchema(pageInfo);
 }
 
-// Genera i breadcrumb quando il DOM è pronto
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', generateBreadcrumb);
-} else {
-  generateBreadcrumb();
+if (typeof window !== 'undefined') {
+  window.generateBreadcrumb = generateBreadcrumb;
+  window.getNormalizedPagePath = getNormalizedPagePath;
+  window.isHomePage = isHomePage;
 }
-

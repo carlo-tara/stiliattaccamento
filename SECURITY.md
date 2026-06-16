@@ -1,8 +1,8 @@
 SECURITY POLICY - STILI DI ATTACCAMENTO WIKI
 =============================================
 
-Versione: 1.0.0
-Data: 2024
+Versione: 1.0.1
+Data: 2026
 
 Questo documento descrive le policy di sicurezza per il progetto "Stili di Attaccamento Wiki".
 
@@ -136,12 +136,11 @@ Questo documento descrive le policy di sicurezza per il progetto "Stili di Attac
 7. SICUREZZA DEPENDENCIES
 ================================================================================
 
-7.1 Dipendenze Esterne
-  - Attualmente: nessuna dipendenza esterna (vanilla JS/CSS)
-  - Se aggiunte in futuro:
-    * Verifica vulnerabilità regolarmente
-    * Usa npm audit o simili
-    * Mantieni dipendenze aggiornate
+7.1 Dipendenze
+  - Runtime: dotenv (script Node.js)
+  - Dev: Vitest, Playwright, axe-core, html-validator, jsdom
+  - Frontend produzione: vanilla JS/CSS (SurveyJS e Chart.js via CDN)
+  - Esegui npm audit regolarmente
 
 7.2 CDN Resources
   - Evita CDN esterni quando possibile
@@ -160,14 +159,15 @@ Questo documento descrive le policy di sicurezza per il progetto "Stili di Attac
     * Minimizzare dati raccolti
 
 8.2 Analytics
-  - Se usi analytics: rispetta privacy utenti
-  - Considera privacy-first analytics (es. Plausible)
-  - Evita tracking invasivo
+  - Google Tag Manager (GTM-WC24D33D) solo dopo consenso cookie
+  - Nessun tracking prima del consenso
+  - Privacy-first: minimizzare dati raccolti
 
-8.3 Cookies
-  - Attualmente: nessun cookie
-  - Se aggiunti: informare utenti (cookie banner se necessario)
-  - Rispettare GDPR cookie consent
+8.3 Cookies e analytics
+  - Cookie banner con consenso in localStorage (cookie_consent)
+  - Google Tag Manager caricato solo dopo consenso esplicito (gtm.js)
+  - Policy: cookie-policy.html, privacy-policy.html
+  - Rispettare GDPR: consenso prima di analytics
 
 ================================================================================
 9. BACKUP E RECOVERY

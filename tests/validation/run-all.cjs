@@ -12,6 +12,8 @@ const VALIDATION_SCRIPTS = [
   'style-validator.js',
 ];
 
+const SEO_VALIDATOR = resolve(__dirname, '../../scripts/validate-seo.js');
+
 async function runScript(scriptPath) {
   return new Promise((resolve, reject) => {
     const child = spawn('node', [scriptPath], {
@@ -54,6 +56,17 @@ async function main() {
       console.error(`\n❌ Error running ${script}:`, error.message);
       hasErrors = true;
     }
+  }
+
+  console.log(`\n${'='.repeat(60)}`);
+  console.log('Running: validate-seo.js');
+  console.log('='.repeat(60) + '\n');
+
+  try {
+    await runScript(SEO_VALIDATOR);
+  } catch (error) {
+    console.error('\n❌ Error running validate-seo.js:', error.message);
+    hasErrors = true;
   }
 
   console.log(`\n${'='.repeat(60)}`);

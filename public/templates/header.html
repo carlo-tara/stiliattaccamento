@@ -1,10 +1,10 @@
 <header>
-  <nav class="container">
+  <nav class="container" aria-label="Navigazione principale">
     <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-    <button class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMobileMenu()">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+    <button type="button" class="hamburger" aria-label="Apri menu di navigazione" aria-expanded="false" aria-controls="navLinks" onclick="toggleMobileMenu()">
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
     </button>
     <ul class="nav-links" id="navLinks">
       <li class="nav-item">
@@ -15,10 +15,10 @@
       </li>
       <li class="nav-item nav-item--has-submenu">
         <a href="fondamenti.html" class="nav-link--parent">Fondamenti</a>
-        <button class="nav-submenu-toggle" aria-expanded="false" aria-label="Espandi sottomenu Fondamenti">
-          <span class="nav-submenu-toggle-icon">▶</span>
+        <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-controls="submenu-fondamenti" aria-label="Espandi sottomenu Fondamenti">
+          <span class="nav-submenu-toggle-icon" aria-hidden="true">▶</span>
         </button>
-        <ul class="nav-submenu">
+        <ul class="nav-submenu" id="submenu-fondamenti">
           <li><a href="fondamenti.html">Cos'è l'Attaccamento</a></li>
           <li><a href="modello-gradienti.html">Modello a Gradienti</a></li>
           <li><a href="archetipi.html">Archetipi</a></li>
@@ -29,10 +29,10 @@
       </li>
       <li class="nav-item nav-item--has-submenu">
         <a href="approfondimenti.html" class="nav-link--parent">Approfondimenti</a>
-        <button class="nav-submenu-toggle" aria-expanded="false" aria-label="Espandi sottomenu Approfondimenti">
-          <span class="nav-submenu-toggle-icon">▶</span>
+        <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-controls="submenu-approfondimenti" aria-label="Espandi sottomenu Approfondimenti">
+          <span class="nav-submenu-toggle-icon" aria-hidden="true">▶</span>
         </button>
-        <ul class="nav-submenu">
+        <ul class="nav-submenu" id="submenu-approfondimenti">
           <li><a href="approfondimenti.html">Panoramica</a></li>
           <li><a href="approfondimenti/famiglia.html">Famiglia</a></li>
           <li><a href="approfondimenti/lavoro.html">Lavoro</a></li>
@@ -49,10 +49,10 @@
       </li>
       <li class="nav-item nav-item--has-submenu">
         <a href="dinamiche-coppia.html" class="nav-link--parent">Relazioni</a>
-        <button class="nav-submenu-toggle" aria-expanded="false" aria-label="Espandi sottomenu Relazioni">
-          <span class="nav-submenu-toggle-icon">▶</span>
+        <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-controls="submenu-relazioni" aria-label="Espandi sottomenu Relazioni">
+          <span class="nav-submenu-toggle-icon" aria-hidden="true">▶</span>
         </button>
-        <ul class="nav-submenu">
+        <ul class="nav-submenu" id="submenu-relazioni">
           <li><a href="dinamiche-coppia.html">Dinamiche di Coppia</a></li>
           <li><a href="come-supportare-partner.html">Come Supportare il Partner</a></li>
         </ul>
@@ -62,28 +62,25 @@
       </li>
       <li class="nav-item nav-item--has-submenu">
         <a href="quando-cercare-aiuto.html" class="nav-link--parent">Supporto</a>
-        <button class="nav-submenu-toggle" aria-expanded="false" aria-label="Espandi sottomenu Supporto">
-          <span class="nav-submenu-toggle-icon">▶</span>
+        <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-controls="submenu-supporto" aria-label="Espandi sottomenu Supporto">
+          <span class="nav-submenu-toggle-icon" aria-hidden="true">▶</span>
         </button>
-        <ul class="nav-submenu">
-          <li><a href="quando-cercare-aiuto.html">Quando Cercare Aiuto</a></li>
+        <ul class="nav-submenu" id="submenu-supporto">
+          <li><a href="quando-cercare-aiuto.html">Quando Cercere Aiuto</a></li>
           <li><a href="risorse.html">Risorse</a></li>
         </ul>
       </li>
       <li class="nav-item nav-item--has-submenu">
         <a href="storie-reali.html" class="nav-link--parent">Storie e Libri</a>
-        <button class="nav-submenu-toggle" aria-expanded="false" aria-label="Espandi sottomenu Storie e Libri">
-          <span class="nav-submenu-toggle-icon">▶</span>
+        <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-controls="submenu-storie" aria-label="Espandi sottomenu Storie e Libri">
+          <span class="nav-submenu-toggle-icon" aria-hidden="true">▶</span>
         </button>
-        <ul class="nav-submenu">
+        <ul class="nav-submenu" id="submenu-storie">
           <li><a href="storie-reali.html">Storie Reali</a></li>
           <li><a href="libri.html">Libri</a></li>
         </ul>
       </li>
     </ul>
-    <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
   </nav>
-  <!-- Mobile menu overlay -->
-  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+  <button type="button" class="mobile-menu-overlay" id="mobileMenuOverlay" aria-label="Chiudi menu di navigazione" aria-hidden="true" tabindex="-1" onclick="toggleMobileMenu()"></button>
 </header>
-

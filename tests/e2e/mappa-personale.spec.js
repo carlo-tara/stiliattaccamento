@@ -46,6 +46,27 @@ test.describe('Mappa Personale', () => {
     expect(displayText).toBeTruthy();
   });
 
+  test('should render radar chart with bounded canvas height', async ({ page }) => {
+    await page.waitForFunction(() => typeof Chart !== 'undefined');
+    await page.waitForFunction(() => {
+      const canvas = document.getElementById('radar-chart');
+      return canvas && canvas.offsetHeight > 0 && canvas.offsetHeight < 600;
+    });
+
+    const metrics = await page.evaluate(() => {
+      const canvas = document.getElementById('radar-chart');
+      const plot = document.querySelector('.radar-chart__plot');
+      return {
+        canvasHeight: canvas?.offsetHeight ?? 0,
+        plotHeight: plot?.offsetHeight ?? 0,
+      };
+    });
+
+    expect(metrics.canvasHeight).toBeGreaterThan(100);
+    expect(metrics.canvasHeight).toBeLessThan(600);
+    expect(metrics.plotHeight).toBe(metrics.canvasHeight);
+  });
+
   test('should load Chart.js library', async ({ page }) => {
     // Verifica che Chart.js sia caricato
     const chartScript = page.locator('script[src*="chart"]');

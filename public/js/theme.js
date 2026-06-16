@@ -6,6 +6,10 @@ const THEME_LIGHT = 'light';
 function setTheme(theme) {
   // Force light theme always
   document.documentElement.setAttribute('data-theme', THEME_LIGHT);
+
+  if (document.body) {
+    document.body.setAttribute('data-theme', THEME_LIGHT);
+  }
   
   // Hide theme toggle button if present
   const toggleBtn = document.querySelector('.theme-toggle');

@@ -1,5 +1,8 @@
 // config-surveyjs.js
-// Configurazione tema per SurveyJS
+// Configurazione tema per SurveyJS v2 (survey-core + survey-js-ui)
+
+/** Versione CDN pinata — aggiornare insieme a test.html */
+const SURVEYJS_VERSION = '2.5.28';
 
 /**
  * Configurazione tema SurveyJS

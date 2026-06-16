@@ -19,15 +19,25 @@ test.describe('Test Survey', () => {
   });
 
   test('should load SurveyJS library', async ({ page }) => {
-    // Verifica che SurveyJS sia caricato
+    await page.waitForFunction(() => typeof Survey !== 'undefined' && typeof Survey.Model === 'function');
+
     const surveyLoaded = await page.evaluate(() => {
-      return typeof Survey !== 'undefined' && typeof Survey.Survey !== 'undefined';
+      return typeof Survey !== 'undefined' && typeof Survey.Model === 'function';
     });
-    
-    // Se SurveyJS è caricato da CDN, potrebbe non essere ancora disponibile
-    // Questo test verifica che la pagina tenti di caricarlo
+    expect(surveyLoaded).toBe(true);
+
     const surveyScript = page.locator('script[src*="survey"]');
     expect(await surveyScript.count()).toBeGreaterThan(0);
+  });
+
+  test('should render survey questions', async ({ page }) => {
+    await page.waitForFunction(() => typeof Survey !== 'undefined' && typeof Survey.Model === 'function');
+    await expect(page.locator('#surveyContainer .sd-root-modern, #surveyContainer .sd-body')).toBeVisible({
+      timeout: 10000,
+    });
+    await expect(page.locator('#surveyContainer')).not.toContainText(
+      'Impossibile caricare il test'
+    );
   });
 
   test('should have Schema.org Quiz markup', async ({ page }) => {

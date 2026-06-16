@@ -1,17 +1,23 @@
 // test-surveyjs.js
 // Integrazione SurveyJS per il test di auto-valutazione
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Verifica che SurveyJS sia caricato
-  if (typeof isSurveyJSLoaded === 'function' && !isSurveyJSLoaded()) {
-    showSurveyJSError();
-    return;
-  } else if (typeof Survey === 'undefined' || typeof Survey.Survey === 'undefined') {
+function isSurveyJSReady() {
+  return typeof Survey !== 'undefined' && typeof Survey.Model === 'function';
+}
+
+function bootSurveyTest() {
+  if (!isSurveyJSReady()) {
     showSurveyJSError();
     return;
   }
   initSurvey();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootSurveyTest);
+} else {
+  bootSurveyTest();
+}
 
 /**
  * Mostra errore se SurveyJS non è caricato
@@ -66,23 +72,23 @@ async function initSurvey() {
     // Carica il JSON schema
     const response = await fetch('js/test-survey.json');
     const surveyJson = await response.json();
-    
-    // Crea l'istanza Survey
-    const survey = new Survey.Survey(surveyJson);
-    
-    // Personalizza il tema per adattarlo al design system
-    const theme = typeof getSurveyJSTheme === 'function' 
-      ? getSurveyJSTheme() 
-      : getSurveyJSTheme(); // Fallback se non disponibile
-    survey.applyTheme(theme);
-    
-    // Event handler per il completamento
+
+    const survey = new Survey.Model(surveyJson);
+
+    const theme = typeof getSurveyJSTheme === 'function' ? getSurveyJSTheme() : null;
+    if (theme && typeof survey.applyTheme === 'function') {
+      survey.applyTheme(theme);
+    }
+
     survey.onComplete.add((sender) => {
       calculateTestResults(sender.data);
     });
-    
-    // Renderizza il survey
-    survey.render('surveyContainer');
+
+    const container = document.getElementById('surveyContainer');
+    if (!container) {
+      throw new Error('surveyContainer non trovato');
+    }
+    survey.render(container);
     
   } catch (error) {
     // Log error per debugging (solo se DEBUG_MODE è attivo)

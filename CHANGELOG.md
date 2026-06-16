@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-06-16
+
+### Added
+- **SEO pipeline**: `inject-seo.js`, `generate-sitemap.js`, `validate-seo.js`, `seo-config.js`
+- **GEO**: `llms.txt`, `robots.txt`, `enrich-schema-geo.js`, FAQ `FAQPage` on homepage
+- **Performance**: non-blocking fonts, Service Worker (`sw.js`, `pwa.js`), `inject-performance.js`
+- **Accessibility**: skip link, focus trap, breadcrumb `<ol>`, axe-core tests (`inject-a11y.js`)
+- **PWA**: `manifest.json` with theme colour and start URL; icone 192/512 generate da hero
+- **Tests**: `inject-seo` unit tests; `loadPublicScript()` test helper; Playwright on port 8090
+- **Shared**: `scripts/lib/fs-utils.js` for HTML file discovery
+- **UI/UX**: `nav-highlight.js` (active nav, `aria-current`, submenu auto-open)
+- **UI cleanup**: `clean-wiki-inline-styles.js`, `fix-approfondimenti-nesting.js`, `clean-approfondimenti-ui.js`
+- **Script injection**: `mobile-menu.js`, `nav-highlight.js`, `cookie-banner.js` su tutte le 57 pagine
+- **Mappa moduli**: `mappa-dimensions.js`, `mappa-profile-render.js` (refactor `mappa-personale.js`)
+
+### Changed
+- Homepage UX: hero CTAs, test banner, profile rows, FAQ section
+- `themes.css`: inlined `light.css` (one fewer blocking request)
+- Removed dead `main.js` from all pages (~9 KB saved per page); legacy in `js/archive/main.legacy.js`
+- `breadcrumb-generator.js`: semantic list + HTML escaping
+- `cookie-banner.js`: root-absolute policy URL, `aria-modal`, idle init
+- `mappa-personale.js`: radar chart refactor, profile render estratto, slider ARIA labels
+- `stili-base.html`: corrected heading hierarchy
+- Approfondimenti: matryoshka cards → `.style-section`; intro `.wiki-lead`; `.content-nav`
+- Footer: copyright 2024–2026, link legali
+- Inline styles: pulizia su decine di pagine wiki (`wiki-html-utils.js` esteso)
+
+### Fixed
+- `mappa-personale.js`: syntax error (`try` without `catch`) breaking production
+- `template-loader.js`: header/footer parsing; DOM-ready scheduling when script in `<head>`
+- `inject-seo.js`: insert point before Google Fonts; meta sanitisation; duplicate block removal
+- Nine `approfondimenti/` pages missing canonical/OG tags
+- **39 pagine** senza `mobile-menu.js` (hamburger non funzionante)
+- Link checker: exclude `templates/` partials
+- Unit tests: 32 failing → 77+ passing
+
 ## [1.2.0] - 2026-01-03
 
 ### Changed
@@ -53,6 +89,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.3.0]: https://github.com/carlo-tara/stiliattaccamento/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/carlo-tara/stiliattaccamento/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/carlo-tara/stiliattaccamento/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/carlo-tara/stiliattaccamento/releases/tag/v1.0.0

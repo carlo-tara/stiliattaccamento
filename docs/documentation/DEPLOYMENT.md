@@ -2,78 +2,100 @@
 
 ## Overview
 
-This project is deployed to Cloudflare Pages, a static site hosting service that automatically deploys from GitHub.
+This project deploys to **Cloudflare Pages** as a static site. There is no build step in production — the `public/` directory is served directly. SEO meta tags, sitemap, and script injection are applied locally via npm scripts before commit.
+
+---
 
 ## Prerequisites
 
 - GitHub repository configured
 - Cloudflare account with Pages enabled
+- Node.js >= 16 (for local pre-deploy scripts and tests)
 - Access to repository and Cloudflare dashboard
 
-## Deployment Setup
+---
 
-### 1. Cloudflare Pages Configuration
+## Pre-Deploy Checklist
+
+Before merging to `main`, run locally:
+
+```bash
+npm install
+npm run seo          # Meta tags, sitemap.xml, SEO validation
+npm run perf         # Performance hints, global script injection
+npm run inject-a11y  # Skip link, main content id
+npm run test:all     # Unit, E2E, validation suite
+```
+
+Commit generated/updated files in `public/` (e.g. `sitemap.xml`, HTML with injected meta).
+
+See `scripts/README.md` for the full pipeline order when editing wiki pages.
+
+---
+
+## Cloudflare Pages Configuration
+
+### 1. Project Setup
 
 1. Log in to Cloudflare Dashboard
 2. Navigate to **Pages** → **Create a project**
 3. Connect your GitHub repository
 4. Configure build settings:
    - **Framework preset**: None (Static Site)
-   - **Build command**: (leave empty - no build step)
+   - **Build command**: *(leave empty)*
    - **Build output directory**: `public`
-   - **Root directory**: (leave empty)
+   - **Root directory**: *(leave empty)*
 
 ### 2. Environment Variables
 
-If using LLM API for image generation, configure environment variables in Cloudflare Pages:
+Image generation runs locally, not on Cloudflare. Environment variables are only needed if you add CI image generation:
 
-1. Go to **Settings** → **Environment variables**
-2. Add variables:
-   - `QWEN_API_KEY`: API key for Qwen Text2Image
-   - `QWEN_URL_IMAGE`: Full endpoint URL for image generation (e.g., `https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis`)
-   - `QWEN_MODEL_IMAGE`: Model to use (e.g., `qwen-image-plus`)
-   - Any other required variables
+| Variable | Purpose |
+|----------|---------|
+| `QWEN_API_KEY` | Qwen Text2Image API key |
+| `QWEN_URL_IMAGE` | DashScope endpoint URL |
+| `QWEN_MODEL_IMAGE` | Model name (e.g. `qwen-image-plus`) |
 
-**Important**: Never commit `.env` files. Use Cloudflare Pages environment variables for production secrets.
+**Important:** Never commit `.env` files. Use Cloudflare Pages environment variables only when required.
 
 ### 3. Custom Domain (Optional)
 
 1. Go to **Custom domains** in project settings
 2. Add your domain
 3. Follow DNS configuration instructions
-4. Cloudflare will automatically provision SSL certificate
+4. Cloudflare provisions an SSL certificate automatically
+
+---
 
 ## Deployment Process
 
 ### Automatic Deployment
 
-Deployment is automatic on push to `main` branch:
+Deployment triggers on push to `main`:
 
-1. Push changes to `main` branch on GitHub
+1. Push changes to `main` on GitHub
 2. Cloudflare Pages detects the push
-3. Build process starts (no build step, files are served directly)
-4. Site is deployed to production URL
-5. Preview deployments created for Pull Requests
+3. Files from `public/` are deployed (no build step)
+4. Site is live at the production URL
+5. Preview deployments are created for pull requests
 
 ### Manual Deployment
 
-1. Go to Cloudflare Pages dashboard
+1. Open Cloudflare Pages dashboard
 2. Select your project
 3. Click **Retry deployment** for a specific commit
 
 ### Preview Deployments
 
-- Automatically created for each Pull Request
-- Preview URL provided in PR comments
-- Perfect for testing changes before merge
+- Created automatically for each pull request
+- Preview URL appears in PR comments
+- Use for testing before merge
 
-## Build Configuration
+---
 
-### Output Directory
+## Output Directory
 
-All static files must be in `public/` directory. This is the only directory deployed.
-
-### File Structure
+All publishable files live in `public/`:
 
 ```
 public/
@@ -82,88 +104,108 @@ public/
 ├── js/
 ├── images/
 ├── icons/
+├── templates/
 ├── manifest.json
-└── sw.js
+├── sw.js
+├── robots.txt
+├── sitemap.xml      # Generated: npm run generate-sitemap
+└── llms.txt         # Generated: npm run enrich-schema-geo
 ```
 
-## Post-Deployment
+---
 
-### Verification Checklist
+## Post-Deployment Verification
 
-- [ ] Site loads correctly
-- [ ] All pages accessible
-- [ ] CSS and JS files load
-- [ ] Images display correctly
-- [ ] PWA manifest works
-- [ ] Service Worker registers
-- [ ] HTTPS enabled (automatic)
-- [ ] Custom domain works (if configured)
+- [ ] Site loads over HTTPS
+- [ ] All pages accessible (spot-check profili, approfondimenti, libri)
+- [ ] CSS and JS load (check cache-busting `?v=` query strings)
+- [ ] Images display (WebP)
+- [ ] PWA manifest valid (`/manifest.json`)
+- [ ] Service Worker registers (`/sw.js`)
+- [ ] `robots.txt` and `sitemap.xml` reachable
+- [ ] Cookie banner appears; GTM loads only after accept
+- [ ] Mobile menu and navigation highlight work
+- [ ] Custom domain resolves (if configured)
 
 ### Monitoring
 
-- Check Cloudflare Pages dashboard for deployment status
-- Monitor build logs for errors
-- Test site functionality after deployment
+- Cloudflare Pages dashboard → deployment status and logs
+- Run `npm run test:e2e` against preview URL if needed (update `baseURL` in `playwright.config.js`)
+
+---
 
 ## Rollback
 
-If issues occur after deployment:
+1. Open Cloudflare Pages → **Deployments**
+2. Find the last known-good deployment
+3. Click **Retry deployment** or promote that deployment
 
-1. Go to Cloudflare Pages dashboard
-2. Navigate to **Deployments**
-3. Find previous working deployment
-4. Click **Retry deployment** or **Create deployment**
+---
 
 ## Production Considerations
 
 ### Performance
 
-- Cloudflare provides global CDN automatically
-- Static files cached at edge
+- Global CDN provided by Cloudflare
+- Static assets cached at the edge
 - HTTPS enabled by default
 - Compression enabled automatically
+- Service Worker caches CSS/JS/images client-side
 
 ### Security Headers
 
-Configure in Cloudflare Pages settings or via `_headers` file (if supported):
+Configure via Cloudflare Pages `_headers` file or dashboard:
 
-- Content-Security-Policy
-- X-Content-Type-Options: nosniff
-- X-Frame-Options: DENY
-- Referrer-Policy: strict-origin-when-cross-origin
+- `Content-Security-Policy`
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: DENY`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+
+See [SECURITY.md](../../SECURITY.md) for full policy.
 
 ### Cache Strategy
 
-- HTML files: Short cache (browser + Cloudflare)
-- CSS/JS: Long cache with versioning
-- Images: Long cache
-- Service Worker: Always check for updates
+| Asset type | Strategy |
+|------------|----------|
+| HTML | Short cache; SW network-first |
+| CSS/JS | Long cache; bump `?v=` on release |
+| Images | Long cache |
+| Service Worker | Always revalidate on navigation |
+
+### Service Worker Updates
+
+When changing `public/sw.js`, increment `CACHE_NAME` (e.g. `stili-attaccamento-v6`) so clients fetch fresh assets.
+
+---
 
 ## Troubleshooting
 
+### Missing Files After Deploy
+
+- Confirm files are under `public/` and committed
+- Check `.gitignore` does not exclude required assets
+- Regenerate `sitemap.xml` if new pages were added
+
+### SEO Meta Missing
+
+```bash
+npm run inject-seo
+npm run validate-seo
+```
+
+### Hamburger Menu Not Working
+
+Ensure `mobile-menu.js` is present — run `npm run perf` to inject global scripts.
+
 ### Build Failures
 
-- Check build logs in Cloudflare dashboard
-- Verify file structure matches expected output
-- Ensure no syntax errors in HTML/CSS/JS
+Unlikely with static deploy. If Cloudflare reports errors, check logs for invalid project configuration.
 
-### Missing Files
+---
 
-- Verify files are in `public/` directory
-- Check `.gitignore` doesn't exclude needed files
-- Ensure files are committed to repository
+## Continuous Integration (Optional)
 
-### Environment Variables
-
-- Verify variables are set in Cloudflare dashboard
-- Check variable names match code expectations
-- Restart deployment after adding variables
-
-## Continuous Integration
-
-### GitHub Actions (Optional)
-
-You can add GitHub Actions for pre-deployment checks:
+Example GitHub Actions pre-merge checks:
 
 ```yaml
 name: Pre-deploy Checks
@@ -174,15 +216,20 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: HTML Validation
-        run: # Add HTML validation
-      - name: CSS Validation
-        run: # Add CSS validation
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run test:validation
+      - run: npm test
 ```
 
-## Additional Resources
+---
 
+## Related Documentation
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — System design
+- [API.md](./API.md) — External integrations
+- [../../scripts/README.md](../../scripts/README.md) — Build scripts
 - [Cloudflare Pages Documentation](https://developers.cloudflare.com/pages/)
-- [GitHub Integration Guide](https://developers.cloudflare.com/pages/platform/git-integration/)
-

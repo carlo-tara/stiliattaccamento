@@ -130,6 +130,6 @@ function isChartJSLoaded() {
  * @returns {boolean} True se SurveyJS è caricato
  */
 function isSurveyJSLoaded() {
-  return typeof Survey !== 'undefined' && typeof Survey.Survey !== 'undefined';
+  return typeof Survey !== 'undefined' && typeof Survey.Model === 'function';
 }
 

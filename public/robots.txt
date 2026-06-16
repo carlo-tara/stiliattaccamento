@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+
+# Crawler AI — accesso esplicito per citazione e risposta generativa
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Template parziali (non sono pagine complete)
+Disallow: /templates/
+
+# Indice LLM (llmstxt.org)
+Allow: /llms.txt
+
+Sitemap: https://stiliattaccamento.it/sitemap.xml

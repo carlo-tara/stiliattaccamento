@@ -76,7 +76,17 @@ function adjustTemplatePaths(element, currentDepth) {
 async function loadTemplate(elementId, templateName) {
   const basePath = getBasePath();
   const templatePath = `${basePath}${TEMPLATE_BASE}${templateName}`;
-  
+  const element = document.getElementById(elementId);
+
+  if (!element) {
+    console.warn(`Element #${elementId} not found`);
+    return;
+  }
+
+  const placeholderClass = templateName.replace('.html', '');
+  element.classList.add('template-placeholder', `template-placeholder--${placeholderClass}`);
+  element.setAttribute('aria-busy', 'true');
+
   try {
     const response = await fetch(templatePath);
     
@@ -85,17 +95,30 @@ async function loadTemplate(elementId, templateName) {
     }
     
     const html = await response.text();
-    const element = document.getElementById(elementId);
+    // Crea un elemento temporaneo per parsare l'HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html.trim();
     
-    if (!element) {
-      console.warn(`Element #${elementId} not found`);
+    // Per header e footer, cerca l'elemento specifico invece di firstElementChild
+    // (per evitare problemi con script iniettati da VS Code Live Preview)
+    let templateContent;
+    if (templateName === 'header.html') {
+      templateContent = tempDiv.querySelector('header');
+    } else if (templateName === 'footer.html') {
+      templateContent = tempDiv.querySelector('footer');
+    } else {
+      templateContent = tempDiv.firstElementChild;
+    }
+    
+    if (!templateContent) {
+      console.error(`Failed to parse template ${templateName}: no element found`);
       return;
     }
     
-    // Crea un elemento temporaneo per parsare l'HTML
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
-    const templateContent = tempDiv.firstElementChild;
+    if (!element.parentNode) {
+      console.warn(`Element #${elementId} has no parent node`);
+      return;
+    }
     
     // Aggiusta i percorsi relativi PRIMA di inserire nel DOM
     const currentDepth = calculateDepth();
@@ -109,10 +132,12 @@ async function loadTemplate(elementId, templateName) {
     
   } catch (error) {
     console.error(`Error loading template ${templateName}:`, error);
-    // Fallback: mostra un messaggio di errore se necessario
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.innerHTML = `<!-- Error loading ${templateName} -->`;
+    const failedElement = document.getElementById(elementId);
+    if (failedElement) {
+      failedElement.classList.remove('template-placeholder', `template-placeholder--${placeholderClass}`);
+      failedElement.removeAttribute('aria-busy');
+      failedElement.innerHTML =
+        `<p class="template-error" role="alert">Contenuto temporaneamente non disponibile.</p>`;
     }
   }
 }
@@ -131,10 +156,14 @@ function initializeDynamicContent(templateName, templateElement) {
   
   // Re-inizializza menu mobile se necessario (dopo che header è caricato)
   if (templateName === 'header.html') {
-    // Inizializza i sottomenu dopo che il template è stato inserito
     if (typeof initializeSubmenus === 'function') {
       setTimeout(() => {
         initializeSubmenus();
+      }, 0);
+    }
+    if (typeof highlightCurrentNav === 'function') {
+      setTimeout(() => {
+        highlightCurrentNav(templateElement);
       }, 0);
     }
   }
@@ -158,9 +187,24 @@ async function loadAllTemplates() {
   );
 }
 
-// Carica i template
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadAllTemplates);
-} else {
-  loadAllTemplates();
+// Carica i template quando i placeholder sono nel DOM
+function scheduleTemplateLoad() {
+  const hasPlaceholders = ['header-placeholder', 'topbar-placeholder', 'footer-placeholder'].some(
+    (id) => document.getElementById(id)
+  );
+
+  if (hasPlaceholders) {
+    loadAllTemplates();
+  } else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadAllTemplates);
+  } else {
+    loadAllTemplates();
+  }
 }
+
+if (typeof window !== 'undefined') {
+  window.getBasePath = getBasePath;
+  window.calculateDepth = calculateDepth;
+}
+
+scheduleTemplateLoad();

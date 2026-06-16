@@ -80,7 +80,6 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
   </footer>
 
   <script src="../js/theme.js"></script>
-  <script src="../js/main.js"></script>
 </body>
 </html>'''
 

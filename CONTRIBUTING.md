@@ -72,13 +72,22 @@ stiliattaccamento/
 │   ├── css/
 │   ├── js/
 │   ├── images/
-│   └── manifest.json
+│   ├── templates/
+│   ├── manifest.json
+│   ├── sw.js
+│   ├── robots.txt
+│   └── sitemap.xml
+├── scripts/           # Pipeline SEO, performance, immagini
+├── tests/             # Unit, E2E, validazione, accessibilità
 ├── .env.example       # Template per variabili d'ambiente
 ├── CONTRIBUTING.md    # Questo file
 ├── .cursorrules       # Regole per AI assistant
 ├── STANDARDS.md       # Standard di codice
 ├── SECURITY.md        # Policy di sicurezza
 └── docs/documentation/ARCHITECTURE.md  # Documentazione architetturale
+    ├── API.md                          # API esterne
+    ├── DEPLOYMENT.md                   # Guida deploy
+    └── STANDARD_PROJECT_FILES.md       # Riferimento file standard
 ```
 
 ### Cartelle Principali
@@ -107,7 +116,7 @@ stiliattaccamento/
 - Mobile-first approach: scrivi prima per mobile, poi usa media queries per desktop
 - Usa CSS custom properties (variabili) per colori e spacing
 - Segui Material Design M3 (Material You) guidelines
-- Supporta dark mode (default) e light mode con colori pastello
+- Light mode è l'unica modalità disponibile (forzata in `theme.js`)
 - Usa `rem` e `em` invece di `px` quando possibile
 - Organizza CSS con metodologia BEM o simili
 - Nessun framework CSS esterno (solo vanilla CSS3)
@@ -205,11 +214,23 @@ docs(readme): aggiorna istruzioni installazione
 
 ## Testing
 
-### Test di Validazione
+### Test automatici (npm)
+
+```bash
+npm test                    # Unit test (Vitest)
+npm run test:e2e            # E2E Playwright (server su porta 8090)
+npm run test:validation     # HTML, CSS, link, schema.org, stile linguistico
+npm run test:accessibility  # axe-core via Playwright
+npm run test:all            # Suite completa
+```
+
+### Test di validazione
 
 Il progetto include una suite di script di validazione che verificano la conformità del codice alle linee guida del progetto. Esegui tutti i test di validazione con:
 
 ```bash
+npm run test:validation
+# oppure
 node tests/validation/run-all.cjs
 ```
 
@@ -265,11 +286,11 @@ Per eseguire solo il validator di stile:
 node tests/validation/style-validator.js
 ```
 
-### Test Manuali
+### Test manuali
 
 Prima di ogni commit, testa:
 - [ ] Responsive design (mobile, tablet, desktop)
-- [ ] Dark mode e light mode
+- [ ] Light mode (unica modalità)
 - [ ] PWA funzionalità (offline, install)
 - [ ] Accessibilità (screen reader, keyboard navigation)
 - [ ] Performance (Lighthouse score > 90)
@@ -498,7 +519,7 @@ Prima di aprire una Pull Request con una nuova pagina HTML:
 - [ ] **Immagini inserite nell'HTML con markup completo**
 - [ ] Alt text accessibile per ogni immagine
 - [ ] CSS responsive verificato
-- [ ] Dark/light mode testato
+- [ ] Light mode verificato
 - [ ] Validazione HTML5 passata
 - [ ] Test su mobile e desktop
 

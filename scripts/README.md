@@ -1,66 +1,132 @@
-# Script di Generazione Immagini
+# Scripts
 
-Questo script genera automaticamente immagini usando l'API Qwen Text2Image per il sito.
+Utility Node.js per build, SEO, performance, accessibilità e generazione immagini del sito statico.
 
 ## Prerequisiti
 
 1. Node.js >= 16.0.0
-2. File `.env` nella root del progetto con le credenziali Qwen:
-   ```env
-   QWEN_API_KEY=your_api_key_here
-   QWEN_URL_IMAGE=https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis
-   QWEN_MODEL_IMAGE=qwen-image-plus
-   ```
-   
-   Vedi `scripts/ENV_SETUP.md` per dettagli completi sulla configurazione.
-
-## Installazione Dipendenze
+2. Per le immagini Qwen: file `.env` in root (vedi `ENV_SETUP.md`)
+3. Per le icone PWA: Python 3 con Pillow (`pip install Pillow`)
 
 ```bash
 npm install
 ```
 
-## Uso
+---
 
-### Generare tutte le immagini
+## Pipeline SEO / GEO
+
+Esegue in sequenza inject meta tag, sitemap e validazione.
+
+```bash
+npm run seo
+```
+
+| Script | Comando | Ruolo |
+|--------|---------|-------|
+| `inject-seo.js` | `npm run inject-seo` | Canonical, Open Graph, Twitter Card, `hreflang`, `article:modified_time` |
+| `generate-sitemap.js` | `npm run generate-sitemap` | `public/sitemap.xml` da tutte le pagine HTML |
+| `validate-seo.js` | `npm run validate-seo` | Verifica meta obbligatori su ogni pagina |
+| `enrich-schema-geo.js` | `npm run enrich-schema-geo` | Schema.org GEO, `llms.txt` |
+
+Configurazione centralizzata in `scripts/seo-config.js` e `scripts/lib/seo-utils.js`.
+
+---
+
+## Pipeline performance e PWA
+
+```bash
+npm run perf
+```
+
+| Script | Ruolo |
+|--------|-------|
+| `inject-performance.js` | Font non bloccanti, preload, Service Worker, manifest, dedup hint; inietta `mobile-menu.js`, `nav-highlight.js`, `cookie-banner.js` su tutte le pagine |
+| `generate-pwa-icons.js` | Icone 192×192 e 512×512 in `public/icons/` da `index-hero.webp` |
+
+Dopo `generate-pwa-icons`, aggiorna `public/manifest.json` se cambi i path delle icone.
+
+---
+
+## Pipeline accessibilità
+
+```bash
+npm run inject-a11y
+```
+
+| Script | Ruolo |
+|--------|-------|
+| `inject-a11y.js` | Skip link verso `#main-content`, id su `<main>` |
+
+---
+
+## Pulizia UI / HTML wiki
+
+Script idempotenti (sicuri da rieseguire):
+
+```bash
+npm run fix-approfondimenti-nesting   # Card annidate → .style-section
+npm run clean-approfondimenti-ui      # Lead, content-nav, titoli umanizzati
+npm run clean-wiki-inline-styles      # Rimuove style= ripetitivi → classi BEM
+```
+
+Logica condivisa in `scripts/lib/wiki-html-utils.js`.
+
+---
+
+## Generazione immagini (Qwen Text2Image)
+
+### Configurazione `.env`
+
+```env
+QWEN_API_KEY=your_api_key_here
+QWEN_URL_IMAGE=https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis
+QWEN_MODEL_IMAGE=qwen-image-plus
+```
+
+Vedi `scripts/ENV_SETUP.md` per i dettagli.
+
+### Uso
 
 ```bash
 npm run generate-images
-```
-
-### Generare immagini per una pagina specifica
-
-```bash
 node scripts/generate-images.js --page=index.html
+node scripts/generate-images.js --force   # rigenera anche esistenti
 ```
 
-### Rigenerare tutte le immagini (anche esistenti)
+### Output
+
+- Immagini: `public/images/{pagina}-{posizione}.webp`
+- Mappa: `scripts/image-map.json`
+- Raw PNG: `docs/image-generated/`
+
+### Note immagini
+
+- Stile astratto/surrealista, colori pastello, **senza testo** nell'immagine
+- Rate limit: pausa 1 s tra richieste
+- Prompt in `scripts/prompts.json` — obbligatori per nuove pagine HTML (min. 2 immagini)
+
+---
+
+## Ordine consigliato dopo modifiche HTML
 
 ```bash
-node scripts/generate-images.js --force
+npm run fix-approfondimenti-nesting   # se tocchi approfondimenti
+npm run clean-approfondimenti-ui
+npm run clean-wiki-inline-styles
+npm run seo
+npm run perf
+npm run inject-a11y
+npm test
+npm run test:validation
 ```
 
-## Output
+---
 
-- Immagini generate: `public/images/`
-- Mappa immagini: `scripts/image-map.json` (generato automaticamente)
+## Moduli condivisi
 
-## Formato File
-
-Le immagini vengono salvate con il nome:
-```
-{pagina}-{posizione}.webp
-```
-
-Esempio: `index-hero.webp`, `fondamenti-attaccamento.webp`
-
-I nomi corrispondono esattamente a quelli usati nelle pagine HTML.
-
-## Note
-
-- **IMPORTANTE**: Le immagini generate sono SOLO pittoriche/visuali, senza testi, parole o lettere sovraimpresse
-- Lo script evita di rigenerare immagini già esistenti (usa `--force` per forzare)
-- Gestisce automaticamente rate limiting con pausa di 1 secondo tra richieste
-- Se un'immagine fallisce, lo script continua con le altre e mostra un riepilogo errori alla fine
-- Le immagini raw vengono salvate in `docs/image-generated/` (PNG)
-- Le immagini processate (convertite in webp, ridimensionate) vengono salvate in `public/images/`
+| File | Uso |
+|------|-----|
+| `lib/fs-utils.js` | Scoperta file HTML in `public/` |
+| `lib/seo-utils.js` | Truncation meta, path canonical |
+| `lib/wiki-html-utils.js` | Sostituzione inline styles → classi CSS |

@@ -1,8 +1,8 @@
 STANDARD DI CODICE - STILI DI ATTACCAMENTO WIKI
 ==================================================
 
-Versione: 1.0.0
-Data: 2024
+Versione: 1.1.0
+Data: 2026
 
 Questo documento definisce gli standard di codice per il progetto "Stili di Attaccamento Wiki",
 una webapp PWA statica mobile-first.
@@ -24,9 +24,8 @@ una webapp PWA statica mobile-first.
 
 1.3 Design System
   - Material Design M3 (Material You)
-  - Dark mode: default
-  - Light mode: alternativa
-  - Colori: pastello per entrambe le modalità
+  - Light mode: unica modalità (forzata in theme.js)
+  - Colori: pastello naturali verde-beige
 
 ================================================================================
 2. STRUTTURA PROGETTO
@@ -119,18 +118,11 @@ una webapp PWA statica mobile-first.
 
 4.2 CSS Custom Properties (Variabili)
   :root {
-    /* Colori dark mode (default) */
-    --color-primary: [colore pastello];
-    --color-background: [colore scuro];
-    --color-text: [colore chiaro];
-    --spacing-unit: 1rem;
-  }
-
-  [data-theme="light"] {
-    /* Colori light mode */
+    /* Light mode (unica modalità) */
     --color-primary: [colore pastello];
     --color-background: [colore chiaro];
     --color-text: [colore scuro];
+    --spacing-unit: 1rem;
   }
 
 4.3 Material Design M3
@@ -157,7 +149,7 @@ una webapp PWA statica mobile-first.
 4.6 Organizzazione File CSS
   public/css/
   ├── main.css          # Stili principali
-  ├── themes.css        # Dark/light mode
+  ├── themes.css        # Light mode (unica modalità)
   ├── components.css    # Componenti riutilizzabili
   └── utilities.css     # Utility classes (opzionale)
 
@@ -207,13 +199,22 @@ una webapp PWA statica mobile-first.
 
 5.8 Organizzazione File JS
   public/js/
-  ├── main.js           # Entry point
-  ├── pwa.js            # Service Worker registration
-  ├── theme.js          # Dark/light mode toggle
-  └── modules/
-      ├── quiz.js       # Logica quiz
-      ├── navigation.js  # Navigazione
-      └── utils.js      # Utility functions
+  ├── template-loader.js      # Caricamento template header/footer
+  ├── breadcrumb-generator.js # Breadcrumb con Schema.org
+  ├── theme.js                # Light mode forzato
+  ├── mobile-menu.js          # Menu hamburger
+  ├── nav-highlight.js        # Evidenziazione nav attiva
+  ├── cookie-banner.js        # Consenso cookie
+  ├── gtm.js                  # Google Tag Manager (post-consenso)
+  ├── pwa.js                  # Registrazione Service Worker
+  ├── test-surveyjs.js        # Quiz SurveyJS
+  ├── mappa-personale.js        # Radar chart Chart.js
+  ├── utils.js                # Utility (sanitizzazione, escape)
+  ├── constants.js            # Costanti centralizzate
+  ├── modules/                # Moduli condivisi
+  │   ├── mappa-dimensions.js
+  │   └── mappa-profile-render.js
+  └── archive/                # Codice legacy (main.legacy.js)
 
 ================================================================================
 6. PWA REQUIREMENTS
@@ -391,18 +392,23 @@ una webapp PWA statica mobile-first.
   - Safari: ultime 2 versioni
   - Mobile: iOS Safari, Chrome Android
 
-12.2 Test Manuali Pre-Commit
+12.2 Test manuali pre-commit
   - [ ] Responsive design (mobile, tablet, desktop)
-  - [ ] Dark/light mode funzionante
+  - [ ] Light mode (unica modalità)
   - [ ] PWA installabile
   - [ ] Offline functionality
   - [ ] Accessibilità (keyboard nav, screen reader)
   - [ ] Performance (Lighthouse)
 
-12.3 Validazione
-  - HTML: W3C HTML Validator (nessun error)
-  - CSS: W3C CSS Validator (opzionale)
-  - JavaScript: ESLint (se configurato)
+12.3 Validazione e test automatici
+  - HTML: tests/validation/html-validator.js
+  - CSS: tests/validation/css-validator.js
+  - Link: tests/validation/link-checker.js
+  - Schema.org: tests/validation/schema-org-checker.js
+  - Stile linguistico: tests/validation/style-validator.js
+  - Unit: Vitest (tests/unit/)
+  - E2E e accessibilità: Playwright (tests/e2e/, tests/accessibility/)
+  - Esegui tutto: npm run test:all
 
 ================================================================================
 13. DOCUMENTAZIONE

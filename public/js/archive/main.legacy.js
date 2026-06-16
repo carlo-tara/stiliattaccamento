@@ -1,29 +1,8 @@
-// Main JavaScript - Stili di Attaccamento Wiki
+// Main JavaScript - legacy test form (usato solo se presente #test-form)
 
-// Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
-  initNavigation();
   initTest();
 });
-
-// Theme initialization
-function initTheme() {
-  const theme = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-}
-
-// Navigation
-function initNavigation() {
-  const navToggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  }
-}
 
 // Test functionality
 function initTest() {
