@@ -430,5 +430,21 @@
       "alt": "Percorso astratto di crescita e consapevolezza",
       "figcaption": "Attaccamento e crescita: il percorso di consapevolezza"
     }
+  },
+  "approfondimenti/focusing.html": {
+    "focusing": {
+      "prompt": "Abstract body awareness visualization, soft flowing forms connecting mind and body, pastel warm tones, somatic wisdom, surreal but embodied, welcoming inner exploration, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Visualizzazione astratta della consapevolezza corporea",
+      "figcaption": "Focusing: ascoltare la saggezza del corpo"
+    }
+  },
+  "approfondimenti/sessualita.html": {
+    "sessualita": {
+      "prompt": "Abstract intimate connection representation, two forms in gentle harmony, soft sensual pastels, warmth and trust, surreal but respectful, welcoming, no text, no words, no letters, purely visual and painterly",
+      "position": "after-h1",
+      "alt": "Rappresentazione astratta dell'intimità e connessione",
+      "figcaption": "Attaccamento e sessualità: intimità consapevole"
+    }
   }
 }
