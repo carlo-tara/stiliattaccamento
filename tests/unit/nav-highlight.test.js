@@ -54,4 +54,27 @@ describe('nav-highlight.js', () => {
     expect(item.querySelector('.nav-submenu-toggle').getAttribute('aria-expanded')).toBe('true');
     expect(item.querySelector('.nav-submenu').getAttribute('aria-hidden')).toBe('false');
   });
+
+  it('should highlight journey nav when test results exist', () => {
+    localStorage.setItem(
+      'testResults',
+      JSON.stringify({ primaryStyle: 'ansioso', level: 'medio', scores: {} })
+    );
+
+    document.body.innerHTML = `
+      <header>
+        <ul class="nav-links">
+          <li><a href="il-tuo-percorso.html" class="nav-link--journey">Il tuo percorso</a></li>
+        </ul>
+      </header>
+    `;
+
+    highlightJourneyNav();
+
+    const journey = document.querySelector('.nav-link--journey');
+    expect(journey.classList.contains('nav-link--journey-active')).toBe(true);
+    expect(journey.getAttribute('aria-description')).toBeTruthy();
+
+    localStorage.removeItem('testResults');
+  });
 });

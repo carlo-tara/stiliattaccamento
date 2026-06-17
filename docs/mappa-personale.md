@@ -2,9 +2,11 @@
 
 ## INTRODUZIONE
 
-Questa è la tua **Mappa Personale** - una visualizzazione del TUO profilo di attaccamento su multiple dimensioni.
+Questa è la tua **Mappa personale** — una visualizzazione del tuo profilo di attaccamento su più dimensioni.
 
-Non sei una categoria fissa. Sei un **punto nello spazio multidimensionale** dell'attaccamento.
+Non sei una categoria fissa. Sei un **punto nello spazio multidimensionale** dell'attaccamento. Dopo il test, puoi continuare su **Il tuo percorso** (`il-tuo-percorso.html`) con tre passi concreti.
+
+Il sito promuove **consapevolezza, non guarigione**: la mappa serve a orientarti, non a etichettarti.
 
 ---
 
@@ -40,7 +42,7 @@ Punteggio Evitante (da test): __/12
 
 Se Ansia > Evitante: sei SINISTRA (Ansioso)
 Se Evitante > Ansia: sei DESTRA (Evitante)
-Se uguali: sei CENTRO (Secure o Disorganizzato)
+Se uguali: sei CENTRO (Secure o Oscillante)
 ```
 
 ### La tua posizione su questa dimensione

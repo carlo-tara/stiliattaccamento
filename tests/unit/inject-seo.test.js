@@ -95,9 +95,11 @@ describe('inject-seo.js', () => {
         ogType: 'website',
         image: 'https://stiliattaccamento.it/images/index-hero.webp',
         imageAlt: 'Alt text',
+        keywords: 'stili di attaccamento, test attaccamento',
       });
       expect(block).toContain('hreflang="it"');
       expect(block).toContain('hreflang="x-default"');
+      expect(block).toContain('name="keywords"');
       expect(block).toContain('og:image:width');
       expect(block).toContain('twitter:image:alt');
       expect(block.split('\n').every((line) => !line.includes('\n\n'))).toBe(true);

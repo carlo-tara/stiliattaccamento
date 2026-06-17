@@ -1,5 +1,16 @@
 # ARCHITETTURA DEL SITO - MAPPA TEMATICA
 
+> **Aggiornamento 2026**: il sito usa un'architettura **doppio livello** — **Percorso** (Chiara: test → hub → 3 passi) + **Wiki** (approfondimento). Vedi anche `.cursor/skills/content-voice/architecture.md` e `public/sitemap.md`.
+
+## Flusso utente principale
+
+```
+Home → Da dove inizi → Test → Il tuo percorso (hub dinamico)
+                              ↘ Mappa personale → Il tuo percorso
+```
+
+Filosofia copy: **consapevolezza, non guarigione**. Termine visibile per lo stile fearful-avoidant: **Oscillante** (mai "Disorganizzato").
+
 ## Struttura Proposta per Wiki Stili di Attaccamento
 
 ```

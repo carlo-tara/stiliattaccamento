@@ -114,11 +114,22 @@ function renderProfileResult(punteggi, media, stile, livello) {
     createProfileElement(
       profileLinkP,
       'a',
-      { href: profiloUrl, class: 'btn btn-primary' },
-      `Vedi il profilo completo: ${stileNome} ${livello}`
+      { href: 'il-tuo-percorso.html', class: 'btn btn-primary' },
+      'Il tuo percorso'
     )
   );
   profileContent.appendChild(profileLinkP);
+
+  const profiloLinkP = createProfileElement(profileContent, 'p', { class: 'mappa-profile__actions' });
+  profiloLinkP.appendChild(
+    createProfileElement(
+      profiloLinkP,
+      'a',
+      { href: profiloUrl, class: 'btn btn-secondary' },
+      `Vedi il profilo: ${stileNome} ${livello}`
+    )
+  );
+  profileContent.appendChild(profiloLinkP);
 
   const eserciziLinkP = createProfileElement(profileContent, 'p', { class: 'mappa-profile__actions' });
   eserciziLinkP.appendChild(
@@ -130,6 +141,21 @@ function renderProfileResult(punteggi, media, stile, livello) {
     )
   );
   profileContent.appendChild(eserciziLinkP);
+
+  const journeyHost = createProfileElement(profileContent, 'div', {
+    id: 'mappa-journey-steps',
+    class: 'mappa-profile__journey',
+  });
+  profileContent.appendChild(journeyHost);
+
+  if (typeof renderJourneyNextSteps === 'function') {
+    renderJourneyNextSteps(journeyHost, {
+      stile: validStile,
+      livello: validLivello,
+      basePath: '',
+      compact: true,
+    });
+  }
 
   profileResult.style.display = 'block';
 }

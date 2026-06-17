@@ -91,8 +91,44 @@ function highlightCurrentNav(header = document.querySelector('header')) {
   submenu.setAttribute('aria-hidden', 'false');
 }
 
+const JOURNEY_STORAGE_KEY = 'testResults';
+
+/**
+ * Evidenzia "Il tuo percorso" se l'utente ha completato il test
+ * @param {HTMLElement} [header]
+ */
+function highlightJourneyNav(header = document.querySelector('header')) {
+  if (!header) {
+    return;
+  }
+
+  const journeyLink = header.querySelector('.nav-link--journey');
+  if (!journeyLink) {
+    return;
+  }
+
+  let hasResults = false;
+  try {
+    const raw = localStorage.getItem(JOURNEY_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      hasResults = Boolean(parsed && parsed.primaryStyle && parsed.level);
+    }
+  } catch {
+    hasResults = false;
+  }
+
+  journeyLink.classList.toggle('nav-link--journey-active', hasResults);
+  if (hasResults) {
+    journeyLink.setAttribute('aria-description', 'Hai un percorso personalizzato in base al test');
+  } else {
+    journeyLink.removeAttribute('aria-description');
+  }
+}
+
 if (typeof window !== 'undefined') {
   window.highlightCurrentNav = highlightCurrentNav;
+  window.highlightJourneyNav = highlightJourneyNav;
   window.getCurrentPagePath = getCurrentPagePath;
   window.getLinkPagePath = getLinkPagePath;
 }

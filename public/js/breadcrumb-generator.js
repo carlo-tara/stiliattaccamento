@@ -21,8 +21,10 @@ const BREADCRUMB_MAP = {
   'fondamenti.html': { title: 'Fondamenti', path: 'fondamenti.html' },
   'modello-gradienti.html': { title: 'Modello a gradienti', path: 'modello-gradienti.html' },
   'archetipi.html': { title: 'Archetipi', path: 'archetipi.html' },
-  'stili-base.html': { title: '4 Stili Base', path: 'stili-base.html' },
+  'stili-base.html': { title: 'I 4 stili base', path: 'stili-base.html' },
   'test.html': { title: 'Test', path: 'test.html' },
+  'da-dove-inizi.html': { title: 'Da dove inizi', path: 'da-dove-inizi.html' },
+  'il-tuo-percorso.html': { title: 'Il tuo percorso', path: 'il-tuo-percorso.html' },
   'mappa-personale.html': { title: 'Mappa personale', path: 'mappa-personale.html' },
   'approfondimenti.html': { title: 'Approfondimenti', path: 'approfondimenti.html' },
   'libri.html': { title: 'Libri', path: 'libri.html' },
@@ -244,6 +246,8 @@ const BREADCRUMB_MAP = {
   },
 };
 
+const HOME_HREF = '/';
+
 /**
  * Ottiene il percorso relativo corretto basato sulla profondità della pagina
  */
@@ -387,7 +391,7 @@ function generateBreadcrumb() {
     const currentDepth = getCurrentDepth();
     breadcrumbNav.innerHTML = `
       <ol class="breadcrumb__list">
-        <li class="breadcrumb__item"><a href="${getRelativePath('index.html', currentDepth)}">Home</a></li>
+        <li class="breadcrumb__item"><a href="${HOME_HREF}">Home</a></li>
         <li class="breadcrumb__item" aria-current="page">${escapeHtml(pageTitle)}</li>
       </ol>
     `;
@@ -402,7 +406,7 @@ function generateBreadcrumb() {
   const breadcrumbItems = [];
 
   breadcrumbItems.push(
-    `<li class="breadcrumb__item"><a href="${getRelativePath('index.html', currentDepth)}">Home</a></li>`
+    `<li class="breadcrumb__item"><a href="${HOME_HREF}">Home</a></li>`
   );
 
   if (pageInfo.grandParent) {

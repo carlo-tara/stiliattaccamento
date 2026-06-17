@@ -58,6 +58,9 @@ function validateFile(filePath) {
   if (!document.querySelector('link[rel="alternate"][hreflang="x-default"]')) {
     issues.push('hreflang="x-default" mancante');
   }
+  if (!document.querySelector('meta[name="keywords"]')?.getAttribute('content')?.trim()) {
+    issues.push('meta keywords mancante');
+  }
   if (!document.querySelector('meta[property="og:image:alt"]')) {
     issues.push('og:image:alt mancante');
   }

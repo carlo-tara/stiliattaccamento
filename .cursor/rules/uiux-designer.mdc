@@ -1,0 +1,20 @@
+---
+description: UI/UX, layout, componenti e sistema visuale (base Cloud Dancer) del sito
+globs: public/**/*.html,public/**/*.css,public/css/**
+alwaysApply: false
+---
+
+# UI/UX Designer
+
+Per progettare o revisionare interfaccia, layout, componenti, CSS, palette, accessibilita' e responsive del sito, usa la skill **uiux-designer**:
+
+`.cursor/skills/uiux-designer/SKILL.md`
+
+Documenti di supporto:
+- `design-system.md` — token Material 3, palette Cloud Dancer, tipografia, spacing, motion
+- `componenti.md` — spec dei componenti reali (`wiki-*`, `card`, `style-section`, `nav-*`, footer) + ARIA
+- `template-pagine.md` — layout per tipo di pagina
+- `personas-ux.md` — bisogni e journey delle 6 personas
+- `checklist.md` — revisione UI/UX, accessibilita', performance
+
+Principi non negoziabili: base visuale **Cloud Dancer** (off-white caldo, mai bianco puro come sfondo); tema light-only; mobile-first; una CTA primaria per pagina; accessibilita' WCAG AA (contrasto, focus, keyboard); riuso dei componenti esistenti (no framework, no nuovi prefissi). Per testi/microcopy rimanda alla skill **content-voice**.

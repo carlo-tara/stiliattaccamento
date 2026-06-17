@@ -17,6 +17,8 @@ const {
   DEFAULT_LOCALE,
 } = require('./seo-config');
 
+const { getMetaKeywords } = require('./lib/meta-keywords');
+
 const PUBLIC_DIR = resolve(__dirname, '../public');
 
 function toCanonicalUrl(relativePath) {
@@ -93,12 +95,13 @@ function getPageImage(document, relativePath) {
   return { url, alt };
 }
 
-function buildSeoBlock({ title, description, canonical, ogType, image, imageAlt, modifiedTime }) {
+function buildSeoBlock({ title, description, canonical, ogType, image, imageAlt, modifiedTime, keywords }) {
   const safeTitle = sanitizeMetaText(title, 70);
   const safeDesc = sanitizeMetaText(description, 160);
   const escapedTitle = escapeAttr(safeTitle);
   const escapedDesc = escapeAttr(safeDesc);
   const escapedAlt = escapeAttr(imageAlt);
+  const escapedKeywords = escapeAttr(keywords || '');
   const articleModified =
     ogType === 'article' && modifiedTime
       ? `\n  <meta property="article:modified_time" content="${modifiedTime}">`
@@ -108,6 +111,7 @@ function buildSeoBlock({ title, description, canonical, ogType, image, imageAlt,
   <link rel="canonical" href="${canonical}">
   <link rel="alternate" hreflang="it" href="${canonical}">
   <link rel="alternate" hreflang="x-default" href="${canonical}">
+  <meta name="keywords" content="${escapedKeywords}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#3c6e55">
   <meta property="og:site_name" content="${SITE_NAME}">
@@ -131,6 +135,8 @@ function buildSeoBlock({ title, description, canonical, ogType, image, imageAlt,
 
 function stripAllSeoTags(html) {
   let result = html;
+
+  result = result.replace(/\s*<meta name="keywords" content="[^"]*">\n?/g, '\n');
 
   // Blocchi con commento marker (formato nuovo e precedente)
   result = result.replace(
@@ -217,6 +223,7 @@ function injectSeo(filePath) {
   const ogType = getOgType(document);
   const { url: image, alt: imageAlt } = getPageImage(document, relativePath);
   const modifiedTime = toIsoDate(statSync(filePath).mtime);
+  const keywords = getMetaKeywords(relativePath);
 
   html = syncTitle(html, safeTitle);
   html = syncMetaDescription(html, safeDesc);
@@ -229,6 +236,7 @@ function injectSeo(filePath) {
     image,
     imageAlt,
     modifiedTime,
+    keywords,
   });
 
   const insertPoint = findInsertPoint(html);

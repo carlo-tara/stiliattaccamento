@@ -27,11 +27,11 @@ body {
   --md-sys-color-on-error: rgb(255 255 255);
   --md-sys-color-error-container: rgb(255 240 237);
   --md-sys-color-on-error-container: rgb(100 5 5);
-  --md-sys-color-background: rgb(255 255 255);
+  --md-sys-color-background: rgb(240 238 233); /* Cloud Dancer (PANTONE 11-4201) — sfondo pagina */
   --md-sys-color-on-background: rgb(0 0 0);
-  --md-sys-color-surface: rgb(255 255 255);
+  --md-sys-color-surface: rgb(248 247 243); /* superfici/card — piu' chiare dello sfondo */
   --md-sys-color-on-surface: rgb(0 0 0);
-  --md-sys-color-surface-variant: rgb(250 250 250);
+  --md-sys-color-surface-variant: rgb(244 242 236);
   --md-sys-color-on-surface-variant: rgb(10 10 10);
   --md-sys-color-outline: rgb(60 65 55);
   --md-sys-color-outline-variant: rgb(200 200 200);
@@ -52,13 +52,13 @@ body {
   --md-sys-color-on-tertiary-fixed: rgb(10 15 20);
   --md-sys-color-tertiary-fixed-dim: rgb(220 210 195);
   --md-sys-color-on-tertiary-fixed-variant: rgb(10 15 20);
-  --md-sys-color-surface-dim: rgb(250 250 250);
-  --md-sys-color-surface-bright: rgb(255 255 255);
-  --md-sys-color-surface-container-lowest: rgb(255 255 255);
-  --md-sys-color-surface-container-low: rgb(255 255 255);
-  --md-sys-color-surface-container: rgb(250 250 250);
-  --md-sys-color-surface-container-high: rgb(245 245 245);
-  --md-sys-color-surface-container-highest: rgb(240 240 240);
+  --md-sys-color-surface-dim: rgb(235 232 225);
+  --md-sys-color-surface-bright: rgb(250 249 246);
+  --md-sys-color-surface-container-lowest: rgb(251 250 247);
+  --md-sys-color-surface-container-low: rgb(247 245 240);
+  --md-sys-color-surface-container: rgb(243 241 235);
+  --md-sys-color-surface-container-high: rgb(238 236 229);
+  --md-sys-color-surface-container-highest: rgb(233 230 223);
 }
 
 /* Map Material Design variables to project variables */

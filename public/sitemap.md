@@ -1,91 +1,55 @@
 # Mappa del Sito - Stili di Attaccamento Wiki
 
-## Struttura Organica
+## Struttura organica (percorso + wiki)
 
 ```
 HOME (index.html)
-├── Introduzione + Test Rapido (12 domande)
+├── Da dove inizi (da-dove-inizi.html) ⭐ ingresso umano
+├── Il tuo percorso (il-tuo-percorso.html) ⭐ hub dinamico post-test
+├── Test (test.html) → localStorage.testResults
 │
-├── FONDAMENTI (fondamenti.html)
-│   ├── Cos'è l'Attaccamento
-│   ├── I 4 Bisogni Fondamentali (Bowlby)
-│   └── Modelli Operativi Interni (IWM)
+├── CAPIRE
+│   ├── Fondamenti (fondamenti.html)
+│   ├── I 4 stili base (stili-base.html)
+│   ├── Modello a gradienti (modello-gradienti.html)
+│   ├── Archetipi (archetipi.html)
+│   └── Mappa personale (mappa-personale.html)
 │
-├── IL MODELLO A GRADIENTI ⭐ (modello-gradienti.html)
-│   ├── Introduzione: Perché Gradienti, non Categorie
-│   ├── I Due Assi (Ansia ↔ Evitamento)
-│   ├── I 3 Livelli (Basso/Medio/Alto)
-│   └── Come Funziona il Modello
+├── NELLA RELAZIONE
+│   ├── Dinamiche di coppia (dinamiche-coppia.html)
+│   ├── Come supportare il partner (come-supportare-partner.html)
+│   └── Esercizi (esercizi.html)
 │
-├── GLI ARCHETIPI JUNGHIANI ⭐ (archetipi.html)
-│   ├── Introduzione: Jung e i Tarocchi
-│   ├── Il Viaggio dell'Eroe Archetipale
-│   ├── Come Leggere il Tuo Archetipo
-│   └── Integrazione dell'Ombra
+├── RISORSE
+│   ├── Storie reali (storie-reali/)
+│   ├── Quando cercare aiuto (quando-cercare-aiuto.html)
+│   ├── Risorse / glossario (risorse.html)
+│   ├── Libri (libri.html)
+│   └── Approfondimenti (approfondimenti/)
 │
-├── I 4 STILI BASE (stili-base.html)
-│   ├── Secure
-│   ├── Ansioso-Preoccupato
-│   ├── Evitante-Dismissivo
-│   └── Oscillante (Pauroso-Evitante)
-│
-├── I 12 PROFILI ⭐ (profili/)
-│   ├── secure-basso.html
-│   ├── secure-medio.html
-│   ├── secure-alto.html
-│   ├── ansioso-basso.html
-│   ├── ansioso-medio.html
-│   ├── ansioso-alto.html
-│   ├── evitante-basso.html
-│   ├── evitante-medio.html
-│   ├── evitante-alto.html
-│   ├── disorganizzato-basso.html
-│   ├── disorganizzato-medio.html
-│   └── disorganizzato-alto.html
-│
-├── TEST COMPLETO (test.html)
-│   ├── Test 12 Domande
-│   ├── Interpretazione Risultati
-│   └── Mappa Personale (5 dimensioni)
-│
-├── ESERCIZI (esercizi.html)
-│   ├── Per Livello (Basso/Medio/Alto)
-│   ├── Per Stile
-│   └── Quotidiani
-│
-├── APPROFONDIMENTI (approfondimenti.html)
-│   ├── Focusing
-│   ├── Relazioni Interpersonali
-│   └── Tematici (10 approfondimenti)
-│
-└── RISORSE (risorse.html)
-    ├── Glossario
-    ├── Letture Consigliate
-    └── Storie Reali
+└── I 12 PROFILI (profili/)
+    └── Cluster: ansioso, evitante, secure, oscillante × basso/medio/alto
 ```
 
-## Relazioni tra Pagine
+## Flusso Chiara (persona prioritaria)
 
-- **Home** → Test Rapido → Test Completo → Profilo specifico
-- **Fondamenti** → 4 Stili Base → 12 Profili
-- **Modello Gradienti** → 12 Profili (spiegazione del modello)
-- **Archetipi** → 12 Profili (linguaggio archetipale)
-- **4 Stili Base** → 12 Profili (link ai 3 livelli per ogni stile)
-- **12 Profili** → Esercizi (link agli esercizi specifici)
+1. Home o **Da dove inizi** → Test
+2. Risultati test → **Il tuo percorso** (3 passi cliccabili)
+3. Profilo specifico → Esercizi / Storie / Dinamiche coppia
+4. Wiki opzionale: fondamenti, archetipi
 
-## Priorità Implementazione
+## Moduli percorso
 
-### Fase 1: Core (MVP)
-1. Home + Test Rapido
-2. Fondamenti
-3. Modello a Gradienti
-4. Archetipi Junghiani
-5. I 4 Stili Base
-6. 4 Profili esempio (uno per stile, livello medio)
+- `public/js/modules/journey-config.js` — 12 configurazioni
+- `public/js/modules/journey-hub.js` — render hub e banner
 
-### Fase 2: Completa
-7. Tutti i 12 Profili
-8. Test Completo
-9. Esercizi
-10. Approfondimenti
+## Relazioni tra pagine
 
+- **Test** → `il-tuo-percorso.html` + profilo
+- **Mappa** → `il-tuo-percorso.html` + profilo
+- **Fondamenti** → 4 stili → 12 profili
+- **Profili** → esercizi, storie (via journey config)
+
+## Documentazione IA
+
+Vedi `.cursor/skills/content-voice/architecture.md`

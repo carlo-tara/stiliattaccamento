@@ -203,9 +203,9 @@ function showTestResults(scores, primaryStyle, level) {
   };
   
   const levelNames = {
-    'basso': 'Basso',
-    'medio': 'Medio',
-    'alto': 'Alto'
+    'basso': 'basso',
+    'medio': 'medio',
+    'alto': 'alto'
   };
   
   const totalQuestions = 12;
@@ -232,7 +232,7 @@ function showTestResults(scores, primaryStyle, level) {
   
   const introTitle = createSafeElement('h3', {
     style: { color: 'var(--color-accent-secure)', marginTop: '0' }
-  }, 'Il Tuo Profilo: ' + sanitizeHTML(styleNames[primaryStyle]) + ' ' + sanitizeHTML(levelNames[level]));
+  }, 'Il tuo profilo: ' + sanitizeHTML(styleNames[primaryStyle]) + ' ' + sanitizeHTML(levelNames[level]));
   introCard.appendChild(introTitle);
   
   const introText = createSafeElement('p', {
@@ -343,21 +343,27 @@ function showTestResults(scores, primaryStyle, level) {
   
   const profileLink = createSafeElement('a', {
     href: profileUrl,
-    class: 'btn btn-primary'
-  }, 'Vedi Profilo Completo');
+    class: 'btn btn-secondary'
+  }, 'Vedi profilo completo');
   actionsDiv.appendChild(profileLink);
+
+  const journeyLink = createSafeElement('a', {
+    href: 'il-tuo-percorso.html',
+    class: 'btn btn-primary'
+  }, 'Vai al tuo percorso');
+  actionsDiv.insertBefore(journeyLink, actionsDiv.firstChild);
   
   const mapLink = createSafeElement('a', {
     href: 'mappa-personale.html',
     class: 'btn btn-secondary'
-  }, 'Crea Mappa Personale');
+  }, 'Crea mappa personale');
   actionsDiv.appendChild(mapLink);
   
   // Link a storie reali simili
   const storiesLink = createSafeElement('a', {
     href: 'storie-reali.html',
     class: 'btn btn-secondary'
-  }, 'Leggi Storie Simili');
+  }, 'Leggi storie simili');
   actionsDiv.appendChild(storiesLink);
   
   resultsContent.appendChild(actionsDiv);
@@ -374,7 +380,7 @@ function showTestResults(scores, primaryStyle, level) {
       }
     });
     
-    const helpTitle = createSafeElement('h4', {}, 'Supporto Professionale');
+    const helpTitle = createSafeElement('h4', {}, 'Supporto professionale');
     helpCard.appendChild(helpTitle);
     
     const helpText = createSafeElement('p', {}, 'Con un livello Alto, potrebbe essere utile considerare il supporto di un professionista. Non c\'è vergogna nel cercare aiuto - è un atto di coraggio e cura di sé.');
@@ -384,43 +390,26 @@ function showTestResults(scores, primaryStyle, level) {
       href: 'quando-cercare-aiuto.html',
       class: 'btn btn-primary',
       style: { marginTop: 'var(--spacing-4)', display: 'inline-block' }
-    }, 'Scopri Quando Cercare Aiuto');
+    }, 'Quando cercare aiuto');
     helpCard.appendChild(helpLink);
     
     resultsContent.appendChild(helpCard);
   }
   
-  // Prossimi passi
-  const nextStepsDiv = createSafeElement('div', {
-    style: {
-      marginTop: 'var(--spacing-6)',
-      padding: 'var(--spacing-4)',
-      backgroundColor: 'var(--color-surface-elevated)',
-      borderRadius: 'var(--radius-md)'
-    }
+  // Prossimi passi (journey hub)
+  const journeyStepsHost = createSafeElement('div', {
+    id: 'test-journey-steps',
+    style: { marginTop: 'var(--spacing-6)' }
   });
-  
-  const nextStepsTitle = createSafeElement('p', {});
-  nextStepsTitle.appendChild(createSafeElement('strong', {}, 'Prossimi Passi:'));
-  nextStepsDiv.appendChild(nextStepsTitle);
-  
-  const nextStepsList = createSafeElement('ul', {
-    style: { marginLeft: 'var(--spacing-6)', marginTop: 'var(--spacing-2)' }
-  });
-  
-  const nextSteps = [
-    'Esplora il tuo profilo completo per capire meglio le tue caratteristiche',
-    'Crea la tua Mappa Personale per visualizzare il tuo profilo su 5 dimensioni',
-    'Consulta gli esercizi specifici per il tuo stile e livello',
-    'Leggi storie di persone con un profilo simile al tuo'
-  ];
-  
-  nextSteps.forEach(text => {
-    const li = createSafeElement('li', {}, text);
-    nextStepsList.appendChild(li);
-  });
-  nextStepsDiv.appendChild(nextStepsList);
-  resultsContent.appendChild(nextStepsDiv);
+  resultsContent.appendChild(journeyStepsHost);
+
+  if (typeof renderJourneyNextSteps === 'function') {
+    renderJourneyNextSteps(journeyStepsHost, {
+      stile: primaryStyle,
+      livello: level,
+      basePath: '',
+    });
+  }
   
   resultsDiv.style.display = 'block';
   resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -1,0 +1,19 @@
+---
+description: Tono di voce e stile per contenuti wiki (riscrittura e supervisione)
+globs: public/**/*.html,docs/**/*.md,jtbd/**/*.md
+alwaysApply: false
+---
+
+# Content Voice
+
+Per riscrivere, revisionare o supervisionare testi del sito, usa la skill **content-voice**:
+
+`.cursor/skills/content-voice/SKILL.md`
+
+Documenti di supporto:
+- `architecture.md` — IA percorso, navigazione, hub dinamico
+- `reference.md` — regole dettagliate, anti-pattern IA, formattazione
+- `checklist.md` — supervisione completa
+- `examples.md` — prima/dopo
+
+Principi non negoziabili: compagno di viaggio informato; consapevolezza non guarigione (EFT); Oscillante non Disorganizzato; linguaggio inclusivo; 70% pratico / 30% teoria.

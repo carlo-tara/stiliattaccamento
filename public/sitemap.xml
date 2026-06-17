@@ -337,6 +337,18 @@
     <priority>0.20</priority>
   </url>
   <url>
+    <loc>https://stiliattaccamento.it/da-dove-inizi.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://stiliattaccamento.it/il-tuo-percorso.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://stiliattaccamento.it/test.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>

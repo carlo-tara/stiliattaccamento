@@ -164,7 +164,60 @@ function initializeDynamicContent(templateName, templateElement) {
     if (typeof highlightCurrentNav === 'function') {
       setTimeout(() => {
         highlightCurrentNav(templateElement);
+        if (typeof highlightJourneyNav === 'function') {
+          highlightJourneyNav(templateElement);
+        }
       }, 0);
+    }
+    loadJourneyBannerIfNeeded();
+  }
+}
+
+/**
+ * Carica moduli journey e mostra banner se profilo salvato
+ */
+async function loadJourneyBannerIfNeeded() {
+  const skipBannerPages = ['test.html', 'il-tuo-percorso.html', 'da-dove-inizi.html'];
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  if (skipBannerPages.includes(currentPage)) {
+    return;
+  }
+
+  if (window.__journeyBannerInit) {
+    if (typeof initJourneyBanner === 'function') {
+      initJourneyBanner();
+    }
+    return;
+  }
+
+  const basePath = getBasePath();
+
+  const loadScript = (src) =>
+    new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src*="${src}"]`)) {
+        resolve();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `${basePath}js/${src}`;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.body.appendChild(script);
+    });
+
+  try {
+    if (typeof sanitizeHTML !== 'function') {
+      await loadScript('utils.js');
+    }
+    await loadScript('modules/journey-config.js');
+    await loadScript('modules/journey-hub.js');
+    window.__journeyBannerInit = true;
+    if (typeof initJourneyBanner === 'function') {
+      initJourneyBanner();
+    }
+  } catch (err) {
+    if (window.DEBUG_MODE) {
+      console.warn('Journey banner non caricato:', err);
     }
   }
 }

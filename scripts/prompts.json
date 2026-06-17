@@ -13,6 +13,48 @@
       "figcaption": "I tre pilastri: Stili Base, Gradienti, Archetipi"
     }
   },
+  "da-dove-inizi.html": {
+    "porte": {
+      "prompt": "Abstract surrealist composition with four soft doorways or portals in pastel colors, welcoming paths, Cloud Dancer off-white warm tones, dreamlike quality, non-photorealistic, representing different entry points to self-discovery, no text, no words, no letters, purely visual and painterly",
+      "position": "after-wiki-lead",
+      "alt": "Quattro porte astratte che rappresentano i diversi punti di ingresso al sito",
+      "figcaption": "Quattro modi di entrare, un solo obiettivo: capirsi"
+    },
+    "sentiero": {
+      "prompt": "Abstract gentle path winding through soft pastel landscape, flowing shapes suggesting a personalized journey after self-assessment, warm welcoming atmosphere, surreal but calm, non-photorealistic, no text, no words, no letters, purely visual and painterly",
+      "position": "after-journey-cards",
+      "alt": "Sentiero astratto che rappresenta il percorso personalizzato dopo il test",
+      "figcaption": "Dopo il test, il percorso si adatta a te"
+    }
+  },
+  "il-tuo-percorso.html": {
+    "passi": {
+      "prompt": "Abstract composition with three flowing steps or platforms in soft pastel greens and beiges, representing a guided three-step journey, surreal dreamlike quality, welcoming and orderly, non-photorealistic, no text, no words, no letters, purely visual and painterly",
+      "position": "after-wiki-lead",
+      "alt": "Tre passi astratti che rappresentano il percorso guidato personalizzato",
+      "figcaption": "Profilo, pratica, approfondimento"
+    },
+    "consapevolezza": {
+      "prompt": "Abstract flowing shapes evolving gently over time, soft pastel Cloud Dancer palette, representing awareness growing without perfection, surreal harmonious composition, non-photorealistic, welcoming, no text, no words, no letters, purely visual and painterly",
+      "position": "after-journey-hub",
+      "alt": "Composizione astratta che rappresenta la consapevolezza relazionale nel tempo",
+      "figcaption": "Consapevolezza, non perfezione"
+    }
+  },
+  "test.html": {
+    "intro": {
+      "prompt": "Abstract surrealist mirror or reflection in soft pastel colors, gentle self-observation without judgment, warm Cloud Dancer tones, dreamlike quality, non-photorealistic, welcoming introspection, no text, no words, no letters, purely visual and painterly",
+      "position": "after-wiki-lead",
+      "alt": "Riflesso astratto che rappresenta l'auto-osservazione senza giudizio",
+      "figcaption": "Un primo passo, non un verdetto"
+    },
+    "passi": {
+      "prompt": "Abstract composition with gentle branching paths in soft pastel greens and warm beiges, representing personalized next steps after self-discovery, surreal calm atmosphere, Cloud Dancer palette, non-photorealistic, welcoming, no text, no words, no letters, purely visual and painterly",
+      "position": "before-results",
+      "alt": "Percorsi astratti che rappresentano i passi successivi dopo il test",
+      "figcaption": "Dopo il test, il percorso si apre"
+    }
+  },
   "fondamenti.html": {
     "attaccamento": {
       "prompt": "Abstract representation of a secure bond, two flowing shapes connecting gently, soft pastel colors, warmth and safety, non-photorealistic, surreal but comforting, no text, no words, no letters, purely visual and painterly",
