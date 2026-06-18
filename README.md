@@ -1,96 +1,79 @@
 # Stili di Attaccamento Wiki
 
-Webapp PWA statica mobile-first che presenta una wiki sugli stili di attaccamento, basata sulla teoria di Bowlby e Ainsworth.
+Wiki italiana sugli stili di attaccamento: chiara, compassionevole, senza giudizio.
 
-## Panoramica
-
-Progetto che fornisce informazioni accessibili sugli stili di attaccamento, organizzate come una wiki. Focus sulla **consapevolezza**, non sulla "guarigione", con approccio compassionevole e evidence-based.
-
-## Struttura
-
-```
-stiliattaccamento/
-├── docs/              # Documenti di specifica
-│   └── documentation/ # Architettura, deploy, API
-├── jtbd/              # Personas e job stories
-├── public/            # File statici (pubblicati su Cloudflare Pages)
-├── scripts/           # Pipeline SEO, performance, immagini
-└── tests/             # Unit, E2E, validazione, accessibilità
-```
-
-## Stack tecnologico
-
-- **Frontend**: HTML5, CSS3, JavaScript (vanilla ES6+)
-- **Hosting**: Cloudflare Pages
-- **Design System**: Material Design M3 (light mode, colori pastello verde-beige)
-- **PWA**: Service Worker (`sw.js`), manifest, icone 192/512
-- **SEO/AI**: Schema.org, `sitemap.xml`, `robots.txt`, `llms.txt`
-- **Immagini**: Generate via Qwen Text2Image API, processate con ImageMagick
-
-## Setup locale
-
-1. Clona il repository
-2. Configura `.env` da `.env.example` (per Qwen image generation API)
-   - Richiede: `QWEN_API_KEY`, `QWEN_URL_IMAGE`, `QWEN_MODEL_IMAGE`
-   - Vedi `scripts/ENV_SETUP.md` per dettagli
-3. Installa dipendenze: `npm install`
-4. Apri `public/index.html` in un browser o usa un server locale (porta 8090 per i test E2E)
-5. (Opzionale) Genera immagini: `npm run generate-images -- --limit=5`
-
-## Script npm principali
-
-| Comando | Descrizione |
-|---------|-------------|
-| `npm run seo` | Inject meta tag, sitemap, validazione SEO |
-| `npm run perf` | Font non bloccanti, preload, script globali |
-| `npm run inject-a11y` | Skip link e id su `<main>` |
-| `npm run generate-images` | Immagini Qwen per le pagine wiki |
-| `npm test` | Unit test (Vitest) |
-| `npm run test:e2e` | Test E2E (Playwright) |
-| `npm run test:validation` | HTML, CSS, link, schema, stile linguistico |
-| `npm run test:accessibility` | Test axe-core (Playwright) |
-| `npm run test:all` | Suite completa |
-
-Vedi `scripts/README.md` per la pipeline completa e l'ordine consigliato dopo modifiche HTML.
-
-## Sviluppo
-
-Vedi [CONTRIBUTING.md](./CONTRIBUTING.md) per workflow completo e standard di codice.
-
-Dopo modifiche alle pagine HTML:
-
-```bash
-npm run seo && npm run perf && npm run inject-a11y
-npm run test:all
-```
-
-## Documentazione
-
-- **[CONTRIBUTING.md](./CONTRIBUTING.md)**: Guida contributori
-- **[STANDARDS.md](./STANDARDS.md)**: Standard di codice
-- **[SECURITY.md](./SECURITY.md)**: Policy sicurezza
-- **[docs/documentation/ARCHITECTURE.md](./docs/documentation/ARCHITECTURE.md)**: Architettura
-- **[docs/documentation/DEPLOYMENT.md](./docs/documentation/DEPLOYMENT.md)**: Deploy guide
-- **[docs/documentation/API.md](./docs/documentation/API.md)**: API esterne
-- **[docs/documentation/STANDARD_PROJECT_FILES.md](./docs/documentation/STANDARD_PROJECT_FILES.md)**: Riferimento file standard
-- **[.cursorrules](./.cursorrules)**: Regole AI assistant
-
-## Deploy
-
-Deploy automatico su Cloudflare Pages da branch `main`. Build directory: `public/`. Nessun build step.
-
-## Funzionalità
-
-Wiki navigation, test auto-valutazione (SurveyJS), mappa personale (Chart.js), 12 profili (Secure, Ansioso, Evitante, Oscillante × 3 livelli), dinamiche di coppia, guida supporto partner, quando cercare aiuto, storie reali, esercizi, approfondimenti tematici, libri, PWA offline, SEO optimisation.
-
-## Sicurezza
-
-Vedi [SECURITY.md](./SECURITY.md). **Non committare** file `.env` con credenziali.
-
-## Contribuire
-
-Contributi benvenuti! Leggi [CONTRIBUTING.md](./CONTRIBUTING.md) per iniziare.
+**Sito:** [stiliattaccamento.it](https://stiliattaccamento.it)
 
 ---
 
-**Nota**: Questo progetto promuove consapevolezza, non "guarigione".
+## Di cosa si tratta
+
+Alcune relazioni ti stancano più di quanto vorresti. Ti agiti quando il partner si allontana, o l'intimità ti mette in fuga. Spesso non è un difetto di carattere: è un **pattern** che si è formato presto, con le figure che ti hanno accudito, e che in adulto si ripete nelle relazioni — spesso senza che tu lo scelga davvero.
+
+Questo sito ti aiuta a **capire** come cerchi vicinanza, come regoli la distanza e come interpreti se l'altro ci sarà o no. Non promette di "guarirti". Punta alla **consapevolezza**: osservare il proprio modo di amare con più chiarezza e meno vergogna.
+
+La teoria di riferimento è quella di **Bowlby** e **Ainsworth**, resa accessibile e pratica.
+
+## Cosa trovi sul sito
+
+### Per iniziare
+
+- **[Test di auto-valutazione](https://stiliattaccamento.it/test.html)** — 12 domande, circa 5–10 minuti. Ti dà un'indicazione sullo stile prevalente e sul livello di intensità.
+- **[Da dove iniziare](https://stiliattaccamento.it/da-dove-inizi.html)** — Se non sai da che porta entrare: capire te stesso, supportare il partner, uscire da un blocco, o approfondire la teoria.
+- **[Mappa personale](https://stiliattaccamento.it/mappa-personale.html)** — Visualizzazione interattiva su cinque dimensioni, utile dopo il test.
+
+### Fondamenti e modelli
+
+- **[Fondamenti](https://stiliattaccamento.it/fondamenti.html)** — Cos'è l'attaccamento, i quattro bisogni di Bowlby, i Modelli Operativi Interni.
+- **[I 4 stili base](https://stiliattaccamento.it/stili-base.html)** — Secure, Ansioso, Evitante, Oscillante: pattern e comportamenti tipici.
+- **[Modello a gradienti](https://stiliattaccamento.it/modello-gradienti.html)** — Gli stili non sono etichette fisse: due assi (ansia ed evitamento) e tre livelli di intensità.
+- **[Archetipi junghiani](https://stiliattaccamento.it/archetipi.html)** — Metafore tarocchistiche per i dodici profili: un modo diverso di riconoscersi, non una diagnosi.
+
+### I 12 profili
+
+Ogni stile base ha tre livelli — **basso**, **medio**, **alto** — per un totale di dodici profili:
+
+
+| Stile      | Basso                                                                                | Medio                                                                           | Alto                                                                      |
+| ---------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Ansioso    | [L'Amante Consapevole](https://stiliattaccamento.it/profili/ansioso-basso.html)      | [L'Innamorato](https://stiliattaccamento.it/profili/ansioso-medio.html)         | [Il Matto](https://stiliattaccamento.it/profili/ansioso-alto.html)        |
+| Evitante   | [L'Imperatore Consapevole](https://stiliattaccamento.it/profili/evitante-basso.html) | [L'Imperatore](https://stiliattaccamento.it/profili/evitante-medio.html)        | [L'Eremita](https://stiliattaccamento.it/profili/evitante-alto.html)      |
+| Secure     | [Il Mago Consapevole](https://stiliattaccamento.it/profili/secure-basso.html)        | [Il Saggio Maturo](https://stiliattaccamento.it/profili/secure-medio.html)      | [L'Illuminato](https://stiliattaccamento.it/profili/secure-alto.html)     |
+| Oscillante | [La Forza Integrata](https://stiliattaccamento.it/profili/disorganizzato-basso.html) | [Il Pellegrino](https://stiliattaccamento.it/profili/disorganizzato-medio.html) | [La Torre](https://stiliattaccamento.it/profili/disorganizzato-alto.html) |
+
+
+### Relazioni, pratica e approfondimenti
+
+- **[Esercizi](https://stiliattaccamento.it/esercizi.html)** — Pratiche quotidiane, per stile e per livello.
+- **[Dinamiche di coppia](https://stiliattaccamento.it/dinamiche-coppia.html)** — Cosa succede quando due stili si incontrano.
+- **[Come supportare il partner](https://stiliattaccamento.it/come-supportare-partner.html)** — Per chi accompagna qualcuno senza colpevolizzare nessuno.
+- **[Quando cercare aiuto](https://stiliattaccamento.it/quando-cercare-aiuto.html)** — Indicazioni su terapia e supporto professionale.
+- **[Storie reali](https://stiliattaccamento.it/storie-reali.html)** — Narrazioni anonime di consapevolezza.
+- **[Approfondimenti](https://stiliattaccamento.it/approfondimenti.html)** — Temi verticali: focusing, sessualità, famiglia, lavoro, lutto e altro.
+- **[Libri](https://stiliattaccamento.it/libri.html)** e **[Risorse](https://stiliattaccamento.it/risorse.html)** — Letture e glossario.
+
+## Come usare il sito
+
+Non serve leggere tutto in sequenza. Puoi:
+
+1. Fare il **test** e leggere il profilo che ti corrisponde.
+2. Scegliere un **percorso** dalla pagina [Da dove iniziare](https://stiliattaccamento.it/da-dove-inizi.html).
+3. Esplorare il wiki a piacere, quando hai voglia di andare oltre.
+
+Il sito funziona anche **offline** (PWA): puoi installarlo sul telefono o sul computer e consultarlo senza connessione.
+
+## Terminologia
+
+- **Secure, Ansioso, Evitante, Oscillante** — I quattro stili base. In letteratura l'oscillante compare spesso come "disorganizzato"; qui usiamo **oscillante** perché descrive meglio l'esperienza di alternare vicinanza e distanza, senza suonare come una condanna.
+- **Modello a gradienti** — Non sei in una categoria fissa: hai un punteggio su ansia (paura di essere lasciato) e su evitamento (paura dell'intimità), e il mix può cambiare nel tempo e nelle relazioni.
+- **Linguaggio inclusivo** — Partner, persona, chi: niente riferimenti di genere quando non servono.
+
+## Cosa questo sito non è
+
+Il test e la mappa personale servono all'**auto-osservazione**, non alla diagnosi. Non sostituiscono un consulto con un professionista.
+
+Se provi disagio forte o duraturo, conviene rivolgersi a un terapeuta che conosce l'attaccamento. La pagina [Quando cercare aiuto](https://stiliattaccamento.it/quando-cercare-aiuto.html) può orientarti.
+
+---
+
+*Consapevolezza, non guarigione.*
