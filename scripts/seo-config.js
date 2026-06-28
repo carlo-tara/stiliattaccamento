@@ -1,7 +1,7 @@
 // seo-config.js
 // Configurazione SEO condivisa tra script di generazione
 
-const SITE_URL = 'https://stiliattaccamento.it';
+const SITE_URL = 'https://stiliattaccamento.com';
 const SITE_NAME = 'Stili di Attaccamento Wiki';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/index-hero.webp`;
 const DEFAULT_OG_IMAGE_ALT =
