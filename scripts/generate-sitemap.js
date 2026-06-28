@@ -14,7 +14,10 @@ const {
 } = require('./seo-config');
 
 const PUBLIC_DIR = resolve(__dirname, '../public');
-const OUTPUT = join(PUBLIC_DIR, 'sitemap.xml');
+const OUTPUTS = [
+  join(PUBLIC_DIR, 'sitemap.xml'),
+  join(PUBLIC_DIR, 'com-sitemap.xml'),
+];
 
 function getPriority(relativePath) {
   if (SITEMAP_PRIORITY[relativePath]) {
@@ -77,8 +80,10 @@ ${urls.join('\n')}
 </urlset>
 `;
 
-  writeFileSync(OUTPUT, xml, 'utf-8');
-  console.log(`✅ Sitemap generata: ${OUTPUT} (${files.length} URL)`);
+  for (const output of OUTPUTS) {
+    writeFileSync(output, xml, 'utf-8');
+    console.log(`✅ Sitemap generata: ${output} (${files.length} URL)`);
+  }
 }
 
 generateSitemap();
