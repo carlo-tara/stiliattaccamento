@@ -1,8 +1,6 @@
 // journey-hub.js
 // Hub percorso guidato: legge testResults e renderizza i 3 prossimi passi
 
-const JOURNEY_STORAGE_KEY = 'testResults';
-
 /**
  * @param {string} [basePath]
  * @returns {string}

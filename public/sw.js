@@ -1,10 +1,10 @@
 // Service Worker — cache-first per asset statici, network-first per HTML
 
-const CACHE_NAME = 'stili-attaccamento-v5';
+const CACHE_NAME = 'stili-attaccamento-v6';
 const PRECACHE_URLS = [
-  '/css/main.css',
-  '/css/themes.css',
+  '/css/site.min.css',
   '/manifest.json',
+  '/js/constants.js',
   '/js/template-loader.js',
   '/js/theme.js',
   '/js/mobile-menu.js',
@@ -18,7 +18,7 @@ const PRECACHE_URLS = [
   '/templates/header.html',
   '/templates/topbar.html',
   '/templates/footer.html',
-  '/images/index-hero.webp',
+  '/images/index-hero-700.webp',
 ];
 
 const CACHEABLE_EXTENSIONS = /\.(css|js|webp|png|jpg|jpeg|svg|woff2?)$/i;

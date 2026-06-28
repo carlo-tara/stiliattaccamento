@@ -147,10 +147,20 @@ public/
 ### Performance
 
 - Global CDN provided by Cloudflare
-- Static assets cached at the edge
+- Static assets cached at the edge via [`public/_headers`](../public/_headers) (long cache for CSS/JS/fonts/images)
 - HTTPS enabled by default
 - Compression enabled automatically
 - Service Worker caches CSS/JS/images client-side
+- **CSS bundle**: run `npm run build:css` before deploy to regenerate `public/css/site.min.css` from `themes.css`, `fonts.css`, and `main.css`
+- **Font self-hosting**: Lato and Playfair Display in `public/fonts/` (no Google Fonts request chain)
+- **Cloudflare Rocket Loader**: must be **OFF** (Speed → Optimization). Rocket Loader injects render-blocking `rocket-loader.min.js` and breaks vanilla deferred scripts
+
+Before each release that touches CSS:
+
+```bash
+npm run build:css
+npm run inject-performance   # or npm run perf
+```
 
 ### Security Headers
 
@@ -168,7 +178,7 @@ See [SECURITY.md](../../SECURITY.md) for full policy.
 | Asset type | Strategy |
 |------------|----------|
 | HTML | Short cache; SW network-first |
-| CSS/JS | Long cache; bump `?v=` on release |
+| CSS/JS | Long cache (`max-age=31536000` via `_headers`); bump `?v=` on release |
 | Images | Long cache |
 | Service Worker | Always revalidate on navigation |
 

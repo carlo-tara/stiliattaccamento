@@ -91,8 +91,6 @@ function highlightCurrentNav(header = document.querySelector('header')) {
   submenu.setAttribute('aria-hidden', 'false');
 }
 
-const JOURNEY_STORAGE_KEY = 'testResults';
-
 /**
  * Evidenzia "Il tuo percorso" se l'utente ha completato il test
  * @param {HTMLElement} [header]

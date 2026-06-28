@@ -3,6 +3,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { resolve } from 'path';
 import { loadPublicScript } from '../helpers/test-utils.js';
 
+loadPublicScript(resolve(__dirname, '../../public/js/constants.js'));
 loadPublicScript(resolve(__dirname, '../../public/js/modules/journey-config.js'));
 loadPublicScript(resolve(__dirname, '../../public/js/modules/journey-hub.js'));
 

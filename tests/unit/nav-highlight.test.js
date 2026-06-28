@@ -4,6 +4,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { resolve } from 'path';
 import { cleanupDOM, loadPublicScript } from '../helpers/test-utils.js';
 
+loadPublicScript(resolve(__dirname, '../../public/js/constants.js'));
 loadPublicScript(resolve(__dirname, '../../public/js/nav-highlight.js'));
 
 describe('nav-highlight.js', () => {

@@ -12,6 +12,9 @@ const SITE_CONFIG = {
   LLMS_TXT: 'https://stiliattaccamento.it/llms.txt',
 };
 
+/** Chiave localStorage per i risultati del test (journey hub, nav highlight) */
+const JOURNEY_STORAGE_KEY = 'testResults';
+
 /**
  * Costanti per il sistema di punteggi del test
  */

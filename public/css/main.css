@@ -229,6 +229,15 @@ header {
   backdrop-filter: blur(10px);
 }
 
+#header-placeholder {
+  min-height: 4.5rem;
+  background-color: var(--color-surface, rgb(248 247 243));
+}
+
+#topbar-placeholder {
+  min-height: 2.5rem;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -1001,22 +1010,12 @@ main .container > h1 + .wiki-image {
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: var(--color-bg-primary); /* Cloud Dancer */
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
+  background:
     radial-gradient(circle at 20% 50%, var(--color-bg-accent-1) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, var(--color-bg-accent-2) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, var(--color-bg-accent-3) 0%, transparent 40%);
-  opacity: 0.4;
-  z-index: 0;
+    radial-gradient(circle at 40% 20%, var(--color-bg-accent-3) 0%, transparent 40%),
+    var(--color-bg-primary);
+  background-repeat: no-repeat;
 }
 
 .hero .container {
@@ -1269,9 +1268,16 @@ footer,
   display: block;
 }
 
+.hero .wiki-image {
+  aspect-ratio: 4 / 3;
+  min-height: 18.75rem;
+  max-width: 100%;
+}
+
 .hero .wiki-image__img {
-  height: 300px;
   width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center;
 }

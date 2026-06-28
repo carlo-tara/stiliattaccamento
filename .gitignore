@@ -39,6 +39,7 @@ dist/
 build/
 *.min.js
 *.min.css
+!public/css/site.min.css
 
 # Temporary files
 *.tmp
