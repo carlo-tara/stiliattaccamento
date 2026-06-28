@@ -89,6 +89,7 @@ async function initSurvey() {
       throw new Error('surveyContainer non trovato');
     }
     survey.render(container);
+    registerWebMcpTestTools();
     
   } catch (error) {
     // Log error per debugging (solo se DEBUG_MODE è attivo)
@@ -181,237 +182,75 @@ function calculateTestResults(data) {
     timestamp: new Date().toISOString()
   };
   localStorage.setItem('testResults', JSON.stringify(testResults));
-  
-  // Mostra risultati
+
+  if (typeof trackEvent === 'function') {
+    trackEvent('test_completed', {
+      attachment_style: primaryStyle,
+      attachment_level: level,
+    });
+  }
+
   showTestResults(scores, primaryStyle, level);
 }
 
+const ATTACHMENT_TEST_QUESTION_COUNT = 12;
+let webMcpTestToolsRegistered = false;
+
 /**
- * Mostra i risultati del test
+ * Registra strumenti WebMCP imperativi per il test di attaccamento
  */
-function showTestResults(scores, primaryStyle, level) {
-  const resultsDiv = document.getElementById('results');
-  const resultsContent = document.getElementById('results-content');
-  
-  if (!resultsDiv || !resultsContent) return;
-  
-  const styleNames = {
-    'secure': 'Secure',
-    'ansioso': 'Ansioso',
-    'evitante': 'Evitante',
-    'disorganizzato': 'Oscillante'
-  };
-  
-  const levelNames = {
-    'basso': 'basso',
-    'medio': 'medio',
-    'alto': 'alto'
-  };
-  
-  const totalQuestions = 12;
-  const maxPossible = {
-    anxious: totalQuestions * 3,
-    secure: totalQuestions * 1,
-    avoidant: totalQuestions * 2,
-    disorganized: totalQuestions * 3
-  };
-  
-  // Usa DOM API sicure invece di innerHTML
-  resultsContent.innerHTML = ''; // Pulisci contenuto esistente
-  
-  // Messaggio Empatico Introduttivo
-  const introCard = createSafeElement('div', {
-    style: {
-      background: 'linear-gradient(135deg, rgba(168, 213, 186, 0.1) 0%, rgba(168, 213, 186, 0.05) 100%)',
-      borderLeft: '4px solid var(--color-accent-secure)',
-      padding: 'var(--spacing-6)',
-      borderRadius: 'var(--radius-md)',
-      marginBottom: 'var(--spacing-6)'
-    }
-  });
-  
-  const introTitle = createSafeElement('h3', {
-    style: { color: 'var(--color-accent-secure)', marginTop: '0' }
-  }, 'Il tuo profilo: ' + sanitizeHTML(styleNames[primaryStyle]) + ' ' + sanitizeHTML(levelNames[level]));
-  introCard.appendChild(introTitle);
-  
-  const introText = createSafeElement('p', {
-    style: { fontSize: 'var(--font-size-lg)' }
-  }, 'Non c\'è nulla di sbagliato in te. Questo profilo descrive semplicemente come hai imparato a relazionarti con gli altri. Non è un\'etichetta o un giudizio - è un punto di partenza per acquisire consapevolezza.');
-  introCard.appendChild(introText);
-  
-  resultsContent.appendChild(introCard);
-  
-  // Sezione "Cosa significa questo per te?"
-  const meaningCard = createSafeElement('div', {
-    style: {
-      backgroundColor: 'var(--color-surface-elevated)',
-      padding: 'var(--spacing-6)',
-      borderRadius: 'var(--radius-md)',
-      marginBottom: 'var(--spacing-6)'
-    }
-  });
-  
-  const meaningTitle = createSafeElement('h3', {}, 'Cosa significa questo per te?');
-  meaningCard.appendChild(meaningTitle);
-  
-  const meaningText = createSafeElement('p', {}, '');
-  const meaningDescriptions = {
-    'secure': 'Hai sviluppato un modo sano di relazionarti con gli altri. Riesci a bilanciare indipendenza e intimità, e generalmente ti senti a tuo agio nelle relazioni.',
-    'ansioso': 'Tendi a cercare rassicurazione e vicinanza nelle relazioni. Potresti preoccuparti dell\'abbandono e avere bisogno di conferme frequenti. Questo non significa che sei "troppo" - significa semplicemente che hai bisogno di più sicurezza nelle relazioni.',
-    'evitante': 'Tendi a valorizzare l\'indipendenza e potresti sentirti a disagio con troppa vicinanza. Non significa che non ami o non ti importi - significa che hai imparato a proteggerti mantenendo una certa distanza.',
-    'disorganizzato': 'Potresti oscillare tra desiderio di vicinanza e bisogno di distanza. Le relazioni possono sembrare confuse o contraddittorie. Non sei "rotto" - hai semplicemente imparato pattern complessi che ora puoi osservare e comprendere meglio.'
-  };
-  
-  meaningText.appendChild(document.createTextNode(meaningDescriptions[primaryStyle] || 'Ogni stile di attaccamento ha le sue caratteristiche. Il tuo profilo ti aiuta a capire meglio i tuoi pattern e come lavorare con loro, non contro di loro.'));
-  meaningCard.appendChild(meaningText);
-  
-  resultsContent.appendChild(meaningCard);
-  
-  // Stile prevalente e livello (in formato più compatto)
-  const infoDiv = createSafeElement('div', {
-    style: {
-      display: 'flex',
-      gap: 'var(--spacing-4)',
-      flexWrap: 'wrap',
-      marginBottom: 'var(--spacing-6)'
-    }
-  });
-  
-  const styleBadge = createSafeElement('div', {
-    style: {
-      padding: 'var(--spacing-2) var(--spacing-4)',
-      backgroundColor: 'var(--color-accent)',
-      color: 'white',
-      borderRadius: 'var(--radius-md)',
-      fontSize: 'var(--font-size-sm)'
-    }
-  });
-  styleBadge.appendChild(document.createTextNode('Stile: ' + sanitizeHTML(styleNames[primaryStyle])));
-  infoDiv.appendChild(styleBadge);
-  
-  const levelBadge = createSafeElement('div', {
-    style: {
-      padding: 'var(--spacing-2) var(--spacing-4)',
-      backgroundColor: 'var(--color-surface-elevated)',
-      borderRadius: 'var(--radius-md)',
-      fontSize: 'var(--font-size-sm)'
-    }
-  });
-  levelBadge.appendChild(document.createTextNode('Livello: ' + sanitizeHTML(levelNames[level])));
-  infoDiv.appendChild(levelBadge);
-  
-  resultsContent.appendChild(infoDiv);
-  
-  // Punteggi
-  const scoresTitle = createSafeElement('h4', {
-    style: { marginTop: 'var(--spacing-6)' }
-  }, 'I Tuoi Punteggi:');
-  resultsContent.appendChild(scoresTitle);
-  
-  const scoresList = createSafeElement('ul', {
-    style: { marginLeft: 'var(--spacing-6)', marginTop: 'var(--spacing-4)' }
-  });
-  
-  const scoreItems = [
-    `Ansioso: ${scores.anxious}/${maxPossible.anxious}`,
-    `Secure: ${scores.secure}/${maxPossible.secure}`,
-    `Evitante: ${scores.avoidant}/${maxPossible.avoidant}`,
-    `Oscillante: ${scores.disorganized}/${maxPossible.disorganized}`
-  ];
-  
-  scoreItems.forEach(text => {
-    const li = createSafeElement('li', {}, text);
-    scoresList.appendChild(li);
-  });
-  resultsContent.appendChild(scoresList);
-  
-  // Link azioni
-  const actionsDiv = createSafeElement('div', {
-    style: {
-      marginTop: 'var(--spacing-6)',
-      display: 'flex',
-      gap: 'var(--spacing-4)',
-      flexWrap: 'wrap'
-    }
-  });
-  
-  // Valida URL prima di creare link
-  const profileUrl = isValidAttachmentStyle(primaryStyle) && isValidLevel(level) 
-    ? `profili/${primaryStyle}-${level}.html` 
-    : 'stili-base.html';
-  
-  const profileLink = createSafeElement('a', {
-    href: profileUrl,
-    class: 'btn btn-secondary'
-  }, 'Vedi profilo completo');
-  actionsDiv.appendChild(profileLink);
+function registerWebMcpTestTools() {
+  if (
+    webMcpTestToolsRegistered ||
+    typeof isWebMcpSupported !== 'function' ||
+    !isWebMcpSupported()
+  ) {
+    return;
+  }
 
-  const journeyLink = createSafeElement('a', {
-    href: 'il-tuo-percorso.html',
-    class: 'btn btn-primary'
-  }, 'Vai al tuo percorso');
-  actionsDiv.insertBefore(journeyLink, actionsDiv.firstChild);
-  
-  const mapLink = createSafeElement('a', {
-    href: 'mappa-personale.html',
-    class: 'btn btn-secondary'
-  }, 'Crea mappa personale');
-  actionsDiv.appendChild(mapLink);
-  
-  // Link a storie reali simili
-  const storiesLink = createSafeElement('a', {
-    href: 'storie-reali.html',
-    class: 'btn btn-secondary'
-  }, 'Leggi storie simili');
-  actionsDiv.appendChild(storiesLink);
-  
-  resultsContent.appendChild(actionsDiv);
-  
-  // Link a "Quando cercare aiuto" se livello Alto
-  if (level === 'alto') {
-    const helpCard = createSafeElement('div', {
-      style: {
-        marginTop: 'var(--spacing-6)',
-        padding: 'var(--spacing-6)',
-        backgroundColor: 'rgba(244, 165, 174, 0.1)',
-        borderLeft: '4px solid var(--color-accent)',
-        borderRadius: 'var(--radius-md)'
+  const answerProperties = buildAttachmentAnswerProperties(ATTACHMENT_TEST_QUESTION_COUNT);
+
+  document.modelContext.registerTool({
+    name: 'get_attachment_test_info',
+    description:
+      'Descrivi il test di auto-valutazione degli stili di attaccamento disponibile su questa pagina.',
+    inputSchema: {
+      type: 'object',
+      properties: {},
+    },
+    execute: async () => JSON.stringify(getAttachmentTestInfoPayload()),
+    annotations: {
+      readOnlyHint: true,
+    },
+  });
+
+  document.modelContext.registerTool({
+    name: 'complete_attachment_test',
+    description:
+      'Completa il test di auto-valutazione con 12 risposte e mostra il profilo di attaccamento risultante.',
+    inputSchema: {
+      type: 'object',
+      properties: answerProperties,
+      required: Object.keys(answerProperties),
+    },
+    execute: async (answers) => {
+      const validation = validateAttachmentAnswers(answers, ATTACHMENT_TEST_QUESTION_COUNT);
+      if (!validation.valid) {
+        return JSON.stringify({ status: 'error', message: validation.error });
       }
-    });
-    
-    const helpTitle = createSafeElement('h4', {}, 'Supporto professionale');
-    helpCard.appendChild(helpTitle);
-    
-    const helpText = createSafeElement('p', {}, 'Con un livello Alto, potrebbe essere utile considerare il supporto di un professionista. Non c\'è vergogna nel cercare aiuto - è un atto di coraggio e cura di sé.');
-    helpCard.appendChild(helpText);
-    
-    const helpLink = createSafeElement('a', {
-      href: 'quando-cercare-aiuto.html',
-      class: 'btn btn-primary',
-      style: { marginTop: 'var(--spacing-4)', display: 'inline-block' }
-    }, 'Quando cercare aiuto');
-    helpCard.appendChild(helpLink);
-    
-    resultsContent.appendChild(helpCard);
-  }
-  
-  // Prossimi passi (journey hub)
-  const journeyStepsHost = createSafeElement('div', {
-    id: 'test-journey-steps',
-    style: { marginTop: 'var(--spacing-6)' }
-  });
-  resultsContent.appendChild(journeyStepsHost);
 
-  if (typeof renderJourneyNextSteps === 'function') {
-    renderJourneyNextSteps(journeyStepsHost, {
-      stile: primaryStyle,
-      livello: level,
-      basePath: '',
-    });
-  }
-  
-  resultsDiv.style.display = 'block';
-  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      calculateTestResults(validation.answers);
+      return JSON.stringify({
+        status: 'completed',
+        message: 'Risultati del test calcolati e mostrati nella pagina.',
+      });
+    },
+    annotations: {
+      readOnlyHint: false,
+      untrustedContentHint: true,
+    },
+  });
+
+  webMcpTestToolsRegistered = true;
 }
 

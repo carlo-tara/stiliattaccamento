@@ -100,7 +100,9 @@
         </div>
 
         <!-- Form con 5 Slider -->
-        <form id="mappa-form" class="card mt-8">
+        <form id="mappa-form" class="card mt-8"
+          toolname="update_personal_map"
+          tooldescription="Imposta i punteggi sulle cinque dimensioni dell'attaccamento (0-10) e aggiorna la mappa personale con grafico radar e profilo identificato.">
           <h2>Le 5 dimensioni del tuo attaccamento</h2>
           <figure class="wiki-image">
             <img src="images/mappa-personale-cinque-dimensioni.webp" 
@@ -118,7 +120,8 @@
               <span class="slider-value" id="dim1-value" aria-hidden="true">5</span>
             </div>
             <div class="slider-container">
-              <input type="range" id="dim1" name="dim1" min="0" max="10" value="5" step="0.5" aria-labelledby="dim1-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5">
+              <input type="range" id="dim1" name="dim1" min="0" max="10" value="5" step="0.5" aria-labelledby="dim1-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"
+                toolparamdescription="Punteggio 0-10 sull'asse ansia-evitamento: 0-4 ansia, 4-6 equilibrio secure, 6-10 evitamento.">
               <div class="dimension-description">
                 <strong>SINISTRA (0-4):</strong> Ansia - Cerchi rassicurazione, temi l'abbandono<br>
                 <strong>CENTRO (4-6):</strong> Secure - Equilibrio fra connessione e autonomia<br>
@@ -134,7 +137,8 @@
               <span class="slider-value" id="dim2-value" aria-hidden="true">5</span>
             </div>
             <div class="slider-container">
-              <input type="range" id="dim2" name="dim2" min="0" max="10" value="5" step="0.5" aria-labelledby="dim2-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5">
+              <input type="range" id="dim2" name="dim2" min="0" max="10" value="5" step="0.5" aria-labelledby="dim2-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"
+                toolparamdescription="Punteggio 0-10 sulla finestra di tolleranza: 0-4 sottoattivato, 4-6 finestra ampia, 6-10 iper-attivato.">
               <div class="dimension-description">
                 <strong>SINISTRA (0-4):</strong> Sottoattivato - Intorpidito, disconnesso, congelato<br>
                 <strong>CENTRO (4-6):</strong> Finestra ampia - Puoi stare con emozioni e sensazioni<br>
@@ -150,7 +154,8 @@
               <span class="slider-value" id="dim3-value" aria-hidden="true">5</span>
             </div>
             <div class="slider-container">
-              <input type="range" id="dim3" name="dim3" min="0" max="10" value="5" step="0.5" aria-labelledby="dim3-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5">
+              <input type="range" id="dim3" name="dim3" min="0" max="10" value="5" step="0.5" aria-labelledby="dim3-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"
+                toolparamdescription="Punteggio 0-10 sulla coscienza dell'attaccamento: 0-4 inconsapevole, 4-6 consapevole, 6-10 iper-consapevole.">
               <div class="dimension-description">
                 <strong>SINISTRA (0-4):</strong> Inconsapevole - "Non so perché mi comporto così"<br>
                 <strong>CENTRO (4-6):</strong> Consapevole - "Riconosco il mio pattern"<br>
@@ -166,7 +171,8 @@
               <span class="slider-value" id="dim4-value" aria-hidden="true">5</span>
             </div>
             <div class="slider-container">
-              <input type="range" id="dim4" name="dim4" min="0" max="10" value="5" step="0.5" aria-labelledby="dim4-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5">
+              <input type="range" id="dim4" name="dim4" min="0" max="10" value="5" step="0.5" aria-labelledby="dim4-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"
+                toolparamdescription="Punteggio 0-10 sulla capacità di integrazione: 0-4 frammentato, 4-6 integrato, 6-10 super-integrato.">
               <div class="dimension-description">
                 <strong>SINISTRA (0-4):</strong> Frammentato - "Non capisco come è successo"<br>
                 <strong>CENTRO (4-6):</strong> Integrato - "Capisco la mia storia e cosa significa"<br>
@@ -182,7 +188,8 @@
               <span class="slider-value" id="dim5-value" aria-hidden="true">5</span>
             </div>
             <div class="slider-container">
-              <input type="range" id="dim5" name="dim5" min="0" max="10" value="5" step="0.5" aria-labelledby="dim5-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5">
+              <input type="range" id="dim5" name="dim5" min="0" max="10" value="5" step="0.5" aria-labelledby="dim5-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"
+                toolparamdescription="Punteggio 0-10 sulla resilienza relazionale: 0-4 fragile, 4-6 stabile, 6-10 robusta.">
               <div class="dimension-description">
                 <strong>SINISTRA (0-4):</strong> Fragile - Una difficoltà può far crollare la relazione<br>
                 <strong>CENTRO (4-6):</strong> Stabile - Difficoltà sono navigabili<br>
@@ -198,6 +205,8 @@
             <p id="average-interpretation">Sei nel viaggio di consapevolezza</p>
             <div id="level-badges"></div>
           </div>
+
+          <button type="submit" class="btn btn-secondary mt-8">Aggiorna mappa</button>
         </form>
 
         <!-- Grafico Radar -->

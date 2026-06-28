@@ -143,4 +143,35 @@ describe('mappa-personale.js', () => {
       }
     });
   });
+
+  describe('readMapScores', () => {
+    it('should read slider values and compute average', () => {
+      document.getElementById('dim1').value = '8';
+      document.getElementById('dim2').value = '6';
+      document.getElementById('dim3').value = '4';
+      document.getElementById('dim4').value = '6';
+      document.getElementById('dim5').value = '6';
+
+      const { punteggi, media } = readMapScores();
+
+      expect(punteggi).toEqual([8, 6, 4, 6, 6]);
+      expect(media).toBeCloseTo(6, 1);
+    });
+  });
+
+  describe('buildMapToolResponse', () => {
+    it('should return JSON payload for WebMCP agents', () => {
+      document.getElementById('dim1').value = '5';
+      document.getElementById('dim2').value = '5';
+      document.getElementById('dim3').value = '5';
+      document.getElementById('dim4').value = '5';
+      document.getElementById('dim5').value = '5';
+
+      const payload = JSON.parse(buildMapToolResponse());
+
+      expect(payload.punteggi).toEqual([5, 5, 5, 5, 5]);
+      expect(payload.media).toBe('5.0');
+      expect(payload.message).toContain('aggiornata');
+    });
+  });
 });

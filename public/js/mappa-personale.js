@@ -3,6 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initMappaPersonale();
+  initWebMcpMappaForm();
 
   for (let i = 1; i <= 5; i++) {
     const slider = document.getElementById(`dim${i}`);
@@ -270,4 +271,60 @@ function salvaMappa(punteggi, media) {
       timestamp: new Date().toISOString(),
     })
   );
+}
+
+const WEBMCP_MAP_TOOL_NAME = 'update_personal_map';
+const MAP_DIMENSION_COUNT = 5;
+
+/**
+ * Legge i punteggi correnti dagli slider della mappa
+ * @returns {{ punteggi: number[], media: number }}
+ */
+function readMapScores() {
+  const punteggi = [];
+  for (let i = 1; i <= MAP_DIMENSION_COUNT; i++) {
+    const slider = document.getElementById(`dim${i}`);
+    punteggi.push(parseFloat(slider.value));
+  }
+  const media = punteggi.reduce((a, b) => a + b, 0) / punteggi.length;
+  return { punteggi, media };
+}
+
+/**
+ * @returns {string}
+ */
+function buildMapToolResponse() {
+  const { punteggi, media } = readMapScores();
+  return JSON.stringify({
+    punteggi,
+    media: media.toFixed(1),
+    message: 'Mappa personale aggiornata.',
+  });
+}
+
+/**
+ * Gestisce submit e attivazione agente WebMCP per la mappa personale
+ */
+function initWebMcpMappaForm() {
+  const form = document.getElementById('mappa-form');
+  if (!form) {
+    return;
+  }
+
+  window.addEventListener('toolactivated', (event) => {
+    if (event.toolName === WEBMCP_MAP_TOOL_NAME) {
+      aggiornaMappa();
+    }
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    aggiornaMappa();
+
+    if (!event.agentInvoked || typeof event.respondWith !== 'function') {
+      return;
+    }
+
+    event.respondWith(Promise.resolve(buildMapToolResponse()));
+  });
 }
