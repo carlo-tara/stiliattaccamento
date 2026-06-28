@@ -1,36 +1,60 @@
 #!/usr/bin/env node
 // inject-performance.js
-// Inietta resource hints, font locali, CSS unificato e registrazione SW in tutte le pagine HTML
+// Inietta resource hints, font locali, CSS per pagina e registrazione SW
 
 const { readFileSync, writeFileSync } = require('fs');
 const { resolve, relative } = require('path');
 const { getAllHTMLFiles } = require('./lib/fs-utils');
-const { findInsertPoint } = require('./inject-seo.js');
 
 const PUBLIC_DIR = resolve(__dirname, '../public');
 const PERF_MARKER = '<!-- Performance: resource hints -->';
 const APP_SCRIPT_VERSION = '1.3.0';
-const CSS_VERSION = '1.3.1';
+const CSS_VERSION = '1.3.2';
 
 const FONTS_URL =
   'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700&display=swap';
 
-function buildPerfBlock({ cssPrefix, heroPreload }) {
-  const lines = [
-    PERF_MARKER,
-    '  <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>',
-    '  <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>',
-  ];
+function getStylesheets(relativePath) {
+  const sheets = ['site.min.css'];
+  if (relativePath.startsWith('profili/')) {
+    sheets.push('site-profiles.min.css');
+  }
+  if (relativePath === 'mappa-personale.html') {
+    sheets.push('site-mappa.min.css');
+  }
+  if (
+    relativePath.startsWith('approfondimenti/') ||
+    relativePath === 'approfondimenti.html' ||
+    relativePath === 'stili-base.html'
+  ) {
+    sheets.push('site-wiki.min.css');
+  }
+  return sheets;
+}
+
+function buildPerfBlock({ cssPrefix, heroPreload, stylesheets }) {
+  const lines = [PERF_MARKER];
+
+  stylesheets.forEach((sheet, index) => {
+    const href = `${cssPrefix}css/${sheet}?v=${CSS_VERSION}`;
+    if (index === 0) {
+      lines.push(`  <link rel="preload" href="${href}" as="style">`);
+    }
+    lines.push(`  <link rel="stylesheet" href="${href}">`);
+  });
 
   if (heroPreload) {
     lines.push(
-      '  <link rel="preload" href="/images/index-hero-700.webp" as="image" type="image/webp" fetchpriority="high">'
+      '  <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>',
+      '  <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>',
+      '  <link rel="preload" href="/images/index-hero-480.webp" as="image" type="image/webp" fetchpriority="high">'
+    );
+  } else {
+    lines.push(
+      '  <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>',
+      '  <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>'
     );
   }
-
-  lines.push(
-    `  <link rel="stylesheet" href="${cssPrefix}css/site.min.css?v=${CSS_VERSION}">`
-  );
 
   return `  ${lines.join('\n  ')}\n`;
 }
@@ -74,15 +98,7 @@ function removeOrphanPerfHints(html) {
     '\n'
   );
   result = result.replace(
-    /\s*<link rel="preload" href="(\.\.\/)*css\/main\.css" as="style">\n?/g,
-    '\n'
-  );
-  result = result.replace(
-    /\s*<link rel="preload" href="(\.\.\/)*css\/themes\.css" as="style">\n?/g,
-    '\n'
-  );
-  result = result.replace(
-    /\s*<link rel="preload" href="(\.\.\/)*css\/site\.min\.css[^"]*" as="style">\n?/g,
+    /\s*<link rel="preload" href="(\.\.\/)*css\/[^"]+\.css[^"]*" as="style">\n?/g,
     '\n'
   );
   result = result.replace(
@@ -97,7 +113,10 @@ function removeLegacyStylesheets(html) {
   return html
     .replace(/\s*<link rel="stylesheet" href="(\.\.\/)*css\/main\.css">\n?/g, '\n')
     .replace(/\s*<link rel="stylesheet" href="(\.\.\/)*css\/themes\.css">\n?/g, '\n')
-    .replace(/\s*<link rel="stylesheet" href="(\.\.\/)*css\/site\.min\.css[^"]*">\n?/g, '\n');
+    .replace(
+      /\s*<link rel="stylesheet" href="(\.\.\/)*css\/site(?:-profiles|-mappa|-wiki)?\.min\.css[^"]*">\n?/g,
+      '\n'
+    );
 }
 
 function removeDeadMainScript(html) {
@@ -118,34 +137,64 @@ function insertScriptAfter(html, afterFile, newScriptTag) {
   return `${html.slice(0, endTag + 9)}\n${newScriptTag}${html.slice(endTag + 9)}`;
 }
 
-function ensureSiteScripts(html, cssPrefix) {
-  const scripts = [
-    { file: 'constants.js', after: ['breadcrumb-generator.js', 'logger.js', 'utils.js'] },
-    { file: 'mobile-menu.js', after: ['theme.js', 'breadcrumb-generator.js'] },
-    {
-      file: 'nav-highlight.js',
-      after: ['constants.js', 'mobile-menu.js', 'theme.js', 'breadcrumb-generator.js'],
-    },
-    { file: 'cookie-banner.js', after: ['nav-highlight.js', 'mobile-menu.js', 'theme.js'] },
-    { file: 'gtm.js', after: ['cookie-banner.js'] },
-  ];
+const GLOBAL_SCRIPT_FILES = [
+  'constants.js',
+  'theme.js',
+  'mobile-menu.js',
+  'breadcrumb-generator.js',
+  'nav-highlight.js',
+  'template-loader.js',
+];
 
+const DEFER_SCRIPT_FILES = ['cookie-banner.js', 'gtm.js'];
+
+function removeLegacyGlobalScripts(html) {
   let result = html;
-  scripts.forEach(({ file, after }) => {
+  GLOBAL_SCRIPT_FILES.forEach((file) => {
+    result = result.replace(
+      new RegExp(`\\s*<script src="(?:\\.\\./)*js/${file}(\\?v=[^"]*)?"><\\/script>\\n?`, 'g'),
+      '\n'
+    );
+  });
+  return result.replace(/\n{3,}/g, '\n\n');
+}
+
+function ensureSiteScripts(html, cssPrefix) {
+  let result = removeLegacyGlobalScripts(html);
+
+  const bundleTag = `  <script src="${cssPrefix}js/site.min.js?v=${APP_SCRIPT_VERSION}" defer></script>\n`;
+  if (!result.includes('js/site.min.js')) {
+    const footerPlaceholder = result.indexOf('footer-placeholder');
+    if (footerPlaceholder !== -1) {
+      const insertAt = result.lastIndexOf('\n', footerPlaceholder);
+      result = `${result.slice(0, insertAt + 1)}${bundleTag}${result.slice(insertAt + 1)}`;
+    } else {
+      result = result.replace('</body>', `${bundleTag}</body>`);
+    }
+  }
+
+  DEFER_SCRIPT_FILES.forEach((file) => {
     if (result.includes(`js/${file}`)) {
       return;
     }
-    const tag = `  <script src="${cssPrefix}js/${file}?v=${APP_SCRIPT_VERSION}"></script>\n`;
-    let inserted = null;
-    for (const anchor of after) {
-      inserted = insertScriptAfter(result, `js/${anchor}`, tag);
-      if (inserted) {
-        break;
-      }
-    }
+    const tag = `  <script src="${cssPrefix}js/${file}?v=${APP_SCRIPT_VERSION}" defer></script>\n`;
+    const inserted = insertScriptAfter(result, 'js/site.min.js', tag);
     result = inserted || result.replace('</body>', `${tag}</body>`);
   });
+
   return result;
+}
+
+function ensureDeferOnGlobalScripts(html) {
+  return html
+    .replace(
+      /(<script\s+src="(?:\.\.\/)*js\/site\.min\.js\?v=[^"]+")(?!\s+defer)(>)/g,
+      '$1 defer$2'
+    )
+    .replace(
+      /(<script\s+src="(?:\.\.\/)*js\/(?:cookie-banner|gtm)\.js\?v=[^"]+")(?!\s+defer)(>)/g,
+      '$1 defer$2'
+    );
 }
 
 function ensureScriptCacheBust(html) {
@@ -200,13 +249,16 @@ function injectPerformance(filePath) {
   const original = html;
   const cssPrefix = getCssPrefix(relativePath);
   const heroPreload = relativePath === 'index.html';
+  const stylesheets = getStylesheets(relativePath);
 
   html = removePerfBlock(html);
   html = removeOrphanPerfHints(html);
   html = removeLegacyStylesheets(html);
   html = removeDeadMainScript(html);
+  html = removeLegacyGlobalScripts(html);
   html = ensureManifestLink(html);
   html = ensureSiteScripts(html, cssPrefix);
+  html = ensureDeferOnGlobalScripts(html);
   html = ensureScriptCacheBust(html);
   html = ensureSwRegistration(html, cssPrefix);
 
@@ -216,7 +268,7 @@ function injectPerformance(filePath) {
     return false;
   }
 
-  const perfBlock = buildPerfBlock({ cssPrefix, heroPreload });
+  const perfBlock = buildPerfBlock({ cssPrefix, heroPreload, stylesheets });
   html = `${html.slice(0, headClose)}${perfBlock}${html.slice(headClose)}`;
 
   if (html !== original) {

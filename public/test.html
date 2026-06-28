@@ -60,14 +60,17 @@
   <meta name="twitter:image" content="https://stiliattaccamento.it/images/test-intro.webp">
   <meta name="twitter:image:alt" content="Riflesso astratto che rappresenta l'auto-osservazione senza giudizio">
   <link href="https://unpkg.com/survey-core@2.5.28/survey-core.min.css" type="text/css" rel="stylesheet">
+
   <!-- Performance: resource hints -->
+    <link rel="preload" href="css/site.min.css?v=1.3.2" as="style">
+    <link rel="stylesheet" href="css/site.min.css?v=1.3.2">
     <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/site.min.css?v=1.3.1">
 </head>
 <body data-theme="light">
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
 
+  
   <!-- Site shell: header (auto-injected) -->
   <header>
   <nav class="container" aria-label="Navigazione principale">
@@ -137,7 +140,7 @@
   </div>
 </div>
   <!-- /Site shell: topbar -->
-  <main id="main-content">
+    <main id="main-content">
     <section class="section">
       <div class="container">
 
@@ -223,23 +226,18 @@
   </main>
 
     <!-- Placeholder per footer -->
+  <script src="js/site.min.js?v=1.3.0" defer></script>
   <div id="footer-placeholder"></div>
 
   <!-- Scripts (ordine importante: prima template-loader, poi breadcrumb-generator) -->
-  <script src="js/template-loader.js?v=1.3.0"></script>
-  <script src="js/breadcrumb-generator.js?v=1.3.0"></script>
-  <script src="js/constants.js?v=1.3.0"></script>
   <script src="js/logger.js?v=1.3.0"></script>
   <script src="js/utils.js?v=1.3.0"></script>
   <!-- SurveyJS v2 (core + UI) — versione pinata; prima di test-surveyjs.js -->
   <script src="https://unpkg.com/survey-core@2.5.28/survey.core.min.js"></script>
   <script src="https://unpkg.com/survey-js-ui@2.5.28/survey-js-ui.min.js"></script>
   <script src="js/config-surveyjs.js?v=1.3.0"></script>
-  <script src="js/theme.js?v=1.3.0"></script>
-  <script src="js/mobile-menu.js?v=1.3.0"></script>
-  <script src="js/nav-highlight.js?v=1.3.0"></script>
-  <script src="js/cookie-banner.js?v=1.3.0"></script>
-  <script src="js/gtm.js?v=1.3.0"></script>
+  <script src="js/cookie-banner.js?v=1.3.0" defer></script>
+  <script src="js/gtm.js?v=1.3.0" defer></script>
   <script src="js/modules/analytics.js?v=1.3.0"></script>
   <script src="js/modules/webmcp-helpers.js?v=1.3.0"></script>
   <script src="js/modules/test-results-render.js?v=1.3.0"></script>

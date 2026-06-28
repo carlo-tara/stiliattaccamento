@@ -457,15 +457,6 @@ header {
   backdrop-filter: blur(10px);
 }
 
-#header-placeholder {
-  min-height: 4.5rem;
-  background-color: var(--color-surface, rgb(248 247 243));
-}
-
-#topbar-placeholder {
-  min-height: 2.5rem;
-}
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -802,69 +793,6 @@ a:focus-visible,
   text-align: center;
 }
 
-/* Sezioni stile approfondimenti (evita card annidate / matrioska) */
-.style-section {
-  padding: var(--spacing-6);
-  background-color: var(--color-surface-soft, #fafafa);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-soft);
-  border-left-width: 4px;
-}
-
-.style-section--secure {
-  border-left-color: var(--color-accent-secure);
-}
-
-.style-section--anxious {
-  border-left-color: var(--color-accent-anxious);
-}
-
-.style-section--avoidant {
-  border-left-color: var(--color-accent-avoidant);
-}
-
-.style-section--disorganized {
-  border-left-color: var(--color-accent-disorganized);
-}
-
-.style-section--default {
-  border-left-color: var(--color-accent-primary);
-}
-
-.style-section__title {
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  margin-bottom: var(--spacing-4);
-  line-height: var(--line-height-tight);
-}
-
-.style-section ul,
-.style-section ol {
-  margin-left: var(--spacing-6);
-  margin-top: var(--spacing-4);
-}
-
-.style-section li {
-  margin-bottom: var(--spacing-2);
-}
-
-.style-section > strong {
-  display: block;
-  margin-top: var(--spacing-4);
-  margin-bottom: var(--spacing-2);
-}
-
-/* Rete di sicurezza se restano card annidate per errore */
-.style-section .card,
-.card .card {
-  box-shadow: none;
-  border: none;
-  padding: 0;
-  margin-bottom: 0;
-  background: transparent;
-}
-
 /* Lead e tipografia pagine wiki / approfondimenti */
 .wiki-lead {
   font-size: var(--font-size-lg);
@@ -1180,55 +1108,6 @@ main .container > h1 + .wiki-image {
 }
 
 /* Blog / archivio approfondimenti */
-.blog-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.blog-card__thumbnail {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: var(--radius-xl);
-  margin-bottom: var(--spacing-4);
-  background: linear-gradient(135deg, rgba(168, 213, 186, 0.2) 0%, rgba(168, 213, 186, 0.1) 100%);
-  transition: transform 0.3s ease;
-  display: block;
-  min-height: 0;
-}
-
-.blog-card__thumbnail[src=''],
-.blog-card__thumbnail:not([src]) {
-  background: linear-gradient(135deg, rgba(168, 213, 186, 0.3) 0%, rgba(168, 213, 186, 0.15) 100%);
-}
-
-.blog-card__title {
-  margin-bottom: var(--spacing-3);
-  font-size: var(--font-size-xl);
-}
-
-.blog-card__title a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.blog-card__excerpt {
-  flex-grow: 1;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-4);
-}
-
-.blog-card__link {
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-.blog-archive__grid {
-  margin-bottom: var(--spacing-8);
-}
-
 /* ==========================================================================
    Hero Section
    ========================================================================== */
@@ -1256,6 +1135,8 @@ main .container > h1 + .wiki-image {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  min-height: 2.6em;
+  text-wrap: balance;
 }
 
 .hero p {
@@ -1290,6 +1171,17 @@ main .container > h1 + .wiki-image {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: var(--spacing-6);
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: var(--spacing-12) 0 var(--spacing-10);
+  }
+}
+
+.section--defer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 32rem;
 }
 
 /* ==========================================================================
@@ -1656,109 +1548,6 @@ footer,
   border-left: 4px solid var(--color-accent-disorganized);
 }
 
-/* Profile hero — sostituisce inline style sui 12 profili */
-.profile-hero {
-  margin-bottom: var(--spacing-8);
-}
-
-.profile-hero--anxious {
-  background: linear-gradient(
-    135deg,
-    rgba(244, 165, 174, 0.1) 0%,
-    rgba(244, 165, 174, 0.05) 100%
-  );
-}
-
-.profile-hero--avoidant {
-  background: linear-gradient(
-    135deg,
-    rgba(168, 169, 212, 0.1) 0%,
-    rgba(168, 169, 212, 0.05) 100%
-  );
-}
-
-.profile-hero--secure {
-  background: linear-gradient(
-    135deg,
-    rgba(168, 213, 186, 0.1) 0%,
-    rgba(168, 213, 186, 0.05) 100%
-  );
-}
-
-.profile-hero--oscillante {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 182, 193, 0.1) 0%,
-    rgba(255, 182, 193, 0.05) 100%
-  );
-}
-
-.profile-hero__subtitle {
-  font-size: var(--font-size-2xl);
-  margin-top: var(--spacing-2);
-}
-
-.profile-hero__lead {
-  font-size: var(--font-size-lg);
-  margin-top: var(--spacing-4);
-}
-
-.profile-hero__badge {
-  margin-top: var(--spacing-4);
-  display: inline-block;
-}
-
-.strategie-pratiche {
-  margin-bottom: var(--spacing-8);
-  border-left: 4px solid var(--color-accent);
-}
-
-.strategie-pratiche--anxious {
-  border-left-color: var(--color-accent-anxious);
-  background: linear-gradient(
-    135deg,
-    rgba(168, 213, 186, 0.1) 0%,
-    rgba(168, 213, 186, 0.05) 100%
-  );
-}
-
-.strategie-pratiche--avoidant {
-  border-left-color: var(--color-accent-avoidant);
-}
-
-.strategie-pratiche--secure {
-  border-left-color: var(--color-accent-secure);
-}
-
-.strategie-pratiche--oscillante {
-  border-left-color: var(--color-accent-disorganized);
-}
-
-.disclaimer-card {
-  margin-top: var(--spacing-6);
-  border-left: 4px solid var(--color-accent);
-}
-
-.disclaimer-card--anxious {
-  background-color: rgba(244, 165, 174, 0.1);
-  border-left-color: var(--color-accent-anxious);
-}
-
-.disclaimer-card--avoidant {
-  background-color: rgba(168, 169, 212, 0.1);
-  border-left-color: var(--color-accent-avoidant);
-}
-
-.disclaimer-card--secure {
-  background-color: rgba(168, 213, 186, 0.1);
-  border-left-color: var(--color-accent-secure);
-}
-
-.disclaimer-card--oscillante {
-  background-color: rgba(255, 182, 193, 0.1);
-  border-left-color: var(--color-accent-disorganized);
-}
-
 .timeline-mono {
   font-family: var(--font-family-mono);
   font-size: var(--font-size-sm);
@@ -2016,45 +1805,6 @@ footer,
   min-height: 2.75rem;
   font-size: var(--font-size-lg);
   line-height: 1;
-}
-
-/* ==========================================================================
-   Template placeholders (CLS reduction)
-   ========================================================================== */
-
-@keyframes template-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.template-placeholder {
-  background: linear-gradient(
-    90deg,
-    var(--color-surface, #fff) 0%,
-    var(--color-surface-elevated, #f5f5f5) 50%,
-    var(--color-surface, #fff) 100%
-  );
-  background-size: 200% 100%;
-  animation: template-shimmer 1.5s ease-in-out infinite;
-}
-
-.template-placeholder--header {
-  min-height: 4.5rem;
-}
-
-.template-placeholder--topbar {
-  min-height: 2.75rem;
-}
-
-.template-placeholder--footer {
-  min-height: 8rem;
-}
-
-.template-error {
-  padding: var(--spacing-4);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  text-align: center;
 }
 
 /* ==========================================================================

@@ -6,6 +6,7 @@ const { existsSync } = require('fs');
 
 const PUBLIC_DIR = resolve(__dirname, '../public');
 const IMAGES = [
+  { input: 'images/index-hero.webp', output: 'images/index-hero-480.webp', width: 480 },
   { input: 'images/index-hero.webp', output: 'images/index-hero-700.webp', width: 700 },
   { input: 'images/index-pilastri.webp', output: 'images/index-pilastri-665.webp', width: 665 },
 ];

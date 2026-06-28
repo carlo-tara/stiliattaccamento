@@ -1,0 +1,119 @@
+/* === pages-wiki.css === */
+/* Approfondimenti e pagine wiki estese */
+/* Sezioni stile approfondimenti (evita card annidate / matrioska) */
+.style-section {
+  padding: var(--spacing-6);
+  background-color: var(--color-surface-soft, #fafafa);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-soft);
+  border-left-width: 4px;
+}
+
+.style-section--secure {
+  border-left-color: var(--color-accent-secure);
+}
+
+.style-section--anxious {
+  border-left-color: var(--color-accent-anxious);
+}
+
+.style-section--avoidant {
+  border-left-color: var(--color-accent-avoidant);
+}
+
+.style-section--disorganized {
+  border-left-color: var(--color-accent-disorganized);
+}
+
+.style-section--default {
+  border-left-color: var(--color-accent-primary);
+}
+
+.style-section__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-4);
+  line-height: var(--line-height-tight);
+}
+
+.style-section ul,
+.style-section ol {
+  margin-left: var(--spacing-6);
+  margin-top: var(--spacing-4);
+}
+
+.style-section li {
+  margin-bottom: var(--spacing-2);
+}
+
+.style-section > strong {
+  display: block;
+  margin-top: var(--spacing-4);
+  margin-bottom: var(--spacing-2);
+}
+
+/* Rete di sicurezza se restano card annidate per errore */
+.style-section .card,
+.card .card {
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 0;
+  background: transparent;
+}
+
+  color: var(--color-accent-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Blog / archivio approfondimenti */
+.blog-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.blog-card__thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--spacing-4);
+  background: linear-gradient(135deg, rgba(168, 213, 186, 0.2) 0%, rgba(168, 213, 186, 0.1) 100%);
+  transition: transform 0.3s ease;
+  display: block;
+  min-height: 0;
+}
+
+.blog-card__thumbnail[src=''],
+.blog-card__thumbnail:not([src]) {
+  background: linear-gradient(135deg, rgba(168, 213, 186, 0.3) 0%, rgba(168, 213, 186, 0.15) 100%);
+}
+
+.blog-card__title {
+  margin-bottom: var(--spacing-3);
+  font-size: var(--font-size-xl);
+}
+
+.blog-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-card__excerpt {
+  flex-grow: 1;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-4);
+}
+
+.blog-card__link {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.blog-archive__grid {
+  margin-bottom: var(--spacing-8);
+}

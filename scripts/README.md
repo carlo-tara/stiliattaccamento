@@ -41,7 +41,8 @@ npm run perf
 
 | Script | Ruolo |
 |--------|-------|
-| `build-css.js` | Genera `site.css` e `site.min.css` da themes + fonts + main |
+| `build-css.js` | Genera `site.min.css` (core) + bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`) |
+| `build-js.js` | Genera `site.min.js` bundle minificato degli script globali |
 | `inject-shell.js` | Inlines `header.html` e `topbar.html` in tutte le pagine (elimina CLS da fetch async) |
 | `inject-performance.js` | Font non bloccanti, preload, Service Worker, manifest, dedup hint; inietta `mobile-menu.js`, `nav-highlight.js`, `cookie-banner.js` su tutte le pagine |
 | `generate-pwa-icons.js` | Icone 192×192 e 512×512 in `public/icons/` da `index-hero.webp` |

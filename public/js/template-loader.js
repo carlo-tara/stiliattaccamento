@@ -256,14 +256,26 @@ async function bootstrapShell() {
   if (document.getElementById('topbar-placeholder')) {
     tasks.push(loadTemplate('topbar-placeholder', 'topbar.html'));
   }
-  if (document.getElementById('footer-placeholder')) {
-    tasks.push(loadTemplate('footer-placeholder', 'footer.html'));
-  }
-
   await Promise.all(tasks);
 
   if (hasInlineHeader) {
     initInlineShell();
+  }
+
+  scheduleFooterLoad();
+}
+
+function scheduleFooterLoad() {
+  if (!document.getElementById('footer-placeholder')) {
+    return;
+  }
+
+  const loadFooter = () => loadTemplate('footer-placeholder', 'footer.html');
+
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(loadFooter, { timeout: 2000 });
+  } else {
+    setTimeout(loadFooter, 1);
   }
 }
 

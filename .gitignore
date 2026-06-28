@@ -40,6 +40,10 @@ build/
 *.min.js
 *.min.css
 !public/css/site.min.css
+!public/css/site-profiles.min.css
+!public/css/site-mappa.min.css
+!public/css/site-wiki.min.css
+!public/js/site.min.js
 
 # Temporary files
 *.tmp

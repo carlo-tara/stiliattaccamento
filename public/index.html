@@ -99,14 +99,16 @@
   <meta name="twitter:image" content="https://stiliattaccamento.it/images/index-hero.webp">
   <meta name="twitter:image:alt" content="Paesaggio surreale astratto che rappresenta il viaggio verso la consapevolezza dell'attaccamento">
   <!-- Performance: resource hints -->
+    <link rel="preload" href="css/site.min.css?v=1.3.2" as="style">
+    <link rel="stylesheet" href="css/site.min.css?v=1.3.2">
     <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/images/index-hero-700.webp" as="image" type="image/webp" fetchpriority="high">
-    <link rel="stylesheet" href="css/site.min.css?v=1.3.1">
+    <link rel="preload" href="/images/index-hero-480.webp" as="image" type="image/webp" fetchpriority="high">
 </head>
 <body data-theme="light">
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
 
+  
   <!-- Site shell: header (auto-injected) -->
   <header>
   <nav class="container" aria-label="Navigazione principale">
@@ -176,25 +178,25 @@
   </div>
 </div>
   <!-- /Site shell: topbar -->
-  <main id="main-content">
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
         <p class="hero-tag">Consapevolezza, non guarigione</p>
-        <h1>Capire come ami — senza sentirti in difetto</h1>
         <figure class="wiki-image">
-          <img src="images/index-hero-700.webp"
-               srcset="images/index-hero-700.webp 700w, images/index-hero.webp 800w"
-               sizes="(max-width: 960px) 100vw, 700px"
+          <img src="images/index-hero-480.webp"
+               srcset="images/index-hero-480.webp 480w, images/index-hero-700.webp 700w, images/index-hero.webp 800w"
+               sizes="(max-width: 600px) 100vw, (max-width: 960px) 700px, 700px"
                alt="Paesaggio surreale astratto che rappresenta il viaggio verso la consapevolezza dell'attaccamento" 
-               width="800"
-               height="600"
+               width="700"
+               height="525"
                fetchpriority="high"
                decoding="async"
                loading="eager"
                class="wiki-image__img">
           <figcaption class="wiki-image__caption">Il viaggio verso la consapevolezza</figcaption>
         </figure>
+        <h1>Capire come ami — senza sentirti in difetto</h1>
         <p class="wiki-lead">Ti agiti quando il partner si allontana? L'intimità ti mette in fuga? Qui trovi un percorso chiaro: test, profilo, esercizi — con calma e senza etichette.</p>
         <div class="btn-group">
           <a href="test.html" class="btn btn-primary">Inizia il test</a>
@@ -204,7 +206,7 @@
     </section>
 
     <!-- Da dove vuoi partire -->
-    <section class="section section--compact">
+    <section class="section section--compact section--defer">
       <div class="container">
         <h2 class="section-title">Da dove vuoi partire?</h2>
         <p class="text-center mb-8 wiki-lead">Non serve leggere tutto. Scegli la porta che ti somiglia di più.</p>
@@ -234,7 +236,7 @@
     </section>
 
     <!-- Banner Test Rapido -->
-    <section class="section section--compact">
+    <section class="section section--compact section--defer">
       <div class="container">
         <div class="banner-horizontal">
           <div class="banner-horizontal__content">
@@ -248,7 +250,7 @@
     </section>
 
     <!-- Pilastri wiki -->
-    <section class="section">
+    <section class="section section--defer">
       <div class="container">
         <h2 class="section-title">Per approfondire</h2>
         <p class="text-center mb-8 wiki-lead">Quattro porte nel wiki — quando hai voglia di andare oltre il test.</p>
@@ -290,7 +292,7 @@
     </section>
 
     <!-- I 12 profili Preview -->
-    <section class="section">
+    <section class="section section--defer">
       <div class="container">
         <details class="card profiles-accordion">
           <summary>I 12 profili</summary>
@@ -424,7 +426,7 @@
     </section>
 
     <!-- Messaggio di speranza -->
-    <section class="section">
+    <section class="section section--defer">
       <div class="container">
         <div class="card card--accent">
           <h2 class="text-center">Non sei solo</h2>
@@ -436,7 +438,7 @@
     </section>
 
     <!-- Domande frequenti -->
-    <section class="section" id="faq" aria-labelledby="faq-title">
+    <section class="section section--defer" id="faq" aria-labelledby="faq-title">
       <div class="container">
         <h2 class="section-title" id="faq-title">Domande frequenti</h2>
         <dl class="faq-list">
@@ -466,18 +468,12 @@
   </main>
 
   <!-- Placeholder per footer -->
+  <script src="js/site.min.js?v=1.3.0" defer></script>
   <div id="footer-placeholder"></div>
     <!-- Scripts (ordine importante: prima template-loader, poi breadcrumb-generator) -->
-  <script src="js/template-loader.js?v=1.3.0"></script>
-  <script src="js/breadcrumb-generator.js?v=1.3.0"></script>
-  <script src="js/constants.js?v=1.3.0"></script>
 
-  <script src="js/theme.js?v=1.3.0"></script>
-  <script src="js/mobile-menu.js?v=1.3.0"></script>
-  <script src="js/nav-highlight.js?v=1.3.0"></script>
-
-  <script src="js/cookie-banner.js?v=1.3.0"></script>
-  <script src="js/gtm.js?v=1.3.0"></script>
+  <script src="js/cookie-banner.js?v=1.3.0" defer></script>
+  <script src="js/gtm.js?v=1.3.0" defer></script>
 
   <script src="js/pwa.js?v=1.3.0" defer></script>
 </body>

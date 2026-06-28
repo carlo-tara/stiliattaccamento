@@ -70,14 +70,17 @@
   <meta name="twitter:description" content="Il modello a gradienti: gli stili di attaccamento non sono categorie fisse ma gradienti su due assi indipendenti (Ansia e Evitamento) con 3 livelli di intensità">
   <meta name="twitter:image" content="https://stiliattaccamento.it/images/modello-gradienti-due-assi.webp">
   <meta name="twitter:image:alt" content="Composizione a gradiente che mostra due assi intersecanti">
+
   <!-- Performance: resource hints -->
+    <link rel="preload" href="css/site.min.css?v=1.3.2" as="style">
+    <link rel="stylesheet" href="css/site.min.css?v=1.3.2">
     <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/site.min.css?v=1.3.1">
 </head>
 <body data-theme="light">
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
 
+  
   <!-- Site shell: header (auto-injected) -->
   <header>
   <nav class="container" aria-label="Navigazione principale">
@@ -147,7 +150,7 @@
   </div>
 </div>
   <!-- /Site shell: topbar -->
-  <main id="main-content">
+    <main id="main-content">
     <section class="section">
       <div class="container">
         <h1>Il modello a gradienti</h1>
@@ -360,17 +363,11 @@
   </main>
 
     <!-- Placeholder per footer -->
+  <script src="js/site.min.js?v=1.3.0" defer></script>
   <div id="footer-placeholder"></div>
     <!-- Scripts (ordine importante: prima template-loader, poi breadcrumb-generator) -->
-  <script src="js/template-loader.js?v=1.3.0"></script>
-  <script src="js/breadcrumb-generator.js?v=1.3.0"></script>
-  <script src="js/constants.js?v=1.3.0"></script>
-
-  <script src="js/theme.js?v=1.3.0"></script>
-  <script src="js/mobile-menu.js?v=1.3.0"></script>
-  <script src="js/nav-highlight.js?v=1.3.0"></script>
-  <script src="js/cookie-banner.js?v=1.3.0"></script>
-  <script src="js/gtm.js?v=1.3.0"></script>
+  <script src="js/cookie-banner.js?v=1.3.0" defer></script>
+  <script src="js/gtm.js?v=1.3.0" defer></script>
 
   <script src="js/pwa.js?v=1.3.0" defer></script>
 </body>

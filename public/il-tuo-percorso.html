@@ -49,14 +49,17 @@
   <meta name="twitter:description" content="Il tuo percorso personalizzato dopo il test: tre passi concreti per esplorare il tuo stile di attaccamento con calma e senza giudizio.">
   <meta name="twitter:image" content="https://stiliattaccamento.it/images/il-tuo-percorso-passi.webp">
   <meta name="twitter:image:alt" content="Tre passi astratti che rappresentano il percorso guidato personalizzato">
+
   <!-- Performance: resource hints -->
+    <link rel="preload" href="css/site.min.css?v=1.3.2" as="style">
+    <link rel="stylesheet" href="css/site.min.css?v=1.3.2">
     <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/site.min.css?v=1.3.1">
 </head>
 <body data-theme="light">
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
 
+  
   <!-- Site shell: header (auto-injected) -->
   <header>
   <nav class="container" aria-label="Navigazione principale">
@@ -126,7 +129,7 @@
   </div>
 </div>
   <!-- /Site shell: topbar -->
-  <main id="main-content">
+    <main id="main-content">
     <section class="section">
       <div class="container">
         <h1>Il tuo percorso</h1>
@@ -176,19 +179,13 @@
     </section>
   </main>
 
+  <script src="js/site.min.js?v=1.3.0" defer></script>
   <div id="footer-placeholder"></div>
-
-  <script src="js/template-loader.js?v=1.3.0"></script>
-  <script src="js/breadcrumb-generator.js?v=1.3.0"></script>
-  <script src="js/constants.js?v=1.3.0"></script>
   <script src="js/utils.js?v=1.3.0"></script>
   <script src="js/modules/journey-config.js?v=1.3.0"></script>
   <script src="js/modules/journey-hub.js?v=1.3.0"></script>
-  <script src="js/theme.js?v=1.3.0"></script>
-  <script src="js/mobile-menu.js?v=1.3.0"></script>
-  <script src="js/nav-highlight.js?v=1.3.0"></script>
-  <script src="js/cookie-banner.js?v=1.3.0"></script>
-  <script src="js/gtm.js?v=1.3.0"></script>
+  <script src="js/cookie-banner.js?v=1.3.0" defer></script>
+  <script src="js/gtm.js?v=1.3.0" defer></script>
   <script src="js/pwa.js?v=1.3.0" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {

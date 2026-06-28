@@ -1,0 +1,103 @@
+/* Profile detail pages (profili/) */
+/* Profile hero — sostituisce inline style sui 12 profili */
+.profile-hero {
+  margin-bottom: var(--spacing-8);
+}
+
+.profile-hero--anxious {
+  background: linear-gradient(
+    135deg,
+    rgba(244, 165, 174, 0.1) 0%,
+    rgba(244, 165, 174, 0.05) 100%
+  );
+}
+
+.profile-hero--avoidant {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 169, 212, 0.1) 0%,
+    rgba(168, 169, 212, 0.05) 100%
+  );
+}
+
+.profile-hero--secure {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 213, 186, 0.1) 0%,
+    rgba(168, 213, 186, 0.05) 100%
+  );
+}
+
+.profile-hero--oscillante {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 182, 193, 0.1) 0%,
+    rgba(255, 182, 193, 0.05) 100%
+  );
+}
+
+.profile-hero__subtitle {
+  font-size: var(--font-size-2xl);
+  margin-top: var(--spacing-2);
+}
+
+.profile-hero__lead {
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-4);
+}
+
+.profile-hero__badge {
+  margin-top: var(--spacing-4);
+  display: inline-block;
+}
+
+.strategie-pratiche {
+  margin-bottom: var(--spacing-8);
+  border-left: 4px solid var(--color-accent);
+}
+
+.strategie-pratiche--anxious {
+  border-left-color: var(--color-accent-anxious);
+  background: linear-gradient(
+    135deg,
+    rgba(168, 213, 186, 0.1) 0%,
+    rgba(168, 213, 186, 0.05) 100%
+  );
+}
+
+.strategie-pratiche--avoidant {
+  border-left-color: var(--color-accent-avoidant);
+}
+
+.strategie-pratiche--secure {
+  border-left-color: var(--color-accent-secure);
+}
+
+.strategie-pratiche--oscillante {
+  border-left-color: var(--color-accent-disorganized);
+}
+
+.disclaimer-card {
+  margin-top: var(--spacing-6);
+  border-left: 4px solid var(--color-accent);
+}
+
+.disclaimer-card--anxious {
+  background-color: rgba(244, 165, 174, 0.1);
+  border-left-color: var(--color-accent-anxious);
+}
+
+.disclaimer-card--avoidant {
+  background-color: rgba(168, 169, 212, 0.1);
+  border-left-color: var(--color-accent-avoidant);
+}
+
+.disclaimer-card--secure {
+  background-color: rgba(168, 213, 186, 0.1);
+  border-left-color: var(--color-accent-secure);
+}
+
+.disclaimer-card--oscillante {
+  background-color: rgba(255, 182, 193, 0.1);
+  border-left-color: var(--color-accent-disorganized);
+}
