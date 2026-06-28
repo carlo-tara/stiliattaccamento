@@ -1,8 +1,8 @@
 SECURITY POLICY - STILI DI ATTACCAMENTO WIKI
 =============================================
 
-Versione: 1.0.1
-Data: 2026
+Versione: 1.4.0
+Data: 2026-06
 
 Questo documento descrive le policy di sicurezza per il progetto "Stili di Attaccamento Wiki".
 
@@ -75,6 +75,10 @@ Questo documento descrive le policy di sicurezza per il progetto "Stili di Attac
 3.4 Clickjacking
   - X-Frame-Options: DENY o SAMEORIGIN
   - Configura via Cloudflare Pages headers
+
+3.5 Cache e asset statici
+  - Regole cache edge in `public/_headers` (CSS, JS, font, immagini: cache lunga; HTML: 1 h; SW: no cache)
+  - Aggiorna query `?v=` su bundle CSS/JS a ogni release (vedi `inject-performance.js`)
 
 ================================================================================
 4. SICUREZZA PWA

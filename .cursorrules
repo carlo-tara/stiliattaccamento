@@ -91,11 +91,13 @@ Questo è un progetto per una webapp PWA statica mobile-first sugli stili di att
 public/
 ├── index.html              # Homepage wiki
 ├── css/
-│   ├── main.css            # Stili principali
-│   ├── themes.css          # Tema light (unico)
-│   └── light.css           # Variabili light mode
+│   ├── main.css            # Stili principali (sorgente)
+│   ├── pages-*.css         # CSS per tipo pagina (sorgente)
+│   ├── site.min.css        # Bundle core (build)
+│   └── site-*.min.css      # Bundle per pagina (build)
 ├── js/
-│   ├── template-loader.js  # Caricamento header/footer
+│   ├── site.min.js         # Bundle script globali (build)
+│   ├── template-loader.js  # Footer async, init nav/breadcrumb
 │   ├── breadcrumb-generator.js
 │   ├── theme.js            # Light mode forzato
 │   ├── mobile-menu.js      # Menu hamburger
@@ -107,7 +109,9 @@ public/
 │   ├── mappa-personale.js  # Radar chart Chart.js
 │   ├── modules/            # Moduli condivisi (es. mappa-dimensions.js)
 │   └── archive/            # Codice legacy (es. main.legacy.js)
-├── templates/              # Header, footer, topbar parziali
+├── fonts/                  # Lato + Playfair self-hosted (woff2)
+├── templates/              # Header, footer, topbar (header/topbar inlined via inject-shell)
+├── _headers                # Cache Cloudflare
 ├── images/                 # Immagini statiche
 ├── icons/                  # PWA icons (192, 512)
 ├── manifest.json
@@ -234,10 +238,13 @@ Ogni pagina wiki deve includere:
 ## Best Practices
 
 ### Performance
-- Minifica CSS e JS per produzione
-- Ottimizza immagini (WebP quando possibile)
+- Pipeline build: `npm run perf` (CSS bundle, JS bundle, shell inline, preload/inject)
+- Minifica CSS e JS per produzione (`build-css.js`, `build-js.js`)
+- Ottimizza immagini (WebP, varianti responsive via `optimize-images.js`)
 - Lazy loading per immagini
-- Preload per risorse critiche
+- Preload per risorse critiche (font, hero LCP su homepage)
+- Header/topbar inlined via `inject-shell.js` (zero CLS)
+- Cache edge: `public/_headers` (Cloudflare Pages)
 
 ### Accessibilità
 - WCAG 2.1 AA compliance
@@ -258,13 +265,16 @@ Ogni pagina wiki deve includere:
    - **OBBLIGATORIO**: Aggiungi almeno 2 prompt in `scripts/prompts.json`
    - **OBBLIGATORIO**: Genera immagini con `node scripts/generate-images.js --page=nome-pagina.html`
    - **OBBLIGATORIO**: Inserisci immagini nell'HTML con tag `<figure>` completo (img + figcaption)
-2. Nuovo componente → aggiungi CSS in `components.css` e JS in `modules/`
+   - Dopo SEO e contenuto: `npm run seo && npm run perf && npm run inject-a11y`
+2. Nuovo componente → aggiungi CSS in `main.css` o `pages-*.css` e JS in `modules/`; poi `npm run perf`
 3. Nuova immagine → usa sempre il processo di generazione Qwen (vedi sezione "Immagini Obbligatorie")
 
 ### Quando Modificare File Esistenti
 - Aggiorna documentazione se cambi funzionalità
 - Mantieni retrocompatibilità quando possibile
 - Testa su più browser prima di commit
+- Dopo modifiche CSS/JS/templates: `npm run perf` e committa artefatti generati
+- Dopo modifiche a `templates/header.html` o `topbar.html`: `npm run inject-shell`
 
 ## Note Speciali
 
@@ -330,8 +340,10 @@ Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality"
 - Vedi `scripts/README.md` per documentazione completa
 
 ### Cloudflare Pages
-- Build command: nessuno (file statici)
+- Build command: nessuno (file statici pre-buildati in repo)
+- Pre-deploy: `npm run perf` (e `npm run seo` se HTML/meta cambiati)
 - Output directory: `public/`
+- Cache headers: `public/_headers`
 - Deploy automatico da branch `main`
 
 ## Checklist Pre-Commit
@@ -346,6 +358,8 @@ Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality"
 - [ ] Light mode verificato
 - [ ] PWA manifest aggiornato
 - [ ] Nessun file `.env` committato
+- [ ] Dopo modifiche CSS/JS/templates: `npm run perf` eseguito e artefatti committati
+- [ ] PageSpeed Insights mobile ≥ 90 (CLS ≤ 0.1) su pagine modificate
 - [ ] Test su mobile e desktop
 
 ## Domande Frequenti

@@ -107,12 +107,16 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   │   └── llms.txt
   │
   ├── scripts/                 # Pipeline build/SEO/immagini
+  │   ├── build-css.js
+  │   ├── build-js.js
+  │   ├── inject-shell.js
+  │   ├── inject-performance.js
+  │   ├── optimize-images.js
   │   ├── generate-images.js
   │   ├── inject-seo.js
   │   ├── generate-sitemap.js
   │   ├── validate-seo.js
   │   ├── enrich-schema-geo.js
-  │   ├── inject-performance.js
   │   ├── inject-a11y.js
   │   ├── prompts.json
   │   ├── seo-config.js
@@ -158,24 +162,28 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   </html>
 
 4.2 Organizzazione CSS
-  - main.css: Layout, typography, base styles, componenti BEM
-  - themes.css: Variabili light mode (unica modalità)
-  - light.css: Token colori light (inlined in themes.css)
+  - themes.css + fonts.css + main.css → `npm run build:css` → `site.min.css` (core, tutte le pagine)
+  - pages-profiles.css → `site-profiles.min.css` (solo profili/*)
+  - pages-mappa.css → `site-mappa.min.css` (solo mappa-personale.html)
+  - pages-wiki.css → `site-wiki.min.css` (approfondimenti/*, stili-base.html)
+  - Font self-hosted in `public/fonts/` (Lato, Playfair Display, woff2)
 
 4.3 Organizzazione JavaScript
-  Nessun entry point globale (`main.js` rimosso in v1.3.0). Ogni pagina carica
-  solo gli script necessari; `inject-performance.js` inietta gli script comuni
-  (mobile-menu, nav-highlight, cookie-banner) su tutte le pagine HTML.
+  Nessun entry point globale (`main.js` rimosso in v1.3.0). Script globali concatenati
+  e minificati in `site.min.js` via `npm run build:js`; `inject-performance.js` inietta
+  il bundle con `defer` su tutte le pagine HTML.
 
-  Script globali (maggior parte delle pagine):
-  - template-loader.js: Header/footer/topbar asincroni
-  - breadcrumb-generator.js: Breadcrumb con BreadcrumbList Schema.org
-  - theme.js: Light mode forzato
-  - mobile-menu.js: Menu drawer, submenu, Escape key
-  - nav-highlight.js: Pagina corrente, aria-current, submenu auto-open
-  - cookie-banner.js: Consenso cookie (localStorage)
-  - gtm.js: Google Tag Manager solo post-consenso
-  - pwa.js: Registrazione Service Worker (defer)
+  Bundle `site.min.js` (ordine di esecuzione):
+  - constants.js, theme.js, mobile-menu.js, breadcrumb-generator.js
+  - nav-highlight.js, template-loader.js
+
+  template-loader.js (v1.4.0):
+  - Header e topbar inlined nel markup via `inject-shell.js` (zero CLS)
+  - Footer caricato async con `requestIdleCallback`
+  - Init breadcrumb e nav highlight dopo caricamento script
+
+  Script aggiuntivi (defer, fuori dal bundle):
+  - cookie-banner.js, gtm.js, pwa.js
 
   Script per pagina:
   - test-surveyjs.js + config-surveyjs.js: Quiz (test.html)
@@ -209,7 +217,8 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
     * Large desktop: 1280px
 
 5.4 Typography
-  - Font: System fonts stack (performance)
+  - Font: Lato (body) + Playfair Display (headings), self-hosted woff2
+  - `font-display: optional` per minimizzare layout shift
   - Scale: Material Design type scale
   - Line height: 1.5 per leggibilità
 
@@ -224,11 +233,12 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - Start URL: /
 
 6.2 Service Worker (sw.js)
-  - Cache name: stili-attaccamento-v5
+  - Cache name: stili-attaccamento-v8
   - Cache strategy:
-    * Assets (CSS/JS/images/fonts/templates): Cache First
+    * Assets (CSS/JS/images/fonts): Cache First
     * HTML: Network First, fallback cache
-  - Precache: CSS, manifest, script globali, template parziali, hero image
+  - Precache: site.min.css, site.min.js, cookie-banner, gtm, pwa, hero images
+  - Header/topbar non in precache (inlined in HTML since v1.4.0)
   - Update mechanism: skipWaiting + clients.claim on activate
 
 6.3 Icons
@@ -349,22 +359,26 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
 ================================================================================
 
 10.1 Optimization Strategies
-  - Minifica CSS/JS per produzione
-  - Ottimizza immagini (WebP quando possibile)
-  - Lazy loading immagini
-  - Preload risorse critiche
-  - Service Worker caching
+  - CSS split per tipo pagina (core + bundle condizionali)
+  - JS bundle minificato (`site.min.js`, Terser)
+  - Shell inline (header/topbar) via `inject-shell.js`
+  - Ottimizza immagini responsive WebP (`optimize-images.js`)
+  - Lazy loading immagini below-the-fold; preload LCP hero + font critici
+  - `content-visibility: auto` su sezioni below-the-fold (homepage)
+  - Service Worker caching + Cloudflare `_headers`
 
 10.2 Bundle Size Targets
-  - CSS: < 50KB (gzipped)
-  - JS: < 100KB (gzipped)
-  - Immagini: < 200KB ciascuna (quando possibile)
+  - CSS core (`site.min.css`): < 40 KiB minified (~34 KiB attuale)
+  - JS bundle (`site.min.js`): < 30 KiB minified (~22 KiB attuale)
+  - Immagini hero mobile: < 15 KiB (480w WebP)
 
-10.3 Lighthouse Goals
-  - Performance: > 90
-  - Accessibility: > 90
-  - Best Practices: > 90
-  - SEO: > 90
+10.3 Lighthouse Goals (verified v1.4.0, PageSpeed Insights)
+  - Performance: ≥ 90 (mobile 99, desktop 100)
+  - Accessibility: ≥ 90 (100)
+  - Best Practices: ≥ 90 (100)
+  - SEO: ≥ 90 (100)
+  - CLS mobile: 0
+  - LCP mobile: ≤ 2.5 s (2.0 s attuale)
 
 ================================================================================
 11. ACCESSIBILITÀ

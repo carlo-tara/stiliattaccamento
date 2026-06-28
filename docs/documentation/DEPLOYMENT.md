@@ -22,12 +22,26 @@ Before merging to `main`, run locally:
 ```bash
 npm install
 npm run seo          # Meta tags, sitemap.xml, SEO validation
-npm run perf         # Performance hints, global script injection
+npm run perf         # build:css + build:js + inject-shell + inject-performance
 npm run inject-a11y  # Skip link, main content id
 npm run test:all     # Unit, E2E, validation suite
 ```
 
-Commit generated/updated files in `public/` (e.g. `sitemap.xml`, HTML with injected meta).
+Commit generated/updated files in `public/` (e.g. `sitemap.xml`, `site.min.css`, `site.min.js`, HTML with injected shell and meta).
+
+**When editing navigation templates** (`public/templates/header.html` or `topbar.html`):
+
+```bash
+npm run inject-shell
+npm run inject-performance   # or full npm run perf
+```
+
+**When editing homepage hero images**:
+
+```bash
+npm run optimize-images
+npm run inject-performance
+```
 
 See `scripts/README.md` for the full pipeline order when editing wiki pages.
 
@@ -100,11 +114,18 @@ All publishable files live in `public/`:
 ```
 public/
 ├── index.html
+├── _headers           # Cloudflare cache headers (CSS/JS/fonts/images)
 ├── css/
+│   ├── site.min.css           # Core bundle (all pages)
+│   ├── site-profiles.min.css  # profili/* only
+│   ├── site-mappa.min.css     # mappa-personale.html only
+│   └── site-wiki.min.css      # approfondimenti/*, stili-base.html
 ├── js/
+│   └── site.min.js            # Minified global script bundle
+├── fonts/             # Self-hosted Lato + Playfair (woff2)
 ├── images/
 ├── icons/
-├── templates/
+├── templates/         # Source for header/topbar (inlined at build via inject-shell)
 ├── manifest.json
 ├── sw.js
 ├── robots.txt
@@ -126,6 +147,8 @@ public/
 - [ ] Cookie banner appears; GTM loads only after accept
 - [ ] Mobile menu and navigation highlight work
 - [ ] Custom domain resolves (if configured)
+- [ ] **PageSpeed Insights** (mobile): Performance ≥ 90, CLS ≤ 0.1 (target: 99 / 0 as of v1.4.0)
+- [ ] Cloudflare **Rocket Loader** disabled (Speed → Optimisation)
 
 ### Monitoring
 
@@ -150,17 +173,36 @@ public/
 - Static assets cached at the edge via [`public/_headers`](../public/_headers) (long cache for CSS/JS/fonts/images)
 - HTTPS enabled by default
 - Compression enabled automatically
-- Service Worker caches CSS/JS/images client-side
-- **CSS bundle**: run `npm run build:css` before deploy to regenerate `public/css/site.min.css` from `themes.css`, `fonts.css`, and `main.css`
-- **Font self-hosting**: Lato and Playfair Display in `public/fonts/` (no Google Fonts request chain)
-- **Cloudflare Rocket Loader**: must be **OFF** (Speed → Optimization). Rocket Loader injects render-blocking `rocket-loader.min.js` and breaks vanilla deferred scripts
+- Service Worker caches CSS/JS/images client-side (`stili-attaccamento-v8`)
 
-Before each release that touches CSS:
+#### Build pipeline (`npm run perf`)
+
+| Step | Script | Output |
+|------|--------|--------|
+| 1 | `build-css.js` | `site.min.css` (core ~34 KiB) + page bundles (`site-profiles`, `site-mappa`, `site-wiki`) |
+| 2 | `build-js.js` | `site.min.js` (~22 KiB minified global scripts) |
+| 3 | `inject-shell.js` | Header + topbar inlined in all 59 HTML pages (zero CLS from async fetch) |
+| 4 | `inject-performance.js` | Preloads, per-page CSS, deferred scripts, SW registration |
+
+Additional tools:
+
+- **`npm run optimize-images`** — responsive WebP variants (`index-hero-480.webp`, `index-hero-700.webp`)
+- **Font self-hosting**: Lato and Playfair Display in `public/fonts/` (no Google Fonts request chain)
+- **Cloudflare Rocket Loader**: must be **OFF** (Speed → Optimisation). Rocket Loader injects render-blocking `rocket-loader.min.js` and breaks vanilla deferred scripts
+
+#### PageSpeed targets (v1.4.0, production verified)
+
+| Device | Performance | CLS | LCP |
+|--------|-------------|-----|-----|
+| Mobile | 99 | 0 | 2.0 s |
+| Desktop | 100 | 0.017 | 0.4 s |
+
+Before each release that touches CSS, JS, or templates:
 
 ```bash
-npm run build:css
-npm run inject-shell      # dopo modifiche a templates/header.html o topbar.html
-npm run inject-performance   # or npm run perf
+npm run perf
+# or step-by-step:
+npm run build:css && npm run build:js && npm run inject-shell && npm run inject-performance
 ```
 
 ### Security Headers
@@ -185,7 +227,7 @@ See [SECURITY.md](../../SECURITY.md) for full policy.
 
 ### Service Worker Updates
 
-When changing `public/sw.js`, increment `CACHE_NAME` (e.g. `stili-attaccamento-v6`) so clients fetch fresh assets.
+When changing `public/sw.js`, increment `CACHE_NAME` (e.g. `stili-attaccamento-v8`) so clients fetch fresh assets.
 
 ---
 

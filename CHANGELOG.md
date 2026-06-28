@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-06-28
+
+### Added
+- **PageSpeed — shell inline**: `inject-shell.js` incorpora header e topbar nel markup (59 pagine)
+- **PageSpeed — JS bundle**: `build-js.js` genera `site.min.js` minificato (script globali unificati)
+- **PageSpeed — CSS split**: bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`) via `build-css.js`
+- **Immagini responsive**: `index-hero-480.webp` e varianti ottimizzate (`optimize-images.js`)
+- **Cache**: `public/_headers` e Service Worker v8 con precache aggiornato
+
+### Changed
+- Homepage: hero image prima dell’h1, `content-visibility` sulle sezioni sotto la piega, preload LCP mirato
+- `inject-performance.js`: CSS per tipo pagina, script `defer`, preload stylesheet
+- `template-loader.js`: footer caricato con `requestIdleCallback`
+- Core CSS ridotto (~38 KiB → ~34 KiB); CSS pagina-specifica caricata solo dove serve
+
+### Fixed
+- **CLS mobile**: eliminato layout shift da fetch async di header/topbar (CLS 0 in produzione)
+- **PageSpeed mobile**: Performance 99, LCP 2,0 s, TBT 0 ms (verificato su PageSpeed Insights)
+
 ## [1.3.0] - 2026-06-16
 
 ### Added

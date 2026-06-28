@@ -214,6 +214,21 @@ docs(readme): aggiorna istruzioni installazione
 
 ## Testing
 
+### Pre-deploy (prima del merge su `main`)
+
+```bash
+npm run seo
+npm run perf          # build:css + build:js + inject-shell + inject-performance
+npm run inject-a11y
+npm run test:all
+```
+
+Commitare i file generati in `public/` (`site.min.css`, `site.min.js`, HTML aggiornati).
+
+Dopo modifiche a `templates/header.html` o `topbar.html`: `npm run inject-shell`.
+
+Vedi [docs/documentation/DEPLOYMENT.md](docs/documentation/DEPLOYMENT.md) per la checklist completa.
+
 ### Test automatici (npm)
 
 ```bash
@@ -293,7 +308,7 @@ Prima di ogni commit, testa:
 - [ ] Light mode (unica modalità)
 - [ ] PWA funzionalità (offline, install)
 - [ ] Accessibilità (screen reader, keyboard navigation)
-- [ ] Performance (Lighthouse score > 90)
+- [ ] Performance (PageSpeed Insights mobile ≥ 90; CLS ≤ 0.1)
 
 ### Browser Support
 

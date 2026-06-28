@@ -345,21 +345,25 @@ una webapp PWA statica mobile-first.
 ================================================================================
 
 10.1 Ottimizzazioni
-  - Minifica CSS/JS per produzione
-  - Ottimizza immagini (WebP quando possibile)
-  - Lazy loading per immagini
-  - Preload per risorse critiche
+  - CSS split: `site.min.css` (core) + bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`)
+  - JS bundle: `site.min.js` via `npm run build:js` (Terser)
+  - Shell inline: header/topbar via `npm run inject-shell`
+  - Immagini responsive WebP (`npm run optimize-images`)
+  - Lazy loading per immagini below-the-fold
+  - Preload LCP (hero 480w, Playfair 700) e CSS core
+  - Font self-hosted (Lato, Playfair), `font-display: optional`
 
-10.2 Lighthouse Score
-  - Performance: > 90
-  - Accessibility: > 90
-  - Best Practices: > 90
-  - SEO: > 90
+10.2 Lighthouse Score (obiettivo ≥ 90; verificato v1.4.0)
+  - Performance: 99 mobile / 100 desktop
+  - Accessibility: 100
+  - Best Practices: 100
+  - SEO: 100
+  - CLS mobile: 0
 
 10.3 Bundle Size
-  - CSS: < 50KB (gzipped)
-  - JS: < 100KB (gzipped)
-  - Immagini: < 200KB ciascuna (quando possibile)
+  - CSS core: ~34 KiB minified (`site.min.css`)
+  - JS bundle: ~22 KiB minified (`site.min.js`)
+  - Immagini hero mobile: ~10 KiB (480w WebP)
 
 ================================================================================
 11. SICUREZZA

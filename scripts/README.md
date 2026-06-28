@@ -44,7 +44,8 @@ npm run perf
 | `build-css.js` | Genera `site.min.css` (core) + bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`) |
 | `build-js.js` | Genera `site.min.js` bundle minificato degli script globali |
 | `inject-shell.js` | Inlines `header.html` e `topbar.html` in tutte le pagine (elimina CLS da fetch async) |
-| `inject-performance.js` | Font non bloccanti, preload, Service Worker, manifest, dedup hint; inietta `mobile-menu.js`, `nav-highlight.js`, `cookie-banner.js` su tutte le pagine |
+| `inject-performance.js` | Preload, CSS per pagina, `site.min.js` defer, SW, manifest |
+| `optimize-images.js` | Varianti WebP responsive (`index-hero-480/700.webp`) |
 | `generate-pwa-icons.js` | Icone 192×192 e 512×512 in `public/icons/` da `index-hero.webp` |
 
 Dopo `generate-pwa-icons`, aggiorna `public/manifest.json` se cambi i path delle icone.
@@ -118,6 +119,7 @@ npm run fix-approfondimenti-nesting   # se tocchi approfondimenti
 npm run clean-approfondimenti-ui
 npm run clean-wiki-inline-styles
 npm run seo
+npm run optimize-images   # se tocchi immagini hero/pilastri homepage
 npm run perf
 npm run inject-a11y
 npm test

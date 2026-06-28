@@ -57,7 +57,8 @@ These files **must** remain in the repository root:
 | `scripts/seo-config.js` | Site URL, default meta, SEO rules |
 | `scripts/prompts.json` | Qwen image generation prompts |
 | `public/manifest.json` | PWA manifest |
-| `public/sw.js` | Service Worker |
+| `public/sw.js` | Service Worker (increment `CACHE_NAME` on release) |
+| `public/_headers` | Cloudflare edge cache headers |
 | `public/robots.txt` | Crawler directives |
 | `public/sitemap.xml` | Generated sitemap (run `npm run generate-sitemap`) |
 | `public/llms.txt` | AI crawler hints (run `npm run enrich-schema-geo`) |
@@ -79,9 +80,25 @@ These files **must** remain in the repository root:
 
 When releasing, ensure these reflect the same version where applicable:
 
+- `.env` → `VERSION` and `BUILD` (format `VERSION.BUILD`, e.g. `1.4.0.1`)
 - `package.json` → `"version"`
-- Script cache-busting query strings in HTML (e.g. `?v=1.3.0`)
 - `CHANGELOG.md` → latest `[x.y.z]` entry
+- Script cache-busting query strings in HTML (e.g. `?v=1.3.0` for JS, `?v=1.3.2` for CSS)
+- `public/sw.js` → increment `CACHE_NAME` on asset changes
+
+## Build artefacts (commit to repository)
+
+These files are generated locally and must be committed before deploy:
+
+| File | Generator |
+|------|-----------|
+| `public/css/site.min.css` | `npm run build:css` |
+| `public/css/site-*.min.css` | `npm run build:css` (page bundles) |
+| `public/js/site.min.js` | `npm run build:js` |
+| HTML shell blocks | `npm run inject-shell` |
+| Performance hints in HTML | `npm run inject-performance` |
+
+`.gitignore` exceptions: `!public/css/site*.min.css`, `!public/js/site.min.js`
 
 ---
 
