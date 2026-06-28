@@ -223,35 +223,60 @@ async function loadJourneyBannerIfNeeded() {
 }
 
 /**
- * Carica tutti i template comuni
+ * Inizializza shell inlined a build time (header/topbar nel markup)
  */
-async function loadAllTemplates() {
-  const templates = [
-    { id: 'header-placeholder', file: 'header.html' },
-    { id: 'topbar-placeholder', file: 'topbar.html' },
-    { id: 'footer-placeholder', file: 'footer.html' }
-  ];
-  
-  // Carica tutti i template in parallelo
-  await Promise.all(
-    templates
-      .filter(t => document.getElementById(t.id))
-      .map(t => loadTemplate(t.id, t.file))
-  );
+function initInlineShell() {
+  const header = document.querySelector('body > header');
+  if (header && !document.getElementById('header-placeholder')) {
+    initializeDynamicContent('header.html', header);
+  }
+
+  const topbar = document.querySelector('body > .topbar');
+  if (
+    topbar &&
+    !document.getElementById('topbar-placeholder') &&
+    typeof generateBreadcrumb === 'function'
+  ) {
+    generateBreadcrumb();
+  }
 }
 
-// Carica i template quando i placeholder sono nel DOM
-function scheduleTemplateLoad() {
-  const hasPlaceholders = ['header-placeholder', 'topbar-placeholder', 'footer-placeholder'].some(
-    (id) => document.getElementById(id)
-  );
+/**
+ * Carica template async rimasti (footer) e placeholder legacy se presenti
+ */
+async function bootstrapShell() {
+  const hasInlineHeader =
+    document.querySelector('body > header') && !document.getElementById('header-placeholder');
 
-  if (hasPlaceholders) {
-    loadAllTemplates();
-  } else if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadAllTemplates);
-  } else {
-    loadAllTemplates();
+  const tasks = [];
+
+  if (!hasInlineHeader && document.getElementById('header-placeholder')) {
+    tasks.push(loadTemplate('header-placeholder', 'header.html'));
+  }
+  if (document.getElementById('topbar-placeholder')) {
+    tasks.push(loadTemplate('topbar-placeholder', 'topbar.html'));
+  }
+  if (document.getElementById('footer-placeholder')) {
+    tasks.push(loadTemplate('footer-placeholder', 'footer.html'));
+  }
+
+  await Promise.all(tasks);
+
+  if (hasInlineHeader) {
+    initInlineShell();
+  }
+}
+
+// Differisce fino a dopo gli script sincroni successivi (breadcrumb-generator, nav-highlight, …)
+function scheduleTemplateLoad() {
+  const needsShell =
+    document.getElementById('header-placeholder') ||
+    document.getElementById('topbar-placeholder') ||
+    document.getElementById('footer-placeholder') ||
+    document.querySelector('body > header');
+
+  if (needsShell) {
+    setTimeout(bootstrapShell, 0);
   }
 }
 

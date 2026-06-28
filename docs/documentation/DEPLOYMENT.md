@@ -159,6 +159,7 @@ Before each release that touches CSS:
 
 ```bash
 npm run build:css
+npm run inject-shell      # dopo modifiche a templates/header.html o topbar.html
 npm run inject-performance   # or npm run perf
 ```
 
