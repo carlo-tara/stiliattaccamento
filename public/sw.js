@@ -1,6 +1,6 @@
 // Service Worker — cache-first per asset statici, network-first per HTML
 
-const CACHE_NAME = 'stili-attaccamento-v8';
+const CACHE_NAME = 'stili-attaccamento-v9';
 const PRECACHE_URLS = [
   '/css/site.min.css',
   '/manifest.json',
