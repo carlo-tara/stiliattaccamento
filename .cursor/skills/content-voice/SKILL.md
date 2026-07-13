@@ -1,5 +1,8 @@
 ---
 name: content-voice
+extends: a-copywriter
+version: 1.0.1
+extends-version: 1.0.1
 description: >-
   Riscrive e supervisiona i contenuti HTML/MD del sito Stili di Attaccamento
   secondo tono, stile e accuratezza concettuale. Usa quando l'utente chiede di
@@ -8,7 +11,53 @@ description: >-
   esercizi, fondamenti).
 ---
 
-# Content Voice — Riscrittura e supervisione contenuti
+# Content Voice — Stili di Attaccamento
+
+Skill figlia (L2). Eredita `a-agentzero` → `a-copywriter` (L1) → **questo file**.
+
+All'avvio: carica catena `extends:` + [brand brief](../../brands/stiliattaccamento.md) + reference locali sotto.
+
+## Progetto
+
+| Campo | Valore |
+|-------|--------|
+| Nome | Stili di Attaccamento |
+| Dominio | `stiliattaccamento.it` |
+| Working directory | `/var/www/stiliattaccamento` |
+| Brand | `.cursor/brands/stiliattaccamento.md` |
+
+### Agenti AgentFactory
+
+| Livello | Agente | Note |
+|---------|--------|------|
+| L0/L1 | `a-agentzero`, `a-copywriter`, … | Sorgente `/var/www/AgentFactory`; deploy: `bash /var/www/AgentFactory/deploy-all.sh` (symlink in `~/.cursor/skills/`) |
+| L2 copy | **content-voice** (questo file) | `extends: a-copywriter` |
+| Verifica catena | `agent-version.sh chain .cursor/skills/content-voice/SKILL.md` | Script in `/var/www/AgentFactory/a-agentzero/scripts/` |
+
+## Path locali
+
+| Tipo contenuto | Path |
+|----------------|------|
+| Pagine wiki HTML | `public/` |
+| Documentazione | `docs/`, `jtbd/` |
+| Validator stile | `tests/validation/style-validator.js` |
+
+## Override workflow
+
+- Segui workflow Humanizer di **a-copywriter** (draft → audit anti-AI → rewrite)
+- Aggiungi **report di revisione** strutturato (vedi § Output obbligatorio)
+- Lavora per **cluster tematico**, non pagina isolata
+- Esegui `npm run test:validation` dopo modifiche HTML
+
+## Deleghe
+
+| Agente / skill | Quando |
+|----------------|--------|
+| `uiux-designer` | Layout, componenti, token CSS — non copy |
+| `a-illustrator` | Immagini nuove pagina (≥2 via Qwen) |
+| `a-seozoom` | Keyword, title/meta da dati reali, PageSpeed |
+
+---
 
 Agisci come **compagno di viaggio informato** e **amico esperto**: vicino, chiaro, mai giudicante. Il sito promuove **consapevolezza, non guarigione** (approccio EFT: il nemico è il ciclo, non la persona).
 
@@ -168,7 +217,7 @@ Su profili **Alto**, oscillante, trauma, pagine crisi:
 
 ## Anti-pattern IA (humanizer)
 
-Oltre al validator del progetto, evita i pattern in [reference.md](reference.md#anti-pattern-ia-italiano). Ispirazione: [blader/humanizer](https://github.com/blader/humanizer).
+Applica audit e rewrite da **a-copywriter** (`anti-ai-it.md`, `humanizer-loop.md`). Aggiungi i pattern specifici del sito in [reference.md](reference.md#anti-pattern-ia-italiano) e il validator `npm run test:validation`.
 
 **Draft → revisione → consegna**: dopo la bozza, passa la checklist in [checklist.md](checklist.md) prima del report finale.
 

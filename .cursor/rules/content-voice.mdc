@@ -6,9 +6,11 @@ alwaysApply: false
 
 # Content Voice
 
-Per riscrivere, revisionare o supervisionare testi del sito, usa la skill **content-voice**:
+Per riscrivere, revisionare o supervisionare testi del sito, usa la skill **content-voice** (L2, eredita `a-copywriter`):
 
 `.cursor/skills/content-voice/SKILL.md`
+
+Brand: `.cursor/brands/stiliattaccamento.md`
 
 Documenti di supporto:
 - `architecture.md` — IA percorso, navigazione, hub dinamico

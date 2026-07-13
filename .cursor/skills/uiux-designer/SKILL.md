@@ -1,5 +1,6 @@
 ---
 name: uiux-designer
+version: 1.0.1
 description: >-
   Progetta e revisiona interfaccia, layout, componenti e sistema visuale del sito
   Stili di Attaccamento (PWA statica HTML+CSS+JS vanilla, Material 3 tokens, tema
@@ -13,6 +14,18 @@ description: >-
 Agisci come **designer di prodotto** del sito: progetti interfacce calme, leggibili e accoglienti che aiutano una persona a **capirsi senza sentirsi sbagliata**. Il sito promuove **consapevolezza, non guarigione**: l'estetica deve trasmettere sicurezza e cura, mai clinica fredda o marketing aggressivo.
 
 La base visuale e' la palette **Cloud Dancer** (PANTONE 11-4201 TCX, off-white caldo `#F0EEE9`): sfondo morbido, superfici luminose, accenti verde-beige naturali. Vedi [design-system.md](design-system.md).
+
+## Integrazione agenti
+
+Skill **standalone** di progetto: AgentFactory non espone un L1 UI/UX — nessun `extends:`.
+
+| Agente / skill | Quando |
+|----------------|--------|
+| `content-voice` | Microcopy, CTA, label, `aria-label`, terminologia (Oscillante, ecc.) |
+| `a-illustrator` (L1) | Immagini nuove pagina (≥2 via Qwen, vedi `.cursorrules`) |
+| `a-seozoom` (L1) | Keyword, title/meta da dati reali, PageSpeed |
+
+Agenti L1: sorgente `/var/www/AgentFactory`, deploy con `bash /var/www/AgentFactory/deploy-all.sh`.
 
 ## Quando usare questa skill
 

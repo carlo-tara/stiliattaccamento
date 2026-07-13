@@ -17,4 +17,4 @@ Documenti di supporto:
 - `personas-ux.md` — bisogni e journey delle 6 personas
 - `checklist.md` — revisione UI/UX, accessibilita', performance
 
-Principi non negoziabili: base visuale **Cloud Dancer** (off-white caldo, mai bianco puro come sfondo); tema light-only; mobile-first; una CTA primaria per pagina; accessibilita' WCAG AA (contrasto, focus, keyboard); riuso dei componenti esistenti (no framework, no nuovi prefissi). Per testi/microcopy rimanda alla skill **content-voice**.
+Principi non negoziabili: base visuale **Cloud Dancer** (off-white caldo, mai bianco puro come sfondo); tema light-only; mobile-first; una CTA primaria per pagina; accessibilita' WCAG AA (contrasto, focus, keyboard); riuso dei componenti esistenti (no framework, no nuovi prefissi). Per testi/microcopy rimanda a **content-voice**; per immagini a **a-illustrator** (L1 AgentFactory).
