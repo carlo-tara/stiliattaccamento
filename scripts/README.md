@@ -45,10 +45,17 @@ npm run perf
 |--------|-------|
 | `build-css.js` | Genera `site.min.css` (core) + bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`) |
 | `build-js.js` | Genera `site.min.js` bundle minificato degli script globali |
-| `inject-shell.js` | Inlines `header.html` e `topbar.html` in tutte le pagine (elimina CLS da fetch async) |
+| `inject-shell.js` | Inlines `header.html` e `topbar.html` (idempotente anche su HTML minificato; marker `Site shell:`) |
+| `inject-analytics.js` | Blocco GA4 nel `<head>` |
+| `inject-wiki-tabs.js` | Attributi `data-wiki-tabs*` da `wiki-tabs-config.json` |
 | `inject-performance.js` | Preload, CSS per pagina, `site.min.js` defer, SW, manifest |
+| `inject-search.js` | UI ricerca Pagefind nel markup |
+| `minify-static.js` | Minifica HTML, template, manifest, sitemap, JSON (`html-minifier-terser`) — **ultimo** step inject prima di `build:search` |
+| `build-search.js` | Indice Pagefind in `public/pagefind/` |
 | `optimize-images.js` | Varianti WebP responsive (`index-hero-480/700.webp`) |
 | `generate-pwa-icons.js` | Icone 192×192 e 512×512 in `public/icons/` da `index-hero.webp` |
+
+**Git hooks:** `npm install` imposta `core.hooksPath` su `scripts/git-hooks/` (pre-commit + pre-push eseguono `npm run perf`).
 
 Dopo `generate-pwa-icons`, aggiorna `public/manifest.json` se cambi i path delle icone.
 

@@ -386,6 +386,29 @@ Informativa consenso cookie/analytics. Sorgente `js/site-notice.js`, **bundlata 
 
 ---
 
+## Build statici
+
+Le pagine in `public/` committate sono **minificate** (`scripts/minify-static.js`, ultimo step di `npm run perf`). Dipendenza: `html-minifier-terser`.
+
+**Ordine `npm run perf`:** `build:css` → `build:js` → `inject-shell` → `inject-analytics` → `inject-wiki-tabs` → `inject-performance` → `inject-search` → **`minify:static`** → `build:search` (step aggiuntivi sempre **dopo** minify).
+
+**Marker HTML da preservare** (`scripts/lib/minify-options.js`, `ignoreCustomComments`):
+
+- `<!-- Site shell: … -->` / `<!-- /Site shell: … -->` — header e topbar inlined
+- `<!-- Site analytics … -->` / `<!-- End site analytics -->`
+
+**`inject-shell` su HTML minificato:** `findInsertPoint` non assume newline dopo skip-link o `<body>`; se i marker shell esistono già, `replaceOrInsertShell` sostituisce il blocco invece di reinserire (59/59 pagine, pipeline idempotente).
+
+**Workflow edit:**
+
+1. Modifica contenuto/struttura in HTML **non** minificato (o ripristina da git e modifica, poi `npm run perf`).
+2. Non editare a mano markup shell/analytics minificato — rigenera con `npm run perf`.
+3. Dopo `templates/header.html` o `topbar.html`: almeno `npm run inject-shell` (meglio `npm run perf` completo).
+
+**Git hooks** (`scripts/git-hooks/`, installati via `npm run prepare`): pre-commit esegue `perf` + restage `public/` se tocchi `public/`, `scripts/` o `package.json`; pre-push riesegue sempre `perf` e blocca se restano diff. WIP locale su `package.json` (script `perf` diverso dal commit) fa fallire il push — committa o stash prima di pushare.
+
+---
+
 ## Utility
 
 ```css

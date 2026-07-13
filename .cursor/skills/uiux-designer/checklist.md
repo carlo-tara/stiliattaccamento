@@ -78,6 +78,14 @@ Passa questa checklist prima di consegnare una pagina o un intervento di design.
 - [ ] `ERR_BLOCKED_BY_CLIENT` su script → probabile ad blocker; verificare con incognito senza estensioni prima di debug server
 - [ ] Messaggi da estensioni browser (es. content script, CSP `connect-src 'none'` report-only) ≠ bug del sito
 
+### 7c. Build statici e git hooks
+
+- [ ] Dopo modifiche CSS/JS/template HTML: bump `scripts/lib/asset-version.js` se cambiano bundle; `npm run perf` completo (`minify:static` per ultimo)
+- [ ] Seconda esecuzione di `npm run perf` **non** deve modificare file (idempotenza — richiesta da pre-push)
+- [ ] Artefatti in `public/` committati (`site.min.css`, `site.min.js`, HTML minificati, template, manifest, sitemap)
+- [ ] Prima del push: working tree pulito rispetto al `package.json` committato (stash WIP parallelo su script `perf`)
+- [ ] `inject-shell` ok su HTML minificato (59/59); marker `Site shell:` / `Site analytics` preservati da minify
+
 ## 8. Immagini obbligatorie (regola `.cursorrules`)
 
 - [ ] ≥2 immagini `.wiki-image` per ogni nuova pagina di contenuto
@@ -103,6 +111,7 @@ Passa questa checklist prima di consegnare una pagina o un intervento di design.
 
 ## Verifiche operative
 
+- [ ] Eseguito `npm run perf` (o verificato idempotenza se i git hooks l'hanno già eseguito)
 - [ ] Eseguito `npm run test:validation` se hai toccato HTML (validator stile/pattern del progetto)
 - [ ] Controllo visivo su mobile e desktop
 - [ ] Nessun errore in console JavaScript

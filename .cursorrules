@@ -284,6 +284,7 @@ Ogni pagina wiki deve includere:
 - Testa su più browser prima di commit
 - Dopo modifiche CSS/JS/templates: `npm run perf` e committa artefatti generati
 - Dopo modifiche a `templates/header.html` o `topbar.html`: `npm run inject-shell`
+- **Git hooks** (`scripts/git-hooks/`, via `npm install` → `prepare`): pre-commit restage `public/`; pre-push riesegue `perf` e blocca se restano diff — pipeline idempotente; stash WIP su `package.json` prima del push
 
 ### Pagine legali
 - **File:** `public/privacy-policy.html`, `public/cookie-policy.html`, `public/termini-condizioni.html`

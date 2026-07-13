@@ -1,6 +1,6 @@
 ---
 name: uiux-designer
-version: 1.0.5
+version: 1.0.6
 description: >-
   Progetta e revisiona interfaccia, layout, componenti e sistema visuale del sito
   Stili di Attaccamento (PWA statica HTML+CSS+JS vanilla, Material 3 tokens, tema
@@ -116,7 +116,8 @@ Task Progress:
 - [ ] 6. Test responsive (mobile-first) + accessibilita' (focus, contrasto, keyboard)
 - [ ] 7. Verificare immagini obbligatorie (>=2 per nuova pagina, regola .cursorrules)
 - [ ] 8. Passare la checklist.md prima della consegna
-- [ ] 9. Dopo modifiche CSS/JS: incrementare `scripts/lib/asset-version.js`, poi `npm run build:css` / `build:js` e `npm run perf` (inject + `minify:static` su HTML/template/JSON/XML)
+- [ ] 9. Dopo modifiche CSS/JS: incrementare `scripts/lib/asset-version.js`, poi `npm run build:css` / `build:js` e `npm run perf` (inject + `minify:static` su HTML/template/JSON/XML; vedi [componenti.md § Build statici](componenti.md#build-statici))
+- [ ] 10. Git hooks (`npm install` → `prepare`): pre-commit restage `public/` se tocchi sorgenti build; pre-push riesegue `perf` — la pipeline deve essere **idempotente** (seconda esecuzione senza diff)
 ```
 
 ## Output: report di revisione UI/UX
