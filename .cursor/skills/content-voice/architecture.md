@@ -51,7 +51,7 @@ Label: maiuscole naturali, tono umano.
 
 ## Template profilo
 
-Vedi [`public/profili/TEMPLATE-PROFILO.md`](../../public/profili/TEMPLATE-PROFILO.md).
+Vedi [`docs/templates/TEMPLATE-PROFILO.md`](../../../docs/templates/TEMPLATE-PROFILO.md).
 
 Ordine: hero uniformato → strategie (`#strategie-pratiche`) → cosa succede (`#cosa-succede`) → archetipo → esercizi → prossimo passo journey.
 

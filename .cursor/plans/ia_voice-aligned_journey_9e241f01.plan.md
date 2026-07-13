@@ -36,7 +36,7 @@ isProject: false
 
 ## Diagnosi: disallineamenti attuali
 
-L'architettura **implementata** (nav in [`public/templates/header.html`](public/templates/header.html), mappa in [`public/sitemap.md`](public/sitemap.md)) è **tassonomica**: organizza per tipo di contenuto (Fondamenti, 4 Stili, Archetipi, 12 Profili, Approfondimenti…).
+L'architettura **implementata** (nav in [`public/templates/header.html`](public/templates/header.html), mappa in [`docs/documentation/SITE_MAP.md`](../../docs/documentation/SITE_MAP.md)) è **tassonomica**: organizza per tipo di contenuto (Fondamenti, 4 Stili, Archetipi, 12 Profili, Approfondimenti…).
 
 La skill [`content-voice`](.cursor/skills/content-voice/SKILL.md) e le job stories di Chiara ([`jtbd/job-stories.md`](jtbd/job-stories.md)) descrivono invece un **percorso emotivo**: capire → riconoscersi → fare qualcosa di concreto → sentirsi meno solo.
 
@@ -67,7 +67,7 @@ flowchart LR
 | Navigazione | Etichette accademiche ("Fondamenti", "Modello a Gradienti", Title Case) | Linguaggio da compagno ("Le basi", "Quanto è intenso per te") |
 | Homepage | Griglia 12 profili prima che Chiara sappia chi è | Invito al test + percorsi per momento |
 | Post-test | Lista testuale generica in [`test-surveyjs.js`](public/js/test-surveyjs.js) L411-416 | 3 passi concreti con link, tono EFT |
-| Template profili | [`TEMPLATE-PROFILO.md`](public/profili/TEMPLATE-PROFILO.md): archetipo prima della pratica | Strategie immediate → comprensione → archetipo breve |
+| Template profili | [`TEMPLATE-PROFILO.md`](../../docs/templates/TEMPLATE-PROFILO.md): archetipo prima della pratica | Strategie immediate → comprensione → archetipo breve |
 | Esercizi | Blocco autopoietico/Process Work in cima a [`esercizi.html`](public/js/esercizi.html) | 70% pratico; teoria avanzata in sezione collassabile |
 | Documentazione legacy | [`docs/architettura-sito-wiki.md`](docs/architettura-sito-wiki.md) sezione "GUARIGIONE E CRESCITA" | "Percorso di consapevolezza" (già parzialmente in [`approfondimenti/crescita.html`](public/approfondimenti/crescita.html)) |
 | Percorso utente | Specificato in architettura (L274-292) ma **non implementato** | Hub dinamico + progressione settimanale |
@@ -161,7 +161,7 @@ Riordino sezioni:
 6. "Non sei solo" + "Consapevolezza, non perfezione" (invariati)
 7. FAQ
 
-### 5. Template profili ([`TEMPLATE-PROFILO.md`](public/profili/TEMPLATE-PROFILO.md) + 12 HTML)
+### 5. Template profili ([`TEMPLATE-PROFILO.md`](../../docs/templates/TEMPLATE-PROFILO.md) + 12 HTML)
 
 Nuovo ordine sezioni (allineato a skill):
 
@@ -201,7 +201,7 @@ Partial HTML [`public/templates/journey-next-step.html`](public/templates/journe
 
 - Nuovo file skill: [`.cursor/skills/content-voice/architecture.md`](.cursor/skills/content-voice/architecture.md) — IA target, regole nav, template profilo, journey config
 - Aggiornare [`SKILL.md`](.cursor/skills/content-voice/SKILL.md) con riferimento a `architecture.md`
-- Allineare [`public/sitemap.md`](public/sitemap.md) e deprecare sezione "Guarigione" in [`docs/architettura-sito-wiki.md`](docs/architettura-sito-wiki.md) → "Percorso di consapevolezza"
+- Allineare [`docs/documentation/SITE_MAP.md`](../../docs/documentation/SITE_MAP.md) e deprecare sezione "Guarigione" in [`docs/architettura-sito-wiki.md`](../../docs/architettura-sito-wiki.md) → "Percorso di consapevolezza"
 - Rivedere [`docs/mappa-personale.md`](docs/mappa-personale.md): sostituire "timeline guarigione" con "segnali di consapevolezza"
 
 ### 10. `journey-config.js` — struttura dati

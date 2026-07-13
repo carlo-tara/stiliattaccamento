@@ -472,8 +472,8 @@ I contenuti provengono da:
 - `jtbd/job-stories.md` - Job stories
 - `jtbd/design-system.md` - Design system
 - `docs/` - Contenuti markdown
-- `ARCHITECTURE.txt` - Architettura tecnica
-- `STANDARD.TXT` - Standard di codice
+- `docs/documentation/ARCHITECTURE.md` - Architettura tecnica
+- `STANDARDS.md` - Standard di codice
 
 ### 7.2 Tools e Risorse
 - **HTML Validator**: https://validator.w3.org/

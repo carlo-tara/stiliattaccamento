@@ -1,6 +1,6 @@
 # ARCHITETTURA DEL SITO - MAPPA TEMATICA
 
-> **Aggiornamento 2026**: il sito usa un'architettura **doppio livello** — **Percorso** (Chiara: test → hub → 3 passi) + **Wiki** (approfondimento). Vedi anche `.cursor/skills/content-voice/architecture.md` e `public/sitemap.md`.
+> **Aggiornamento 2026**: il sito usa un'architettura **doppio livello** — **Percorso** (Chiara: test → hub → 3 passi) + **Wiki** (approfondimento). Vedi anche `.cursor/skills/content-voice/architecture.md` e `docs/documentation/SITE_MAP.md`.
 
 ## Flusso utente principale
 

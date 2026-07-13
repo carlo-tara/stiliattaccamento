@@ -28,7 +28,10 @@ These files **must** remain in the repository root:
 | `ARCHITECTURE.md` | Technical and conceptual architecture |
 | `API.md` | External APIs and integrations (no first-party REST API) |
 | `DEPLOYMENT.md` | Cloudflare Pages deployment guide |
+| `PUBLIC_DIRECTORY.md` | Reference for files published from `public/` |
+| `SITE_MAP.md` | Human-readable site map and journey structure |
 | `STANDARD_PROJECT_FILES.md` | This reference |
+| `TESTING.md` | Test suite reference and commands |
 | `.swagger.yml` | OpenAPI spec (optional; not applicable for static wiki) |
 
 ---
@@ -37,15 +40,19 @@ These files **must** remain in the repository root:
 
 | Location | Contents |
 |----------|----------|
+| `.cursor/brands/` | Brand brief used by local content skills |
 | `docs/` | Content specifications, reviews, SEO data, snapshots |
+| `docs/archive/legacy-root/` | Superseded root `.txt` docs and old bootstrap notes |
+| `docs/design/` | Visual design documentation |
 | `docs/reviews/` | Code review reports |
 | `docs/seo/` | Keyword and competitor research |
+| `docs/templates/` | Authoring templates for page families |
 | `jtbd/` | Personas, job stories, design system notes |
 | `scripts/README.md` | Build/SEO/image script pipeline |
 | `scripts/ENV_SETUP.md` | Qwen API environment setup |
-| `public/profili/TEMPLATE-PROFILO.md` | Profile page template guide |
+| `scripts/archive/maintenance/` | One-off maintenance scripts kept for reference |
 
-**Rule:** All `.md` files except the standard root files above must live under `docs/` or its subdirectories (or `jtbd/`, `scripts/` where appropriate).
+**Rule:** All `.md` files except the standard root files above must live under `docs/` or its subdirectories (or `jtbd/`, `.cursor/`, `scripts/` where appropriate). `public/` should contain only files meant to be published.
 
 ---
 

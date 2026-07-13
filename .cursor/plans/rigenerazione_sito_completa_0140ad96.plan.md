@@ -129,7 +129,7 @@ Ordine per **impatto utente** (allineato a `[content-voice/SKILL.md](.cursor/ski
 
 ### Onda 2 — Profili evitante (3 pagine)
 
-Applicare `[TEMPLATE-PROFILO.md](public/profili/TEMPLATE-PROFILO.md)` come già fatto per ansioso:
+Applicare `[TEMPLATE-PROFILO.md](../../docs/templates/TEMPLATE-PROFILO.md)` come già fatto per ansioso:
 
 - Hero uniformato (`Evitante alto`, badge, no MAIUSCOLO)
 - `#strategie-pratiche` → `#cosa-succede` → archetipo → journey-next-step

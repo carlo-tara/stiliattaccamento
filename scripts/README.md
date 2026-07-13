@@ -135,3 +135,11 @@ npm run test:validation
 | `lib/fs-utils.js` | Scoperta file HTML in `public/` |
 | `lib/seo-utils.js` | Truncation meta, path canonical |
 | `lib/wiki-html-utils.js` | Sostituzione inline styles → classi CSS |
+
+---
+
+## Archivio manutenzione
+
+Gli script una tantum non richiamati da `package.json` sono conservati in
+`scripts/archive/maintenance/`. Prima di riusarli, controlla il diff che producono:
+sono strumenti storici, non parte della pipeline corrente.
