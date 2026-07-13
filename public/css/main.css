@@ -888,6 +888,106 @@ a:focus-visible,
   align-self: flex-start;
 }
 
+/* ==========================================================================
+   Wiki tabs — pagine lunghe a schede
+   ========================================================================== */
+
+.wiki-tabs {
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+.wiki-tabs__nav {
+  display: flex;
+  gap: var(--spacing-2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.wiki-tabs__tab {
+  flex: 0 0 auto;
+  max-width: 16rem;
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: rgb(0, 0, 0);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.wiki-tabs__tab[aria-selected='true'] {
+  background-color: var(--md-sys-color-primary-container);
+  border-color: var(--color-accent-primary);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.wiki-tabs__tab:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+.wiki-tabs__panels {
+  min-height: 12rem;
+}
+
+.wiki-tabs__panel {
+  animation: wiki-tabs-fade-in 0.2s ease;
+}
+
+.wiki-tabs__panel[hidden] {
+  display: none !important;
+}
+
+.wiki-tabs:not(.wiki-tabs--ready) .wiki-tabs__panel {
+  display: block;
+}
+
+.wiki-tabs:not(.wiki-tabs--ready) .wiki-tabs__nav {
+  display: none;
+}
+
+@keyframes wiki-tabs-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-tabs__panel {
+    animation: none;
+  }
+}
+
+@media (min-width: 960px) {
+  .wiki-tabs__nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wiki-tabs__tab:hover {
+    background-color: var(--color-surface-soft);
+  }
+
+  .wiki-tabs__tab[aria-selected='true']:hover {
+    background-color: var(--md-sys-color-primary-container);
+  }
+}
+
 .profiles-accordion summary {
   cursor: pointer;
   font-family: var(--font-family-heading);

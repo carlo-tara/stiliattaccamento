@@ -1,0 +1,62 @@
+{
+  "version": "1.0.1",
+  "scriptVersion": "1.3.1",
+  "defaults": {
+    "sectionSelector": "article.card.mb-8, div.card.mb-8",
+    "minSections": 5,
+    "pinStart": ".card.card--accent-primary, .card.card--accent-soft, .card.card--accent",
+    "pinEnd": "section.section--compact, nav.content-nav, .card:not(.mb-8):not(.mb-6)"
+  },
+  "profileDefaults": {
+    "sectionSelector": "article.card.strategie-pratiche, article.card.mb-8",
+    "minSections": 4,
+    "pinStart": ".profile-hero, .card.card--accent-primary, .card.card--accent-soft, .card.card--accent"
+  },
+  "approfondimentiDefaults": {
+    "sectionSelector": "div.card.mb-6, div.card.mb-8, article.card.mb-8",
+    "minSections": 5
+  },
+  "pages": [
+    { "file": "fondamenti.html" },
+    { "file": "stili-base.html", "pinStart": ".card.card--accent-primary, .card.card--accent-soft, h2.section-title" },
+    { "file": "modello-gradienti.html" },
+    { "file": "archetipi.html" },
+    { "file": "dinamiche-coppia.html" },
+    { "file": "come-supportare-partner.html" },
+    { "file": "quando-cercare-aiuto.html" },
+    {
+      "file": "risorse.html",
+      "sectionSelector": "div.card.mb-8, section.card.mb-8, section.glossary-category",
+      "minSections": 5
+    },
+    {
+      "file": "esercizi.html",
+      "sectionSelector": "section.card.mb-8, section.mb-8, div.card.mb-8, details.card.mb-8",
+      "minSections": 5,
+      "pinStart": "h1, p.wiki-lead, section.card.card--accent"
+    },
+    { "file": "profili/ansioso-alto.html", "useProfileDefaults": true },
+    { "file": "profili/ansioso-medio.html", "useProfileDefaults": true },
+    { "file": "profili/ansioso-basso.html", "useProfileDefaults": true },
+    { "file": "profili/evitante-alto.html", "useProfileDefaults": true },
+    { "file": "profili/evitante-medio.html", "useProfileDefaults": true },
+    { "file": "profili/evitante-basso.html", "useProfileDefaults": true },
+    { "file": "profili/disorganizzato-alto.html", "useProfileDefaults": true },
+    { "file": "profili/disorganizzato-medio.html", "useProfileDefaults": true },
+    { "file": "profili/disorganizzato-basso.html", "useProfileDefaults": true },
+    { "file": "profili/secure-alto.html", "useProfileDefaults": true },
+    { "file": "profili/secure-medio.html", "useProfileDefaults": true },
+    { "file": "profili/secure-basso.html", "useProfileDefaults": true },
+    { "file": "approfondimenti/crescita.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/focusing.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/sessualita.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/separazione.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/lutto.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/tradimento.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/famiglia.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/finanze.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/lavoro.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/amicizie.html", "useApprofondimentiDefaults": true },
+    { "file": "approfondimenti/genitorialita.html", "useApprofondimentiDefaults": true }
+  ]
+}
