@@ -163,7 +163,7 @@ Questo documento descrive le policy di sicurezza per il progetto "Stili di Attac
     * Minimizzare dati raccolti
 
 8.2 Analytics
-  - Google Tag Manager (GTM-WC24D33D) solo dopo consenso cookie
+  - Google Analytics 4 (G-6CQ4VFK8SJ) e Google Tag Manager (GTM-NGNWRJBN) solo dopo consenso cookie
   - Nessun tracking prima del consenso
   - Privacy-first: minimizzare dati raccolti
 

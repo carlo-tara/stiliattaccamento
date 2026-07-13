@@ -11,7 +11,9 @@ describe('analytics.js', () => {
   beforeEach(() => {
     cleanupDOM();
     delete window.dataLayer;
+    delete window.gtag;
     delete window.googleTagManagerLoaded;
+    delete window.googleAnalyticsLoaded;
     localStorage.clear();
   });
 
@@ -21,17 +23,21 @@ describe('analytics.js', () => {
     expect(window.dataLayer).toBeUndefined();
   });
 
-  it('should push events after consent', () => {
+  it('should send events via gtag after consent', () => {
     localStorage.setItem('cookie_consent', 'accepted');
+    loadGoogleAnalytics();
 
     trackEvent('test_completed', {
       attachment_style: 'secure',
       attachment_level: 'basso',
     });
 
-    expect(window.dataLayer).toHaveLength(1);
-    expect(window.dataLayer[0]).toMatchObject({
-      event: 'site_interaction',
+    const eventEntry = window.dataLayer.find(
+      (entry) => entry && entry[0] === 'event' && entry[1] === 'site_interaction',
+    );
+
+    expect(eventEntry).toBeTruthy();
+    expect(eventEntry[2]).toMatchObject({
       interaction_type: 'test_completed',
       attachment_style: 'secure',
       attachment_level: 'basso',
@@ -41,9 +47,13 @@ describe('analytics.js', () => {
 
   it('should ignore empty interaction type', () => {
     localStorage.setItem('cookie_consent', 'accepted');
+    loadGoogleAnalytics();
 
     trackEvent('', { attachment_style: 'ansioso' });
 
-    expect(window.dataLayer).toBeUndefined();
+    const eventEntry = window.dataLayer.find(
+      (entry) => entry && entry[0] === 'event' && entry[1] === 'site_interaction',
+    );
+    expect(eventEntry).toBeUndefined();
   });
 });

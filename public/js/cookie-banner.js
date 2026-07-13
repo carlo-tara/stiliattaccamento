@@ -98,7 +98,7 @@
       <div class="cookie-banner__content">
         <p class="cookie-banner__text" id="cookie-banner-text">
           Questo sito usa cookie tecnici necessari al funzionamento e, se acconsenti,
-          cookie analitici tramite Google Tag Manager per capire come viene usato il sito.
+          cookie analitici (Google Analytics) per capire come viene usato il sito.
           Continuando a navigare, accetti entrambi.
           <a href="${policyHref}" class="cookie-banner__link">Maggiori informazioni</a>
         </p>

@@ -48,15 +48,17 @@ No npm bundle — keeps production JavaScript minimal.
 
 ---
 
-## Google Tag Manager
+## Analytics (GA4 + GTM)
 
 | Item | Value |
 |------|-------|
-| Container | `GTM-WC24D33D` |
+| GA4 Measurement ID | `G-6CQ4VFK8SJ` |
+| GTM Container | `GTM-NGNWRJBN` |
 | Loader | `public/js/gtm.js` |
+| Event layer | `public/js/modules/analytics.js` (`trackEvent`) |
 | Consent | Loaded only after `localStorage.cookie_consent === 'accepted'` |
 
-GTM is **not** loaded on first visit. The cookie banner (`cookie-banner.js`) must receive explicit acceptance before analytics scripts run.
+GA4 and GTM are **not** loaded on first visit. The cookie banner (`cookie-banner.js`) must receive explicit acceptance before analytics scripts run. Custom events (`test_completed`, `test_results_viewed`) are sent via `gtag` when GA4 is loaded.
 
 ---
 

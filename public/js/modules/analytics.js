@@ -1,5 +1,5 @@
 // analytics.js
-// Layer di astrazione per eventi analytics (GTM / dataLayer, solo post-consenso)
+// Layer di astrazione per eventi analytics (GA4 / GTM, solo post-consenso)
 
 const ANALYTICS_CONSENT_KEY = 'cookie_consent';
 
@@ -24,11 +24,20 @@ function trackEvent(interactionType, params = {}) {
     return;
   }
 
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'site_interaction',
+  const eventParams = {
     interaction_type: interactionType,
     page_path: window.location.pathname,
     ...params,
+  };
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'site_interaction', eventParams);
+    return;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'site_interaction',
+    ...eventParams,
   });
 }
