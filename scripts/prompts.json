@@ -253,7 +253,7 @@
       "figcaption": "Pattern relazionale: riconoscere il ciclo"
     },
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Fool , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure on edge of precipice, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by The Fool archetype, figure on cliff edge with dandelion seeds drifting into wind, soft anxious pink atmosphere (#e88a96), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: Il Matto (0)",
       "figcaption": "0 - Il Matto: L'ingenuità traumatizzata",
@@ -262,7 +262,7 @@
   },
   "profili/ansioso-medio.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Lovers , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, two figures in relationship, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by The Lovers archetype, two figures facing each other with intertwined cords and floating heart between them, soft anxious pink atmosphere (#e88a96), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: L'Innamorato (VI)",
       "figcaption": "VI - L'Innamorato: L'amante ferito",
@@ -271,7 +271,7 @@
   },
   "profili/ansioso-basso.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Lovers integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, two figures in harmonious connection, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by integrated Lovers archetype, two figures in harmonious embrace with gentle golden light between them, soft anxious pink atmosphere (#e88a96), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: L'Amante Consapevole (VI integrato)",
       "figcaption": "VI - L'Amante Consapevole: Connessione integrata",
@@ -280,7 +280,7 @@
   },
   "profili/evitante-alto.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Hermit , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, solitary figure with lantern, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by The Hermit archetype, solitary hooded figure holding glowing lantern in cosmic night landscape, soft avoidant purple atmosphere (#9d8bc4), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: L'Eremita (IX)",
       "figcaption": "IX - L'Eremita: L'isolamento come protezione",
@@ -289,7 +289,7 @@
   },
   "profili/evitante-medio.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Emperor , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with boundaries and structure, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by The Emperor archetype, figure on throne with rigid stone walls and geometric boundaries, soft avoidant purple atmosphere (#9d8bc4), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: L'Imperatore (IV)",
       "figcaption": "IV - L'Imperatore: Il confine rigido",
@@ -298,7 +298,7 @@
   },
   "profili/evitante-basso.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Emperor integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with wise boundaries, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by integrated Emperor archetype, figure with wise open boundaries and soft permeable walls, soft avoidant purple atmosphere (#9d8bc4), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: L'Imperatore Consapevole (IV integrato)",
       "figcaption": "IV - L'Imperatore Consapevole: Confini saggi",
@@ -307,7 +307,7 @@
   },
   "profili/secure-basso.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Magician integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with integrated magic, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by integrated Magician archetype, figure with staff and open palm holding spark of light, soft secure green atmosphere (#7fb89a), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: Il Mago Consapevole",
       "figcaption": "Il Mago Consapevole: La magia della psiche",
@@ -316,7 +316,7 @@
   },
   "profili/secure-medio.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Magician mature , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, wise figure with mastery, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by mature Magician archetype, wise figure with golden halo mastering elements on altar, soft secure green atmosphere (#7fb89a), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: Il Saggio Maturo (I)",
       "figcaption": "I - Il Saggio Maturo: Maestria e saggezza",
@@ -325,7 +325,7 @@
   },
   "profili/secure-alto.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, Strength integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, illuminated figure in harmony, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by integrated Strength archetype, illuminated figure with arms open beside calm lion under crescent moon, soft secure green atmosphere (#7fb89a), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: L'Illuminato (XI integrato)",
       "figcaption": "XI - L'Illuminato: Integrazione completa",
@@ -334,7 +334,7 @@
   },
   "profili/disorganizzato-alto.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Tower , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, tower with lightning, chaos and revelation, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by The Tower archetype, crumbling stone tower struck by lightning with floating geometric shards, soft oscillating orange atmosphere (#ffc085), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: La Torre (XVI)",
       "figcaption": "XVI - La Torre: Il caos rivelatore",
@@ -343,7 +343,7 @@
   },
   "profili/disorganizzato-medio.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, The Pilgrim (Death XIII + Sun XIX combined), abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure on labyrinthine journey, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by The Pilgrim archetype combining Death and Sun, dark silhouette walking through painterly labyrinth maze toward radiant light, soft oscillating orange atmosphere (#ffc085), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: Il Pellegrino (XIII+XIX)",
       "figcaption": "Il Pellegrino: Il viaggio nel labirinto",
@@ -352,7 +352,7 @@
   },
   "profili/disorganizzato-basso.html": {
     "tarocchi": {
-      "prompt": "Tarot card in Marseille style, vertical format, Strength integrated , abstract surrealist interpretation, traditional tarot colors (yellows, blues, reds), symbolic imagery, figure with gentle strength and awareness, soft pastel tones, painterly style, completely without text, without words, without letters, without numbers, without symbols that look like text, no writing, no inscriptions, no labels, no numerical symbols, no letter-like shapes, purely visual and painterly card design, symbolic imagery only",
+      "prompt": "Full-bleed vertical mystical illustration inspired by integrated Strength archetype, figure gently touching lion with muscular awareness and calm power, soft oscillating orange atmosphere (#ffc085), abstract surrealist painterly style, symbolic imagery only, edge-to-edge composition, no border, no frame, no text, no numbers",
       "position": "after-h2-archetipo",
       "alt": "Carta dei Tarocchi: La Forza Integrata (XI)",
       "figcaption": "XI - La Forza Integrata: Consapevolezza muscolare",

@@ -7,10 +7,11 @@
  * senza testi, parole, lettere o scritte sovraimpresse.
  * 
  * Uso:
- *   node scripts/generate-images.js [--page=index.html] [--force] [--limit=N]
+ *   node scripts/generate-images.js [--page=index.html] [--position=tarocchi] [--force] [--limit=N]
  * 
  * Opzioni:
  *   --page=filename    Genera solo immagini per una specifica pagina
+ *   --position=name    Genera solo una posizione (es. tarocchi, archetipo)
  *   --force            Rigenera anche immagini esistenti
  *   --limit=N          Limita il numero di immagini da generare (utile per test)
  */
@@ -42,6 +43,21 @@ const IMAGE_HEIGHT = parseInt(process.env.IMAGE_HEIGHT || '1328');
 const FINAL_WIDTH = parseInt(process.env.FINAL_WIDTH || '800');
 const FINAL_HEIGHT = parseInt(process.env.FINAL_HEIGHT || '600');
 const IMAGE_FORMAT = process.env.IMAGE_FORMAT || 'webp';
+
+const TAROCCHI_STYLE_ANCHOR = [
+  'Full-bleed vertical mystical illustration, abstract surrealist painterly digital art,',
+  'Jungian archetypal symbolism, soft pastel atmosphere with saturated tarot accents,',
+  'central symbolic figure or scene, cosmic dreamlike background extending edge to edge,',
+  'non-photorealistic, welcoming and contemplative mood, composition fills entire canvas,',
+  'no margins, no card layout'
+].join(' ');
+
+const TAROCCHI_NEGATIVE = [
+  'text, letters, numbers, roman numerals, typography, title, caption, banner, label,',
+  'inscription, writing, watermark, signature, logo, border, frame, card border,',
+  'white border, rounded rectangle, margin, playing card layout, tarot card frame,',
+  'Marseille card frame, suit symbols, gibberish text, photorealistic, 3D render'
+].join(' ');
 
 // Verifica configurazione
 if (!API_KEY) {
@@ -152,23 +168,33 @@ function makeRequest(url, options, payload) {
 /**
  * Crea un task asincrono per generare immagine
  */
-async function createImageTask(prompt) {
+async function createImageTask(prompt, width = null, height = null, options = {}) {
   const url = new URL(API_URL);
+  const genWidth = width || IMAGE_WIDTH;
+  const genHeight = height || IMAGE_HEIGHT;
+  const parameters = {
+    size: `${genWidth}*${genHeight}`,
+    n: 1,
+    prompt_extend: false,
+    watermark: false
+  };
+
+  if (options.negativePrompt) {
+    parameters.negative_prompt = options.negativePrompt;
+  }
+  if (options.seed != null) {
+    parameters.seed = options.seed;
+  }
   
-  // Costruisci il payload della richiesta DashScope
-  // Per chiamate asincrone, aggiungi callback o task_mode
   const payload = JSON.stringify({
     model: IMAGE_MODEL,
     input: {
       prompt: prompt
     },
-    parameters: {
-      size: `${IMAGE_WIDTH}*${IMAGE_HEIGHT}`, // DashScope usa asterisco invece di x
-      n: 1
-    }
+    parameters
   });
 
-  const options = {
+  const requestOptions = {
     hostname: url.hostname,
     port: url.port || (url.protocol === 'https:' ? 443 : 80),
     path: url.pathname,
@@ -181,7 +207,7 @@ async function createImageTask(prompt) {
     }
   };
 
-  const response = await makeRequest(url, options, payload);
+  const response = await makeRequest(url, requestOptions, payload);
   
   // DashScope restituisce task_id nella risposta quando si crea un task asincrono
   // Il task_id può essere in response.data.output.task_id o response.data.task_id
@@ -228,10 +254,9 @@ async function getTaskStatus(taskId) {
 /**
  * Chiama API Qwen per generare immagine (con supporto async)
  */
-async function generateImage(prompt, width = null, height = null) {
+async function generateImage(prompt, width = null, height = null, options = {}) {
   try {
-    // Prova prima a creare un task asincrono
-    const taskResult = await createImageTask(prompt, width, height);
+    const taskResult = await createImageTask(prompt, width, height, options);
     
     // Se il task è già completato, restituisci il risultato
     if (taskResult.completed && taskResult.results) {
@@ -368,6 +393,8 @@ async function processImage(page, position, imageData, force = false) {
   const isVertical = imageData.vertical === true;
   const finalWidth = isVertical ? parseInt(process.env.FINAL_WIDTH_VERTICAL || '600') : FINAL_WIDTH;
   const finalHeight = isVertical ? parseInt(process.env.FINAL_HEIGHT_VERTICAL || '800') : FINAL_HEIGHT;
+  const genWidth = isVertical ? parseInt(process.env.IMAGE_WIDTH_VERTICAL || '928') : IMAGE_WIDTH;
+  const genHeight = isVertical ? parseInt(process.env.IMAGE_HEIGHT_VERTICAL || '1664') : IMAGE_HEIGHT;
   
   // Controlla se immagine processata esiste già
   if (!force && fs.existsSync(processedPath)) {
@@ -382,11 +409,20 @@ async function processImage(page, position, imageData, force = false) {
   }
 
   console.log(`Generando immagine per ${page} - ${position}...`);
-  console.log(`  Prompt: ${imageData.prompt.substring(0, 80)}...`);
+
+  const isTarocchi = position === 'tarocchi';
+  const fullPrompt = isTarocchi
+    ? `${TAROCCHI_STYLE_ANCHOR}. ${imageData.prompt}`
+    : imageData.prompt;
+  const genOptions = isTarocchi ? { negativePrompt: TAROCCHI_NEGATIVE } : {};
+
+  console.log(`  Prompt: ${fullPrompt.substring(0, 80)}...`);
+  if (isVertical) {
+    console.log(`  Dimensioni API: ${genWidth}x${genHeight}px → finale ${finalWidth}x${finalHeight}px`);
+  }
 
   try {
-    // Genera immagine
-    const imageUrl = await generateImage(imageData.prompt);
+    const imageUrl = await generateImage(fullPrompt, genWidth, genHeight, genOptions);
     
     // Scarica immagine raw
     await downloadImage(imageUrl, generatedPath);
@@ -413,7 +449,7 @@ async function processImage(page, position, imageData, force = false) {
 /**
  * Processa tutte le immagini
  */
-async function processAllImages(filterPage = null, force = false, limit = null) {
+async function processAllImages(filterPage = null, force = false, limit = null, filterPosition = null) {
   const results = [];
   const errors = [];
   let processedCount = 0;
@@ -427,6 +463,9 @@ async function processAllImages(filterPage = null, force = false, limit = null) 
     console.log(`\n📄 Elaborando ${page}...`);
 
     for (const [position, imageData] of Object.entries(positions)) {
+      if (filterPosition && position !== filterPosition) {
+        continue;
+      }
       // Limita il numero di immagini se specificato
       if (limit && processedCount >= limit) {
         console.log(`\n⚠️  Limite di ${limit} immagini raggiunto. Interruzione.`);
@@ -488,6 +527,7 @@ async function processAllImages(filterPage = null, force = false, limit = null) 
 async function main() {
   const args = process.argv.slice(2);
   const filterPage = args.find(arg => arg.startsWith('--page='))?.split('=')[1];
+  const filterPosition = args.find(arg => arg.startsWith('--position='))?.split('=')[1];
   const force = args.includes('--force');
   const limitArg = args.find(arg => arg.startsWith('--limit='));
   const limit = limitArg ? parseInt(limitArg.split('=')[1]) : null;
@@ -501,6 +541,9 @@ async function main() {
   if (filterPage) {
     console.log(`   Filtro pagina: ${filterPage}`);
   }
+  if (filterPosition) {
+    console.log(`   Filtro posizione: ${filterPosition}`);
+  }
   if (limit) {
     console.log(`   Limite: ${limit} immagini`);
   }
@@ -510,7 +553,7 @@ async function main() {
   console.log('');
 
   try {
-    await processAllImages(filterPage, force, limit);
+    await processAllImages(filterPage, force, limit, filterPosition);
     console.log('\n✅ Completato!');
   } catch (error) {
     console.error('\n❌ Errore fatale:', error);
