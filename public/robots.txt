@@ -29,4 +29,4 @@ Disallow: /templates/
 # Indice LLM (llmstxt.org)
 Allow: /llms.txt
 
-Sitemap: https://stiliattaccamento.it/sitemap.xml
+Sitemap: https://stiliattaccamento.com/sitemap.xml

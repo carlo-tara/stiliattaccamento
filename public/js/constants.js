@@ -5,11 +5,11 @@
  * Configurazione SEO del sito
  */
 const SITE_CONFIG = {
-  URL: 'https://stiliattaccamento.it',
+  URL: 'https://stiliattaccamento.com',
   NAME: 'Stili di Attaccamento Wiki',
   LOCALE: 'it_IT',
-  DEFAULT_OG_IMAGE: 'https://stiliattaccamento.it/images/index-hero.webp',
-  LLMS_TXT: 'https://stiliattaccamento.it/llms.txt',
+  DEFAULT_OG_IMAGE: 'https://stiliattaccamento.com/images/index-hero.webp',
+  LLMS_TXT: 'https://stiliattaccamento.com/llms.txt',
 };
 
 /** Chiave localStorage per i risultati del test (journey hub, nav highlight) */

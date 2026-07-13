@@ -3,6 +3,10 @@
 .env.local
 .env.*.local
 
+#seo
+.seozoom/
+seo/
+
 # project file
 .cursor/
 docs/

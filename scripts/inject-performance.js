@@ -154,6 +154,8 @@ function removeFooterGtmScript(html) {
     '\n'
   );
 }
+
+function removeLegacyGlobalScripts(html) {
   let result = html;
   GLOBAL_SCRIPT_FILES.forEach((file) => {
     result = result.replace(

@@ -1,7 +1,7 @@
 // breadcrumb-generator.js
 // Genera dinamicamente i breadcrumb basati sull'URL della pagina
 
-const SITE_URL = 'https://stiliattaccamento.it';
+const SITE_URL = 'https://stiliattaccamento.com';
 
 function escapeHtml(text) {
   return String(text)
