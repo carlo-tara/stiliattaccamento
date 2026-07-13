@@ -146,9 +146,14 @@ const GLOBAL_SCRIPT_FILES = [
   'template-loader.js',
 ];
 
-const DEFER_SCRIPT_FILES = ['cookie-banner.js', 'gtm.js'];
+const DEFER_SCRIPT_FILES = ['cookie-banner.js'];
 
-function removeLegacyGlobalScripts(html) {
+function removeFooterGtmScript(html) {
+  return html.replace(
+    /\s*<script src="(?:\.\.\/)*js\/gtm\.js(\?v=[^"]*)?"(?:\s+defer)?><\/script>\n?/g,
+    '\n'
+  );
+}
   let result = html;
   GLOBAL_SCRIPT_FILES.forEach((file) => {
     result = result.replace(
@@ -192,7 +197,7 @@ function ensureDeferOnGlobalScripts(html) {
       '$1 defer$2'
     )
     .replace(
-      /(<script\s+src="(?:\.\.\/)*js\/(?:cookie-banner|gtm)\.js\?v=[^"]+")(?!\s+defer)(>)/g,
+      /(<script\s+src="(?:\.\.\/)*js\/cookie-banner\.js\?v=[^"]+")(?!\s+defer)(>)/g,
       '$1 defer$2'
     );
 }
@@ -255,6 +260,7 @@ function injectPerformance(filePath) {
   html = removeOrphanPerfHints(html);
   html = removeLegacyStylesheets(html);
   html = removeDeadMainScript(html);
+  html = removeFooterGtmScript(html);
   html = removeLegacyGlobalScripts(html);
   html = ensureManifestLink(html);
   html = ensureSiteScripts(html, cssPrefix);

@@ -104,6 +104,96 @@
     <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/playfair-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/images/index-hero-480.webp" as="image" type="image/webp" fetchpriority="high">
+  <!-- Site analytics (auto-injected) -->
+<!-- Google tag (gtag.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  (function () {
+    var GA_ID = 'G-6CQ4VFK8SJ';
+    var GTM_ID = 'GTM-NGNWRJBN';
+    var CONSENT_KEY = 'cookie_consent';
+
+    function hasConsent() {
+      return localStorage.getItem(CONSENT_KEY) === 'accepted';
+    }
+
+    function loadGoogleAnalytics() {
+      if (window.googleAnalyticsLoaded || !GA_ID || !hasConsent()) {
+        return;
+      }
+      window.googleAnalyticsLoaded = true;
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+      if (!document.getElementById('ga-gtag-script')) {
+        var gaScript = document.createElement('script');
+        gaScript.id = 'ga-gtag-script';
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(gaScript);
+      }
+    }
+
+    function loadGoogleTagManager() {
+      if (window.googleTagManagerLoaded || !GTM_ID || !hasConsent()) {
+        return;
+      }
+      window.googleTagManagerLoaded = true;
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', GTM_ID);
+
+      if (!document.getElementById('gtm-noscript')) {
+        var noscript = document.createElement('noscript');
+        noscript.id = 'gtm-noscript';
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.googletagmanager.com/ns.html?id=' + GTM_ID;
+        iframe.height = '0';
+        iframe.width = '0';
+        iframe.setAttribute('aria-hidden', 'true');
+        iframe.style.display = 'none';
+        iframe.style.visibility = 'hidden';
+        noscript.appendChild(iframe);
+        document.body.insertBefore(noscript, document.body.firstChild);
+      }
+    }
+
+    function loadAnalytics() {
+      loadGoogleAnalytics();
+      loadGoogleTagManager();
+    }
+
+    function initAnalyticsIfConsented() {
+      if (hasConsent()) {
+        loadAnalytics();
+      }
+    }
+
+    window.GA_MEASUREMENT_ID = GA_ID;
+    window.GTM_CONTAINER_ID = GTM_ID;
+    window.hasAnalyticsConsent = hasConsent;
+    window.loadAnalytics = loadAnalytics;
+    window.loadGoogleAnalytics = loadGoogleAnalytics;
+    window.loadGoogleTagManager = loadGoogleTagManager;
+    window.initAnalyticsIfConsented = initAnalyticsIfConsented;
+
+    document.addEventListener('cookie-consent-accepted', loadAnalytics);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnalyticsIfConsented);
+    } else {
+      initAnalyticsIfConsented();
+    }
+  })();
+</script>
+<!-- Google Tag Manager (GTM-NGNWRJBN) -->
+<!-- End Google Tag Manager -->
 </head>
 <body data-theme="light">
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
@@ -473,7 +563,6 @@
     <!-- Scripts (ordine importante: prima template-loader, poi breadcrumb-generator) -->
 
   <script src="js/cookie-banner.js?v=1.3.0" defer></script>
-  <script src="js/gtm.js?v=1.3.0" defer></script>
 
   <script src="js/pwa.js?v=1.3.0" defer></script>
 </body>

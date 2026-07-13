@@ -54,7 +54,8 @@ No npm bundle — keeps production JavaScript minimal.
 |------|-------|
 | GA4 Measurement ID | `G-6CQ4VFK8SJ` |
 | GTM Container | `GTM-NGNWRJBN` |
-| Loader | `public/js/gtm.js` |
+| Loader | `public/templates/analytics-head.html` (inlined in `<head>` via `inject-analytics.js`) |
+| Fallback module | `public/js/gtm.js` (test e retrocompatibilità) |
 | Event layer | `public/js/modules/analytics.js` (`trackEvent`) |
 | Consent | Loaded only after `localStorage.cookie_consent === 'accepted'` |
 
