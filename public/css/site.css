@@ -479,6 +479,67 @@ nav {
   z-index: 101;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  z-index: 101;
+}
+
+.site-search-trigger {
+  display: flex;
+}
+
+.site-search-trigger__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.site-search-trigger__btn:hover {
+  border-color: var(--color-accent-primary);
+  background: var(--color-bg-secondary);
+}
+
+.site-search-trigger__btn:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+.site-search-trigger__icon {
+  flex-shrink: 0;
+}
+
+.site-search-trigger__label {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .site-search-trigger__label {
+    display: inline;
+  }
+}
+
+pagefind-modal {
+  --pagefind-ui-primary: var(--color-accent-primary);
+  --pagefind-ui-text: var(--color-text-primary);
+  --pagefind-ui-background: var(--color-bg-primary);
+  --pagefind-ui-border: var(--color-border-soft);
+  --pagefind-ui-font: var(--font-family-base);
+}
+
 /* Hamburger Menu — area tocco minima 44×44px (WCAG 2.5.5) */
 .hamburger {
   display: flex;

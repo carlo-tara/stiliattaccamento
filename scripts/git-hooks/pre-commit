@@ -20,5 +20,6 @@ npm run perf
 
 echo "▶ pre-commit: restage artefatti public/..."
 git add -u public/
+git add public/pagefind/ 2>/dev/null || true
 
 exit 0

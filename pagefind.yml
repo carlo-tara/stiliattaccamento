@@ -1,0 +1,7 @@
+site: public
+force_language: it
+exclude_selectors:
+  - ".site-notice"
+  - ".wiki-tabs"
+  - ".breadcrumb"
+  - "footer"
