@@ -5,7 +5,6 @@
 
   const DEFAULT_SECTION = 'article.card.mb-8';
   const DEFAULT_MIN = 5;
-  const MAX_LABEL = 28;
 
   /**
    * @param {string} text
@@ -27,11 +26,7 @@
    */
   function getSectionLabel(section) {
     const heading = section.querySelector('h2, h3');
-    const raw = heading ? heading.textContent.trim() : 'Sezione';
-    if (raw.length <= MAX_LABEL) {
-      return raw;
-    }
-    return `${raw.slice(0, MAX_LABEL - 1).trim()}…`;
+    return heading ? heading.textContent.trim() : 'Sezione';
   }
 
   /**
@@ -119,10 +114,17 @@
     tabsRoot.className = 'wiki-tabs';
     tabsRoot.setAttribute('data-wiki-tabs-root', '');
 
+    const headingId = `wiki-tabs-heading-${getSectionSlug(sections[0])}`;
+    const sectionHeading = document.createElement('p');
+    sectionHeading.className = 'wiki-tabs__heading';
+    sectionHeading.id = headingId;
+    sectionHeading.textContent = 'Sezioni in questa pagina';
+
     const nav = document.createElement('div');
     nav.className = 'wiki-tabs__nav';
     nav.setAttribute('role', 'tablist');
     nav.setAttribute('aria-label', 'Sezioni della pagina');
+    nav.setAttribute('aria-labelledby', headingId);
 
     const panels = document.createElement('div');
     panels.className = 'wiki-tabs__panels';
@@ -153,6 +155,7 @@
       button.setAttribute('tabindex', index === 0 ? '0' : '-1');
       button.dataset.wikiTabSlug = slug;
       button.textContent = label;
+      button.title = label;
 
       const panel = document.createElement('div');
       panel.className = 'wiki-tabs__panel';
@@ -170,6 +173,7 @@
       tabButtons.push({ button, panel, slug });
     });
 
+    tabsRoot.appendChild(sectionHeading);
     tabsRoot.appendChild(nav);
     tabsRoot.appendChild(panels);
 

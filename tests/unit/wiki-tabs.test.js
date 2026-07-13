@@ -54,6 +54,21 @@ describe('wiki-tabs.js', () => {
     expect(footer?.compareDocumentPosition(tabsRoot)).toBe(Node.DOCUMENT_POSITION_PRECEDING);
   });
 
+  it('usa etichette complete senza troncamento', () => {
+    document.body.innerHTML = `
+      <div class="container" data-wiki-tabs data-wiki-tabs-min="2">
+        <article class="card mb-8"><h2>I 4 bisogni fondamentali dell'attaccamento (Bowlby)</h2></article>
+        <article class="card mb-8"><h2>Seconda sezione</h2></article>
+      </div>
+    `;
+    loadWikiTabs(document, window);
+
+    const tab = document.querySelector('.wiki-tabs__tab');
+    expect(tab?.textContent).toBe("I 4 bisogni fondamentali dell'attaccamento (Bowlby)");
+    expect(tab?.getAttribute('title')).toBe("I 4 bisogni fondamentali dell'attaccamento (Bowlby)");
+    expect(document.querySelector('.wiki-tabs__heading')?.textContent).toBe('Sezioni in questa pagina');
+  });
+
   it('non attiva le schede se le sezioni sono insufficienti', () => {
     document.body.innerHTML = `
       <div class="container" data-wiki-tabs data-wiki-tabs-min="5">
