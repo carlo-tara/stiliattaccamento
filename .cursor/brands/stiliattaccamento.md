@@ -14,6 +14,7 @@ tone_skill: content-voice
 
 ## Identità
 
+- **Dominio canonico:** `stiliattaccamento.com` — **unico**. Non usare `stiliattaccamento.it` (dominio non registrato).
 - **Settore / prodotto:** Wiki PWA sugli stili di attaccamento (teoria Bowlby/Ainsworth, approccio EFT)
 - **Pubblico target:** Persone curiose o in difficoltà relazionale che vogliono capirsi senza sentirsi sbagliate; partner che cercano supporto; lettori con background vario (da curiosi a esperti)
 - **Promessa in una frase:** Capire il proprio stile di attaccamento con chiarezza e compassione, con strumenti pratici — non una promessa di guarigione
@@ -45,7 +46,7 @@ Compassionevole, vicino, chiaro, non giudicante, pratico.
 |-----|-------|
 | riconoscere, osservare, integrare, notare, esplorare | guarire, curare, fixare |
 | persona, partner, chi | lui/lei, marito/moglie |
-| **Oscillante** | Disorganizzato (salvo FAQ che spiega la scelta) |
+| **Oscillante** | Disorganizzato come etichetta brand (OK come sinonimo di ricerca/FAQ: «in letteratura si trova anche attaccamento disorganizzato») |
 | consapevolezza, ciclo, pattern | malato, rotto, sbagliato, normale vs anormale |
 | «In parole semplici…», «Senza entrare nei dettagli tecnici…» | filler AI, tono da manuale clinico |
 
@@ -90,6 +91,8 @@ Compassionevole, vicino, chiaro, non giudicante, pratico.
 | Keyword cluster principali | stili di attaccamento, test attaccamento, ansioso, evitante, oscillante, secure |
 | Link interni tipici | test, stili-base, profili, esercizi, fondamenti |
 | Limiti | title ≤60, meta ≤155; Schema.org su ogni pagina wiki |
+| Skill SEO/GEO | `.cursor/skills/seozoom-stiliattaccamento/SKILL.md` |
+| SITE_URL | `scripts/seo-config.js` (= `.com`) |
 
 ---
 

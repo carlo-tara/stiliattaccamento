@@ -4,9 +4,12 @@
 
 Questo è un progetto per una webapp PWA statica mobile-first sugli stili di attaccamento.
 
+**Dominio canonico:** `https://stiliattaccamento.com` (unico; non usare `.it`). SEO/GEO L2: `.cursor/skills/seozoom-stiliattaccamento/SKILL.md`.
+
 ### Stack Tecnologico
 - **Frontend**: HTML5, CSS3, JavaScript (vanilla, ES6+)
 - **Hosting**: Cloudflare Pages
+- **Dominio**: stiliattaccamento.com (`scripts/seo-config.js`)
 - **Design System**: Material Design M3 (Material You)
 - **Tema**: Light mode (default e unico), colori pastello naturali verde-beige
 - **Organizzazione**: Wiki-style con homepage
@@ -339,7 +342,15 @@ Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality"
 - Script di generazione: `scripts/generate-images.js`
 - File prompt: `scripts/prompts.json`
 - Output: `public/images/{page}-{position}.webp`
+- Opzioni script: `--page=`, `--position=`, `--force`, `--limit=N`
 - Vedi `scripts/README.md` per documentazione completa
+
+#### Carte tarocchi (12 profili)
+- Skill: `.cursor/skills/illustrator-stiliattaccamento/SKILL.md`; style file: `.cursor/illustration-styles/stiliattaccamento-tarocchi.md`
+- **Mai** testo, numeri o cornici nell'immagine; titoli arcana solo in HTML (`figcaption`)
+- **Mai** «tarot card» / «Marseille style» nei prompt — usare illustrazione full-bleed verticale
+- Rigenerazione: `node scripts/generate-images.js --page=profili/...html --position=tarocchi --force`
+- Verticale: API `928*1664`, output `600*800` webp (`vertical: true` in `prompts.json`)
 
 ### Cloudflare Pages
 - Build command: nessuno (file statici pre-buildati in repo)

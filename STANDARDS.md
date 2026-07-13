@@ -267,10 +267,21 @@ una webapp PWA statica mobile-first.
 
 7.2 Schema.org Structured Data
   - Article per pagine wiki
-  - FAQPage per sezioni FAQ
+  - FAQPage per sezioni FAQ — solo se esiste sezione FAQ HTML visibile (`dl.faq-list`);
+    testo nello schema allineato al markup (GEO/citabilità)
   - BreadcrumbList per navigazione
   - Person per autori (se applicabile)
   - WebSite per metadata sito
+
+7.2.1 Dominio canonico
+  - Unico: https://stiliattaccamento.com (fonte: scripts/seo-config.js)
+  - Non usare stiliattaccamento.it (dominio non registrato)
+  - Canonical, sitemap, robots.txt, llms.txt e JSON-LD devono usare lo stesso host
+  - Dopo title/meta/URL: npm run seo
+
+7.2.2 Workflow SEO/GEO
+  - Skill progetto: .cursor/skills/seozoom-stiliattaccamento/SKILL.md
+  - Export SeoZoom locali: seo/YYMMDD/ (gitignored); sitemap-enriched.json in root per export per-URL
 
 7.3 Contenuti AI-Friendly
   - Linguaggio chiaro e strutturato

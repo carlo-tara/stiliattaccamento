@@ -21,7 +21,7 @@ Documento di supporto per la skill `content-voice`. Consultare durante riscrittu
 |-----|-------|
 | consapevolezza, pattern, strategia, esercizio, supporto | guarigione, cura, fixare |
 | riconoscere, osservare, integrare, notare | migliorare (se implica difetto) |
-| oscillante | disorganizzato |
+| oscillante | disorganizzato (come etichetta brand; OK come sinonimo di ricerca in FAQ) |
 | persona, partner, chi | lui/lei, marito/moglie |
 | attivazione, sistema di allarme | controllo (come etichetta della persona) |
 | panico di attaccamento | disperato/a (come identità) |
@@ -177,7 +177,10 @@ Aggiungere stile in CSS se manca (`.wiki-term { text-decoration: underline dotte
 - **Primo paragrafo**: risponde alla domanda implicita della pagina
 - **Schema.org**: mantieni/aggiorna JSON-LD coerente col testo
 - **GEO** (ottimizzazione per AI search): definizioni esplicite, FAQ dove utile, linguaggio citabile
+- **FAQPage**: su hub money, se aggiungi FAQ → **JSON-LD `FAQPage` + sezione HTML** (`dl.faq-list`); il testo nello schema deve corrispondere al testo visibile
+- **«Disorganizzato»**: solo in FAQ/sinonimo di ricerca; mai come etichetta brand al posto di Oscillante
 - **Heading hierarchy**: un solo h1, h2 per sezioni, no salti
+- **Dominio**: URL assoluti e canonical solo `stiliattaccamento.com`
 
 ## Accessibilità e leggibilità
 

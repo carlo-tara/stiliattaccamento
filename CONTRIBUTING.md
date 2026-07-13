@@ -389,10 +389,14 @@ Quando modifichi contenuti esistenti, applica il tone of voice e la checklist in
 
 Tutti i contenuti devono includere markup Schema.org appropriato:
 - `Article` per articoli wiki
-- `FAQPage` per FAQ
+- `FAQPage` per FAQ — se presenti, **sempre** con sezione FAQ HTML visibile e testo allineato allo schema (GEO/citabilità)
 - `BreadcrumbList` per navigazione
 - `Person` per autori (se applicabile)
 - `WebSite` per metadata sito
+
+Canonical e URL assoluti: solo `https://stiliattaccamento.com` (fonte: `scripts/seo-config.js`). Dopo title/meta: `npm run seo`.
+
+Workflow SEO/GEO dettagliato: `.cursor/skills/seozoom-stiliattaccamento/SKILL.md`.
 
 ## Workflow Git
 
@@ -405,7 +409,9 @@ Tutti i contenuti devono includere markup Schema.org appropriato:
 
 `.gitignore` esclude `docs/`, `.cursor/`, `jtbd/`, `seo/`, `.seozoom/`. I file **già tracciati** si aggiornano con `git add -u`. I file **nuovi** sotto path ignorati (es. `docs/design/tone-of-voice.md`, `.cursor/brands/*.md`) richiedono `git add -f <path>`.
 
-Non committare artefatti SEO locali (`seo/`, `sitemap-enriched.json`, `.seozoom/`) insieme a copy o codice sito, salvo task SEO esplicito.
+- `seo/` e `.seozoom/`: mai in commit (export e sessione Playwright)
+- `sitemap-enriched.json` (root): **ok** in commit se serve all'export SeoZoom per-URL; altrimenti non mescolare con PR solo copy
+- Non committare batch grezzi `seo/YYMMDD/` insieme a copy o codice sito
 
 ## Creazione di Nuove Pagine HTML
 

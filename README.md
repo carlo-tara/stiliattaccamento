@@ -79,6 +79,7 @@ Se provi disagio forte o duraturo, ha senso parlare con un professionista che co
 - [CONTRIBUTING.md](CONTRIBUTING.md) — linee guida sviluppo e copy
 - [docs/design/tone-of-voice.md](docs/design/tone-of-voice.md) — guida canonica al tono di voce
 - [docs/documentation/TESTING.md](docs/documentation/TESTING.md) — suite di test e validator
+- Dominio canonico: `stiliattaccamento.com` — workflow SEO/GEO in `.cursor/skills/seozoom-stiliattaccamento/SKILL.md`
 
 ---
 

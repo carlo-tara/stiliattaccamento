@@ -34,7 +34,7 @@ Usa questa checklist per ogni pagina o cluster **dopo** la bozza e **prima** del
 
 ## 3. Terminologia
 
-- [ ] **Oscillante** (mai disorganizzato nel testo visibile)
+- [ ] **Oscillante** (mai disorganizzato come etichetta brand; OK in FAQ come sinonimo di ricerca)
 - [ ] Linguaggio inclusivo: persona, partner, chi
 - [ ] 🔴 Nessun pattern vietato da `style-validator.js`
 - [ ] 🔴 Nessun pattern da [reference.md](reference.md#anti-pattern-ia-italiano)
@@ -89,7 +89,9 @@ Usa questa checklist per ogni pagina o cluster **dopo** la bozza e **prima** del
 - [ ] H1 unico, gerarchia heading corretta
 - [ ] Primo paragrafo risponde all'intento della pagina
 - [ ] Schema.org coerente col contenuto
+- [ ] Se FAQ: `FAQPage` JSON-LD + sezione HTML allineate (stesso testo)
 - [ ] Definizioni esplicite per citabilità (AI search)
+- [ ] Nessun URL `stiliattaccamento.it` (solo `.com`)
 
 ## 10. Accessibilità e leggibilità
 

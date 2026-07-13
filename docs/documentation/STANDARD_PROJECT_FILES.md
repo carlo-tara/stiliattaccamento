@@ -41,6 +41,7 @@ These files **must** remain in the repository root:
 | Location | Contents |
 |----------|----------|
 | `.cursor/brands/` | Brand brief used by local content skills |
+| `.cursor/skills/` | Project L2 skills (content-voice, seozoom-stiliattaccamento, uiux-designer) |
 | `docs/` | Content specifications, reviews, SEO data, snapshots |
 | `docs/archive/legacy-root/` | Superseded root `.txt` docs and old bootstrap notes |
 | `docs/design/` | Visual and voice documentation (`visual-design-specs.md`, `tone-of-voice.md`) |
@@ -63,7 +64,8 @@ These files **must** remain in the repository root:
 | File | Purpose |
 |------|---------|
 | `playwright.config.js` | E2E and accessibility test config (port 8090) |
-| `scripts/seo-config.js` | Site URL, default meta, SEO rules |
+| `scripts/seo-config.js` | Canonical site URL (`https://stiliattaccamento.com`), default meta, SEO rules |
+| `sitemap-enriched.json` | URL list for SeoZoom per-URL export (optional commit; not served from `public/`) |
 | `scripts/prompts.json` | Qwen image generation prompts |
 | `public/manifest.json` | PWA manifest |
 | `public/sw.js` | Service Worker (increment `CACHE_NAME` on release) |
@@ -116,3 +118,5 @@ These files are generated locally and must be committed before deploy:
 - [README.md](../../README.md)
 - [CONTRIBUTING.md](../../CONTRIBUTING.md)
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [DEPLOYMENT.md](./DEPLOYMENT.md)
+- [.cursor/skills/seozoom-stiliattaccamento/SKILL.md](../../.cursor/skills/seozoom-stiliattaccamento/SKILL.md) — SEO/GEO workflow

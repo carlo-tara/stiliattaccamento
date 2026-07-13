@@ -11,6 +11,12 @@ Formato basato su [Keep a Changelog](https://keepachangelog.com/it/IT/1.1.0/) e 
 ### Fixed
 ### Removed
 
+## [1.0.3] - 2026-07-13
+
+### Added
+- Appreso da sessione: FAQPage + FAQ HTML allineate (GEO); dominio `.com` unico; sinonimo disorganizzato in SEO/GEO [sync:safe]
+- Delega a skill L2 `seozoom-stiliattaccamento` [sync:safe]
+
 ## [1.0.2] - 2026-07-13
 
 ### Added

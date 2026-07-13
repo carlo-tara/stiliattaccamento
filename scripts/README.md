@@ -31,6 +31,8 @@ npm run seo
 
 Configurazione centralizzata in `scripts/seo-config.js` e `scripts/lib/seo-utils.js`.
 
+**Dominio canonico:** `https://stiliattaccamento.com` (unico; non usare `.it`). Workflow SEO/GEO e hub money: `.cursor/skills/seozoom-stiliattaccamento/SKILL.md`.
+
 ---
 
 ## Pipeline performance e PWA

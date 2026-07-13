@@ -260,8 +260,10 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - generate-sitemap.js: public/sitemap.xml da tutte le pagine HTML
   - validate-seo.js: verifica meta obbligatori
   - enrich-schema-geo.js: schema GEO, public/llms.txt
-  - Configurazione: scripts/seo-config.js, scripts/lib/seo-utils.js
+  - Configurazione: scripts/seo-config.js (SITE_URL = https://stiliattaccamento.com), scripts/lib/seo-utils.js
   - Comando: npm run seo
+  - Skill progetto L2: .cursor/skills/seozoom-stiliattaccamento/SKILL.md (hub money, import SeoZoom, quick win)
+  - Export locali: seo/YYMMDD/ (gitignored); sitemap-enriched.json in root per lista URL export per-URL
 
 7.2 Schema.org Structured Data
   Ogni pagina wiki include:
@@ -269,6 +271,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - headline, description, author
   - datePublished, dateModified
   - articleBody, mainEntityOfPage
+  Hub money: FAQPage JSON-LD + sezione FAQ HTML visibile (dl.faq-list), testo allineato (GEO)
 
 7.3 Meta Tags
   - description: 150-160 caratteri
@@ -616,6 +619,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - docs/design/tone-of-voice.md: Guida canonica al tono di voce (copy visibile)
   - docs/design/visual-design-specs.md: Specifiche visuali (Cloud Dancer, componenti)
   - .cursor/skills/content-voice/: Skill L2 per riscrittura e supervisione copy
+  - .cursor/skills/seozoom-stiliattaccamento/: Skill L2 per SEO/GEO, import SeoZoom, hub money
   - .cursor/skills/uiux-designer/: Skill L2 per layout, CSS, accessibilita'
   - .cursor/brands/stiliattaccamento.md: Brand brief sintetico
   - docs/: Documenti di specifica (contenuti wiki, approfondimenti)

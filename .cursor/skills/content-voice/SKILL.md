@@ -1,7 +1,7 @@
 ---
 name: content-voice
 extends: a-copywriter
-version: 1.0.2
+version: 1.0.3
 extends-version: 1.0.1
 description: >-
   Riscrive e supervisiona i contenuti HTML/MD del sito Stili di Attaccamento
@@ -58,7 +58,7 @@ All'avvio: carica catena `extends:` + [tone of voice](../../../docs/design/tone-
 |----------------|--------|
 | `uiux-designer` | Layout, componenti, token CSS — non copy |
 | `a-illustrator` | Immagini nuove pagina (≥2 via Qwen) |
-| `a-seozoom` | Keyword, title/meta da dati reali, PageSpeed |
+| `a-seozoom` / `seozoom-stiliattaccamento` | Keyword, title/meta da dati reali, PageSpeed; skill L2 in `.cursor/skills/seozoom-stiliattaccamento/` |
 
 ---
 

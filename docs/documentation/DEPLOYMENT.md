@@ -4,6 +4,8 @@
 
 This project deploys to **Cloudflare Pages** as a static site. There is no build step in production — the `public/` directory is served directly. SEO meta tags, sitemap, and script injection are applied locally via npm scripts before commit.
 
+**Canonical domain:** `https://stiliattaccamento.com` only (source: `scripts/seo-config.js`). Do not reference `stiliattaccamento.it` in HTML, `robots.txt`, `llms.txt`, or JSON-LD — the `.it` domain is not registered.
+
 ---
 
 ## Prerequisites
@@ -28,6 +30,12 @@ npm run test:all     # Unit, E2E, validation suite
 ```
 
 Commit generated/updated files in `public/` (e.g. `sitemap.xml`, `site.min.css`, `site.min.js`, HTML with injected shell and meta).
+
+**When editing title, meta, or hub pages** (`index.html`, `stili-base.html`, `fondamenti.html`, `test.html`, and other money pages):
+
+- Run `npm run seo` and `npm run validate-seo`
+- If adding `FAQPage` JSON-LD, include a visible FAQ section (`dl.faq-list`) with matching copy (GEO)
+- See `.cursor/skills/seozoom-stiliattaccamento/SKILL.md` for hub list and quick-win workflow
 
 **When editing page copy** (HTML in `public/`):
 
@@ -251,6 +259,17 @@ npm run inject-seo
 npm run validate-seo
 ```
 
+Check that canonical URLs use `https://stiliattaccamento.com` (not `.it`). Re-run `npm run seo` after bulk URL changes.
+
+### FAQPage / GEO Mismatch
+
+`FAQPage` schema must mirror visible FAQ HTML. If validation or rich-result preview fails, compare JSON-LD with `dl.faq-list` on the same page. Pattern reference: `public/index.html`.
+
+### SEO Data Exports (Local Only)
+
+- `seo/` and `.seozoom/` are gitignored (SeoZoom/Cloudflare exports and Playwright session)
+- `sitemap-enriched.json` at repository root may be committed when needed for per-URL SeoZoom export; do not mix raw `seo/YYMMDD/` batches with site copy PRs
+
 ### Hamburger Menu Not Working
 
 Ensure `mobile-menu.js` is present — run `npm run perf` to inject global scripts.
@@ -290,4 +309,5 @@ jobs:
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — System design
 - [API.md](./API.md) — External integrations
 - [../../scripts/README.md](../../scripts/README.md) — Build scripts
+- [../../.cursor/skills/seozoom-stiliattaccamento/SKILL.md](../../.cursor/skills/seozoom-stiliattaccamento/SKILL.md) — SEO/GEO workflow
 - [Cloudflare Pages Documentation](https://developers.cloudflare.com/pages/)
