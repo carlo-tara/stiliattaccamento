@@ -8,7 +8,7 @@ const { readFileSync, writeFileSync } = require('fs');
 const { join, resolve } = require('path');
 
 const STORIES_DIR = resolve(process.cwd(), 'public/storie-reali');
-const BASE_URL = 'https://stiliattaccamento.it';
+const BASE_URL = 'https://stiliattaccamento.com';
 
 const STORIES = {
   marco: {

@@ -91,9 +91,9 @@ describe('inject-seo.js', () => {
       const block = buildSeoBlock({
         title: 'Test',
         description: 'Short description',
-        canonical: 'https://stiliattaccamento.it/test.html',
+        canonical: 'https://stiliattaccamento.com/test.html',
         ogType: 'website',
-        image: 'https://stiliattaccamento.it/images/index-hero.webp',
+        image: 'https://stiliattaccamento.com/images/index-hero.webp',
         imageAlt: 'Alt text',
         keywords: 'stili di attaccamento, test attaccamento',
       });

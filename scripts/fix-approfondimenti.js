@@ -8,7 +8,7 @@ const { readFileSync, writeFileSync } = require('fs');
 const { join, resolve } = require('path');
 
 const DIR = resolve(process.cwd(), 'public/approfondimenti');
-const BASE = 'https://stiliattaccamento.it';
+const BASE = 'https://stiliattaccamento.com';
 
 const PAGES = {
   'sessualita.html': {

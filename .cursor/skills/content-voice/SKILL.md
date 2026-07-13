@@ -15,7 +15,7 @@ description: >-
 
 Skill figlia (L2). Eredita `a-agentzero` → `a-copywriter` (L1) → **questo file**.
 
-All'avvio: carica catena `extends:` + [brand brief](../../brands/stiliattaccamento.md) + reference locali sotto.
+All'avvio: carica catena `extends:` + [tone of voice](../../../docs/design/tone-of-voice.md) (canonica) + [brand brief](../../brands/stiliattaccamento.md) + reference locali sotto.
 
 ## Progetto
 
@@ -23,6 +23,7 @@ All'avvio: carica catena `extends:` + [brand brief](../../brands/stiliattaccamen
 |-------|--------|
 | Nome | Stili di Attaccamento |
 | Dominio | `stiliattaccamento.it` |
+| Tone of voice | `docs/design/tone-of-voice.md` (canonica) |
 | Working directory | `/var/www/stiliattaccamento` |
 | Brand | `.cursor/brands/stiliattaccamento.md` |
 
@@ -45,8 +46,10 @@ All'avvio: carica catena `extends:` + [brand brief](../../brands/stiliattaccamen
 ## Override workflow
 
 - Segui workflow Humanizer di **a-copywriter** (draft → audit anti-AI → rewrite)
+- Allinea ogni intervento a [`docs/design/tone-of-voice.md`](../../../docs/design/tone-of-voice.md) (checklist §12)
 - Aggiungi **report di revisione** strutturato (vedi § Output obbligatorio)
-- Lavora per **cluster tematico**, non pagina isolata
+- Lavora per **cluster tematico**, non pagina isolata; per sito-wide puoi delegare un cluster per agente `a-copywriter`
+- `style-validator.js` che passa **non** implica copy allineato al ToV: serve comunque humanize (burstiness, ponti EFT, archetipi condensati)
 - Esegui `npm run test:validation` dopo modifiche HTML
 
 ## Deleghe
@@ -232,6 +235,7 @@ Vedi [reference.md](reference.md#convenzioni-di-formattazione). In sintesi:
 
 ## Riferimenti aggiuntivi
 
+- [docs/design/tone-of-voice.md](../../../docs/design/tone-of-voice.md) — guida canonica ToV
 - [architecture.md](architecture.md) — IA sito, percorso, navigazione
 - [reference.md](reference.md) — vocabolario, fonti, SEO/GEO, accessibilità
 - [checklist.md](checklist.md) — supervisione completa

@@ -17,7 +17,7 @@ Layout per tipo di pagina. Tutti seguono la stessa intelaiatura base; cambia il 
   <script type="application/ld+json"> … </script>
 
   <link rel="manifest" href="/manifest.json">
-  <link rel="canonical" href="https://stiliattaccamento.it/…">
+  <link rel="canonical" href="https://stiliattaccamento.com/…">
   <meta name="theme-color" content="#3c6e55">
   <!-- Open Graph / Twitter -->
 

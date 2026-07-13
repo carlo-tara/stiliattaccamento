@@ -1,7 +1,7 @@
 # Tone of Voice: Stili di Attaccamento
 
 **Versione:** 1.0  
-**Dominio:** stiliattaccamento.it  
+**Dominio:** stiliattaccamento.com  
 **Ultimo aggiornamento:** luglio 2026  
 **Stato:** documento operativo per chi scrive copy sul sito
 
@@ -401,4 +401,4 @@ Se cambiano promessa, termini obbligatori o pilastri della voce, aggiorna **prim
 
 ---
 
-*Documento redatto per stiliattaccamento.it. Per revisioni copy su pagine HTML, usa la skill content-voice e la checklist in §12.*
+*Documento redatto per stiliattaccamento.com. Per revisioni copy su pagine HTML, usa la skill content-voice e la checklist in §12.*

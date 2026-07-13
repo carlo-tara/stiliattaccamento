@@ -1,6 +1,6 @@
 ---
 name: stiliattaccamento
-domain: stiliattaccamento.it
+domain: stiliattaccamento.com
 language: it
 register: tu
 tone_skill: content-voice
