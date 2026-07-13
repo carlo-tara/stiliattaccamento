@@ -35,7 +35,20 @@ Quando un concetto esiste in più cornici, presentalo così:
 3. **Sistemica** — feedback loop, doppi segnali, processo primario/secondario
 4. **Process Work** — edge, segnali somatici (solo dove serve, es. esercizi avanzati)
 
-Esempio di ponte: *"In EFT questo si chiama protesta per connessione. In pratica: quando mandi messaggi ripetuti, spesso non stai 'controllando' — stai cercando di sapere se il legame regge."*
+Esempio di ponte: *"In EFT questo si chiama protesta per connessione. In pratica: quando mandi messaggi ripetuti, spesso non stai 'controllando'. Stai cercando di sapere se il legame regge."*
+
+## Rewrite HTML — scope
+
+In riscrittura/humanize modifica **solo**:
+
+- Testo in `<main>` (p, heading, li, figcaption, blockquote)
+- `meta description`, `og:description`, `twitter:description`
+- Testo in JSON-LD (FAQ, description)
+- `alt` e didascalie
+
+**Non modificare:** URL/path file, classi CSS, attributi `data-*`, struttura shell (header/nav/footer), `href` (solo testo anchor se serve).
+
+**Oscillante:** sempre nel copy visibile; path `profili/disorganizzato-*.html` e `data-profile-stile="disorganizzato"` restano per retrocompatibilità.
 
 ## Fonti e citazioni
 
@@ -101,9 +114,15 @@ Adattato da [humanizer](https://github.com/blader/humanizer) + `tests/validation
 ### Header (HTML)
 
 - **h1/h2/h3**: prima lettera maiuscola, resto minuscole
+- **Zero em dash / en dash** (`—`, `–`) nel copy visibile: usa punto, virgola, due punti, parentesi
 - ✅ `Strategie pratiche immediate`, `Quando vai in panico`
 - ❌ `Strategie Pratiche Immediate`, `Quando Vai in Panico`, `ANSIOSO ALTO`
 - Eccezioni: nomi propri (Bowlby, Giulia), acronimi (EFT, PWA), titoli di libri
+
+### Storie reali — titoli
+
+- **h1**: `Nome: profilo` (due punti), non `Nome — Profilo`
+- Esempio: `Nina: ansioso alto`
 
 ### Profili — uniformazione
 
@@ -111,7 +130,7 @@ Sostituire hero in MAIUSCOLO con:
 
 ```html
 <h1>Ansioso alto</h1>
-<h2>Il Matto (0) — L'ingenuità traumatizzata</h2>
+<h2>Il Matto (0): L'ingenuità traumatizzata</h2>
 ```
 
 Badge livello: `<span class="level-badge alto">Livello alto</span>` (non LIVELLO ALTO nel testo se evitabile).

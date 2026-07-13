@@ -1,7 +1,7 @@
 ---
 name: content-voice
 extends: a-copywriter
-version: 1.0.1
+version: 1.0.2
 extends-version: 1.0.1
 description: >-
   Riscrive e supervisiona i contenuti HTML/MD del sito Stili di Attaccamento
@@ -22,7 +22,7 @@ All'avvio: carica catena `extends:` + [tone of voice](../../../docs/design/tone-
 | Campo | Valore |
 |-------|--------|
 | Nome | Stili di Attaccamento |
-| Dominio | `stiliattaccamento.it` |
+| Dominio | `stiliattaccamento.com` |
 | Tone of voice | `docs/design/tone-of-voice.md` (canonica) |
 | Working directory | `/var/www/stiliattaccamento` |
 | Brand | `.cursor/brands/stiliattaccamento.md` |
