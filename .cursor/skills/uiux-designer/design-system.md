@@ -128,6 +128,15 @@ Font caricati via `<link>` Google Fonts (non bloccante):
 - Grassetto solo su parole chiave funzionali, non interi paragrafi
 - Body mobile mai sotto 16px (`html { font-size: 16px }`)
 
+### Liste (`ul`, `ol`)
+
+Il reset globale (`* { padding: 0 }`) azzera l'indentazione nativa. In `main.css` le liste hanno sempre:
+
+- `padding-inline-start: var(--spacing-6)`
+- `list-style-position: outside` (righe a capo allineate al testo, non sotto il bullet)
+
+Non reintrodurre `margin-left` ridondante su `.wiki-list--compact` — l'indentazione e' ereditata dalla regola base.
+
 ---
 
 ## Spacing (griglia 4dp)
@@ -139,6 +148,8 @@ Font caricati via `<link>` Google Fonts (non bloccante):
 ```
 
 Convenzioni: gap tra card `--spacing-6`; padding card `--spacing-6`; spazio tra sezioni `--spacing-12`; padding laterale container `--spacing-4` (mobile) → `--spacing-8` (desktop).
+
+**Dopo box/card verso contenuto successivo:** `.card + :is(h2, h3, h4, h5, h6, p, ul, ol, .wiki-table-scroll) { margin-top: var(--spacing-6) }`. Le callout annidate (`.card--secure-accent`, `.card--elevated-spaced`) hanno anche `margin-bottom: var(--spacing-6)`.
 
 ---
 

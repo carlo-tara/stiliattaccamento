@@ -272,9 +272,17 @@ function buildTestJourneyStepsHost(primaryStyle, level) {
 function showTestResults(scores, primaryStyle, level) {
   const resultsDiv = document.getElementById('results');
   const resultsContent = document.getElementById('results-content');
+  const surveyContainer = document.getElementById('surveyContainer');
 
   if (!resultsDiv || !resultsContent) {
     return;
+  }
+
+  if (surveyContainer) {
+    surveyContainer.style.display = 'none';
+    if (surveyContainer.parentNode) {
+      surveyContainer.parentNode.insertBefore(resultsDiv, surveyContainer.nextSibling);
+    }
   }
 
   resultsContent.replaceChildren();

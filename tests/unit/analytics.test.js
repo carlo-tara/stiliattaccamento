@@ -4,7 +4,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { resolve } from 'path';
 import { cleanupDOM, loadPublicScript } from '../helpers/test-utils.js';
 
-loadPublicScript(resolve(__dirname, '../../public/js/gtm.js'));
+loadPublicScript(resolve(__dirname, '../../public/js/ga4.js'));
 loadPublicScript(resolve(__dirname, '../../public/js/modules/analytics.js'));
 
 describe('analytics.js', () => {
@@ -12,7 +12,6 @@ describe('analytics.js', () => {
     cleanupDOM();
     delete window.dataLayer;
     delete window.gtag;
-    delete window.googleTagManagerLoaded;
     delete window.googleAnalyticsLoaded;
     localStorage.clear();
   });

@@ -79,14 +79,19 @@ Schema.org: `WebSite` + `FAQPage`. Una CTA primaria (Test); le altre azioni come
 ```
 main > .container
 ├── h1 + .wiki-lead (cosa otterrai, quanto dura)
-├── .wiki-image
-├── #quiz-container (SurveyJS)  oppure  radar chart (mappa)
-├── nota: ⚠️ "non e' una diagnosi" (disclaimer, tono content-voice)
+├── card intro / disclaimer
+├── #surveyContainer (SurveyJS in `test.html`)
+├── #results (nascosto; profilo, punteggi, CTA — popolato da `test-results-render.js`)
 └── .content-nav → prossimi passi (profili, esercizi)
 ```
 
-- Form accessibile: label esplicite, focus visibile, `aria-live` per i risultati.
-- Risultato collega ai profili (`profili/*.html`).
+**SurveyJS (`test.html`):**
+
+- `showCompletedPage: false` in `js/test-survey.json` (evita la pagina generica «Thank you for completing the survey»).
+- Al submit: `calculateTestResults` → `showTestResults` nasconde `#surveyContainer`, mostra `#results` subito sotto e scrolla al profilo.
+- Risultato collega a `profili/{stile}-{livello}.html` e `il-tuo-percorso.html`.
+
+- Form accessibile: label esplicite, focus visibile, `aria-live="polite"` su `#surveyContainer` e `#results`.
 - Schema.org: `WebPage` (eventuale `Quiz`/`HowTo` se pertinente).
 
 ---

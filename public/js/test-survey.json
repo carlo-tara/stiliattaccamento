@@ -359,6 +359,7 @@
   "pageNextText": "Avanti →",
   "pagePrevText": "← Indietro",
   "completeText": "Calcola il Mio Profilo",
+  "showCompletedPage": false,
   "firstPageIsStarted": false,
   "startSurveyText": "Inizia il Test"
 }

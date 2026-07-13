@@ -205,7 +205,7 @@ una webapp PWA statica mobile-first.
   ├── mobile-menu.js          # Menu hamburger
   ├── nav-highlight.js        # Evidenziazione nav attiva
   ├── cookie-banner.js        # Consenso cookie
-  ├── gtm.js                  # Google Tag Manager (post-consenso)
+  ├── ga4.js                  # Google Analytics 4 (post-consenso, test)
   ├── pwa.js                  # Registrazione Service Worker
   ├── test-surveyjs.js        # Quiz SurveyJS
   ├── mappa-personale.js        # Radar chart Chart.js

@@ -43,6 +43,8 @@ describe('test-results-render.js', () => {
   describe('showTestResults', () => {
     it('should render results and track analytics', () => {
       document.body.innerHTML = `
+        <div id="surveyContainer"></div>
+        <figure class="wiki-image"></figure>
         <div id="results" style="display: none;">
           <div id="results-content"></div>
         </div>
@@ -53,7 +55,10 @@ describe('test-results-render.js', () => {
 
       const resultsDiv = document.getElementById('results');
       const content = document.getElementById('results-content');
+      const surveyContainer = document.getElementById('surveyContainer');
 
+      expect(surveyContainer.style.display).toBe('none');
+      expect(resultsDiv.previousElementSibling).toBe(surveyContainer);
       expect(resultsDiv.style.display).toBe('block');
       expect(content.textContent).toContain('Ansioso');
       expect(content.textContent).toContain('Supporto professionale');

@@ -127,11 +127,13 @@ Contenitore principale dei contenuti. Card piu' chiare dello sfondo → elevatio
 - **Hover**: `box-shadow: var(--shadow-lg)` + leggero `transform` (transizione breve).
 - **Modificatori**:
   - `.card--accent` / `.card--accent-soft`: gradiente verde tenue + bordo sinistro `--color-accent-secure`
+  - `.card--secure-accent` / `.card--elevated-spaced`: callout interno (sfondo elevato, bordo sinistro); `margin-top` + `margin-bottom` `--spacing-6`
   - `.card--elevated`: `background: var(--color-surface-elevated)`
   - `.card--accent-primary`: bordo sinistro accento primario
   - `.card--mono`: testo monospace (citazioni/codice)
   - `.card--spaced-top` / `--spaced-top-tight`: margine superiore
-- **Vietato**: card dentro card. Per blocchi interni usa `.style-section` (vedi sotto).
+- **Spaziatura verso il blocco successivo:** regola globale `.card + h2/h3/…` (vedi [design-system.md](design-system.md) § Spacing).
+- **Preferito per callout:** `.style-section` dentro una card. Se serve una `.card` annidata per enfasi (es. `card--secure-accent`), rispetta la spaziatura sopra; evita matrioska oltre un livello.
 
 ---
 
@@ -170,7 +172,7 @@ Classi per articoli e approfondimenti:
 | `.wiki-lead` | Paragrafo di apertura (font-lg, max 42rem) |
 | `.wiki-subheading` / `--tight` / `--section` / `--flush` | Sottotitoli in Playfair con spaziatura variabile |
 | `.wiki-paragraph--spaced` / `--compact` / `--bottom-spaced` | Spaziatura paragrafi |
-| `.wiki-list--compact`, `.wiki-list-item--spaced` | Liste |
+| `.wiki-list--compact`, `.wiki-list-item--spaced` | Liste (indentazione da regola base `ul`/`ol` in `main.css`) |
 | `.wiki-note` / `--italic` | Note a font ridotto |
 | `.wiki-indent` | Rientro |
 | `.wiki-term` | Termine tecnico con `abbr` (sottolineatura punteggiata, `cursor: help`) |
@@ -286,23 +288,57 @@ Sorgente: `public/templates/footer.html`. Iniettato via template-loader.
 
 ---
 
-## CookieBanner (`.cookie-banner`)
+## WikiTable (`.wiki-table`)
 
-Banner consenso (gestito da `js/cookie-banner.js`, abilita `gtm.js` post-consenso). Overlay fisso in basso, superficie chiara.
+Tabelle dati in articoli wiki (`fondamenti.html`, `modello-gradienti.html`).
 
 ```html
-<div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Consenso cookie">
+<div class="wiki-table-scroll">
+  <table class="wiki-table wiki-table--flush">
+    <thead>
+      <tr class="wiki-table__head">
+        <th>Colonna</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Etichetta</strong></td>
+        <td>Testo</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+- **Wrapper** `.wiki-table-scroll`: scroll orizzontale su mobile; bordo arrotondato.
+- **Header**: sfondo `--md-sys-color-primary-container`, testo `--md-sys-color-on-primary-container`.
+- **Body**: righe alternate (`--color-surface-soft`); prima colonna in grassetto.
+- **Varianti**: `.wiki-table--grid` (griglia completa); `.wiki-table--center` (celle centrate); `.wiki-table--flush` (senza `margin-top` dentro lo scroll wrapper).
+- **Hover** righe: solo desktop (`pointer: fine`).
+
+---
+
+## CookieBanner (`.cookie-banner`)
+
+Banner consenso (gestito da `js/cookie-banner.js`). Al consenso (`localStorage.cookie_consent`) abilita GA4 via snippet inline in `<head>` (`templates/analytics-head.html`, propagato con `npm run inject-analytics`). Overlay fisso in basso, superficie chiara.
+
+```html
+<div class="cookie-banner" role="dialog" aria-modal="true" aria-label="Informativa sui cookie">
   <div class="cookie-banner__content">
-    <p class="cookie-banner__text">Usiamo i cookie… <a class="cookie-banner__link" href="cookie-policy.html">Dettagli</a></p>
+    <p class="cookie-banner__text" id="cookie-banner-text">
+      Questo sito usa cookie tecnici…
+      <a href="/cookie-policy.html" class="cookie-banner__link">Maggiori informazioni</a>
+    </p>
     <div class="cookie-banner__actions">
-      <button class="cookie-banner__button cookie-banner__button--accept">Accetta</button>
-      <button class="cookie-banner__button">Rifiuta</button>
+      <button type="button" class="cookie-banner__button cookie-banner__button--accept">Accetta</button>
+      <button type="button" class="cookie-banner__button cookie-banner__button--close" aria-label="Chiudi">✕</button>
     </div>
   </div>
 </div>
 ```
 
 - `background: var(--color-surface)`; bottone "accept" near-black con testo bianco (testo su scuro = ok).
+- **Nota:** `googletagmanager.com/gtag/js?id=G-…` e' il CDN ufficiale di gtag/GA4, non il container GTM.
 
 ---
 
@@ -328,6 +364,7 @@ Banner consenso (gestito da `js/cookie-banner.js`, abilita `gtm.js` post-consens
 | Profilo/sezione stile | `.style-section--{secure,anxious,avoidant,disorganized}` |
 | Articolo wiki | `.wiki-lead`, `.wiki-subheading`, `.wiki-note`, `.wiki-term` |
 | Immagine | `.wiki-image` + `figcaption` |
+| Tabella dati | `.wiki-table-scroll` + `.wiki-table` |
 | Richiamo/CTA secondaria | `.banner-horizontal` / `.banner-vertical` |
 | Griglia di card | `.section` + `.grid-2`/`.grid-3` |
 | Archivio approfondimenti | `.blog-card` + `.blog-archive__grid` |

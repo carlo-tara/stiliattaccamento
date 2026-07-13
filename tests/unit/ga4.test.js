@@ -1,17 +1,16 @@
-// gtm.test.js
+// ga4.test.js
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { resolve } from 'path';
 import { cleanupDOM, loadPublicScript } from '../helpers/test-utils.js';
 
-loadPublicScript(resolve(__dirname, '../../public/js/gtm.js'));
+loadPublicScript(resolve(__dirname, '../../public/js/ga4.js'));
 
-describe('gtm.js', () => {
+describe('ga4.js', () => {
   beforeEach(() => {
     cleanupDOM();
     document.head.innerHTML = '';
     document.body.innerHTML = '';
-    delete window.googleTagManagerLoaded;
     delete window.googleAnalyticsLoaded;
     delete window.gtag;
     delete window.dataLayer;
@@ -19,9 +18,8 @@ describe('gtm.js', () => {
   });
 
   it('should not load analytics without consent', () => {
-    loadAnalytics();
+    loadGoogleAnalytics();
 
-    expect(window.googleTagManagerLoaded).toBeUndefined();
     expect(window.googleAnalyticsLoaded).toBeUndefined();
     expect(document.querySelector('script[src*="googletagmanager"]')).toBeNull();
   });
@@ -35,24 +33,12 @@ describe('gtm.js', () => {
     expect(document.querySelector('script[src*="G-6CQ4VFK8SJ"]')).toBeTruthy();
   });
 
-  it('should load GTM after consent', () => {
-    localStorage.setItem('cookie_consent', 'accepted');
-    loadGoogleTagManager();
-
-    expect(window.googleTagManagerLoaded).toBe(true);
-    expect(window.dataLayer.length).toBeGreaterThan(0);
-    expect(document.querySelector('script[src*="GTM-NGNWRJBN"]')).toBeTruthy();
-    expect(document.getElementById('gtm-noscript')).toBeTruthy();
-  });
-
   it('should init only when consent exists', () => {
     initAnalyticsIfConsented();
     expect(window.googleAnalyticsLoaded).toBeUndefined();
-    expect(window.googleTagManagerLoaded).toBeUndefined();
 
     localStorage.setItem('cookie_consent', 'accepted');
     initAnalyticsIfConsented();
     expect(window.googleAnalyticsLoaded).toBe(true);
-    expect(window.googleTagManagerLoaded).toBe(true);
   });
 });

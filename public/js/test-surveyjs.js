@@ -75,6 +75,9 @@ async function initSurvey() {
 
     const survey = new Survey.Model(surveyJson);
 
+    survey.showCompletedPage = false;
+    survey.locale = 'it';
+
     const theme = typeof getSurveyJSTheme === 'function' ? getSurveyJSTheme() : null;
     if (theme && typeof survey.applyTheme === 'function') {
       survey.applyTheme(theme);

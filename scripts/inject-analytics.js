@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// inject-analytics.js — inlines blocco GA4/GTM nel <head> di tutte le pagine HTML
+// inject-analytics.js — inlines blocco GA4 nel <head> di tutte le pagine HTML
 
 const { readFileSync, writeFileSync } = require('fs');
 const { resolve, relative } = require('path');
@@ -9,7 +9,7 @@ const PUBLIC_DIR = resolve(__dirname, '../public');
 const TEMPLATE_PATH = resolve(PUBLIC_DIR, 'templates/analytics-head.html');
 
 const MARKER_START = '<!-- Site analytics (auto-injected) -->';
-const MARKER_END = '<!-- End Google Tag Manager -->';
+const MARKER_END = '<!-- End site analytics -->';
 
 function getCssPrefix(relativePath) {
   const depth = relativePath.split('/').length - 1;
@@ -18,7 +18,7 @@ function getCssPrefix(relativePath) {
 
 function removeAnalyticsBlock(html) {
   return html.replace(
-    /<!-- Site analytics \(auto-injected\) -->[\s\S]*?<!-- End Google Tag Manager -->\n?/g,
+    /<!-- Site analytics \(auto-injected\) -->[\s\S]*?<!-- End (?:Google Tag Manager|site analytics) -->\n?/g,
     ''
   );
 }

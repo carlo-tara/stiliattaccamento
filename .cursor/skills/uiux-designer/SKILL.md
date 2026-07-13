@@ -1,6 +1,6 @@
 ---
 name: uiux-designer
-version: 1.0.2
+version: 1.0.3
 description: >-
   Progetta e revisiona interfaccia, layout, componenti e sistema visuale del sito
   Stili di Attaccamento (PWA statica HTML+CSS+JS vanilla, Material 3 tokens, tema
@@ -116,6 +116,7 @@ Task Progress:
 - [ ] 6. Test responsive (mobile-first) + accessibilita' (focus, contrasto, keyboard)
 - [ ] 7. Verificare immagini obbligatorie (>=2 per nuova pagina, regola .cursorrules)
 - [ ] 8. Passare la checklist.md prima della consegna
+- [ ] 9. Dopo modifiche a `public/css/main.css`: `npm run build:css` (rigenera `site*.min.css`)
 ```
 
 ## Output: report di revisione UI/UX

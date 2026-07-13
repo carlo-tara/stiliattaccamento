@@ -6,7 +6,6 @@ const PRECACHE_URLS = [
   '/manifest.json',
   '/js/site.min.js',
   '/js/cookie-banner.js',
-  '/js/gtm.js',
   '/js/pwa.js',
   '/js/utils.js',
   '/js/test-surveyjs.js',

@@ -163,13 +163,13 @@ Questo documento descrive le policy di sicurezza per il progetto "Stili di Attac
     * Minimizzare dati raccolti
 
 8.2 Analytics
-  - Google Analytics 4 (G-6CQ4VFK8SJ) e Google Tag Manager (GTM-NGNWRJBN) solo dopo consenso cookie
+  - Google Analytics 4 (G-6CQ4VFK8SJ) solo dopo consenso cookie
   - Nessun tracking prima del consenso
   - Privacy-first: minimizzare dati raccolti
 
 8.3 Cookies e analytics
   - Cookie banner con consenso in localStorage (cookie_consent)
-  - Google Tag Manager caricato solo dopo consenso esplicito (gtm.js)
+  - GA4 caricato solo dopo consenso esplicito (snippet inline in head)
   - Policy: cookie-policy.html, privacy-policy.html
   - Rispettare GDPR: consenso prima di analytics
 
