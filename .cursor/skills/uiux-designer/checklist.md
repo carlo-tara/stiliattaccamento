@@ -49,7 +49,7 @@ Passa questa checklist prima di consegnare una pagina o un intervento di design.
 - [ ] Contrasto testo/sfondo ≥4.5:1 (body) / ≥3:1 (large)
 - [ ] `:focus-visible` evidente su tutti gli elementi interattivi
 - [ ] Navigabile da tastiera (menu, submenu, form, drawer); ordine di tab logico
-- [ ] `aria-label`/`aria-expanded`/`aria-current` su nav, hamburger, breadcrumb
+- [ ] `aria-label`/`aria-expanded`/`aria-current` su nav, hamburger, breadcrumb, **trigger ricerca**
 - [ ] Skip link presente e funzionante
 - [ ] Area tocco ≥44×44px sui controlli
 - [ ] `alt` descrittivo su tutte le immagini; decorative con `aria-hidden`
@@ -61,6 +61,7 @@ Passa questa checklist prima di consegnare una pagina o un intervento di design.
 - [ ] Progettato prima per mobile, poi esteso con media query (600/960/1280)
 - [ ] Nessun overflow orizzontale; immagini fluide
 - [ ] Menu hamburger/drawer funziona su mobile; nav desktop su ≥960px
+- [ ] Trigger ricerca (Pagefind) visibile in header; shortcut `/` documentata in `aria-label`
 - [ ] Griglie collassano correttamente (`.grid-2`, `.grid-3`)
 
 ## 7. Performance

@@ -11,6 +11,16 @@ Formato basato su [Keep a Changelog](https://keepachangelog.com/it/IT/1.1.0/) e 
 ### Fixed
 ### Removed
 
+## [1.1.0] - 2026-07-13
+
+### Added
+- Playbook L2 [pagefind-seo-geo.md](pagefind-seo-geo.md): architettura tre strati (L1), file/script repo, pipeline `perf`/`deploy`, hub money, roadmap mappa intent SeoZoom, troubleshooting
+- Sezione «Ricerca interna (Pagefind)» in SKILL.md con link a canone L1 `ricerca-on-site-seo-geo.md`
+
+### Changed
+- Tabella deleghe: uiux-designer per componente search UI
+- Comandi deploy documentati nel blocco workflow
+
 ## [1.0.0] - 2026-07-13
 
 ### Added

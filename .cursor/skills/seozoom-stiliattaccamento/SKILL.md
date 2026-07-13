@@ -2,10 +2,11 @@
 name: seozoom-stiliattaccamento
 extends: a-seozoom
 version: 1.0.0
-extends-version: 1.0.7
+extends-version: 1.0.8
 description: >-
   SEO/GEO per Stili di Attaccamento — eredita a-seozoom; path export, hub money,
-  quick win quando non in SERP, limiti import SeoZoom e dominio .com unico.
+  quick win quando non in SERP, Pagefind ricerca on-site, limiti import SeoZoom
+  e dominio .com unico.
 ---
 
 # SEO/GEO Stili di Attaccamento — estensione progetto
@@ -66,6 +67,7 @@ Dopo modifiche title/meta/HTML: `npm run seo` (inject-seo + sitemap) poi `npm ru
 | **Ottimizzazione** | Riscrittura on-page | Title/meta/FAQ hub; `npm run seo` |
 | **Analisi** | Priorità keyword / ZO | CSV in `seo/YYMMDD/seozoom/`; ZO/KO da UI SeoZoom + `/var/www/AgentFactory/a-seozoom/references/metriche-seozoom.md` |
 | **PageSpeed** | CWV | Workflow L1 a-seozoom |
+| **Ricerca on-site** | Pagefind / indice search | Playbook [pagefind-seo-geo.md](pagefind-seo-geo.md) + L1 `ricerca-on-site-seo-geo.md` |
 
 ---
 
@@ -112,8 +114,27 @@ python3 /var/www/AgentFactory/a-seozoom/scripts/seo_import_all.py \
 
 # Dopo ottimizzazione on-page
 npm run seo && npm run validate-seo
-npm run perf   # se JS/CSS/templates
+npm run perf   # se JS/CSS/templates — include inject-search + build:search
+
+# Deploy (build + commit artefatti public/ + push)
+npm run deploy
 ```
+
+---
+
+## Ricerca interna (Pagefind)
+
+Canone L1: `a-seozoom/references/ricerca-on-site-seo-geo.md`. **Playbook L2:** [pagefind-seo-geo.md](pagefind-seo-geo.md).
+
+| Cosa | Dettaglio |
+|------|-----------|
+| Motore | Pagefind 1.5.x, lingua `it`, indice in `public/pagefind/` |
+| Build | Ultimo step di `npm run perf` → `build:search` |
+| UI | Modal in header, shortcut `/` |
+| SEO | `Disallow: /pagefind/` in robots; hub money = owner futuri per mappa intent |
+| Strato 2–3 | Roadmap: mappa intent da `monitored.csv` (vedi playbook) |
+
+Dopo ogni batch HTML o template header: `npm run perf` (o `npm run deploy`).
 
 ---
 
@@ -122,7 +143,7 @@ npm run perf   # se JS/CSS/templates
 | Skill | Path | Quando |
 |-------|------|--------|
 | content-voice | `.cursor/skills/content-voice/` | Title/meta/FAQ copy |
-| uiux-designer | `.cursor/skills/uiux-designer/` | Layout, non SEO |
+| uiux-designer | `.cursor/skills/uiux-designer/` | Layout, componente search UI |
 
 ---
 
@@ -130,6 +151,6 @@ npm run perf   # se JS/CSS/templates
 
 | Campo | Valore |
 |-------|--------|
-| `version` | 1.0.0 |
-| `extends-version` | 1.0.7 (`a-seozoom`) |
+| `version` | 1.1.0 |
+| `extends-version` | 1.0.8 (`a-seozoom`) |
 | CHANGELOG | `.cursor/skills/seozoom-stiliattaccamento/CHANGELOG.md` |

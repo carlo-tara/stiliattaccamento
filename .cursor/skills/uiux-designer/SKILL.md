@@ -24,7 +24,8 @@ Skill **standalone** di progetto: AgentFactory non espone un L1 UI/UX — nessun
 | `content-voice` | Microcopy, CTA, label, `aria-label`, terminologia (Oscillante, ecc.) |
 | `a-illustrator` (L1) | Immagini nuove pagina (≥2 via Qwen, vedi `.cursorrules`) |
 | `illustrator-stiliattaccamento` (L2) | Carte tarocchi 12 profili — full-bleed, no testo/cornici |
-| `a-seozoom` (L1) | Keyword, title/meta da dati reali, PageSpeed |
+| `a-seozoom` (L1) | Keyword, title/meta da dati reali, PageSpeed, ricerca on-site (Pagefind) |
+| `seozoom-stiliattaccamento` (L2) | Hub money, playbook Pagefind, deploy search |
 
 Agenti L1: sorgente `/var/www/AgentFactory`, deploy con `bash /var/www/AgentFactory/deploy-all.sh`.
 

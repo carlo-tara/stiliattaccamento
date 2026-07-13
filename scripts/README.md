@@ -52,10 +52,11 @@ npm run perf
 | `inject-search.js` | UI ricerca Pagefind nel markup |
 | `minify-static.js` | Minifica HTML, template, manifest, sitemap, JSON (`html-minifier-terser`) — **ultimo** step inject prima di `build:search` |
 | `build-search.js` | Indice Pagefind in `public/pagefind/` |
+| `deploy.sh` | `npm run perf` + commit artefatti `public/` + push |
 | `optimize-images.js` | Varianti WebP responsive (`index-hero-480/700.webp`) |
 | `generate-pwa-icons.js` | Icone 192×192 e 512×512 in `public/icons/` da `index-hero.webp` |
 
-**Git hooks:** `npm install` imposta `core.hooksPath` su `scripts/git-hooks/` (pre-commit + pre-push eseguono `npm run perf`).
+**Git hooks:** `npm install` imposta `core.hooksPath` su `scripts/git-hooks/` (solo **pre-commit** esegue `npm run perf` su sorgenti build). Per il push usa `npm run deploy` o `/deploy`.
 
 Dopo `generate-pwa-icons`, aggiorna `public/manifest.json` se cambi i path delle icone.
 

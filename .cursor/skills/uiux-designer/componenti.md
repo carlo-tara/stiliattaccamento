@@ -14,12 +14,11 @@ Barra sticky con logo, hamburger (mobile) e nav con submenu. Sorgente: `public/t
 <header>
   <nav class="container" aria-label="Navigazione principale">
     <div class="logo"><a href="index.html">Stili di Attaccamento</a></div>
-    <button type="button" class="hamburger" aria-label="Apri menu di navigazione"
-            aria-expanded="false" aria-controls="navLinks" onclick="toggleMobileMenu()">
-      <span class="hamburger-line" aria-hidden="true"></span>
-      <span class="hamburger-line" aria-hidden="true"></span>
-      <span class="hamburger-line" aria-hidden="true"></span>
-    </button>
+    <div class="header-actions">
+      <!-- SiteSearch trigger — vedi sezione SiteSearch sotto -->
+      <pagefind-modal-trigger class="site-search-trigger"> … </pagefind-modal-trigger>
+      <button type="button" class="hamburger" …> … </button>
+    </div>
     <ul class="nav-links" id="navLinks">
       <li class="nav-item"><a href="test.html">Test</a></li>
       <li class="nav-item nav-item--has-submenu">
@@ -38,9 +37,44 @@ Barra sticky con logo, hamburger (mobile) e nav con submenu. Sorgente: `public/t
 </header>
 ```
 
-- **CSS**: `header { background: var(--color-surface); border-bottom: 1px solid var(--color-border-soft); position: sticky; top: 0; z-index: 100; }`. Su Cloud Dancer la superficie piu' chiara stacca dallo sfondo pagina.
+- **CSS**: `header { background: var(--color-surface); … }`. `.header-actions` allinea ricerca + hamburger a destra su mobile.
 - **JS** (`mobile-menu.js`): `toggleMobileMenu()` apre il drawer (`.nav-links.active`), gestisce overlay e `aria-expanded`. `nav-highlight.js` aggiunge `.nav-link--active` con `aria-current="page"`.
-- **ARIA**: `aria-expanded` su hamburger e toggle submenu; `aria-controls`; area tocco hamburger ≥44×44px.
+- **ARIA**: `aria-expanded` su hamburger e toggle submenu; `aria-controls`; area tocco hamburger e search ≥44×44px.
+
+---
+
+## SiteSearch (Pagefind modal + trigger)
+
+Ricerca interna full-text via [Pagefind](https://pagefind.app/) Component UI. SEO/GEO: playbook `seozoom-stiliattaccamento/pagefind-seo-geo.md`.
+
+**Trigger** (in `header.html`, dentro `.header-actions`):
+
+```html
+<pagefind-modal-trigger class="site-search-trigger">
+  <button type="button" class="site-search-trigger__btn"
+          aria-label="Cerca nel sito (premi /)">
+    <svg class="site-search-trigger__icon" … aria-hidden="true"> … </svg>
+    <span class="site-search-trigger__label">Cerca</span>
+  </button>
+</pagefind-modal-trigger>
+```
+
+**Modal** (iniettato da `scripts/inject-search.js` prima di `</body>`):
+
+```html
+<pagefind-modal bundle-path="/pagefind/" shortcut="/"></pagefind-modal>
+```
+
+| Aspetto | Regola |
+|---------|--------|
+| **Scorciatoia** | `/` apre il modal (Pagefind default) |
+| **Label** | «Cerca nel sito» in `aria-label`; testo visibile «Cerca» su desktop |
+| **Mobile** | Solo icona lente; label nascosta sotto breakpoint (~600px) |
+| **Stile** | BEM `.site-search-trigger*`; token M3 su `pagefind-modal` (CSS vars in `main.css`) |
+| **Focus** | `:focus-visible` sul bottone; modal Pagefind gestisce trap interno |
+| **Contenuto indicizzato** | Solo `<main data-pagefind-body>` — nav/footer esclusi |
+
+Non duplicare UI search custom: estendere solo trigger e token tema; ranking e snippet sono Pagefind.
 
 ---
 
