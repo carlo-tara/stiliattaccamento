@@ -15,6 +15,7 @@ const SOURCE_FILES = [
   'breadcrumb-generator.js',
   'nav-highlight.js',
   'template-loader.js',
+  'site-notice.js',
 ];
 
 async function buildJs() {

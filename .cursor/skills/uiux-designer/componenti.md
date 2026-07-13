@@ -318,26 +318,70 @@ Tabelle dati in articoli wiki (`fondamenti.html`, `modello-gradienti.html`).
 
 ---
 
-## CookieBanner (`.cookie-banner`)
+## WikiTabs (`.wiki-tabs`) — pagine lunghe a schede
 
-Banner consenso (gestito da `js/cookie-banner.js`). Al consenso (`localStorage.cookie_consent`) abilita GA4 via snippet inline in `<head>` (`templates/analytics-head.html`, propagato con `npm run inject-analytics`). Overlay fisso in basso, superficie chiara.
+Progressive enhancement per wiki/guide con molte sezioni: una scheda per blocco, intro e footer fuori dalle schede. Modulo `public/js/modules/wiki-tabs.js`; abilitazione via `scripts/inject-wiki-tabs.js` + `scripts/wiki-tabs-config.json` (incluso in `npm run perf`).
+
+**Markup atteso** (iniettato su `main > .container`):
 
 ```html
-<div class="cookie-banner" role="dialog" aria-modal="true" aria-label="Informativa sui cookie">
-  <div class="cookie-banner__content">
-    <p class="cookie-banner__text" id="cookie-banner-text">
+<div class="container"
+     data-wiki-tabs
+     data-wiki-tabs-section="article.card.mb-8, div.card.mb-8"
+     data-wiki-tabs-min="5"
+     data-wiki-tabs-pin-start=".card.card--accent-primary, .profile-hero"
+     data-wiki-tabs-pin-end="section.section--compact, nav.content-nav, .card:not(.mb-8):not(.mb-6)">
+  <!-- intro pin-start -->
+  <article class="card mb-8"><h2>Sezione</h2>…</article>
+  <!-- footer pin-end -->
+</div>
+<script src="js/modules/wiki-tabs.js?v=…" defer></script>
+```
+
+**Comportamento JS:** sezioni = figli diretti del container che matchano `data-wiki-tabs-section`; minimo `data-wiki-tabs-min` (default 5). Inserire il root `.wiki-tabs` **prima** di spostare le sezioni nei panel (ordine DOM critico). Deep link `#slug-h2`. ARIA tablist + frecce ←/→.
+
+**UI (leggibilita'):**
+- Heading `.wiki-tabs__heading`: «Sezioni in questa pagina»
+- Griglia responsive (2 → 3 → 4 colonne), etichette H2 **complete** (no troncamento JS), `title` per tooltip
+- Tab attiva: `--color-accent-primary` + `--color-on-accent-primary` (contrasto netto)
+- Pannello nav: sfondo `--color-surface-soft`, bordo `--color-border-soft`
+
+**Selettori per tipo pagina** (override in `wiki-tabs-config.json`):
+
+| Tipo | `sectionSelector` tipico |
+|------|--------------------------|
+| Wiki | `article.card.mb-8, div.card.mb-8` |
+| Profilo | `article.card.strategie-pratiche, article.card.mb-8` + `pin-start: .profile-hero` |
+| Approfondimento | `div.card.mb-6, div.card.mb-8, article.card.mb-8` |
+| Esercizi | `section.card.mb-8, section.mb-8, div.card.mb-8, details.card.mb-8` |
+
+Senza JS: tutte le sezioni restano visibili (scroll unico).
+
+---
+
+## SiteNotice (`.site-notice`)
+
+Informativa consenso cookie/analytics. Sorgente `js/site-notice.js`, **bundlata in `site.min.js`** (ultimo file in `build-js.js`); nessun `<script>` separato in HTML. Al consenso (`localStorage.cookie_consent` + scadenza `cookie_consent_date`) dispatch evento `cookie-consent-accepted` e `window.initAnalyticsIfConsented()` — GA4 solo via snippet inline in `<head>` (`templates/analytics-head.html`, `npm run inject-analytics`). Overlay fisso in basso, superficie chiara.
+
+**Naming:** non usare `cookie-banner` in path file, id o classi CSS (liste ad blocker).
+
+```html
+<div class="site-notice" id="site-notice" role="dialog" aria-modal="true" aria-label="Informativa sui cookie">
+  <div class="site-notice__content">
+    <p class="site-notice__text" id="site-notice-text">
       Questo sito usa cookie tecnici…
-      <a href="/cookie-policy.html" class="cookie-banner__link">Maggiori informazioni</a>
+      <a href="/cookie-policy.html" class="site-notice__link">Maggiori informazioni</a>
     </p>
-    <div class="cookie-banner__actions">
-      <button type="button" class="cookie-banner__button cookie-banner__button--accept">Accetta</button>
-      <button type="button" class="cookie-banner__button cookie-banner__button--close" aria-label="Chiudi">✕</button>
+    <div class="site-notice__actions">
+      <button type="button" class="site-notice__button site-notice__button--accept" id="site-notice-accept">Accetta</button>
+      <button type="button" class="site-notice__button site-notice__button--close" id="site-notice-close" aria-label="Chiudi">✕</button>
     </div>
   </div>
 </div>
 ```
 
 - `background: var(--color-surface)`; bottone "accept" near-black con testo bianco (testo su scuro = ok).
+- localStorage wrappato in try/catch (modalità privata).
 - **Nota:** `googletagmanager.com/gtag/js?id=G-…` e' il CDN ufficiale di gtag/GA4, non il container GTM.
 
 ---
@@ -365,7 +409,9 @@ Banner consenso (gestito da `js/cookie-banner.js`). Al consenso (`localStorage.c
 | Articolo wiki | `.wiki-lead`, `.wiki-subheading`, `.wiki-note`, `.wiki-term` |
 | Immagine | `.wiki-image` + `figcaption` |
 | Tabella dati | `.wiki-table-scroll` + `.wiki-table` |
+| Pagine lunghe (≥5 sezioni) | `.wiki-tabs` + `data-wiki-tabs*` |
 | Richiamo/CTA secondaria | `.banner-horizontal` / `.banner-vertical` |
 | Griglia di card | `.section` + `.grid-2`/`.grid-3` |
 | Archivio approfondimenti | `.blog-card` + `.blog-archive__grid` |
 | Correlati / prev-next | `.content-nav` |
+| Consenso cookie/analytics | `.site-notice` (JS in `site.min.js`) |

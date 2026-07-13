@@ -51,13 +51,16 @@ Questo è un progetto per una webapp PWA statica mobile-first sugli stili di att
 - Usa `const` e `let`, mai `var`
 - Funzioni arrow quando appropriato
 - Codice modulare: separa in moduli riutilizzabili
+- **Consenso cookie/analytics**: sorgente `site-notice.js`, incluso in `site.min.js` via `build-js.js`; non usare file o URL separati con `cookie` nel nome (blocco ad blocker); BEM `.site-notice*`
 - Service Worker per funzionalità PWA
 - Gestione errori: usa try/catch appropriatamente
 - Commenti JSDoc per funzioni complesse
 
 ### PWA Requirements
 - `manifest.json` con metadata appropriati
-- Service Worker per offline functionality
+- Service Worker (`public/sw.js`) per offline functionality
+  - Precache **best-effort** (`Promise.allSettled`); evitare `cache.addAll()` su URL bloccabili
+  - Non precachare script consent/analytics; bump `CACHE_NAME` ad ogni modifica SW
 - Icons in vari formati (192x192, 512x512)
 - Install prompt per mobile e desktop
 
@@ -105,7 +108,7 @@ public/
 │   ├── theme.js            # Light mode forzato
 │   ├── mobile-menu.js      # Menu hamburger
 │   ├── nav-highlight.js    # Evidenziazione nav attiva
-│   ├── cookie-banner.js    # Consenso cookie
+│   ├── site-notice.js      # Consenso cookie/analytics (sorgente; bundled in site.min.js)
 │   ├── ga4.js              # Google Analytics 4 (post-consenso, test)
 │   ├── pwa.js              # Registrazione Service Worker
 │   ├── test-surveyjs.js    # Quiz SurveyJS
@@ -243,7 +246,7 @@ Ogni pagina wiki deve includere:
 ## Best Practices
 
 ### Performance
-- Pipeline build: `npm run perf` (CSS bundle, JS bundle, shell inline, analytics, wiki-tabs, preload/inject)
+- Pipeline build: `npm run perf` (CSS/JS bundle, shell inline, analytics, wiki-tabs, preload/inject, **minify HTML/static**)
 - **Cache-bust:** incrementare `CSS_VERSION` / `JS_VERSION` in `scripts/lib/asset-version.js` ad ogni deploy che modifica CSS o JS; poi `npm run perf` (propaga `?v=` su tutte le HTML). CSS/JS hanno cache `immutable` 1 anno in `_headers`
 - Minifica CSS e JS per produzione (`build-css.js`, `build-js.js`)
 - Ottimizza immagini (WebP, varianti responsive via `optimize-images.js`)
@@ -380,7 +383,7 @@ Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality"
 - [ ] Light mode verificato
 - [ ] PWA manifest aggiornato
 - [ ] Nessun file `.env` committato
-- [ ] Dopo modifiche CSS/JS/templates: `npm run perf` eseguito e artefatti committati
+- [ ] Dopo modifiche CSS/JS/templates: bump `scripts/lib/asset-version.js` se cambiano bundle; `npm run perf` eseguito e artefatti committati
 - [ ] PageSpeed Insights mobile ≥ 90 (CLS ≤ 0.1) su pagine modificate
 - [ ] Test su mobile e desktop
 

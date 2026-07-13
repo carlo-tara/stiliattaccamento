@@ -146,7 +146,12 @@ const GLOBAL_SCRIPT_FILES = [
   'template-loader.js',
 ];
 
-const DEFER_SCRIPT_FILES = ['cookie-banner.js'];
+function removeLegacyDeferScripts(html) {
+  return html.replace(
+    /\s*<script src="(?:\.\.\/)*js\/cookie-banner\.js(?:\?v=[^"]*)?"(?:\s+defer)?><\/script>\n?/g,
+    '\n'
+  );
+}
 
 function removeFooterGtmScript(html) {
   return html.replace(
@@ -180,28 +185,14 @@ function ensureSiteScripts(html, cssPrefix) {
     }
   }
 
-  DEFER_SCRIPT_FILES.forEach((file) => {
-    if (result.includes(`js/${file}`)) {
-      return;
-    }
-    const tag = `  <script src="${cssPrefix}js/${file}?v=${APP_SCRIPT_VERSION}" defer></script>\n`;
-    const inserted = insertScriptAfter(result, 'js/site.min.js', tag);
-    result = inserted || result.replace('</body>', `${tag}</body>`);
-  });
-
   return result;
 }
 
 function ensureDeferOnGlobalScripts(html) {
-  return html
-    .replace(
-      /(<script\s+src="(?:\.\.\/)*js\/site\.min\.js\?v=[^"]+")(?!\s+defer)(>)/g,
-      '$1 defer$2'
-    )
-    .replace(
-      /(<script\s+src="(?:\.\.\/)*js\/cookie-banner\.js\?v=[^"]+")(?!\s+defer)(>)/g,
-      '$1 defer$2'
-    );
+  return html.replace(
+    /(<script\s+src="(?:\.\.\/)*js\/site\.min\.js\?v=[^"]+")(?!\s+defer)(>)/g,
+    '$1 defer$2'
+  );
 }
 
 function ensureScriptCacheBust(html) {
@@ -219,9 +210,9 @@ function ensureSwRegistration(html, cssPrefix) {
     return html;
   }
 
-  const cookieBanner = html.lastIndexOf('js/cookie-banner.js');
-  if (cookieBanner !== -1) {
-    const endTag = html.indexOf('</script>', cookieBanner);
+  const siteBundle = html.lastIndexOf('js/site.min.js');
+  if (siteBundle !== -1) {
+    const endTag = html.indexOf('</script>', siteBundle);
     if (endTag !== -1) {
       return `${html.slice(0, endTag + 9)}\n  ${tag}${html.slice(endTag + 9)}`;
     }
@@ -263,6 +254,7 @@ function injectPerformance(filePath) {
   html = removeLegacyStylesheets(html);
   html = removeDeadMainScript(html);
   html = removeFooterGtmScript(html);
+  html = removeLegacyDeferScripts(html);
   html = removeLegacyGlobalScripts(html);
   html = ensureManifestLink(html);
   html = ensureSiteScripts(html, cssPrefix);

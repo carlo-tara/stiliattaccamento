@@ -69,6 +69,14 @@ Passa questa checklist prima di consegnare una pagina o un intervento di design.
 - [ ] Hero image con `fetchpriority="high"` + preload
 - [ ] CSS preload, font non bloccanti
 - [ ] Nessuna libreria/asset esterno superfluo
+- [ ] Consenso cookie in `site.min.js` (`site-notice.js`); nessun script separato con `cookie` nel path
+
+## 7b. PWA e triage console
+
+- [ ] `sw.js`: precache best-effort; nessun `cache.addAll()` su script consent/analytics; `CACHE_NAME` bumpato se modificato
+- [ ] Post-deploy SW: unregister in DevTools prima del test
+- [ ] `ERR_BLOCKED_BY_CLIENT` su script → probabile ad blocker; verificare con incognito senza estensioni prima di debug server
+- [ ] Messaggi da estensioni browser (es. content script, CSP `connect-src 'none'` report-only) ≠ bug del sito
 
 ## 8. Immagini obbligatorie (regola `.cursorrules`)
 

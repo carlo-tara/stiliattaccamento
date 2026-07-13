@@ -225,6 +225,8 @@ npm run test:all
 
 Commitare i file generati in `public/` (`site.min.css`, `site.min.js`, HTML aggiornati).
 
+Dopo modifiche a `public/sw.js`: bump `CACHE_NAME` nel file (e `SW_CACHE_NAME` in `scripts/lib/asset-version.js`); post-deploy unregister il Service Worker vecchio in DevTools → Application prima del test locale.
+
 Dopo modifiche a `templates/header.html` o `topbar.html`: `npm run inject-shell`.
 
 Vedi [docs/documentation/DEPLOYMENT.md](docs/documentation/DEPLOYMENT.md) per la checklist completa.

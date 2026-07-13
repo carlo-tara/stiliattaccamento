@@ -204,7 +204,7 @@ una webapp PWA statica mobile-first.
   ├── theme.js                # Light mode forzato
   ├── mobile-menu.js          # Menu hamburger
   ├── nav-highlight.js        # Evidenziazione nav attiva
-  ├── cookie-banner.js        # Consenso cookie
+  ├── site-notice.js          # Consenso cookie/analytics (sorgente; bundled in site.min.js)
   ├── ga4.js                  # Google Analytics 4 (post-consenso, test)
   ├── pwa.js                  # Registrazione Service Worker
   ├── test-surveyjs.js        # Quiz SurveyJS
@@ -245,9 +245,11 @@ una webapp PWA statica mobile-first.
 
 6.2 Service Worker
   - File: public/sw.js
-  - Cache strategy appropriata
-  - Offline fallback page
-  - Update mechanism
+  - Precache best-effort (Promise.allSettled); non usare cache.addAll() su script consent/analytics
+  - Bump CACHE_NAME ad ogni modifica SW (allineare scripts/lib/asset-version.js SW_CACHE_NAME)
+  - Cache strategy: network-first HTML, cache fallback asset statici
+  - Offline fallback: index.html per navigazione
+  - Post-deploy: unregister SW vecchio in DevTools prima di testare
 
 6.3 Icons
   - Formati: PNG
@@ -367,7 +369,7 @@ una webapp PWA statica mobile-first.
 
 10.1 Ottimizzazioni
   - CSS split: `site.min.css` (core) + bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`)
-  - JS bundle: `site.min.js` via `npm run build:js` (Terser)
+  - JS bundle: `site.min.js` via `npm run build:js` (Terser); include `site-notice.js` (consenso cookie/analytics)
   - Shell inline: header/topbar via `npm run inject-shell`
   - Immagini responsive WebP (`npm run optimize-images`)
   - Lazy loading per immagini below-the-fold

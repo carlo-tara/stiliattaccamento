@@ -1,6 +1,6 @@
 ---
 name: uiux-designer
-version: 1.0.3
+version: 1.0.5
 description: >-
   Progetta e revisiona interfaccia, layout, componenti e sistema visuale del sito
   Stili di Attaccamento (PWA statica HTML+CSS+JS vanilla, Material 3 tokens, tema
@@ -116,7 +116,7 @@ Task Progress:
 - [ ] 6. Test responsive (mobile-first) + accessibilita' (focus, contrasto, keyboard)
 - [ ] 7. Verificare immagini obbligatorie (>=2 per nuova pagina, regola .cursorrules)
 - [ ] 8. Passare la checklist.md prima della consegna
-- [ ] 9. Dopo modifiche a `public/css/main.css`: `npm run build:css` (rigenera `site*.min.css`)
+- [ ] 9. Dopo modifiche CSS/JS: incrementare `scripts/lib/asset-version.js`, poi `npm run build:css` / `build:js` e `npm run perf` (inject + `minify:static` su HTML/template/JSON/XML)
 ```
 
 ## Output: report di revisione UI/UX
@@ -155,6 +155,7 @@ Scala di gravita': vedi [checklist.md](checklist.md).
 - Inventare un nuovo prefisso di classi: riusa la naming esistente (`wiki-*`, `card`, `style-section`, `nav-*`, BEM)
 - Colori hardcoded (`#fff`, `rgb(255,255,255)`): usa i token in [design-system.md](design-system.md)
 - Creare nuove pagine senza le 2 immagini generate via Qwen (vedi `.cursorrules`)
+- Reintrodurre `cookie-banner.js` o script consent separati con `cookie` nel path (ad blocker); usare `site-notice.js` in bundle
 
 ## Checklist finale
 

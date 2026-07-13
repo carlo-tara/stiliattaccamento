@@ -1696,7 +1696,7 @@ footer,
    Cookie Banner
    ========================================================================== */
 
-.cookie-banner {
+.site-notice {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -1711,11 +1711,11 @@ footer,
   transition: transform 0.3s ease-in-out;
 }
 
-.cookie-banner--visible {
+.site-notice--visible {
   transform: translateY(0);
 }
 
-.cookie-banner__content {
+.site-notice__content {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -1725,14 +1725,14 @@ footer,
 }
 
 @media (min-width: 600px) {
-  .cookie-banner__content {
+  .site-notice__content {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 }
 
-.cookie-banner__text {
+.site-notice__text {
   margin: 0;
   font-size: var(--font-size-sm);
   line-height: var(--line-height-relaxed);
@@ -1742,25 +1742,25 @@ footer,
 }
 
 @media (min-width: 600px) {
-  .cookie-banner__text {
+  .site-notice__text {
     text-align: left;
   }
 }
 
-.cookie-banner__link {
+.site-notice__link {
   color: rgb(0, 0, 0);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.cookie-banner__actions {
+.site-notice__actions {
   display: flex;
   gap: var(--spacing-3);
   align-items: center;
   flex-shrink: 0;
 }
 
-.cookie-banner__button {
+.site-notice__button {
   padding: var(--spacing-2) var(--spacing-4);
   border: 1px solid var(--color-border-soft);
   border-radius: var(--radius-md);
@@ -1773,17 +1773,17 @@ footer,
   font-family: var(--font-family-base);
 }
 
-.cookie-banner__button:active {
+.site-notice__button:active {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.cookie-banner__button--accept {
+.site-notice__button--accept {
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   border-color: rgb(0, 0, 0);
 }
 
-.cookie-banner__button--close {
+.site-notice__button--close {
   padding: var(--spacing-2);
   min-width: 2.75rem;
   min-height: 2.75rem;
@@ -2063,16 +2063,16 @@ footer,
     text-decoration: underline;
   }
 
-  .cookie-banner__link:hover {
+  .site-notice__link:hover {
     text-decoration: none;
   }
 
-  .cookie-banner__button:hover {
+  .site-notice__button:hover {
     background-color: rgba(0, 0, 0, 0.05);
     border-color: rgba(0, 0, 0, 0.2);
   }
 
-  .cookie-banner__button--accept:hover {
+  .site-notice__button--accept:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-color: rgba(0, 0, 0, 0.8);
   }
