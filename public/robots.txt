@@ -26,6 +26,9 @@ Allow: /
 # Template parziali (non sono pagine complete)
 Disallow: /templates/
 
+# Indice Pagefind (ricerca client-side, non contenuto SEO)
+Disallow: /pagefind/
+
 # Indice LLM (llmstxt.org)
 Allow: /llms.txt
 

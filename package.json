@@ -22,6 +22,7 @@
     "build:search": "node scripts/build-search.js",
     "minify:static": "node scripts/minify-static.js",
     "perf": "npm run build:css && npm run build:js && npm run inject-shell && npm run inject-analytics && npm run inject-wiki-tabs && npm run inject-performance && npm run inject-search && npm run minify:static && npm run build:search",
+    "deploy": "bash scripts/deploy.sh",
     "prepare": "node scripts/install-git-hooks.js",
     "inject-a11y": "node scripts/inject-a11y.js",
     "clean-wiki-inline-styles": "node scripts/clean-wiki-inline-styles.js",

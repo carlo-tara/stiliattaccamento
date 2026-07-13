@@ -218,7 +218,7 @@ docs(readme): aggiorna istruzioni installazione
 
 ```bash
 npm run seo
-npm run perf          # build:css + build:js + inject-* + minify:static (minify sempre per ultimo)
+npm run perf          # oppure npm run deploy (perf + commit + push)
 npm run inject-a11y
 npm run test:all
 ```
@@ -228,11 +228,11 @@ Commitare i file generati in `public/` (`site.min.css`, `site.min.js`, HTML mini
 **Git hooks** (installati automaticamente con `npm install` via `prepare`):
 
 - **pre-commit**: se modifichi `public/`, `scripts/` o `package.json`, esegue `npm run perf` e restage gli artefatti in `public/`.
-- **pre-push**: esegue sempre `npm run perf` e blocca il push se restano file non committati (controlla l'intero working tree, non solo `public/`).
+- **Deploy**: usa `npm run deploy` o il comando Cursor `/deploy` (build, commit artefatti, push). Il pre-push non esegue più `npm run perf`.
 
 La pipeline deve essere **idempotente**: una seconda esecuzione di `npm run perf` non deve produrre diff. In particolare `inject-shell.js` deve funzionare su HTML già minificato (marker `Site shell:` preservati da `minify-options.js`).
 
-Prima del push, assicurati che `package.json` committato coincida con quello locale: WIP parallelo (es. nuovi step in `perf` non ancora committati) fa generare artefatti diversi e blocca il push.
+Prima del deploy, assicurati che `package.json` committato coincida con quello locale: WIP parallelo (es. nuovi step in `perf` non ancora committati) fa generare artefatti diversi da quelli attesi.
 
 Dopo modifiche CSS/JS: incrementare `CSS_VERSION` / `JS_VERSION` in `scripts/lib/asset-version.js` prima di `npm run perf` (header `_headers` usa cache `immutable` 1 anno su CSS/JS).
 
