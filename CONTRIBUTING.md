@@ -73,6 +73,7 @@ stiliattaccamento/
 │   ├── js/
 │   ├── images/
 │   ├── templates/
+│   ├── pagefind/          # Indice ricerca (generato da npm run build:search)
 │   ├── manifest.json
 │   ├── sw.js
 │   ├── robots.txt
@@ -223,7 +224,7 @@ npm run inject-a11y
 npm run test:all
 ```
 
-Commitare i file generati in `public/` (`site.min.css`, `site.min.js`, HTML minificati, template, manifest, sitemap).
+Commitare i file generati in `public/` (`site.min.css`, `site.min.js`, HTML minificati, template, manifest, sitemap, **`pagefind/`** se l'indice search cambia).
 
 **Git hooks** (installati automaticamente con `npm install` via `prepare`):
 

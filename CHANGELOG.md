@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-07-13
+
+### Added
+- **Ricerca interna Pagefind**: indice full-text italiano (`public/pagefind/`), modal Component UI, trigger in header, scorciatoia `/`
+- **Pipeline search**: `inject-search.js`, `build-search.js`, `pagefind.yml`; step in `npm run perf` (dopo minify)
+- **Deploy**: `npm run deploy` e comando Cursor `/deploy` (perf + commit artefatti + push)
+- **Skill L2**: playbook `seozoom-stiliattaccamento/pagefind-seo-geo.md` (architettura SEO/GEO ricerca on-site)
+- **Test**: `tests/unit/pagefind-search.test.js`
+
+### Changed
+- **`inject-shell.js`**: compatibile con HTML minificato (`replaceOrInsertShell`, `findInsertPoint` senza newline)
+- **Header**: `.header-actions` con pulsante Cerca + hamburger
+- **`.cursorrules`**, **CONTRIBUTING**, **scripts/README**: pipeline perf, deploy, `public/pagefind/` committato
+- **`public/robots.txt`**: `Disallow: /pagefind/`
+
+### Removed
+- **Pre-push hook** che rieseguiva `npm run perf` (sostituito da `npm run deploy`)
+
 ## [2.0.0] - 2026-07-13
 
 ### Added

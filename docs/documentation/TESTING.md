@@ -17,6 +17,7 @@ Test unitari per le funzioni JavaScript core del progetto.
 - `theme.test.js` - Gestione tema (light mode forzato)
 - `mappa-personale.test.js` - Logica calcolo dimensioni mappa
 - `mobile-menu.test.js` - Toggle menu mobile
+- `pagefind-search.test.js` - Pagefind UI injection and index presence
 
 **Eseguire**:
 ```bash

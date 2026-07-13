@@ -1,6 +1,6 @@
 ---
 name: uiux-designer
-version: 1.0.6
+version: 1.0.7
 description: >-
   Progetta e revisiona interfaccia, layout, componenti e sistema visuale del sito
   Stili di Attaccamento (PWA statica HTML+CSS+JS vanilla, Material 3 tokens, tema
@@ -52,7 +52,7 @@ Leggi in ordine:
 
 1. Questa skill (master)
 2. [design-system.md](design-system.md) — token Material 3, palette Cloud Dancer, tipografia, spacing, motion
-3. [componenti.md](componenti.md) — spec HTML/CSS/ARIA dei componenti reali del sito
+3. [componenti.md](componenti.md) — spec HTML/CSS/ARIA dei componenti reali del sito (incluso **SiteSearch** / Pagefind in header)
 4. [template-pagine.md](template-pagine.md) — layout per tipo di pagina
 5. [personas-ux.md](personas-ux.md) — bisogni e journey delle 6 personas
 6. [checklist.md](checklist.md) — revisione prima della consegna

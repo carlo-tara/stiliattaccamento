@@ -88,3 +88,6 @@ podcast-ai-generator/.env
 public/podcasts/episodes/*.mp3
 public/podcasts/scripts/*.json
 public/podcasts/metadata/*.json
+
+#secrets
+stiliattaccamento-analytics-36f80c683eaf.json

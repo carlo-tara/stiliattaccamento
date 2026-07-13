@@ -1,7 +1,7 @@
 ARCHITETTURA DEL PROGETTO - STILI DI ATTACCAMENTO WIKI
 ========================================================
 
-Versione: 1.3.0
+Versione: 1.4.0
 Data: 2026-07-13
 
 Questo documento descrive l'architettura tecnica e concettuale del progetto.
@@ -100,6 +100,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   │   ├── templates/           # Header, footer, topbar parziali
   │   ├── images/
   │   ├── icons/               # PWA icons (192, 512)
+  │   ├── pagefind/            # Indice ricerca Pagefind (build)
   │   ├── manifest.json
   │   ├── sw.js
   │   ├── robots.txt
@@ -110,7 +111,13 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   │   ├── build-css.js
   │   ├── build-js.js
   │   ├── inject-shell.js
+  │   ├── inject-analytics.js
+  │   ├── inject-wiki-tabs.js
   │   ├── inject-performance.js
+  │   ├── inject-search.js
+  │   ├── minify-static.js
+  │   ├── build-search.js
+  │   ├── deploy.sh
   │   ├── optimize-images.js
   │   ├── generate-images.js
   │   ├── inject-seo.js
@@ -125,6 +132,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   ├── docs/
   │   └── image-generated/     # Immagini raw generate (PNG)
   ├── .env.example             # Template variabili ambiente
+  ├── pagefind.yml             # Config indicizzazione Pagefind
   ├── CONTRIBUTING.md          # Guida contributori
   ├── .cursorrules             # Regole AI assistant
   ├── STANDARDS.md             # Standard di codice
@@ -189,7 +197,15 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - test-surveyjs.js + config-surveyjs.js: Quiz (test.html)
   - mappa-personale.js + modules/* + config-chartjs.js: Mappa (mappa-personale.html)
 
-4.4 Moduli JavaScript
+4.4 Ricerca interna (Pagefind)
+  - Motore: Pagefind 1.5.x (devDependency), lingua `it` (`pagefind.yml` in root)
+  - UI: Component UI (`pagefind-modal`, trigger in header, scorciatoia `/`)
+  - Build: `inject-search.js` (modal + `data-pagefind-body` su `<main>`);
+    `build-search.js` → `public/pagefind/` (ultimo step di `npm run perf`)
+  - SEO: indice non crawlato (`Disallow: /pagefind/` in robots.txt)
+  - Playbook: `.cursor/skills/seozoom-stiliattaccamento/pagefind-seo-geo.md`
+
+4.5 Moduli JavaScript
   - modules/mappa-dimensions.js: Definizione 5 dimensioni
   - modules/mappa-profile-render.js: Rendering profilo estratto da mappa-personale.js
   - utils.js: Sanitizzazione XSS, escape HTML
@@ -364,7 +380,9 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
 10.1 Optimization Strategies
   - CSS split per tipo pagina (core + bundle condizionali)
   - JS bundle minificato (`site.min.js`, Terser)
-  - Shell inline (header/topbar) via `inject-shell.js`
+  - Shell inline (header/topbar) via `inject-shell.js` (idempotente su HTML minificato)
+  - Ricerca Pagefind: inject → minify HTML → build indice (`public/pagefind/`)
+  - Pipeline: `npm run perf`; deploy: `npm run deploy`
   - Ottimizza immagini responsive WebP (`optimize-images.js`)
   - Lazy loading immagini below-the-fold; preload LCP hero + font critici
   - `content-visibility: auto` su sezioni below-the-fold (homepage)

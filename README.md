@@ -62,6 +62,8 @@ Non serve leggere tutto in sequenza. Puoi:
 
 Il sito funziona anche **offline** (PWA): puoi installarlo sul telefono o sul computer e consultarlo senza connessione.
 
+**Ricerca interna:** pulsante «Cerca» in header o tasto `/` — full-text su tutte le pagine wiki (Pagefind).
+
 ## Terminologia
 
 - **Secure, Ansioso, Evitante, Oscillante** — I quattro stili base. In letteratura l'oscillante compare spesso come "disorganizzato"; qui usiamo **oscillante** perché descrive meglio l'esperienza di alternare vicinanza e distanza, senza suonare come una condanna.

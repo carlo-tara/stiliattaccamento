@@ -45,7 +45,7 @@ npm run perf
 |--------|-------|
 | `build-css.js` | Genera `site.min.css` (core) + bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`) |
 | `build-js.js` | Genera `site.min.js` bundle minificato degli script globali |
-| `inject-shell.js` | Inlines `header.html` e `topbar.html` (idempotente anche su HTML minificato; marker `Site shell:`) |
+| `inject-shell.js` | Inlines `header.html` e `topbar.html` (idempotente anche su HTML minificato; marker `Site shell:`). Usa `replaceOrInsertShell()` per aggiornare shell già presente; `findInsertPoint()` non richiede newline dopo `<body>` o skip-link |
 | `inject-analytics.js` | Blocco GA4 nel `<head>` |
 | `inject-wiki-tabs.js` | Attributi `data-wiki-tabs*` da `wiki-tabs-config.json` |
 | `inject-performance.js` | Preload, CSS per pagina, `site.min.js` defer, SW, manifest |

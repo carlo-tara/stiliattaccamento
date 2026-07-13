@@ -41,7 +41,7 @@ These files **must** remain in the repository root:
 | Location | Contents |
 |----------|----------|
 | `.cursor/brands/` | Brand brief used by local content skills |
-| `.cursor/skills/` | Project L2 skills (content-voice, seozoom-stiliattaccamento, uiux-designer, illustrator-stiliattaccamento) |
+| `.cursor/skills/` | Project L2 skills (content-voice, seozoom-stiliattaccamento incl. `pagefind-seo-geo.md`, uiux-designer, illustrator-stiliattaccamento) |
 | `.cursor/illustration-styles/` | Style files for `a-illustrator` (e.g. tarocchi full-bleed) |
 | `docs/` | Content specifications, reviews, SEO data, snapshots |
 | `docs/archive/legacy-root/` | Superseded root `.txt` docs and old bootstrap notes |
@@ -68,6 +68,9 @@ These files **must** remain in the repository root:
 | `scripts/seo-config.js` | Canonical site URL (`https://stiliattaccamento.com`), default meta, SEO rules |
 | `sitemap-enriched.json` | URL list for SeoZoom per-URL export (optional commit; not served from `public/`) |
 | `scripts/prompts.json` | Qwen image generation prompts |
+| `pagefind.yml` | Pagefind indexing config (`force_language: it`, exclude selectors) |
+| `scripts/deploy.sh` | Production deploy: perf + commit artefacts + push |
+| `public/pagefind/` | Generated search index (commit with each release that changes HTML/search) |
 | `public/manifest.json` | PWA manifest |
 | `public/sw.js` | Service Worker (increment `CACHE_NAME` on release) |
 | `public/_headers` | Cloudflare edge cache headers |

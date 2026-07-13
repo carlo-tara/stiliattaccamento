@@ -24,12 +24,20 @@ Before merging to `main`, run locally:
 ```bash
 npm install
 npm run seo          # Meta tags, sitemap.xml, SEO validation
-npm run perf         # build:css + build:js + inject-shell + inject-performance
+npm run perf         # Full build pipeline (see table below)
 npm run inject-a11y  # Skip link, main content id
 npm run test:all     # Unit, E2E, validation suite
 ```
 
-Commit generated/updated files in `public/` (e.g. `sitemap.xml`, `site.min.css`, `site.min.js`, HTML with injected shell and meta).
+**Production push** (build + commit artefacts + push):
+
+```bash
+npm run deploy
+# or Cursor command /deploy
+# npm run deploy -- --no-push   # build + commit without push
+```
+
+Commit generated/updated files in `public/` (e.g. `sitemap.xml`, `site.min.css`, `site.min.js`, minified HTML, **`pagefind/`** search index).
 
 **When editing title, meta, or hub pages** (`index.html`, `stili-base.html`, `fondamenti.html`, `test.html`, and other money pages):
 
@@ -45,9 +53,18 @@ Commit generated/updated files in `public/` (e.g. `sitemap.xml`, `site.min.css`,
 **When editing navigation templates** (`public/templates/header.html` or `topbar.html`):
 
 ```bash
-npm run inject-shell
-npm run inject-performance   # or full npm run perf
+npm run perf   # preferred: re-injects shell + search UI + reindexes Pagefind
+# or: npm run inject-shell && npm run inject-search && npm run minify:static && npm run build:search
 ```
+
+**When editing search UI or Pagefind config** (`inject-search.js`, `pagefind.yml`, `.site-search-trigger*` CSS):
+
+```bash
+npm run perf
+git add public/pagefind/
+```
+
+See `.cursor/skills/seozoom-stiliattaccamento/pagefind-seo-geo.md` for SEO/GEO search playbook.
 
 **When editing homepage hero images**:
 
@@ -138,6 +155,7 @@ public/
 ├── fonts/             # Self-hosted Lato + Playfair (woff2)
 ├── images/
 ├── icons/
+├── pagefind/          # Pagefind search index (npm run build:search; commit on release)
 ├── templates/         # Source for header/topbar (inlined at build via inject-shell)
 ├── manifest.json
 ├── sw.js
@@ -159,6 +177,7 @@ public/
 - [ ] `robots.txt` and `sitemap.xml` reachable
 - [ ] Cookie banner appears; GTM loads only after accept
 - [ ] Mobile menu and navigation highlight work
+- [ ] **Site search**: header «Cerca» or `/` opens modal; queries return Italian results
 - [ ] Custom domain resolves (if configured)
 - [ ] **PageSpeed Insights** (mobile): Performance ≥ 90, CLS ≤ 0.1 (target: 99 / 0 as of v1.4.0; re-check after v2.0.0 asset changes)
 - [ ] Cloudflare **Rocket Loader** disabled (Speed → Optimisation)
@@ -194,8 +213,17 @@ public/
 |------|--------|--------|
 | 1 | `build-css.js` | `site.min.css` (core ~34 KiB) + page bundles (`site-profiles`, `site-mappa`, `site-wiki`) |
 | 2 | `build-js.js` | `site.min.js` (~22 KiB minified global scripts) |
-| 3 | `inject-shell.js` | Header + topbar inlined in all 59 HTML pages (zero CLS from async fetch) |
-| 4 | `inject-performance.js` | Preloads, per-page CSS, deferred scripts, SW registration |
+| 3 | `inject-shell.js` | Header + topbar inlined in all HTML pages (zero CLS; works on minified HTML) |
+| 4 | `inject-analytics.js` | GA4 block in `<head>` |
+| 5 | `inject-wiki-tabs.js` | Wiki tab attributes from config |
+| 6 | `inject-performance.js` | Preloads, per-page CSS, deferred scripts, SW registration |
+| 7 | `inject-search.js` | Pagefind modal + `data-pagefind-body` on `<main>` |
+| 8 | `minify-static.js` | Minify HTML, templates, manifest, sitemap, JSON |
+| 9 | `build-search.js` | Pagefind index in `public/pagefind/` |
+
+**Order is mandatory:** all inject steps, then `minify:static`, then `build:search` (Pagefind indexes final HTML).
+
+**Git hooks:** pre-commit may run `npm run perf` when build sources change; pre-push does **not** run perf — use `npm run deploy` for production.
 
 Additional tools:
 
@@ -210,12 +238,10 @@ Additional tools:
 | Mobile | 99 | 0 | 2.0 s |
 | Desktop | 100 | 0.017 | 0.4 s |
 
-Before each release that touches CSS, JS, or templates:
+Before each release that touches CSS, JS, templates, or HTML content:
 
 ```bash
-npm run perf
-# or step-by-step:
-npm run build:css && npm run build:js && npm run inject-shell && npm run inject-performance
+npm run deploy   # or npm run perf + manual commit
 ```
 
 ### Security Headers

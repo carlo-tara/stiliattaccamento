@@ -1,8 +1,8 @@
 STANDARD DI CODICE - STILI DI ATTACCAMENTO WIKI
 ==================================================
 
-Versione: 1.1.0
-Data: 2026
+Versione: 1.2.0
+Data: 2026-07-13
 
 Questo documento definisce gli standard di codice per il progetto "Stili di Attaccamento Wiki",
 una webapp PWA statica mobile-first.
@@ -370,7 +370,9 @@ una webapp PWA statica mobile-first.
 10.1 Ottimizzazioni
   - CSS split: `site.min.css` (core) + bundle per pagina (`site-profiles`, `site-mappa`, `site-wiki`)
   - JS bundle: `site.min.js` via `npm run build:js` (Terser); include `site-notice.js` (consenso cookie/analytics)
-  - Shell inline: header/topbar via `npm run inject-shell`
+  - Shell inline: header/topbar via `npm run inject-shell` (idempotente su HTML minificato)
+  - Ricerca interna: Pagefind (`inject-search.js` → `minify:static` → `build:search`); indice in `public/pagefind/`
+  - Pipeline completa: `npm run perf`; deploy produzione: `npm run deploy`
   - Immagini responsive WebP (`npm run optimize-images`)
   - Lazy loading per immagini below-the-fold
   - Preload LCP (hero 480w, Playfair 700) e CSS core
@@ -433,7 +435,7 @@ una webapp PWA statica mobile-first.
   - Link: tests/validation/link-checker.js
   - Schema.org: tests/validation/schema-org-checker.js
   - Stile linguistico: tests/validation/style-validator.js
-  - Unit: Vitest (tests/unit/)
+  - Unit: Vitest (tests/unit/, incl. `pagefind-search.test.js`)
   - E2E e accessibilità: Playwright (tests/e2e/, tests/accessibility/)
   - Esegui tutto: npm run test:all
 

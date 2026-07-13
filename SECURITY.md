@@ -1,8 +1,8 @@
 SECURITY POLICY - STILI DI ATTACCAMENTO WIKI
 =============================================
 
-Versione: 2.0.0
-Data: 2026-07
+Versione: 2.1.0
+Data: 2026-07-13
 
 Questo documento descrive le policy di sicurezza per il progetto "Stili di Attaccamento Wiki".
 
@@ -79,6 +79,12 @@ Questo documento descrive le policy di sicurezza per il progetto "Stili di Attac
 3.5 Cache e asset statici
   - Regole cache edge in `public/_headers` (CSS, JS, font, immagini: cache lunga; HTML: 1 h; SW: no cache)
   - Aggiorna query `?v=` su bundle CSS/JS a ogni release (vedi `inject-performance.js`)
+  - Indice Pagefind (`/pagefind/*`): cache immutable 1 anno in `_headers`; rigenerare con `npm run perf` a ogni release che tocca HTML/search
+
+3.6 Crawler e indici non pubblici
+  - `public/robots.txt`: `Disallow: /pagefind/` — l'indice ricerca client-side non va indicizzato da motori esterni
+  - `Disallow: /templates/` — frammenti HTML non serviti come pagine complete
+  - Playbook SEO ricerca: `.cursor/skills/seozoom-stiliattaccamento/pagefind-seo-geo.md`
 
 ================================================================================
 4. SICUREZZA PWA

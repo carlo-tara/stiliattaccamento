@@ -52,6 +52,22 @@ No npm bundle — keeps production JavaScript minimal.
 
 ---
 
+## Build-Time Tools
+
+### Pagefind (search index)
+
+| Item | Value |
+|------|-------|
+| Package | `pagefind` (devDependency) |
+| Config | `pagefind.yml` (site: `public`, `force_language: it`) |
+| Build | `npm run build:search` (last step of `npm run perf`) |
+| Output | `public/pagefind/` (committed; not indexed by Google) |
+| Runtime UI | Pagefind Component UI (`pagefind-modal`, loaded via `inject-search.js`) |
+
+No runtime API — search runs entirely client-side against the static index.
+
+---
+
 ## Analytics (GA4 + GTM)
 
 | Item | Value |

@@ -120,6 +120,7 @@ public/
 ├── _headers                # Cache Cloudflare
 ├── images/                 # Immagini statiche
 ├── icons/                  # PWA icons (192, 512)
+├── pagefind/               # Indice ricerca Pagefind (build; committare)
 ├── manifest.json
 ├── sw.js
 ├── robots.txt
@@ -246,8 +247,11 @@ Ogni pagina wiki deve includere:
 ## Best Practices
 
 ### Performance
-- Pipeline build: `npm run perf` (CSS/JS bundle, shell inline, analytics, wiki-tabs, preload/inject, **minify HTML/static**)
+- Pipeline build: `npm run perf` — `build:css` → `build:js` → `inject-shell` → `inject-analytics` → `inject-wiki-tabs` → `inject-performance` → **`inject-search`** → **`minify:static`** → **`build:search`**
+- **Ordine obbligatorio:** tutti gli inject **poi** `minify:static` **poi** `build:search` (Pagefind indicizza l'HTML finale; invertire reintroduce drift)
+- **Deploy produzione:** `npm run deploy` (perf + commit artefatti `public/` + push) o comando Cursor `/deploy` — vedi `.cursor/commands/deploy.md`
 - **Cache-bust:** incrementare `CSS_VERSION` / `JS_VERSION` in `scripts/lib/asset-version.js` ad ogni deploy che modifica CSS o JS; poi `npm run perf` (propaga `?v=` su tutte le HTML). CSS/JS hanno cache `immutable` 1 anno in `_headers`
+- Ricerca interna: Pagefind Component UI; indice in `public/pagefind/`; `Disallow: /pagefind/` in `robots.txt`; playbook `.cursor/skills/seozoom-stiliattaccamento/pagefind-seo-geo.md`
 - Minifica CSS e JS per produzione (`build-css.js`, `build-js.js`)
 - Ottimizza immagini (WebP, varianti responsive via `optimize-images.js`)
 - Lazy loading per immagini
@@ -282,9 +286,9 @@ Ogni pagina wiki deve includere:
 - Aggiorna documentazione se cambi funzionalità
 - Mantieni retrocompatibilità quando possibile
 - Testa su più browser prima di commit
-- Dopo modifiche CSS/JS/templates: `npm run perf` e committa artefatti generati
-- Dopo modifiche a `templates/header.html` o `topbar.html`: `npm run inject-shell`
-- **Git hooks** (`scripts/git-hooks/`, via `npm install` → `prepare`): pre-commit restage `public/`; pre-push riesegue `perf` e blocca se restano diff — pipeline idempotente; stash WIP su `package.json` prima del push
+- Dopo modifiche CSS/JS/templates: `npm run perf` e committa artefatti generati (incluso `public/pagefind/` se cambia l'indice)
+- Dopo modifiche a `templates/header.html` o `topbar.html`: `npm run inject-shell` (o `npm run perf` completo)
+- **Git hooks** (`scripts/git-hooks/`, via `npm install` → `prepare`): pre-commit restage `public/` e `public/pagefind/` se sorgenti build cambiano; **pre-push non esegue `perf`** — usa `npm run deploy` per push produzione
 
 ### Pagine legali
 - **File:** `public/privacy-policy.html`, `public/cookie-policy.html`, `public/termini-condizioni.html`
@@ -366,7 +370,7 @@ Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality"
 
 ### Cloudflare Pages
 - Build command: nessuno (file statici pre-buildati in repo)
-- Pre-deploy: `npm run perf` (e `npm run seo` se HTML/meta cambiati)
+- Pre-deploy: `npm run deploy` (o `npm run perf` + commit + push; `npm run seo` se HTML/meta cambiati)
 - Output directory: `public/`
 - Cache headers: `public/_headers`
 - Deploy automatico da branch `main`
@@ -384,7 +388,7 @@ Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality"
 - [ ] Light mode verificato
 - [ ] PWA manifest aggiornato
 - [ ] Nessun file `.env` committato
-- [ ] Dopo modifiche CSS/JS/templates: bump `scripts/lib/asset-version.js` se cambiano bundle; `npm run perf` eseguito e artefatti committati
+- [ ] Dopo modifiche CSS/JS/templates: bump `scripts/lib/asset-version.js` se cambiano bundle; `npm run perf` eseguito e artefatti committati (incluso `public/pagefind/` se l'indice search cambia)
 - [ ] PageSpeed Insights mobile ≥ 90 (CLS ≤ 0.1) su pagine modificate
 - [ ] Test su mobile e desktop
 
