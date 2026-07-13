@@ -53,6 +53,7 @@ Usa questa checklist per ogni pagina o cluster **dopo** la bozza e **prima** del
 ## 5. Struttura e formattazione
 
 - [ ] Header: maiuscole naturali (uniformati, no ANSIOSO ALTO)
+- [ ] 🔴 Zero em dash / en dash nel copy visibile
 - [ ] Elenchi con struttura **variata** (non tutti uguali)
 - [ ] Grassetto funzionale, non decorativo
 - [ ] Emoji solo ⚠️ per avvisi clinici

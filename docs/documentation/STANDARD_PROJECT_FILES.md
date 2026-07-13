@@ -54,6 +54,8 @@ These files **must** remain in the repository root:
 
 **Rule:** All `.md` files except the standard root files above must live under `docs/` or its subdirectories (or `jtbd/`, `.cursor/`, `scripts/` where appropriate). `public/` should contain only files meant to be published.
 
+**Gitignore note:** `docs/`, `.cursor/`, `jtbd/`, `seo/`, and `.seozoom/` are listed in `.gitignore`. Tracked files under those paths still version normally (`git add -u`). **New** files need `git add -f <path>` to be included in a commit.
+
 ---
 
 ## Key Configuration Files

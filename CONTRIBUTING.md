@@ -401,6 +401,12 @@ Tutti i contenuti devono includere markup Schema.org appropriato:
 3. **Hotfix branches**: `hotfix/nome-fix`
 4. **Release branches**: `release/v1.0.0`
 
+### File ignorati da `.gitignore`
+
+`.gitignore` esclude `docs/`, `.cursor/`, `jtbd/`, `seo/`, `.seozoom/`. I file **già tracciati** si aggiornano con `git add -u`. I file **nuovi** sotto path ignorati (es. `docs/design/tone-of-voice.md`, `.cursor/brands/*.md`) richiedono `git add -f <path>`.
+
+Non committare artefatti SEO locali (`seo/`, `sitemap-enriched.json`, `.seozoom/`) insieme a copy o codice sito, salvo task SEO esplicito.
+
 ## Creazione di Nuove Pagine HTML
 
 **⚠️ OBBLIGATORIO**: Quando crei una nuova pagina HTML, devi OBBLIGATORIAMENTE includere almeno 2 immagini generate via Qwen Text2Image API.
