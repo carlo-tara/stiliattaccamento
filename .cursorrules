@@ -141,6 +141,8 @@ public/
 
 ## Contenuti
 
+**Guida canonica:** [`docs/design/tone-of-voice.md`](docs/design/tone-of-voice.md). Skill operativa: `.cursor/skills/content-voice/SKILL.md`. Brand: `.cursor/brands/stiliattaccamento.md`.
+
 ### Tono di Voce e Stile Umano
 
 **REGOLA FONDAMENTALE**: Tutti i testi devono sembrare scritti da una persona, non da un'intelligenza artificiale.

@@ -278,6 +278,16 @@ una webapp PWA statica mobile-first.
   - Lista per informazioni strutturate
   - Paragrafi brevi e focalizzati
 
+7.4 Tone of Voice e Copy
+  - Guida canonica: docs/design/tone-of-voice.md
+  - Brand brief: .cursor/brands/stiliattaccamento.md
+  - Skill operativa: .cursor/skills/content-voice/SKILL.md
+  - Registro: tu prevalente; consapevolezza, non guarigione
+  - Terminologia: Oscillante nel testo visibile (URL file disorganizzato-* ok per retrocompatibilita')
+  - Punteggiatura: zero em dash / en dash nel copy (usa punto, virgola, due punti, parentesi)
+  - Validator: tests/validation/style-validator.js (npm run test:validation)
+  - Dopo modifiche copy HTML: eseguire validator prima del commit
+
 ================================================================================
 8. CONVENZIONI NAMING
 ================================================================================
@@ -425,6 +435,7 @@ una webapp PWA statica mobile-first.
 
 13.2 Documentazione Utente
   - Tutto in italiano
+  - Tone of voice: docs/design/tone-of-voice.md
   - Linguaggio chiaro e accessibile
   - Evita jargon senza spiegazione
   - Include esempi pratici

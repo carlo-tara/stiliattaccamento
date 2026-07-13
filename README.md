@@ -72,7 +72,13 @@ Il sito funziona anche **offline** (PWA): puoi installarlo sul telefono o sul co
 
 Il test e la mappa personale servono all'**auto-osservazione**, non alla diagnosi. Non sostituiscono un consulto con un professionista.
 
-Se provi disagio forte o duraturo, conviene rivolgersi a un terapeuta che conosce l'attaccamento. La pagina [Quando cercare aiuto](https://stiliattaccamento.it/quando-cercare-aiuto.html) può orientarti.
+Se provi disagio forte o duraturo, ha senso parlare con un professionista che conosce l'attaccamento. La pagina [Quando cercare aiuto](https://stiliattaccamento.it/quando-cercare-aiuto.html) può orientarti.
+
+## Per contribuire
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — linee guida sviluppo e copy
+- [docs/design/tone-of-voice.md](docs/design/tone-of-voice.md) — guida canonica al tono di voce
+- [docs/documentation/TESTING.md](docs/documentation/TESTING.md) — suite di test e validator
 
 ---
 

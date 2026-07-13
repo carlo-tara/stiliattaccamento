@@ -268,11 +268,9 @@ Questo esegue i seguenti validator:
    - Verifica presenza e validità di Schema.org structured data
    - Controlla che ogni pagina abbia markup appropriato
 
-5. **Style Validator** (`style-validator.js`) ⭐ **NUOVO**
-   - Verifica conformità alle linee guida di stile linguistico
-   - Controlla pattern riconoscibili da IA da evitare
-   - Verifica linguaggio inclusivo
-   - Verifica terminologia corretta ("oscillante" invece di "disorganizzato")
+5. **Style Validator** (`style-validator.js`)
+   - Verifies copy against [`docs/design/tone-of-voice.md`](docs/design/tone-of-voice.md)
+   - Checks AI-recognisable patterns, inclusive language, and terminology (`oscillante` vs `disorganizzato` in visible text)
 
 #### Style Validator - Dettagli
 
@@ -336,6 +334,10 @@ Prima di ogni commit, testa:
 
 ### Tono di Voce Umano e Naturale
 
+**Sorgente canonica:** [`docs/design/tone-of-voice.md`](docs/design/tone-of-voice.md) (guida operativa completa).
+
+**Workflow agenti:** skill `.cursor/skills/content-voice/` (eredita `a-copywriter`); brand brief in `.cursor/brands/stiliattaccamento.md`.
+
 **OBBLIGATORIO**: Tutti i contenuti devono sembrare scritti da una persona reale, non da un'intelligenza artificiale.
 
 #### Checklist Prima di Scrivere:
@@ -381,7 +383,7 @@ Prima di ogni commit, testa:
 
 ---
 
-Quando modifichi contenuti esistenti, applica queste linee guida per rendere i testi più umani e naturali, riducendo l'uso eccessivo di maiuscole negli header e evitando pattern che fanno sembrare i testi generati automaticamente.
+Quando modifichi contenuti esistenti, applica il tone of voice e la checklist in §12 di `docs/design/tone-of-voice.md`. Dopo modifiche HTML: `npm run test:validation` (include `style-validator.js`).
 
 ### Schema.org Markup
 

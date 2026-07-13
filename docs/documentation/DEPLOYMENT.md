@@ -29,6 +29,11 @@ npm run test:all     # Unit, E2E, validation suite
 
 Commit generated/updated files in `public/` (e.g. `sitemap.xml`, `site.min.css`, `site.min.js`, HTML with injected shell and meta).
 
+**When editing page copy** (HTML in `public/`):
+
+- Follow [`docs/design/tone-of-voice.md`](../design/tone-of-voice.md)
+- Run `node tests/validation/style-validator.js` (included in `npm run test:validation`)
+
 **When editing navigation templates** (`public/templates/header.html` or `topbar.html`):
 
 ```bash

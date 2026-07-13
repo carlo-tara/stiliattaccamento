@@ -43,7 +43,7 @@ These files **must** remain in the repository root:
 | `.cursor/brands/` | Brand brief used by local content skills |
 | `docs/` | Content specifications, reviews, SEO data, snapshots |
 | `docs/archive/legacy-root/` | Superseded root `.txt` docs and old bootstrap notes |
-| `docs/design/` | Visual design documentation |
+| `docs/design/` | Visual and voice documentation (`visual-design-specs.md`, `tone-of-voice.md`) |
 | `docs/reviews/` | Code review reports |
 | `docs/seo/` | Keyword and competitor research |
 | `docs/templates/` | Authoring templates for page families |

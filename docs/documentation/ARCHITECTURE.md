@@ -1,8 +1,8 @@
 ARCHITETTURA DEL PROGETTO - STILI DI ATTACCAMENTO WIKI
 ========================================================
 
-Versione: 1.2.0
-Data: 2026-06-17
+Versione: 1.3.0
+Data: 2026-07-13
 
 Questo documento descrive l'architettura tecnica e concettuale del progetto.
 
@@ -605,6 +605,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - CONTRIBUTING.md: Come contribuire
   - STANDARDS.md: Standard di codice
   - SECURITY.md: Policy sicurezza
+  - docs/design/tone-of-voice.md: Tone of voice (copy)
   - API.md: API esterne e integrazioni
   - DEPLOYMENT.md: Guida deploy
   - STANDARD_PROJECT_FILES.md: Riferimento file standard
@@ -612,12 +613,19 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - scripts/README.md: Pipeline SEO/performance/immagini
 
 18.2 Documenti Contenuto
+  - docs/design/tone-of-voice.md: Guida canonica al tono di voce (copy visibile)
+  - docs/design/visual-design-specs.md: Specifiche visuali (Cloud Dancer, componenti)
+  - .cursor/skills/content-voice/: Skill L2 per riscrittura e supervisione copy
+  - .cursor/skills/uiux-designer/: Skill L2 per layout, CSS, accessibilita'
+  - .cursor/brands/stiliattaccamento.md: Brand brief sintetico
   - docs/: Documenti di specifica (contenuti wiki, approfondimenti)
   - jtbd/: Personas e job stories (user research)
   
 18.3 Note Importanti
-  - **Terminologia**: Usa sempre "Oscillante" invece di "Disorganizzato"
+  - **Tone of voice**: compagno di viaggio informato; consapevolezza, non guarigione
+  - **Terminologia**: Usa sempre "Oscillante" invece di "Disorganizzato" nel testo visibile
   - **Linguaggio inclusivo**: Termini neutri (persona, partner, chi)
+  - **Validator**: `tests/validation/style-validator.js` dopo modifiche copy HTML
   - **Personas-driven**: Contenuti allineati a personas.md e job-stories.md
 
 ================================================================================
