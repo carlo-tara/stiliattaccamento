@@ -218,12 +218,19 @@ docs(readme): aggiorna istruzioni installazione
 
 ```bash
 npm run seo
-npm run perf          # build:css + build:js + inject-shell + inject-performance
+npm run perf          # build:css + build:js + inject-* + minify:static (minify sempre per ultimo)
 npm run inject-a11y
 npm run test:all
 ```
 
-Commitare i file generati in `public/` (`site.min.css`, `site.min.js`, HTML aggiornati).
+Commitare i file generati in `public/` (`site.min.css`, `site.min.js`, HTML minificati, template, manifest, sitemap).
+
+**Git hooks** (installati automaticamente con `npm install` via `prepare`):
+
+- **pre-commit**: se modifichi `public/`, `scripts/` o `package.json`, esegue `npm run perf` e restage gli artefatti in `public/`.
+- **pre-push**: esegue sempre `npm run perf` e blocca il push se restano file non committati.
+
+Dopo modifiche CSS/JS: incrementare `CSS_VERSION` / `JS_VERSION` in `scripts/lib/asset-version.js` prima di `npm run perf` (header `_headers` usa cache `immutable` 1 anno su CSS/JS).
 
 Dopo modifiche a `public/sw.js`: bump `CACHE_NAME` nel file (e `SW_CACHE_NAME` in `scripts/lib/asset-version.js`); post-deploy unregister il Service Worker vecchio in DevTools → Application prima del test locale.
 

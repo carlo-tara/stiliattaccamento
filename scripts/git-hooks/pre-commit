@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Esegue npm run perf se il commit tocca sorgenti build; restage artefatti in public/
+
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+STAGED="$(git diff --cached --name-only --diff-filter=ACMR || true)"
+if [ -z "$STAGED" ]; then
+  exit 0
+fi
+
+if ! echo "$STAGED" | grep -qE '^(public/|scripts/|package\.json|package-lock\.json)'; then
+  exit 0
+fi
+
+echo "▶ pre-commit: npm run perf..."
+npm run perf
+
+echo "▶ pre-commit: restage artefatti public/..."
+git add -u public/
+
+exit 0

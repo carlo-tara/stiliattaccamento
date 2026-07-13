@@ -86,13 +86,13 @@ function removeExistingShell(html) {
 
 function findInsertPoint(html) {
   const skipMatch = html.match(
-    /<a href="#main-content" class="skip-link">[\s\S]*?<\/a>\s*\n/
+    /<a href="#main-content" class="skip-link">[\s\S]*?<\/a>/
   );
   if (skipMatch) {
     return skipMatch.index + skipMatch[0].length;
   }
 
-  const bodyMatch = html.match(/<body[^>]*>\s*\n/);
+  const bodyMatch = html.match(/<body[^>]*>/);
   if (bodyMatch) {
     return bodyMatch.index + bodyMatch[0].length;
   }
@@ -113,6 +113,21 @@ function buildShellBlock(headerHtml, topbarHtml) {
   ].join('\n');
 }
 
+function replaceOrInsertShell(html, shellBlock) {
+  const shellPattern =
+    /<!-- Site shell: header \(auto-injected\) -->[\s\S]*?<!-- \/Site shell: topbar -->/;
+  if (shellPattern.test(html)) {
+    return html.replace(shellPattern, shellBlock.trim());
+  }
+
+  const cleaned = removeExistingShell(html);
+  const insertAt = findInsertPoint(cleaned);
+  if (insertAt === -1) {
+    return null;
+  }
+  return `${cleaned.slice(0, insertAt)}${shellBlock}${cleaned.slice(insertAt)}`;
+}
+
 function injectShell(filePath, headerTemplate, topbarTemplate) {
   const relativePath = relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
   const original = readFileSync(filePath, 'utf-8');
@@ -122,14 +137,11 @@ function injectShell(filePath, headerTemplate, topbarTemplate) {
   const topbarHtml = prepareTemplate(topbarTemplate, '.topbar', depth);
   const shellBlock = buildShellBlock(headerHtml, topbarHtml);
 
-  let html = removeExistingShell(original);
-  const insertAt = findInsertPoint(html);
-  if (insertAt === -1) {
+  const html = replaceOrInsertShell(original, shellBlock);
+  if (html === null) {
     console.warn(`⚠️  Punto di inserimento non trovato in ${relativePath}`);
     return false;
   }
-
-  html = `${html.slice(0, insertAt)}${shellBlock}${html.slice(insertAt)}`;
 
   if (html !== original) {
     writeFileSync(filePath, html, 'utf-8');
