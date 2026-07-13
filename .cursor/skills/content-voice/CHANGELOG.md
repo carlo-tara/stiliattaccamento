@@ -11,6 +11,11 @@ Formato basato su [Keep a Changelog](https://keepachangelog.com/it/IT/1.1.0/) e 
 ### Fixed
 ### Removed
 
+## [1.0.4] - 2026-07-13
+
+### Added
+- Appreso da sessione: pagine legali — contatti canonici in Privacy Policy, no placeholder, date Schema.org; path e checklist §13 [sync:safe]
+
 ## [1.0.3] - 2026-07-13
 
 ### Added

@@ -114,6 +114,13 @@ Usa questa checklist per ogni pagina o cluster **dopo** la bozza e **prima** del
 - [ ] HTML semantico preservato
 - [ ] Nessun trailing whitespace / encoding UTF-8
 
+## 13. Pagine legali
+
+- [ ] Contatti aggiornati solo in `privacy-policy.html` (`#chi-siamo`, `#contatti`)
+- [ ] Cookie Policy e Termini rimandano alla Privacy Policy (no duplicazione contatti)
+- [ ] 🔴 Nessun placeholder («se disponibile») o contatto inventato
+- [ ] Data «Ultimo aggiornamento» e `dateModified` JSON-LD allineate
+
 ---
 
 ## Post-check

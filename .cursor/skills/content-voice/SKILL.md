@@ -1,7 +1,7 @@
 ---
 name: content-voice
 extends: a-copywriter
-version: 1.0.3
+version: 1.0.4
 extends-version: 1.0.1
 description: >-
   Riscrive e supervisiona i contenuti HTML/MD del sito Stili di Attaccamento
@@ -40,6 +40,7 @@ All'avvio: carica catena `extends:` + [tone of voice](../../../docs/design/tone-
 | Tipo contenuto | Path |
 |----------------|------|
 | Pagine wiki HTML | `public/` |
+| Pagine legali | `public/privacy-policy.html` (contatti canonici), `cookie-policy.html`, `termini-condizioni.html` |
 | Documentazione | `docs/`, `jtbd/` |
 | Validator stile | `tests/validation/style-validator.js` |
 

@@ -243,7 +243,8 @@ Ogni pagina wiki deve includere:
 ## Best Practices
 
 ### Performance
-- Pipeline build: `npm run perf` (CSS bundle, JS bundle, shell inline, preload/inject)
+- Pipeline build: `npm run perf` (CSS bundle, JS bundle, shell inline, analytics, wiki-tabs, preload/inject)
+- **Cache-bust:** incrementare `CSS_VERSION` / `JS_VERSION` in `scripts/lib/asset-version.js` ad ogni deploy che modifica CSS o JS; poi `npm run perf` (propaga `?v=` su tutte le HTML). CSS/JS hanno cache `immutable` 1 anno in `_headers`
 - Minifica CSS e JS per produzione (`build-css.js`, `build-js.js`)
 - Ottimizza immagini (WebP, varianti responsive via `optimize-images.js`)
 - Lazy loading per immagini
@@ -280,6 +281,13 @@ Ogni pagina wiki deve includere:
 - Testa su più browser prima di commit
 - Dopo modifiche CSS/JS/templates: `npm run perf` e committa artefatti generati
 - Dopo modifiche a `templates/header.html` o `topbar.html`: `npm run inject-shell`
+
+### Pagine legali
+- **File:** `public/privacy-policy.html`, `public/cookie-policy.html`, `public/termini-condizioni.html`
+- **Contatti canonici:** aggiornare solo in Privacy Policy (`#chi-siamo`, `#contatti`); Cookie Policy e Termini rimandano lì — non duplicare
+- **Titolare del trattamento:** Carlo Gandolfo · `ciao@carlogandolfo.it` · Milano, Lombardia (Italia)
+- **Mai** placeholder tipo «se disponibile» o email/form inventati
+- Ad ogni modifica: aggiornare data visibile in pagina **e** `dateModified` nel JSON-LD Schema.org
 
 ## Note Speciali
 
@@ -368,6 +376,7 @@ Descrivi il concetto in modo astratto (es. "flowing shapes", "dreamlike quality"
 - [ ] CSS mobile-first
 - [ ] JavaScript senza errori console
 - [ ] Schema.org markup presente
+- [ ] Se modificate pagine legali: contatti e date aggiornati in `privacy-policy.html`
 - [ ] Light mode verificato
 - [ ] PWA manifest aggiornato
 - [ ] Nessun file `.env` committato
