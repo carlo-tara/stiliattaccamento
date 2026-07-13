@@ -41,7 +41,8 @@ These files **must** remain in the repository root:
 | Location | Contents |
 |----------|----------|
 | `.cursor/brands/` | Brand brief used by local content skills |
-| `.cursor/skills/` | Project L2 skills (content-voice, seozoom-stiliattaccamento, uiux-designer) |
+| `.cursor/skills/` | Project L2 skills (content-voice, seozoom-stiliattaccamento, uiux-designer, illustrator-stiliattaccamento) |
+| `.cursor/illustration-styles/` | Style files for `a-illustrator` (e.g. tarocchi full-bleed) |
 | `docs/` | Content specifications, reviews, SEO data, snapshots |
 | `docs/archive/legacy-root/` | Superseded root `.txt` docs and old bootstrap notes |
 | `docs/design/` | Visual and voice documentation (`visual-design-specs.md`, `tone-of-voice.md`) |
@@ -91,7 +92,7 @@ These files **must** remain in the repository root:
 
 When releasing, ensure these reflect the same version where applicable:
 
-- `.env` → `VERSION` and `BUILD` (format `VERSION.BUILD`, e.g. `1.4.0.1`)
+- `.env` → `VERSION` and `BUILD` (format `VERSION.BUILD`, e.g. `2.0.0.1`)
 - `package.json` → `"version"`
 - `CHANGELOG.md` → latest `[x.y.z]` entry
 - Script cache-busting query strings in HTML (e.g. `?v=1.3.0` for JS, `?v=1.3.2` for CSS)

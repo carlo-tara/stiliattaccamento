@@ -208,4 +208,4 @@ Su base Cloud Dancer l'elevazione nasce dal **contrasto superficie/sfondo** (car
 
 ## Icone
 
-SVG inline minimali con `currentColor` (hamburger, frecce, chevron). Nessun icon font esterno. Iconografia illustrativa (immagini): astratta, surrealista, pastello, coerente con i prompt in `scripts/prompts.json` (vedi `.cursorrules`).
+SVG inline minimali con `currentColor` (hamburger, frecce, chevron). Nessun icon font esterno. Iconografia illustrativa (immagini): astratta, surrealista, pastello, coerente con i prompt in `scripts/prompts.json` (vedi `.cursorrules`). **Carte tarocchi profili:** surrealista painterly full-bleed, palette per stile attaccamento — vedi `.cursor/illustration-styles/stiliattaccamento-tarocchi.md` e skill `illustrator-stiliattaccamento`.

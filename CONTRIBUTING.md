@@ -480,7 +480,12 @@ npm install
 
 # Genera immagini per la nuova pagina
 node scripts/generate-images.js --page=nuova-pagina.html
+
+# Solo carte tarocchi di un profilo (senza rigenerare archetipo/pattern)
+node scripts/generate-images.js --page=profili/ansioso-alto.html --position=tarocchi --force
 ```
+
+Per le **carte tarocchi** dei 12 profili, vedi `.cursor/skills/illustrator-stiliattaccamento/SKILL.md` e `.cursor/illustration-styles/stiliattaccamento-tarocchi.md`: illustrazioni full-bleed, senza testo né cornici nell'immagine.
 
 Le immagini verranno salvate in `public/images/` con il formato:
 ```

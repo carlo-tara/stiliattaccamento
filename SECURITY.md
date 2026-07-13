@@ -1,8 +1,8 @@
 SECURITY POLICY - STILI DI ATTACCAMENTO WIKI
 =============================================
 
-Versione: 1.4.0
-Data: 2026-06
+Versione: 2.0.0
+Data: 2026-07
 
 Questo documento descrive le policy di sicurezza per il progetto "Stili di Attaccamento Wiki".
 

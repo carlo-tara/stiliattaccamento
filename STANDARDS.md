@@ -374,7 +374,7 @@ una webapp PWA statica mobile-first.
   - Preload LCP (hero 480w, Playfair 700) e CSS core
   - Font self-hosted (Lato, Playfair), `font-display: optional`
 
-10.2 Lighthouse Score (obiettivo ≥ 90; verificato v1.4.0)
+10.2 Lighthouse Score (obiettivo ≥ 90; verificato v1.4.0; asset tarocchi aggiornati v2.0.0)
   - Performance: 99 mobile / 100 desktop
   - Accessibility: 100
   - Best Practices: 100

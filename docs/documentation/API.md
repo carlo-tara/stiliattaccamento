@@ -22,10 +22,14 @@ Used by `scripts/generate-images.js` to generate wiki illustrations.
 **Flow:**
 
 1. Script reads prompts from `scripts/prompts.json`
-2. Submits async image generation task to DashScope
+2. Submits async image generation task to DashScope (with optional `negative_prompt` for tarocchi)
 3. Polls task status until complete
 4. Saves raw PNG to `docs/image-generated/`
-5. Converts to WebP 800×600 via ImageMagick into `public/images/`
+5. Converts to WebP via ImageMagick into `public/images/`:
+   - Default: 800×600
+   - Vertical (`vertical: true`, e.g. profile tarocchi): API 928×1664 → output 600×800
+
+**Profile tarocchi (12 assets):** full-bleed illustrations without text or card frames. Titles and arcana numbers live in HTML only. See `.cursor/illustration-styles/stiliattaccamento-tarocchi.md` and `illustrator-stiliattaccamento` skill. Regenerate with `--position=tarocchi --force`.
 
 **Rate limiting:** 1 second pause between requests (script-enforced).
 

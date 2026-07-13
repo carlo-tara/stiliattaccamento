@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-07-13
+
+### Added
+- **Carte tarocchi profili**: rigenerazione 12 illustrazioni full-bleed (senza testo né cornici)
+- **Pipeline immagini tarocchi**: style file `.cursor/illustration-styles/stiliattaccamento-tarocchi.md`, negative prompt, API verticale `928*1664`
+- **Skill L2**: `illustrator-stiliattaccamento` (workflow QA e anti-pattern prompt Marseille)
+- **`generate-images.js`**: flag `--position=tarocchi`, style anchor automatico per posizione tarocchi
+
+### Changed
+- **Prompt tarocchi** in `scripts/prompts.json`: da layout carta Marseille a illustrazioni archetipali edge-to-edge
+- **`docs/design/visual-design-specs.md`**: allineamento stile surrealista painterly (sostituisce spec minimalista obsoleta)
+- **`uiux-designer`**: delega tarocchi a skill L2 illustrator
+
 ## [1.4.0] - 2026-06-28
 
 ### Added

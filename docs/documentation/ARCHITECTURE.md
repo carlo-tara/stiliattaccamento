@@ -177,7 +177,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - constants.js, theme.js, mobile-menu.js, breadcrumb-generator.js
   - nav-highlight.js, template-loader.js
 
-  template-loader.js (v1.4.0):
+  template-loader.js (v2.0.0):
   - Header e topbar inlined nel markup via `inject-shell.js` (zero CLS)
   - Footer caricato async con `requestIdleCallback`
   - Init breadcrumb e nav highlight dopo caricamento script
@@ -238,7 +238,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
     * Assets (CSS/JS/images/fonts): Cache First
     * HTML: Network First, fallback cache
   - Precache: site.min.css, site.min.js, cookie-banner, gtm, pwa, hero images
-  - Header/topbar non in precache (inlined in HTML since v1.4.0)
+  - Header/topbar non in precache (inlined in HTML since v1.4.0; tarocchi full-bleed v2.0.0)
   - Update mechanism: skipWaiting + clients.claim on activate
 
 6.3 Icons
@@ -375,7 +375,7 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - JS bundle (`site.min.js`): < 30 KiB minified (~22 KiB attuale)
   - Immagini hero mobile: < 15 KiB (480w WebP)
 
-10.3 Lighthouse Goals (verified v1.4.0, PageSpeed Insights)
+10.3 Lighthouse Goals (verified v1.4.0 PageSpeed Insights; asset tarocchi v2.0.0)
   - Performance: ≥ 90 (mobile 99, desktop 100)
   - Accessibility: ≥ 90 (100)
   - Best Practices: ≥ 90 (100)
@@ -416,14 +416,19 @@ Questo documento descrive l'architettura tecnica e concettuale del progetto.
   - Processo di generazione:
     * API chiamata via script Node.js (scripts/generate-images.js)
     * Chiamate asincrone con polling del task status
-    * Immagini raw salvate in docs/image-generated/ (PNG, 1328x1328px)
+    * Immagini raw salvate in docs/image-generated/ (PNG)
+    * Dimensioni API: 1328×1328 (default) o 928×1664 (vertical: true, tarocchi)
     * Processamento automatico con ImageMagick:
       - Conversione in WebP
-      - Ridimensionamento a 800x600px
+      - Ridimensionamento: 800×600 (default) o 600×800 (tarocchi)
       - Ritaglio centrato se necessario
-    * Immagini finali salvate in public/images/ (WebP, 800x600px)
+    * Immagini finali salvate in public/images/ (WebP)
+    * Per position tarocchi: style anchor + negative_prompt automatici;
+      prompt_extend: false; watermark: false
   - **OBBLIGATORIO**: Ogni nuova pagina HTML deve includere almeno 2 immagini
   - Prompt in scripts/prompts.json (SOLO pittoriche/visuali, no testo sovraimpresso)
+  - Carte tarocchi profili (v2.0.0): 12 file profili-*-tarocchi.webp, full-bleed,
+    no cornici/testo; style file .cursor/illustration-styles/stiliattaccamento-tarocchi.md
   - Vedi scripts/README.md e scripts/ENV_SETUP.md per dettagli
 
 12.3 Icons

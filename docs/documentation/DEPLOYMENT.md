@@ -160,7 +160,7 @@ public/
 - [ ] Cookie banner appears; GTM loads only after accept
 - [ ] Mobile menu and navigation highlight work
 - [ ] Custom domain resolves (if configured)
-- [ ] **PageSpeed Insights** (mobile): Performance ≥ 90, CLS ≤ 0.1 (target: 99 / 0 as of v1.4.0)
+- [ ] **PageSpeed Insights** (mobile): Performance ≥ 90, CLS ≤ 0.1 (target: 99 / 0 as of v1.4.0; re-check after v2.0.0 asset changes)
 - [ ] Cloudflare **Rocket Loader** disabled (Speed → Optimisation)
 
 ### Monitoring
@@ -203,7 +203,7 @@ Additional tools:
 - **Font self-hosting**: Lato and Playfair Display in `public/fonts/` (no Google Fonts request chain)
 - **Cloudflare Rocket Loader**: must be **OFF** (Speed → Optimisation). Rocket Loader injects render-blocking `rocket-loader.min.js` and breaks vanilla deferred scripts
 
-#### PageSpeed targets (v1.4.0, production verified)
+#### PageSpeed targets (v1.4.0 production verified; v2.0.0: 12 tarocchi webp regenerated at 600×800)
 
 | Device | Performance | CLS | LCP |
 |--------|-------------|-----|-----|

@@ -97,14 +97,39 @@ Vedi `scripts/ENV_SETUP.md` per i dettagli.
 ```bash
 npm run generate-images
 node scripts/generate-images.js --page=index.html
+node scripts/generate-images.js --page=profili/ansioso-alto.html --position=tarocchi --force
 node scripts/generate-images.js --force   # rigenera anche esistenti
+node scripts/generate-images.js --limit=2 # utile per test
 ```
+
+| Flag | Descrizione |
+|------|-------------|
+| `--page=` | Solo una pagina (es. `profili/secure-alto.html`) |
+| `--position=` | Solo una posizione in `prompts.json` (es. `tarocchi`, `archetipo`) |
+| `--force` | Rigenera anche se il file webp esiste già |
+| `--limit=N` | Massimo N immagini per esecuzione |
 
 ### Output
 
 - Immagini: `public/images/{pagina}-{posizione}.webp`
 - Mappa: `scripts/image-map.json`
 - Raw PNG: `docs/image-generated/`
+
+### Dimensioni
+
+| Tipo | API (Qwen) | Output finale |
+|------|------------|---------------|
+| Default | 1328×1328 | 800×600 webp |
+| Verticale (`vertical: true`, es. tarocchi) | 928×1664 | 600×800 webp |
+
+### Carte tarocchi (12 profili)
+
+- Asset: `public/images/profili-{stile}-{livello}-tarocchi.webp`
+- Style file: `.cursor/illustration-styles/stiliattaccamento-tarocchi.md`
+- Skill L2: `.cursor/skills/illustrator-stiliattaccamento/SKILL.md`
+- **Vincolo:** nessun testo, numeri o cornici nell'immagine; titoli arcana solo in HTML (`figcaption`)
+- **Anti-pattern prompt:** evitare «tarot card», «Marseille style», «card layout» — usare illustrazioni full-bleed verticale
+- Per `position: tarocchi` lo script applica automaticamente style anchor, `negative_prompt`, `prompt_extend: false`, `watermark: false`
 
 ### Note immagini
 

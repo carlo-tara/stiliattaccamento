@@ -1,6 +1,6 @@
 ---
 name: uiux-designer
-version: 1.0.1
+version: 1.0.2
 description: >-
   Progetta e revisiona interfaccia, layout, componenti e sistema visuale del sito
   Stili di Attaccamento (PWA statica HTML+CSS+JS vanilla, Material 3 tokens, tema
@@ -23,6 +23,7 @@ Skill **standalone** di progetto: AgentFactory non espone un L1 UI/UX — nessun
 |----------------|--------|
 | `content-voice` | Microcopy, CTA, label, `aria-label`, terminologia (Oscillante, ecc.) |
 | `a-illustrator` (L1) | Immagini nuove pagina (≥2 via Qwen, vedi `.cursorrules`) |
+| `illustrator-stiliattaccamento` (L2) | Carte tarocchi 12 profili — full-bleed, no testo/cornici |
 | `a-seozoom` (L1) | Keyword, title/meta da dati reali, PageSpeed |
 
 Agenti L1: sorgente `/var/www/AgentFactory`, deploy con `bash /var/www/AgentFactory/deploy-all.sh`.
