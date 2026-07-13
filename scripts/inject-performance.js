@@ -5,11 +5,11 @@
 const { readFileSync, writeFileSync } = require('fs');
 const { resolve, relative } = require('path');
 const { getAllHTMLFiles } = require('./lib/fs-utils');
+const { CSS_VERSION, JS_VERSION } = require('./lib/asset-version');
 
 const PUBLIC_DIR = resolve(__dirname, '../public');
 const PERF_MARKER = '<!-- Performance: resource hints -->';
-const APP_SCRIPT_VERSION = '1.3.0';
-const CSS_VERSION = '1.3.2';
+const APP_SCRIPT_VERSION = JS_VERSION;
 
 const FONTS_URL =
   'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700&display=swap';

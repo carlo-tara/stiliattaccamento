@@ -5,7 +5,7 @@ const { readFileSync, writeFileSync } = require('fs');
 const { resolve } = require('path');
 
 const JS_DIR = resolve(__dirname, '../public/js');
-const JS_VERSION = '1.3.0';
+const { JS_VERSION } = require('./lib/asset-version');
 
 /** Ordine di esecuzione: dipendenze prima di template-loader */
 const SOURCE_FILES = [

@@ -1,14 +1,8 @@
-// Service Worker — cache-first per asset statici, network-first per HTML
+// Service Worker — network-first; cache solo per fallback offline
 
-const CACHE_NAME = 'stili-attaccamento-v9';
+const CACHE_NAME = 'stili-attaccamento-v10';
 const PRECACHE_URLS = [
-  '/css/site.min.css',
   '/manifest.json',
-  '/js/site.min.js',
-  '/js/cookie-banner.js',
-  '/js/pwa.js',
-  '/js/utils.js',
-  '/js/test-surveyjs.js',
   '/images/index-hero-480.webp',
   '/images/index-hero-700.webp',
 ];

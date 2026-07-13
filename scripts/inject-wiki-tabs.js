@@ -4,6 +4,7 @@
 const { readFileSync, writeFileSync } = require('fs');
 const { resolve, relative } = require('path');
 const { getAllHTMLFiles } = require('./lib/fs-utils');
+const { JS_VERSION } = require('./lib/asset-version');
 
 const PUBLIC_DIR = resolve(__dirname, '../public');
 const CONFIG_PATH = resolve(__dirname, 'wiki-tabs-config.json');
@@ -107,7 +108,7 @@ function main() {
       return;
     }
     html = withAttrs;
-    html = injectScript(html, cssPrefix, config.scriptVersion);
+    html = injectScript(html, cssPrefix, config.scriptVersion || JS_VERSION);
 
     if (html !== original) {
       writeFileSync(filePath, html, 'utf-8');

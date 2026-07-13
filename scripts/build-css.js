@@ -5,7 +5,7 @@ const { readFileSync, writeFileSync } = require('fs');
 const { resolve } = require('path');
 
 const CSS_DIR = resolve(__dirname, '../public/css');
-const CSS_VERSION = '1.3.2';
+const { CSS_VERSION } = require('./lib/asset-version');
 
 const CORE_SOURCE_FILES = ['themes.css', 'fonts.css', 'main.css'];
 
