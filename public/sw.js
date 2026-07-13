@@ -1,6 +1,6 @@
 // Service Worker — network-first; cache solo per fallback offline
 
-const CACHE_NAME = 'stili-attaccamento-v10';
+const CACHE_NAME = 'stili-attaccamento-v11';
 const PRECACHE_URLS = [
   '/manifest.json',
   '/images/index-hero-480.webp',
@@ -9,9 +9,24 @@ const PRECACHE_URLS = [
 
 const CACHEABLE_EXTENSIONS = /\.(css|js|webp|png|jpg|jpeg|svg|woff2?)$/i;
 
+/** Precache best-effort: un URL bloccato (es. ad blocker) non deve far fallire l'install. */
+function precacheUrls(cache, urls) {
+  return Promise.allSettled(
+    urls.map((url) =>
+      fetch(url).then((response) => {
+        if (response.ok) {
+          return cache.put(url, response);
+        }
+      })
+    )
+  );
+}
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then((cache) => precacheUrls(cache, PRECACHE_URLS))
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -55,7 +70,7 @@ self.addEventListener('fetch', (event) => {
           }
           return response;
         })
-        .catch(() => caches.match(request))
+        .catch(() => caches.match(request).then((cached) => cached || Response.error()))
     );
   }
 });
