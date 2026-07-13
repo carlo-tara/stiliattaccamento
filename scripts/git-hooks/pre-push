@@ -9,10 +9,10 @@ cd "$ROOT"
 echo "▶ pre-push: npm run perf..."
 npm run perf
 
-if ! git diff --quiet || ! git diff --cached --quiet; then
+if ! git diff --quiet -- public/ || ! git diff --cached --quiet -- public/; then
   echo ""
-  echo "❌ npm run perf ha modificato file non committati."
-  echo "   Esegui: git add -u public/ && git commit -m \"chore: aggiorna artefatti build\" && git push"
+  echo "❌ npm run perf ha modificato artefatti in public/ non committati."
+  echo "   Esegui: git add -u public/ && git add public/pagefind/ && git commit -m \"chore: aggiorna artefatti build\" && git push"
   exit 1
 fi
 
