@@ -1844,6 +1844,23 @@ footer,
   border-radius: 1px;
 }
 
+/* Invito soft: esercizi sempre visibili al primo livello */
+.nav-links a.nav-link--practice {
+  color: var(--color-accent-primary);
+  font-weight: 600;
+  background-color: rgba(168, 213, 186, 0.14);
+}
+
+.nav-links a.nav-link--practice:hover,
+.nav-links a.nav-link--practice:focus-visible {
+  background-color: rgba(168, 213, 186, 0.28);
+  color: var(--color-accent-primary);
+}
+
+.nav-links a.nav-link--practice.nav-link--active {
+  background-color: rgba(168, 213, 186, 0.32);
+}
+
 .profile-row {
   margin-bottom: var(--spacing-8);
   padding: var(--spacing-6);
