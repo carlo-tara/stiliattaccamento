@@ -1,8 +1,8 @@
 ---
 name: content-voice
 extends: a-copywriter
-version: 1.0.4
-extends-version: 1.0.1
+version: 1.0.5
+extends-version: 1.0.2
 description: >-
   Riscrive e supervisiona i contenuti HTML/MD del sito Stili di Attaccamento
   secondo tono, stile e accuratezza concettuale. Usa quando l'utente chiede di

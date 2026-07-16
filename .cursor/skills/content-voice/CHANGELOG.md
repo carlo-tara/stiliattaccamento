@@ -11,6 +11,11 @@ Formato basato su [Keep a Changelog](https://keepachangelog.com/it/IT/1.1.0/) e 
 ### Fixed
 ### Removed
 
+## [1.0.5] - 2026-07-16
+
+### Changed
+- Sync a-copywriter 1.0.2: skill `/sync` (deploy + report versioni) [sync:safe]
+
 ## [1.0.4] - 2026-07-13
 
 ### Added

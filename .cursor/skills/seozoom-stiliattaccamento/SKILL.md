@@ -1,8 +1,8 @@
 ---
 name: seozoom-stiliattaccamento
 extends: a-seozoom
-version: 1.0.0
-extends-version: 1.0.8
+version: 1.1.1
+extends-version: 1.1.3
 description: >-
   SEO/GEO per Stili di Attaccamento — eredita a-seozoom; path export, hub money,
   quick win quando non in SERP, Pagefind ricerca on-site, limiti import SeoZoom

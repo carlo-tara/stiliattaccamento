@@ -11,6 +11,12 @@ Formato basato su [Keep a Changelog](https://keepachangelog.com/it/IT/1.1.0/) e 
 ### Fixed
 ### Removed
 
+## [1.1.1] - 2026-07-16
+
+### Changed
+- Sync a-seozoom 1.1.3: `/sync`, Playwright-only SeoZoom, GMC/Ads, dashboard metriche [sync:safe]
+- Allineata `version` frontmatter a CHANGELOG (era 1.0.0 vs 1.1.0 documentato)
+
 ## [1.1.0] - 2026-07-13
 
 ### Added
