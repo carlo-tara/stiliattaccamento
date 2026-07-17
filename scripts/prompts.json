@@ -446,5 +446,33 @@
       "alt": "Rappresentazione astratta dell'intimità e connessione",
       "figcaption": "Attaccamento e sessualità: intimità consapevole"
     }
+  },
+  "libri/love-sense.html": {
+    "hero": {
+      "prompt": "Abstract surrealist landscape, soft pastel green and warm beige tones, gentle flowing organic shapes nested together like a quiet harbor, soft light, welcoming atmosphere, non-photorealistic, dreamlike quality, calm and embracing mood, no figures, no faces, no text, no words, no letters",
+      "position": "after-h1",
+      "alt": "Composizione astratta pastello che evoca connessione e senso del legame",
+      "figcaption": "L'amore come senso: bisogno, non lusso"
+    },
+    "micro": {
+      "prompt": "Abstract surrealist soft pastel shapes like small sparks of light between two rounded forms, gentle welcoming atmosphere, non-photorealistic, dreamlike quality, representing tiny moments of connection and mutual response, no text, no words, no letters",
+      "position": "after-perche",
+      "alt": "Forme astratte soft che suggeriscono piccoli gesti di risposta reciproca",
+      "figcaption": "I micro-momenti di connessione"
+    }
+  },
+  "libri/hold-me-tight-workbook.html": {
+    "hero": {
+      "prompt": "Abstract surrealist composition, soft pastel green-beige colors, two flowing forms leaning toward each other in quiet dialogue, welcoming embracing atmosphere, non-photorealistic, dreamlike quality, representing couple conversation and emotional presence, no text, no words, no letters",
+      "position": "after-h1",
+      "alt": "Illustrazione astratta di due forme che si avvicinano in un dialogo soft",
+      "figcaption": "Dalle conversazioni agli spunti pratici"
+    },
+    "conversations": {
+      "prompt": "Abstract surrealist vertical sequence of seven soft glowing orbs connected by a gentle pastel ribbon, warm welcoming atmosphere, non-photorealistic, dreamlike quality, representing seven conversations for connection, no text, no numbers, no words, no letters",
+      "position": "after-perche",
+      "alt": "Sette forme soft collegate che suggeriscono conversazioni successive",
+      "figcaption": "Le sette conversazioni come mappa, non come compito"
+    }
   }
 }

@@ -402,7 +402,7 @@ La pratica di ricordare che il partner ti ama anche quando non la dimostrazione 
 - Levine, A., & Heller, R. (2010). *Attached: The New Science of Adult Attachment*.
 
 **Terapia**:
-- Johnson, S. (2008). *Love Sense: The Revolutionary New Science of Romantic Relationships*.
+- Johnson, S. (2013). *Love Sense: The Revolutionary New Science of Romantic Relationships*.
 - Brown, B. (2018). *Dare to Lead: Brave Work. Tough Conversations. Whole Hearts*.
 - van der Kolk, B. (2014). *The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma*.
 

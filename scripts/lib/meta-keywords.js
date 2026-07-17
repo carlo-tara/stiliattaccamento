@@ -81,7 +81,9 @@ const APPROFONDIMENTI_KEYWORDS = {
 
 const LIBRI_KEYWORDS = {
   'libri/attached.html': ['Attached libro', 'stili attaccamento coppia'],
-  'libri/hold-me-tight.html': ['Hold Me Tight', 'EFT terapia di coppia'],
+  'libri/hold-me-tight.html': ['Hold Me Tight', 'Tenersi stretti', 'EFT terapia di coppia'],
+  'libri/love-sense.html': ['Love Sense', 'Sue Johnson attaccamento'],
+  'libri/hold-me-tight-workbook.html': ['Hold Me Tight Workbook', 'conversazioni EFT'],
   'libri/secure-base.html': ['Secure Base Bowlby', 'base sicura'],
   'libri/come-stai.html': ['Come stai libro', 'focusing'],
   'libri/polysecure.html': ['Polysecure', 'attaccamento poliamoria'],
